@@ -124,9 +124,13 @@ export default function HomePage() {
           priority
         />
 
-        {/* White gradient on the left so text stays readable */}
+        {/* Mobile: full white overlay. Desktop: left gradient only */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 sm:hidden"
+          style={{ background: "rgba(255,255,255,0.88)" }}
+        />
+        <div
+          className="absolute inset-0 hidden sm:block"
           style={{
             background:
               "linear-gradient(to right, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.88) 30%, rgba(255,255,255,0.55) 52%, rgba(255,255,255,0) 68%)",
@@ -134,7 +138,7 @@ export default function HomePage() {
         />
 
         {/* Content row */}
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 py-14 flex items-center justify-between gap-8">
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 py-10 sm:py-14 flex items-center justify-between gap-8">
           {/* Left: text */}
           <div className="max-w-md">
             <h1 className="text-4xl sm:text-5xl font-extrabold text-[#0d1a2d] leading-tight">
