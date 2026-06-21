@@ -45,9 +45,10 @@ export default function Footer() {
               <Image
                 src="/logo.png"
                 alt="CAREDMVPrep – Your Road to Success"
-                width={180}
-                height={48}
-                className="h-10 w-auto rounded"
+                width={280}
+                height={110}
+                style={{ height: '88px', width: 'auto' }}
+                className="rounded"
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">

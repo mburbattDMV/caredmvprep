@@ -56,17 +56,22 @@ export default function Header() {
   const toggle = (key: string) => setOpenKey((prev) => (prev === key ? null : key));
 
   return (
+    <>
+    <style>{`
+      .header-logo { width: auto; height: 40px; max-height: 40px; object-fit: contain; }
+      @media (min-width: 1024px) { .header-logo { height: 56px; max-height: 56px; } }
+    `}</style>
     <header className="text-white sticky top-0 z-50 shadow-md" style={{ backgroundColor: '#0f1e3c' }}>
-      <div className="w-full px-4" style={{ paddingLeft: '340px' }}>
-        <div className="flex items-center justify-between h-16">
+      <div className="w-full px-4 lg:px-6">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center shrink-0" style={{ overflow: 'visible' }}>
+          <Link href="/" className="flex items-center shrink-0">
             <Image
-              src="/logo.png"
+              src="/logo-header.png"
               alt="CAREDMVPrep – Your Road to Success"
-              width={380}
-              height={140}
-              style={{ width: '274px', height: '216px', objectFit: 'fill' }}
+              width={600}
+              height={120}
+              className="header-logo"
               priority
             />
           </Link>
@@ -148,6 +153,7 @@ export default function Header() {
         </div>
       )}
     </header>
+    </>
   );
 }
 

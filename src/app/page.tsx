@@ -129,13 +129,13 @@ export default function HomePage() {
           {/* Mobile: full white overlay. Desktop: left gradient only */}
           <div
             className="absolute inset-0 sm:hidden"
-            style={{ background: "rgba(255,255,255,0.88)" }}
+            style={{ background: "rgba(255,255,255,0.50)" }}
           />
           <div
             className="absolute inset-0 hidden sm:block"
             style={{
               background:
-                "linear-gradient(to right, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.88) 30%, rgba(255,255,255,0.55) 52%, rgba(255,255,255,0) 68%)",
+                "linear-gradient(to right, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.68) 28%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0) 65%)",
             }}
           />
 
@@ -150,22 +150,24 @@ export default function HomePage() {
               The First Time
             </h2>
             <p className="text-gray-700 text-sm sm:text-base mb-7 leading-relaxed max-w-sm">
-              CAREDMVPrep offers the most accurate DMV practice tests for all 50
+              <span style={{ color: '#000000', fontWeight: 700 }}>CARE</span><span style={{ color: '#1a7f3c', fontWeight: 700 }}>DMV</span><span style={{ color: '#000000', fontWeight: 700 }}>Prep.com</span> offers the most accurate DMV practice tests for all 50
               states. Study smarter, pass with confidence, and get on the road.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
                 href="#choose-state"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#1a7f3c] hover:bg-[#15702f] text-white font-bold text-sm rounded transition"
+                className="inline-flex items-center gap-2 px-9 py-4 text-white font-bold rounded-lg transition shadow-lg"
+                style={{ backgroundColor: '#1a7f3c', fontSize: '17px', letterSpacing: '0.03em' }}
               >
                 CHOOSE YOUR STATE
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
               <Link
                 href="/pricing"
-                className="inline-flex items-center px-6 py-3 border-2 border-gray-400 text-gray-800 font-semibold text-sm rounded hover:bg-white/60 transition bg-white/40"
+                className="inline-flex items-center px-7 py-4 border-2 border-gray-500 font-semibold rounded-lg hover:bg-white/60 transition"
+                style={{ color: '#1a2d1a', backgroundColor: 'rgba(255,255,255,0.55)', fontSize: '15px' }}
               >
                 VIEW PRICING
               </Link>
@@ -193,6 +195,82 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* ── TEST TYPES ─────────────────────────────────────────── */}
+      <section className="py-14" style={{ backgroundColor: '#f0f4f8' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-2" style={{ color: '#0d1a2d' }}>What Are You Studying For?</h2>
+            <p className="text-sm" style={{ color: '#6b7280' }}>Select your test type to begin practicing</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Driver's License */}
+            <Link
+              href="#choose-state"
+              className="rounded-2xl p-8 border-2 border-gray-200 bg-white text-center flex flex-col items-center hover:shadow-xl transition"
+            >
+              <div className="w-18 h-18 rounded-full flex items-center justify-center mb-5" style={{ backgroundColor: '#e8f5ee', width: '72px', height: '72px' }}>
+                <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6} style={{ color: '#1a7f3c' }}>
+                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                  <circle cx="8" cy="12" r="2.5" />
+                  <path strokeLinecap="round" d="M13 10h5M13 13h4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-2" style={{ color: '#0d1a2d' }}>Driver&apos;s License Tests</h3>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: '#6b7280' }}>
+                Practice for your state&apos;s written knowledge test. All 50 states covered with questions from official DMV manuals.
+              </p>
+              <span className="inline-flex items-center gap-1 text-sm font-bold" style={{ color: '#1a7f3c' }}>
+                Start Practicing →
+              </span>
+            </Link>
+
+            {/* Motorcycle */}
+            <Link
+              href="/motorcycle-practice-test"
+              className="rounded-2xl p-8 border-2 border-gray-200 bg-white text-center flex flex-col items-center hover:shadow-xl transition"
+            >
+              <div className="rounded-full flex items-center justify-center mb-5" style={{ backgroundColor: '#e8f5ee', width: '72px', height: '72px' }}>
+                <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6} style={{ color: '#1a7f3c' }}>
+                  <circle cx="5" cy="17" r="3" />
+                  <circle cx="19" cy="17" r="3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 17H3.5L6 10h6l4 4.5H19M10 10l1.5 7M16 14.5L14 11" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-2" style={{ color: '#0d1a2d' }}>Motorcycle Tests</h3>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: '#6b7280' }}>
+                Prepare for your motorcycle endorsement exam with practice questions covering rules of the road, safety, and more.
+              </p>
+              <span className="inline-flex items-center gap-1 text-sm font-bold" style={{ color: '#1a7f3c' }}>
+                Start Practicing →
+              </span>
+            </Link>
+
+            {/* CDL */}
+            <Link
+              href="/cdl-practice-test"
+              className="rounded-2xl p-8 border-2 border-gray-200 bg-white text-center flex flex-col items-center hover:shadow-xl transition"
+            >
+              <div className="rounded-full flex items-center justify-center mb-5" style={{ backgroundColor: '#e8f5ee', width: '72px', height: '72px' }}>
+                <svg width="38" height="38" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6} style={{ color: '#1a7f3c' }}>
+                  <rect x="1" y="6" width="13" height="10" rx="1" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14 9h4.5L21 12v4h-7V9z" />
+                  <circle cx="5" cy="18" r="2" />
+                  <circle cx="18" cy="18" r="2" />
+                  <path strokeLinecap="round" d="M7 18h9" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold mb-2" style={{ color: '#0d1a2d' }}>CDL Tests</h3>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: '#6b7280' }}>
+                Study for your Commercial Driver&apos;s License with general knowledge, air brakes, hazmat, and specialty endorsement tests.
+              </p>
+              <span className="inline-flex items-center gap-1 text-sm font-bold" style={{ color: '#1a7f3c' }}>
+                Start Practicing →
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── CHOOSE YOUR STATE ─────────────────────────────────── */}
       <section id="choose-state" className="py-14 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -217,7 +295,7 @@ export default function HomePage() {
                 </div>
                 <div className="p-4 bg-white">
                   <p className="font-semibold text-gray-900 text-sm">{card.state}</p>
-                  <p className="text-xs text-gray-500 mt-0.5">DMV Practice Test</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{card.state} Permit Test</p>
                   <span className="inline-flex items-center gap-1 mt-2 text-xs font-semibold text-[#1a7f3c] group-hover:underline">
                     Start Practice →
                   </span>
