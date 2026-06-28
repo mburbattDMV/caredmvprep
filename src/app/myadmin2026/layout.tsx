@@ -1,8 +1,6 @@
 import { redirect } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
-import AdminNav from "@/components/admin/AdminNav";
+import AdminSidebar from "@/components/admin/AdminSidebar";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -14,28 +12,26 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!isAdmin) redirect("/myadmin2026/login");
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#f0f4f8" }}>
-      {/* Top bar */}
+    <div className="flex h-screen overflow-hidden" style={{ backgroundColor: "#f1f5f9" }}>
+      <AdminSidebar userEmail={user.email ?? ""} />
+
+      {/* Mobile top bar */}
       <div
-        className="flex items-center justify-between px-6 py-3 border-b border-white/10 shrink-0"
-        style={{ backgroundColor: "#0f1e3c" }}
+        className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center px-4 py-3 border-b"
+        style={{ backgroundColor: "#0a1628", borderColor: "rgba(255,255,255,0.08)" }}
       >
-        <Link href="/myadmin2026">
-          <Image src="/logo.png" alt="CAREDMVPrep Admin" width={160} height={64} className="w-[130px] h-auto" />
-        </Link>
-        <div className="flex items-center gap-4">
-          <span className="text-xs text-gray-400">{user.email}</span>
-          <Link href="/" className="text-xs text-gray-400 hover:text-white transition">← Public site</Link>
-        </div>
+        <span className="text-white font-bold text-sm">CAREDMVPrep Admin</span>
+        <span className="ml-auto text-xs text-gray-400">{user.email}</span>
       </div>
 
-      {/* Tab nav */}
-      <AdminNav />
-
-      {/* Content */}
-      <main className="flex-1 p-6 lg:p-8 max-w-screen-2xl mx-auto w-full">
-        {children}
-      </main>
+      {/* Main content */}
+      <div className="flex-1 flex flex-col min-h-0 overflow-hidden lg:mt-0 mt-12">
+        <main className="flex-1 overflow-y-auto">
+          <div className="max-w-screen-2xl mx-auto p-5 lg:p-7">
+            {children}
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

@@ -143,29 +143,29 @@ const data: PracticeTestPageProps = {
         "No. Lane splitting — riding between lanes of traffic — is currently illegal in Texas. Texas Transportation Code does not permit motorcyclists to split lanes. Two motorcycles may ride side by side within a single lane, but a motorcycle may not pass between moving or stationary traffic.",
     },
     {
-      question: "What documents do I need to bring to the Texas DMV for my motorcycle knowledge test?",
+      question: "What documents do I need to bring to the Texas DPS for my motorcycle knowledge test?",
       answer:
-        "For the motorcycle knowledge test in Texas, you typically need to bring a valid form of ID (driver's license or ID card), proof of residency (if not already on file), and the application fee. If you are under 18, you may also need a parent or guardian's signature on a minor consent form. Check the Texas DMV website before your visit to confirm current requirements, as they can change.",
+        "For the Texas motorcycle knowledge test at a DPS driver's license office, you need a valid form of ID, proof of Texas residency (two documents such as utility bills or bank statements), your Social Security number, and the application fee. If you are under 18, a parent or guardian must sign the application. Visit dps.texas.gov to confirm current document requirements and schedule an appointment before your visit.",
     },
     {
-      question: "How long is the Texas motorcycle permit valid, and can I ride alone with it?",
+      question: "How long is the Texas motorcycle learner's permit valid, and can I ride alone with it?",
       answer:
-        "Motorcycle learner's permit validity varies by state, typically ranging from 90 days to 2 years. With a permit in Texas, you are generally restricted from riding at night, on highways, or carrying passengers. These restrictions ensure new riders gain experience safely before obtaining a full license. Check the Texas DMV website for specific permit restrictions and validity periods in your state.",
+        "A Texas motorcycle learner's permit (instruction permit) is valid for 1 year. With a Texas motorcycle permit, you may not ride at night, on controlled-access highways, or carry passengers. You must ride only when accompanied — not necessarily side-by-side, but within visual distance — by a licensed motorcycle operator. Texas DPS encourages completing the TDLR Motorcycle Safety Course during the permit period.",
     },
     {
       question: "Is a motorcycle endorsement required in Texas, or is it a separate license?",
       answer:
-        "The structure varies by state. Some states, including Texas, add a motorcycle endorsement (typically marked as 'M') to your existing driver's license, while others issue a separate motorcycle license or permit. Either way, you must pass a motorcycle knowledge test and, in most cases, a riding skills test or approved safety course before you can legally operate a motorcycle on public roads.",
+        "Texas adds a Class M endorsement to your existing driver's license rather than issuing a separate document. You must pass a 25-question motorcycle knowledge test at a Texas DPS driver's license office and either pass a DPS skills test or complete a TDLR-approved Motorcycle Safety Course (which may waive the skills test for eligible riders). The endorsement appears on your standard Texas driver's license.",
     },
     {
-      question: "What types of motorcycles require a motorcycle license in Texas?",
+      question: "What types of vehicles require a Class M endorsement in Texas?",
       answer:
-        "In Texas, a motorcycle license or endorsement is generally required to operate any two-wheeled, three-wheeled, or motor-driven cycle above a certain engine displacement or speed threshold. This includes standard motorcycles, sport bikes, cruisers, and most scooters above 50cc. Mopeds (typically under 50cc, max speed 30 mph) may have different requirements — check the Texas DMV's specific definitions. Electric motorcycles and e-bikes are subject to separate regulations based on their maximum speed and motor output.",
+        "A Texas Class M endorsement is required to operate any motorcycle — defined as a vehicle with a seat or saddle and designed to travel on not more than three wheels in contact with the ground. This includes standard motorcycles, sport bikes, cruisers, and three-wheelers. Motor-driven cycles with engines under 250cc may fall under Class M as well. Mopeds (under 50cc, motor-assisted only, max 30 mph) are exempt. Check the Texas DPS website for current definitions of motor-driven cycles.",
     },
     {
       question: "Does completing a motorcycle safety course waive the skills test in Texas?",
       answer:
-        "In many states, completing an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse or an equivalent state-approved program waives the DMV riding skills test requirement. Some states also waive the knowledge test for course graduates. Texas DMV policies on course waivers vary — check the DMV website or contact them directly to confirm which approved courses qualify for test waivers and whether any age restrictions apply.",
+        "Yes. Completing a TDLR-approved Motorcycle Safety Course (MSC) may waive the DPS road skills test for eligible riders — generally adults 18 and older who hold a valid unrestricted Texas Class A, B, or C driver's license. The TDLR course does NOT waive the DPS written knowledge test; you must still pass the 25-question knowledge exam at a DPS office. Riders under 18 still need to complete the full process including the skills test at DPS.",
     },
   ],
   relatedTests: [

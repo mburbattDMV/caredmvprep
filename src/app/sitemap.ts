@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/states",
     "/california-dmv-practice-test",
     "/texas-dmv-practice-test",
+    "/texas-dmv-practice-tests",
     "/florida-dmv-practice-test",
     "/new-york-dmv-practice-test",
     "/illinois-dmv-practice-test",

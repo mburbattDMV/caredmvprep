@@ -5,8 +5,7 @@ export const metadata: Metadata = {
   title: "Texas DMV Practice Tests 2025 – Free TX Driver's License, Motorcycle & CDL Prep",
   description:
     "Free Texas DMV practice tests for driver's license, motorcycle endorsement, and CDL General Knowledge. Based on the official Texas Driver Handbook and FMCSA CDL Manual.",
-  alternates: { canonical: "https://caredmvprep.com/texas-dmv-practice-test" },
-  robots: { index: false, follow: true },
+  alternates: { canonical: "https://caredmvprep.com/texas-dmv-practice-tests" },
   openGraph: { url: 'https://caredmvprep.com/texas-dmv-practice-tests', images: [{ url: 'https://caredmvprep.com/opengraph-image', width: 1200, height: 630 }] },
 };
 

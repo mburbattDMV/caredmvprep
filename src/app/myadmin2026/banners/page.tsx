@@ -12,5 +12,13 @@ export default async function AdminBannersPage() {
     .select("*")
     .order("created_at", { ascending: false }) as { data: any[] };
 
-  return <BannersPanel initialBanners={banners} />;
+  return (
+    <div className="space-y-5">
+      <div>
+        <h1 className="text-xl font-bold text-gray-900">Banners</h1>
+        <p className="text-sm text-gray-400 mt-0.5">Create and schedule site-wide announcement banners</p>
+      </div>
+      <BannersPanel initialBanners={banners} />
+    </div>
+  );
 }

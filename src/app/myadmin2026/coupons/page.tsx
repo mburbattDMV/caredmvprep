@@ -12,5 +12,13 @@ export default async function AdminCouponsPage() {
     .select("*")
     .order("created_at", { ascending: false }) as { data: any[] };
 
-  return <CouponsPanel initialCoupons={coupons} />;
+  return (
+    <div className="space-y-5">
+      <div>
+        <h1 className="text-xl font-bold text-gray-900">Coupons</h1>
+        <p className="text-sm text-gray-400 mt-0.5">Create and manage promotional discount codes</p>
+      </div>
+      <CouponsPanel initialCoupons={coupons} />
+    </div>
+  );
 }

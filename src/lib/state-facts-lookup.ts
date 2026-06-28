@@ -94,6 +94,7 @@ export function formatAge(age: number): string {
 export function formatHelmetLaw(sf: StateFacts): string | undefined {
   if (sf.motoHelmetLaw === "NEEDS_VERIFICATION") return undefined;
   if (sf.motoHelmetLaw === "all-ages") return "Required — all riders";
+  if (sf.motoHelmetLaw === "under-21") return "Required — riders under 21";
   if (sf.motoHelmetLaw === "under-18") return "Required — riders under 18";
   if (sf.motoHelmetLaw === "none") return "Not required";
   return undefined;

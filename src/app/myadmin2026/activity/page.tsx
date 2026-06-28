@@ -67,6 +67,10 @@ export default async function AdminActivityPage() {
 
   return (
     <div className="space-y-6">
+      <div>
+        <h1 className="text-xl font-bold text-gray-900">Activity</h1>
+        <p className="text-sm text-gray-400 mt-0.5">Real-time feed of signups, purchases, and quiz completions</p>
+      </div>
       {/* Summary */}
       <div className="grid grid-cols-3 gap-3">
         <div className="bg-white rounded-xl border border-gray-200 px-5 py-4">

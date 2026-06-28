@@ -7,16 +7,29 @@ import EditProfileForm from "@/components/account/EditProfileForm";
 
 // ── Label maps ────────────────────────────────────────────────────────────────
 
-const PRODUCT_LABELS: Record<string, string> = {
-  dmv:                 "Driver's License Premium",
-  motorcycle:          "Motorcycle Premium",
-  cdl:                 "CDL Premium",
-  cdl_hazmat:          "CDL HazMat Add-on",
-  cdl_tanker:          "CDL Tanker Add-on",
-  cdl_doubles_triples: "CDL Doubles & Triples Add-on",
-  cdl_school_bus:      "CDL School Bus Package",
-  cdl_passenger:       "CDL Passenger Package",
+const PRODUCT_BASE_LABELS: Record<string, string> = {
+  dmv:                 "DMV Permit",
+  motorcycle:          "Motorcycle",
+  cdl:                 "CDL General Knowledge",
+  cdl_hazmat:          "CDL HazMat Endorsement",
+  cdl_tanker:          "CDL Tanker Endorsement",
+  cdl_doubles_triples: "CDL Doubles & Triples",
+  cdl_school_bus:      "CDL School Bus",
+  cdl_passenger:       "CDL Passenger Transport",
 };
+
+// Products that get state prefix in their display name
+const STATE_PREFIXED = new Set(["dmv", "motorcycle"]);
+
+function getProductLabel(product: string, state: string | null): string {
+  const base      = PRODUCT_BASE_LABELS[product] ?? product;
+  const stateName = state ? (STATE_LABELS[state] ?? state) : null;
+  if (stateName && STATE_PREFIXED.has(product)) return `${stateName} ${base}`;
+  return base;
+}
+
+// Kept for the checkout success banner (uses product key directly)
+const PRODUCT_LABELS = PRODUCT_BASE_LABELS;
 
 const STATE_LABELS: Record<string, string> = {
   CA: "California",
@@ -212,7 +225,7 @@ export default async function AccountPage({ searchParams }: Props) {
                 >
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <p className="text-sm font-bold text-gray-900">
-                      {PRODUCT_LABELS[sub.product] ?? sub.product}
+                      {getProductLabel(sub.product, studyState)}
                     </p>
                     <span
                       className="text-xs font-bold px-2 py-0.5 rounded-full shrink-0"

@@ -155,22 +155,22 @@ const data: PracticeTestPageProps = {
     {
       question: "How much does it cost to get a CDL in Texas?",
       answer:
-        "CDL fees vary by state and by the class and endorsements you obtain. Most states charge separate fees for the CDL knowledge test ($10–$30 per attempt), the CDL skills test ($50–$150), and the CDL license itself ($50–$100). Additional fees apply for each endorsement (HazMat, Tanker, Passenger, etc.). The HazMat endorsement also requires a TSA security threat assessment fee of approximately $86. Check your Texas DMV website for current fee schedules.",
+        "Texas CDL fees are set by the Texas DPS. As of 2025: the Commercial Learner's Permit (CLP) is $16 for 1 year; the CDL license itself costs approximately $97 for an 8-year license. Each knowledge test attempt costs $11. The HazMat endorsement requires an additional TSA security threat assessment fee of approximately $86 charged separately by the federal government. Skills test fees vary by the third-party testing site used. Check the Texas DPS website (dps.texas.gov) for the current fee schedule before your visit.",
     },
     {
       question: "Can I take the Texas CDL knowledge test in a language other than English?",
       answer:
-        "Federal regulations (49 CFR 383.133) require that CDL applicants be able to read and speak the English language sufficiently to understand highway traffic signs and signals and to respond to official inquiries. Many states offer CDL knowledge tests in Spanish and other languages for non-commercial knowledge questions, but the actual CDL test must be taken in a language that allows the driver to meet the English proficiency requirement. Check with the Texas DMV for available language options.",
+        "Federal regulations (49 CFR 383.133) require that CDL applicants demonstrate sufficient English proficiency to understand highway signs and respond to official inquiries. Texas DPS offers the CDL General Knowledge test in Spanish in addition to English. Other endorsement tests (HazMat, Passenger, etc.) may be English-only. Contact your local Texas DPS driver's license office to confirm language options for the specific test you need before scheduling.",
     },
     {
       question: "How long is a Texas CDL valid and how do I renew it?",
       answer:
-        "In most states, a CDL is valid for 4–8 years (commonly 4–5 years). To renew your Texas CDL, you typically need to visit a DMV office, pass a vision test, pay the renewal fee, and update your medical certification (DOT physical). If you hold a HazMat endorsement, your TSA background check must also be current. CDLs cannot generally be renewed online due to federal requirements for in-person verification of medical certification.",
+        "A Texas CDL is valid for 8 years. To renew, you must visit a Texas DPS driver's license office, pass a vision test, pay the renewal fee, and provide a current DOT medical certificate. If you hold a HazMat endorsement, your TSA background check must also be current (renewed every 5 years). Texas CDL renewals cannot be done online — federal law requires in-person verification of medical certification. You may renew up to 2 years before expiration.",
     },
     {
       question: "What happens if I fail the Texas CDL knowledge test?",
       answer:
-        "If you fail the CDL General Knowledge test in Texas, you are typically required to wait a specified period (commonly 1–7 days) before retaking it. Most states allow 2–3 attempts before requiring additional waiting periods or study requirements. There is usually a retest fee for each attempt. Focus on the areas you missed — most states provide a score sheet showing which topic areas you need to review.",
+        "If you fail a Texas CDL knowledge test at a DPS office, you must wait at least 1 day before retesting. There is no limit on total attempts, but each attempt costs $11. Texas DPS will provide a score sheet showing which topic areas you missed — study those sections of the Texas CDL Handbook before retesting. If you fail the skills test at a third-party testing site, the retest fee is set by the testing site and you must again wait at least 1 day.",
     },
   ],
   relatedTests: [

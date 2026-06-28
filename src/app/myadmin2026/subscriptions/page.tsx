@@ -30,6 +30,10 @@ export default async function AdminSubscriptionsPage() {
 
   return (
     <div className="space-y-5">
+      <div>
+        <h1 className="text-xl font-bold text-gray-900">Subscriptions</h1>
+        <p className="text-sm text-gray-400 mt-0.5">All subscription records from Stripe webhook</p>
+      </div>
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[

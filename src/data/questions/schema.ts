@@ -130,7 +130,7 @@ export interface StateFacts {
   motoQuestions: number | "NEEDS_VERIFICATION";
   motoToPass: number | "NEEDS_VERIFICATION";
   motoPassingPct: string | "NEEDS_VERIFICATION";
-  motoHelmetLaw: "all-ages" | "under-18" | "none" | "NEEDS_VERIFICATION";
+  motoHelmetLaw: "all-ages" | "under-21" | "under-18" | "none" | "NEEDS_VERIFICATION";
   motoLaneSplittingLegal: boolean | "NEEDS_VERIFICATION";
   motoSafetyCourseName?: string;        // e.g. "MSF Basic RiderCourse", "CMSP"
   motoCourseWaivesSkillsTest: boolean | "NEEDS_VERIFICATION";

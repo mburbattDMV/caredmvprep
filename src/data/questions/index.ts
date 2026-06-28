@@ -2,7 +2,9 @@ import type { Question as SchemaQuestion } from './schema';
 import type { Question, QuizConfig } from '@/types/question';
 
 import caDmvQuestions                from './dmv/california';
+import txDmvQuestions                from './dmv/texas';
 import caMotoQuestions               from './motorcycle/california';
+import txMotoQuestions               from './motorcycle/texas';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -54,6 +56,35 @@ export const quizRegistry: Record<string, QuizConfig> = {
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal standard
+  },
+
+  // ── Texas ─────────────────────────────────────────────────────────────────
+  // Question banks are empty until the TX bank is authored. The quiz page
+  // returns 404 when questions.length === 0, so these registrations are safe.
+
+  'texas-permit': {
+    testId:      'texas-permit',
+    label:       'Texas DPS Driver\'s License Practice Test',
+    state:       'texas',
+    licenseType: 'permit',
+    questions:   verified(txDmvQuestions),
+    passingScore: 0.70,  // 21 of 30 correct — Texas threshold is 70% (lower than most states)
+  },
+  'texas-motorcycle': {
+    testId:      'texas-motorcycle',
+    label:       'Texas DPS Motorcycle (Class M) Practice Test',
+    state:       'texas',
+    licenseType: 'motorcycle',
+    questions:   verified(txMotoQuestions),
+    passingScore: 0.80,  // 20 of 25 correct — 80% federal MSF standard
+  },
+  'texas-cdl-general': {
+    testId:      'texas-cdl-general',
+    label:       'Texas CDL General Knowledge Practice Test',
+    state:       'texas',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — FMCSA federal standard, identical in all states
   },
 
   // ── CDL Endorsement Banks — federal (state-agnostic) ─────────────────────
