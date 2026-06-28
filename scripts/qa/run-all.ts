@@ -10,15 +10,18 @@ import { execSync } from "child_process";
 import * as path from "path";
 
 const SCRIPTS = [
-  { name: "Missing Fields",        file: "check-missing-fields.ts" },
-  { name: "Duplicates",            file: "check-duplicates.ts" },
-  { name: "Stale Verification",    file: "check-stale.ts" },
-  { name: "Answer Patterns",       file: "check-answer-patterns.ts" },
-  { name: "State Isolation",       file: "check-state-isolation.ts" },
-  { name: "Explanation Quality",   file: "check-explanation-quality.ts" },
-  { name: "Unverified Questions",  file: "check-unverified.ts" },
-  { name: "Facts Mismatch",        file: "check-facts-mismatch.ts" },
-  { name: "Page Hardcodes",        file: "check-page-hardcodes.ts" },
+  { name: "Missing Fields",          file: "check-missing-fields.ts" },
+  { name: "Duplicates",              file: "check-duplicates.ts" },
+  { name: "Stale Verification",      file: "check-stale.ts" },
+  { name: "Answer Patterns",         file: "check-answer-patterns.ts" },
+  { name: "Longest-Answer Bias",     file: "check-longest-answer.ts" },
+  { name: "Distractor Plausibility", file: "check-distractor-plausibility.ts" },
+  { name: "State Isolation",         file: "check-state-isolation.ts" },
+  { name: "Explanation Quality",     file: "check-explanation-quality.ts" },
+  { name: "Repeated Explanations",   file: "check-repeated-explanations.ts" },
+  { name: "Unverified Questions",    file: "check-unverified.ts" },
+  { name: "Facts Mismatch",          file: "check-facts-mismatch.ts" },
+  { name: "Page Hardcodes",          file: "check-page-hardcodes.ts" },
 ];
 
 const useJson = process.argv.includes("--json");

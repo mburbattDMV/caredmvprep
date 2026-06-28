@@ -27,7 +27,7 @@ export default function RecentActivity({ sessions }: RecentActivityProps) {
         <h3 className="text-sm font-bold text-gray-900 mb-3">Recent Activity</h3>
         <p className="text-sm text-gray-400">
           No tests taken yet.{" "}
-          <Link href="/dashboard/quiz/california-permit" className="underline" style={{ color: '#1a7f3c' }}>
+          <Link href="/quiz/california-permit" className="underline" style={{ color: '#1a7f3c' }}>
             Start your first practice test →
           </Link>
         </p>

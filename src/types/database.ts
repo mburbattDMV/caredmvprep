@@ -30,7 +30,8 @@ export type LicenseType =
   | 'cdl_school_bus'
   | 'cdl_air_brakes'
   | 'cdl_tanker'
-  | 'cdl_doubles_triples';
+  | 'cdl_doubles_triples'
+  | 'cdl_combination';
 
 // ─── ROW TYPES ───────────────────────────────────────────────────────────────
 

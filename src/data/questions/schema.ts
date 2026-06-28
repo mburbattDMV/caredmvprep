@@ -167,7 +167,12 @@ export interface AuditIssue {
     | "GENERIC_EXPLANATION"
     | "UNVERIFIED_IN_QUIZ"
     | "INVALID_SOURCE_URL"
-    | "FACTS_TABLE_MISMATCH";
+    | "FACTS_TABLE_MISMATCH"
+    | "LONGEST_ANSWER_BIAS"
+    | "WEAK_DISTRACTOR"
+    | "ABSURD_DISTRACTOR"
+    | "CIRCULAR_EXPLANATION"
+    | "REPEATED_EXPLANATION";
   severity: "error" | "warning";
   field?: string;
   detail: string;

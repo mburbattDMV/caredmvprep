@@ -12,7 +12,7 @@ import { loadStateFacts } from "./load-state-facts";
 
 // Patterns that extract numeric facts from question/explanation text
 const QUESTION_COUNT_PATTERN = /(\d+)\s*(?:questions?|items?|test questions?)\s*(?:on|in|for)/i;
-const PASS_SCORE_PATTERN = /(\d+)%?\s*(?:to pass|passing score|pass(?:ing)?)/i;
+const PASS_SCORE_PATTERN = /(\d+)%?\s*(?:to pass|passing score|pass(?:ing)?)\b(?!enger)/i;
 const CORRECT_COUNT_PATTERN = /(\d+)\s*(?:correct|right|answers? correct)/i;
 
 function extractNumbers(text: string): {

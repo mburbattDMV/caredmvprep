@@ -152,6 +152,79 @@ export default function QuizResults() {
         </div>
       </div>
 
+      {/* ── Learning Experience: what's next ───────────────────────── */}
+      <div className="bg-white rounded-2xl border border-gray-200 px-5 py-4 mb-6">
+        <h3 className="text-sm font-bold text-gray-900 mb-3">What to do next</h3>
+        <div className="space-y-2.5">
+          {/* Readiness signal */}
+          {result.passed ? (
+            <div className="flex items-start gap-3">
+              <span className="text-green-600 text-base shrink-0 mt-0.5">✓</span>
+              <p className="text-sm text-gray-700">
+                <strong>Strong performance.</strong> You're scoring above the passing threshold.
+                {pct >= 90
+                  ? ' You look exam-ready — consider booking your test soon.'
+                  : ' Try a mock exam to simulate real test conditions.'}
+              </p>
+            </div>
+          ) : (
+            <div className="flex items-start gap-3">
+              <span className="text-amber-500 text-base shrink-0 mt-0.5">→</span>
+              <p className="text-sm text-gray-700">
+                <strong>Keep practicing.</strong> You need {passingPct}% to pass. Focus on your weak topics below.
+              </p>
+            </div>
+          )}
+
+          {/* Weak topic focus recommendation */}
+          {result.weakCategories.length > 0 && (
+            <div className="flex items-start gap-3">
+              <span className="text-blue-500 text-base shrink-0 mt-0.5">↗</span>
+              <p className="text-sm text-gray-700">
+                <strong>Top focus area:</strong>{' '}
+                {result.weakCategories[0]
+                  .replace(/_/g, ' ')
+                  .replace(/\b\w/g, (c) => c.toUpperCase())}.{' '}
+                <Link
+                  href={`/quiz/${config?.testId ?? 'california-permit'}?focus=${result.weakCategories[0]}`}
+                  className="underline font-semibold"
+                  style={{ color: '#1a7f3c' }}
+                >
+                  Practice this topic →
+                </Link>
+              </p>
+            </div>
+          )}
+
+          {/* Estimated readiness sessions */}
+          {!result.passed && (
+            <div className="flex items-start gap-3">
+              <span className="text-gray-400 text-base shrink-0 mt-0.5">◎</span>
+              <p className="text-sm text-gray-500">
+                Estimated {Math.max(1, Math.ceil((passingPct - pct) / 5))} more practice session
+                {Math.max(1, Math.ceil((passingPct - pct) / 5)) > 1 ? 's' : ''} to reach the passing score at your current improvement rate.
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* CTA row */}
+        <div className="mt-4 pt-3 border-t border-gray-100 flex flex-wrap gap-2">
+          <Link
+            href="/mock-exam"
+            className="px-4 py-2 rounded-lg text-xs font-bold border border-gray-300 text-gray-700 hover:bg-gray-50 transition"
+          >
+            Try a Mock Exam
+          </Link>
+          <Link
+            href="/review"
+            className="px-4 py-2 rounded-lg text-xs font-bold border border-gray-300 text-gray-700 hover:bg-gray-50 transition"
+          >
+            Review Center
+          </Link>
+        </div>
+      </div>
+
       {/* Actions */}
       <div className="flex flex-wrap gap-3">
         <button

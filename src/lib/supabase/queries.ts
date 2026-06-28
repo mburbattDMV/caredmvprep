@@ -2,7 +2,7 @@
 // All functions accept a Supabase server client created by createClient().
 
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Database, Profile, QuizSession, WeakTopic, Subscription } from '@/types/database';
+import type { Database, Profile, QuizSession, WeakTopic, Subscription, StudyPlan, Flashcard } from '@/types/database';
 
 type Client = SupabaseClient<Database>;
 
@@ -71,7 +71,12 @@ export async function getDashboardStats(
   const avgPct        = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
   const passCount     = sessions.filter((s) => s.passed).length;
 
-  return { sessions, totalAnswered, totalCorrect, avgPct, passCount, totalTimeMs: 0 };
+  const totalTimeMs = sessions.reduce((sum, s) => {
+    if (!s.completed_at || !s.started_at) return sum;
+    return sum + (new Date(s.completed_at).getTime() - new Date(s.started_at).getTime());
+  }, 0);
+
+  return { sessions, totalAnswered, totalCorrect, avgPct, passCount, totalTimeMs };
 }
 
 // ─── WEAK TOPICS ─────────────────────────────────────────────────────────────
@@ -120,4 +125,130 @@ export async function getRecentSessions(
     .order('completed_at', { ascending: false })
     .limit(limit);
   return data ?? [];
+}
+
+// ─── STRONG TOPICS ────────────────────────────────────────────────────────────
+// accuracy_pct >= 80 with at least 5 answers for statistical confidence
+
+export async function getStrongTopics(
+  supabase: Client,
+  userId: string,
+  limit = 5
+): Promise<WeakTopic[]> {
+  const { data } = await supabase
+    .from('weak_topics')
+    .select('*')
+    .eq('user_id', userId)
+    .gte('accuracy_pct', 80)
+    .gte('total', 5)
+    .order('accuracy_pct', { ascending: false })
+    .limit(limit);
+  return data ?? [];
+}
+
+// ─── RECENTLY MISSED QUESTIONS ────────────────────────────────────────────────
+
+export interface MissedQuestion {
+  question_id: string;
+  category:    string;
+  created_at:  string;
+}
+
+export async function getRecentlyMissed(
+  supabase: Client,
+  userId: string,
+  limit = 20
+): Promise<MissedQuestion[]> {
+  const { data } = await supabase
+    .from('user_answers')
+    .select('question_id, category, created_at')
+    .eq('user_id', userId)
+    .eq('is_correct', false)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+  return (data ?? []) as MissedQuestion[];
+}
+
+// ─── FLASHCARD STATS ──────────────────────────────────────────────────────────
+
+export interface FlashcardStats {
+  dueToday: number;
+  mastered: number;
+  learning: number;
+  total:    number;
+}
+
+export async function getFlashcardStats(
+  supabase: Client,
+  userId: string
+): Promise<FlashcardStats> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: decksRaw } = await (supabase.from('flashcard_decks') as any)
+    .select('id')
+    .eq('user_id', userId);
+
+  const decks = (decksRaw ?? []) as Array<{ id: string }>;
+  const deckIds = decks.map((d) => d.id);
+  if (deckIds.length === 0) return { dueToday: 0, mastered: 0, learning: 0, total: 0 };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data: cardsRaw } = await (supabase.from('flashcards') as any)
+    .select('next_review, repetitions, ease_factor')
+    .in('deck_id', deckIds);
+
+  const today = new Date().toISOString().slice(0, 10);
+  const all = (cardsRaw ?? []) as Pick<Flashcard, 'next_review' | 'repetitions' | 'ease_factor'>[];
+
+  return {
+    dueToday: all.filter((c) => c.next_review <= today).length,
+    mastered: all.filter((c) => c.repetitions >= 4 && Number(c.ease_factor) >= 2.5).length,
+    learning: all.filter((c) => c.repetitions < 4 || Number(c.ease_factor) < 2.5).length,
+    total:    all.length,
+  };
+}
+
+// ─── STUDY PLAN ───────────────────────────────────────────────────────────────
+
+export async function getStudyPlan(
+  supabase: Client,
+  userId: string
+): Promise<StudyPlan | null> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data } = await (supabase.from('study_plans') as any)
+    .select('*')
+    .eq('user_id', userId)
+    .limit(1)
+    .maybeSingle();
+  return (data ?? null) as StudyPlan | null;
+}
+
+// ─── BOOKMARK COUNT ───────────────────────────────────────────────────────────
+
+export async function getBookmarkCount(
+  supabase: Client,
+  userId: string
+): Promise<number> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { count } = await (supabase.from('bookmarks') as any)
+    .select('*', { count: 'exact', head: true })
+    .eq('user_id', userId);
+  return (count as number | null) ?? 0;
+}
+
+// ─── BOOKMARKS (full rows for Review Center) ──────────────────────────────────
+
+import type { Bookmark } from '@/types/database';
+
+export async function getBookmarks(
+  supabase: Client,
+  userId: string,
+  limit = 50
+): Promise<Bookmark[]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data } = await (supabase.from('bookmarks') as any)
+    .select('*')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+  return (data ?? []) as Bookmark[];
 }
