@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuizStore } from "@/store/quiz";
+import BookmarkButton from "./BookmarkButton";
 
 export default function QuizQuestion() {
   const q = useQuizStore((s) => s.currentQuestion());
@@ -96,9 +97,14 @@ export default function QuizQuestion() {
             Correct Answer: {String.fromCharCode(65 + q.correctIndex)} — {q.options[q.correctIndex]}
           </p>
           <p className="text-sm text-gray-600 leading-relaxed">{q.explanation}</p>
-          {q.sourceRef && (
-            <p className="text-xs text-gray-400 mt-2">Source: {q.sourceRef}</p>
-          )}
+          <div className="flex items-center justify-between mt-2">
+            {q.sourceRef ? (
+              <p className="text-xs text-gray-400">Source: {q.sourceRef}</p>
+            ) : (
+              <span />
+            )}
+            <BookmarkButton questionId={q.id} />
+          </div>
         </div>
       )}
 

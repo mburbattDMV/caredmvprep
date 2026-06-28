@@ -7,6 +7,7 @@ import QuizProgress from "./QuizProgress";
 import QuizQuestion from "./QuizQuestion";
 import QuizTimer from "./QuizTimer";
 import QuizResults from "./QuizResults";
+import { trackQuizStarted } from "@/lib/analytics";
 
 interface QuizEngineProps {
   config: QuizConfig;
@@ -22,6 +23,7 @@ export default function QuizEngine({ config }: QuizEngineProps) {
   useEffect(() => {
     if (storeConfig?.testId !== config.testId) {
       startQuiz(config);
+      trackQuizStarted(config.testId, config.questions.length);
     }
   }, [config.testId]); // eslint-disable-line react-hooks/exhaustive-deps
 

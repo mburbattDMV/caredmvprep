@@ -1,28 +1,30 @@
-// Stripe placeholder — connect real keys via .env.local when ready
-// Install: npm install stripe @stripe/stripe-js
+// Client-side Stripe utilities (no secret key — safe to import in client components).
+// Checkout sessions are created server-side via /api/stripe/create-checkout.
 
-export const STRIPE_PLANS = {
-  pro_monthly: {
-    priceId: process.env.STRIPE_PRICE_PRO_MONTHLY ?? "price_placeholder_monthly",
-    label: "Pro Monthly",
-    price: "$9.99",
-    interval: "month",
-  },
-  pro_annual: {
-    priceId: process.env.STRIPE_PRICE_PRO_ANNUAL ?? "price_placeholder_annual",
-    label: "Pro Annual",
-    price: "$59.99",
-    interval: "year",
-    savings: "Save 50%",
-  },
-} as const;
+import type { SubscriptionProduct } from '@/types/database';
 
-export type StripePlan = keyof typeof STRIPE_PLANS;
+export type CheckoutInterval = 'monthly' | 'annual';
 
-// Stub — replace with real Stripe checkout when keys are available
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export async function createCheckoutSession(_plan: StripePlan, _userId: string): Promise<string> {
-  throw new Error(
-    "Stripe is not yet configured. Add STRIPE_SECRET_KEY to .env.local and install the stripe package."
-  );
+/**
+ * Redirects the current page to Stripe Checkout for the given product.
+ * Throws if the API returns an error (missing Stripe keys, invalid product, etc.).
+ */
+export async function startCheckout(
+  product: SubscriptionProduct,
+  interval: CheckoutInterval
+): Promise<void> {
+  const res = await fetch('/api/stripe/create-checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ product, interval }),
+  });
+
+  if (!res.ok) {
+    const { error } = await res.json().catch(() => ({ error: 'Unknown error' }));
+    throw new Error(error ?? `Checkout failed (${res.status})`);
+  }
+
+  const { url } = await res.json();
+  if (!url) throw new Error('No checkout URL returned from server.');
+  window.location.href = url;
 }

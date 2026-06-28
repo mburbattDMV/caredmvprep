@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useQuizStore } from "@/store/quiz";
 import { createClient } from "@/lib/supabase/client";
 import WeakTopics from "@/components/dashboard/WeakTopics";
+import { trackQuizCompleted } from "@/lib/analytics";
 
 
 export default function QuizResults() {
@@ -71,6 +72,18 @@ export default function QuizResults() {
         .eq("id", session.id);
     }
     persist();
+
+    // Analytics — fire after persist so score is final
+    if (result && config) {
+      const isMockExam = config.testId.includes('mock');
+      trackQuizCompleted({
+        testId:       config.testId,
+        scorePercent: result.scorePercent,
+        passed:       result.passed,
+        totalTimeMs:  result.totalTimeMs,
+        isMockExam,
+      });
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!result || !config) return null;

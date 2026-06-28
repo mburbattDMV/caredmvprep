@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+import { getUserSubscriptions, hasActiveProduct } from "@/lib/supabase/queries";
 import { getQuizConfig } from "@/data/questions/index";
+import { QUIZ_PRODUCT_MAP } from "@/lib/stripe/config";
 import QuizEngine from "@/components/quiz/QuizEngine";
+import SubscriptionGate from "@/components/ui/SubscriptionGate";
 
 interface Props {
   params:      Promise<{ testId: string }>;
@@ -13,6 +17,19 @@ export default async function QuizPage({ params, searchParams }: Props) {
 
   const config = getQuizConfig(testId);
   if (!config || config.questions.length === 0) notFound();
+
+  // Subscription gate — check if the user has access to this product
+  const requiredProduct = QUIZ_PRODUCT_MAP[testId];
+  if (requiredProduct) {
+    const supabase      = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const subscriptions = await getUserSubscriptions(supabase, user.id);
+      if (!hasActiveProduct(subscriptions, requiredProduct)) {
+        return <SubscriptionGate product={requiredProduct} />;
+      }
+    }
+  }
 
   // ?focus=traffic_signs,right_of_way  — filter questions by category
   // Falls back to full test if fewer than 5 matching questions (not enough for a useful session).

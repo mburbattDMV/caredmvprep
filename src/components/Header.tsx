@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 const navItems = [
   {
@@ -58,9 +59,27 @@ const navItems = [
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openKey, setOpenKey] = useState<string | null>(null);
+  const [openKey,    setOpenKey]    = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggle = (key: string) => setOpenKey((prev) => (prev === key ? null : key));
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsLoggedIn(!!session);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setIsLoggedIn(!!session);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  async function handleSignOut() {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    window.location.href = '/';
+  }
 
   return (
     <>
@@ -103,20 +122,45 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* CTA buttons */}
+          {/* CTA buttons — auth-aware */}
           <div className="hidden lg:flex items-center gap-2 shrink-0">
-            <Link
-              href="/login"
-              className="px-4 py-2 text-sm font-semibold border border-white/30 rounded hover:bg-white/10 transition"
-            >
-              LOG IN
-            </Link>
-            <Link
-              href="/signup"
-              className="px-4 py-2 text-sm font-semibold bg-[#1a7f3c] rounded hover:bg-[#158532] transition"
-            >
-              SIGN UP
-            </Link>
+            {isLoggedIn ? (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="px-4 py-2 text-sm font-semibold border border-white/30 rounded hover:bg-white/10 transition"
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  href="/account"
+                  className="px-4 py-2 text-sm font-semibold border border-white/30 rounded hover:bg-white/10 transition"
+                >
+                  Account
+                </Link>
+                <button
+                  onClick={handleSignOut}
+                  className="px-4 py-2 text-sm font-semibold bg-white/10 rounded hover:bg-white/20 transition"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="px-4 py-2 text-sm font-semibold border border-white/30 rounded hover:bg-white/10 transition"
+                >
+                  LOG IN
+                </Link>
+                <Link
+                  href="/signup"
+                  className="px-4 py-2 text-sm font-semibold bg-[#1a7f3c] rounded hover:bg-[#158532] transition"
+                >
+                  SIGN UP
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile hamburger */}
@@ -149,14 +193,32 @@ export default function Header() {
           >
             Pricing
           </Link>
-          <div className="pt-3 flex gap-2">
-            <Link href="/login" className="flex-1 text-center py-2 text-sm font-semibold border border-white/30 rounded hover:bg-white/10">
-              Log In
-            </Link>
-            <Link href="/signup" className="flex-1 text-center py-2 text-sm font-semibold bg-[#1a7f3c] rounded hover:bg-[#158532]">
-              Sign Up
-            </Link>
-          </div>
+          {isLoggedIn ? (
+            <div className="pt-3 flex gap-2">
+              <Link
+                href="/dashboard"
+                className="flex-1 text-center py-2 text-sm font-semibold border border-white/30 rounded hover:bg-white/10"
+                onClick={() => setMobileOpen(false)}
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={handleSignOut}
+                className="flex-1 text-center py-2 text-sm font-semibold bg-white/10 rounded hover:bg-white/20"
+              >
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <div className="pt-3 flex gap-2">
+              <Link href="/login" className="flex-1 text-center py-2 text-sm font-semibold border border-white/30 rounded hover:bg-white/10">
+                Log In
+              </Link>
+              <Link href="/signup" className="flex-1 text-center py-2 text-sm font-semibold bg-[#1a7f3c] rounded hover:bg-[#158532]">
+                Sign Up
+              </Link>
+            </div>
+          )}
         </div>
       )}
     </header>

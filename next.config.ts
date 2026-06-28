@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withSentryConfig } from "@sentry/nextjs";
 
 const nextConfig: NextConfig = {
   images: {
@@ -35,8 +36,8 @@ const nextConfig: NextConfig = {
               // Allow images from same origin, data URIs, and any HTTPS host
               "img-src 'self' data: blob: https:",
               "font-src 'self'",
-              // Allow connections to Supabase (REST + Realtime WebSocket)
-              "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
+              // Allow connections to Supabase, PostHog, and Sentry
+              "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.posthog.com https://us.i.posthog.com https://*.sentry.io https://o*.ingest.sentry.io",
               // No frames allowed
               "frame-ancestors 'none'",
             ].join("; "),
@@ -66,4 +67,15 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+  org:     process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  silent:  true,
+  // Skip source map upload when auth token isn't set (local dev / CI without key)
+  sourcemaps: {
+    disable: !process.env.SENTRY_AUTH_TOKEN,
+  },
+  widenClientFileUpload: true,
+  // Don't inject a tunnel route — keeps the bundle minimal
+  tunnelRoute: false,
+});
