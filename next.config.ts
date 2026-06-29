@@ -46,6 +46,17 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return {
+      // beforeFiles runs before static-asset checks, so this wins even if
+      // Vercel's CDN layer can't find public/logo-header.png.
+      beforeFiles: [
+        { source: "/logo-header.png", destination: "/api/logo" },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
   async redirects() {
     return [
       {
