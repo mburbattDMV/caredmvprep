@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getProfile, getUserSubscriptions, hasAnySubscription } from "@/lib/supabase/queries";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import MobileNav from "@/components/dashboard/MobileNav";
+import { getDefaultTestId } from "@/lib/profile-routing";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
@@ -22,6 +23,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   const displayName = profile?.display_name ?? user.email ?? "User";
   const isPro       = hasAnySubscription(subscriptions);
+  const testId      = getDefaultTestId(profile?.target_state ?? null, profile?.target_license ?? null);
 
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: '#f0f4f8' }}>
@@ -29,9 +31,10 @@ export default async function DashboardLayout({ children }: { children: React.Re
         displayName={displayName}
         isPro={isPro}
         activeProducts={subscriptions.map((s) => s.product)}
+        testId={testId}
       />
       <div className="flex-1 min-w-0 flex flex-col">
-        <MobileNav displayName={displayName} isPro={isPro} />
+        <MobileNav displayName={displayName} isPro={isPro} testId={testId} />
         <main className="flex-1 p-4 lg:p-8">
           {children}
         </main>

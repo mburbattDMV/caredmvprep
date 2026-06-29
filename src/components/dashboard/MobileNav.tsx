@@ -19,9 +19,10 @@ const navItems = [
 interface Props {
   displayName: string;
   isPro:       boolean;
+  testId:      string;
 }
 
-export default function MobileNav({ displayName, isPro }: Props) {
+export default function MobileNav({ displayName, isPro, testId }: Props) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const router   = useRouter();
@@ -86,14 +87,15 @@ export default function MobileNav({ displayName, isPro }: Props) {
             {/* Nav items */}
             <nav className="flex-1 px-4 py-5 space-y-1 overflow-y-auto" aria-label="Mobile navigation">
               {navItems.map((item) => {
+                const href = item.label === "Practice Tests" ? `/quiz/${testId}` : item.href;
                 const isActive =
-                  item.href === "/dashboard"
+                  href === "/dashboard"
                     ? pathname === "/dashboard"
-                    : pathname.startsWith(item.href);
+                    : pathname.startsWith(href);
                 return (
                   <Link
                     key={item.href}
-                    href={item.href}
+                    href={href}
                     onClick={() => setOpen(false)}
                     className={`flex items-center px-3 py-3 rounded-lg text-sm font-medium transition-colors ${
                       isActive

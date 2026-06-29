@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getProfile } from "@/lib/supabase/queries";
 import { MOCK_EXAM_DEFS } from "@/data/questions/index";
+import { getDefaultTestId, hasMockExams } from "@/lib/profile-routing";
 
 export const dynamic = 'force-dynamic';
 
@@ -57,9 +58,16 @@ export default async function MockExamPage() {
   if (!user) redirect('/login');
 
   const profile = await getProfile(supabase, user.id);
-  const stateAbbr = (profile?.target_state ?? 'CA').toUpperCase();
+  const stateAbbr    = (profile?.target_state   ?? 'CA').toUpperCase();
+  const licenseType  = (profile?.target_license ?? 'permit').toLowerCase();
+  const defaultTestId = getDefaultTestId(profile?.target_state ?? null, profile?.target_license ?? null);
 
-  // Filter exams to the user's state
+  // CDL and motorcycle users have no mock exams — redirect to their practice test
+  if (!hasMockExams(licenseType)) {
+    redirect(`/quiz/${defaultTestId}`);
+  }
+
+  // Filter exams to the user's state (permit only at this point)
   const stateKey = stateAbbr === 'TX' ? 'texas-permit' : 'california-permit';
   const exams = MOCK_EXAM_DEFS.filter(e => e.baseTestId === stateKey);
   const meta = STATE_META[stateAbbr] ?? STATE_META['CA'];

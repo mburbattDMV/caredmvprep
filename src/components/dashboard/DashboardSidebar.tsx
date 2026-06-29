@@ -81,9 +81,10 @@ interface Props {
   displayName: string;
   isPro: boolean;
   activeProducts: string[];
+  testId: string;
 }
 
-export default function DashboardSidebar({ displayName, isPro, activeProducts }: Props) {
+export default function DashboardSidebar({ displayName, isPro, activeProducts, testId }: Props) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -109,13 +110,14 @@ export default function DashboardSidebar({ displayName, isPro, activeProducts }:
       {/* Nav */}
       <nav className="flex-1 px-4 py-6 space-y-1">
         {navItems.map((item) => {
-          const isActive = item.href === "/dashboard"
+          const href = item.label === "Practice Tests" ? `/quiz/${testId}` : item.href;
+          const isActive = href === "/dashboard"
             ? pathname === "/dashboard"
-            : pathname.startsWith(item.href);
+            : pathname.startsWith(href);
           return (
             <Link
               key={item.href}
-              href={item.href}
+              href={href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                 isActive
                   ? "text-white"
