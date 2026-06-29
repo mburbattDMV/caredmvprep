@@ -40,9 +40,9 @@ export default function MockExamPage() {
       <div className="rounded-xl border border-blue-100 bg-blue-50 px-5 py-4 mb-8">
         <h2 className="text-sm font-semibold text-blue-900 mb-2">What to expect</h2>
         <ul className="text-sm text-blue-800 space-y-1">
-          <li className="flex items-start gap-2"><CheckIcon /><span>36 questions — same length as the real CA DMV permit test</span></li>
-          <li className="flex items-start gap-2"><CheckIcon /><span>Passing score: 80% (29 of 36 correct)</span></li>
-          <li className="flex items-start gap-2"><CheckIcon /><span>Timed mode: 38 minutes (choose below). Untimed mode available for self-study.</span></li>
+          <li className="flex items-start gap-2"><CheckIcon /><span>46 questions — same length as the real CA DMV permit test</span></li>
+          <li className="flex items-start gap-2"><CheckIcon /><span>Passing score: 80% (37 of 46 correct)</span></li>
+          <li className="flex items-start gap-2"><CheckIcon /><span>Timed mode: 50 minutes (choose below). Untimed mode available for self-study.</span></li>
           <li className="flex items-start gap-2"><CheckIcon /><span>Full question review with explanations after you finish</span></li>
         </ul>
       </div>
