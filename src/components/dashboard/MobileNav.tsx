@@ -11,6 +11,7 @@ const navItems = [
   { label: "Practice Tests", href: "/quiz/california-permit" },
   { label: "Mock Exams",     href: "/mock-exam" },
   { label: "Review Center",  href: "/review" },
+  { label: "Flashcards",     href: "/flashcards" },
   { label: "History",        href: "/history" },
   { label: "Account",        href: "/account" },
 ];
