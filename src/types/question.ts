@@ -23,4 +23,5 @@ export interface QuizConfig {
   questions:      Question[];
   passingScore:   number;         // 0–1, e.g. 0.80
   timeLimitSecs?: number;
+  autoStart?:     boolean;        // skip session selector and start immediately
 }

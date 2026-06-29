@@ -45,8 +45,9 @@ export default function QuizEngine({ config }: QuizEngineProps) {
     }
   }, [config.testId]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isMockExam = config.timeLimitSecs !== undefined;
-  const bankTotal  = config.questions.length;
+  const isMockExam  = config.timeLimitSecs !== undefined;
+  const isAutoStart = config.autoStart === true;
+  const bankTotal   = config.questions.length;
 
   function handleStart(size?: number | null) {
     const count = (size ?? selectedSize) ?? bankTotal;
@@ -56,11 +57,23 @@ export default function QuizEngine({ config }: QuizEngineProps) {
     trackQuizStarted(config.testId, questions.length);
   }
 
+  // Auto-start focused practice sessions without showing the selector
+  useEffect(() => {
+    if (isAutoStart && phase === 'idle') {
+      handleStart(bankTotal);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const correctSoFar     = answers.filter((a) => a.isCorrect).length;
   const progressTotal    = storeConfig?.questions.length ?? 0;
   const progressAnswered = answers.length;
 
   if (phase === 'idle') {
+    // Auto-start in progress — show nothing to avoid flash of selector
+    if (isAutoStart) {
+      return <div className="py-20 text-center text-sm text-gray-400">Loading session…</div>;
+    }
+
     if (isMockExam) {
       return (
         <div className="text-center py-20">

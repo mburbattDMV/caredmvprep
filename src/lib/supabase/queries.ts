@@ -105,7 +105,8 @@ export async function getWeakTopics(
     .from('weak_topics')
     .select('*')
     .eq('user_id', userId)
-    .gte('total', 3)   // ignore categories with < 3 answers (too little signal)
+    .gte('total', 5)
+    .lt('accuracy_pct', 80)
     .order('accuracy_pct', { ascending: true })
     .limit(limit);
   return data ?? [];
@@ -155,7 +156,7 @@ export async function getStrongTopics(
     .select('*')
     .eq('user_id', userId)
     .gte('accuracy_pct', 80)
-    .gte('total', 5)
+    .gte('total', 10)
     .order('accuracy_pct', { ascending: false })
     .limit(limit);
   return data ?? [];

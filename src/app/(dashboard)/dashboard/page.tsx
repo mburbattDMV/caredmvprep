@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
@@ -118,16 +120,16 @@ export default async function DashboardPage({ searchParams }: Props) {
 
   const quizHref     = getQuizHref(profile.target_state, profile.target_license);
   const streak       = getStreak(profile);
-  const readiness    = computeReadiness(stats, weakTopics);
+  const readiness    = computeReadiness(stats, weakTopics, strongTopics);
   const weeklyActivity = computeWeeklyActivity(stats.sessions);
 
   const firstName = profile?.display_name?.split(' ')[0] ?? null;
 
-  // Map weak_topics DB rows → shape the WeakTopics component expects
   const weakTopicData = weakTopics.map((t) => ({
-    category: t.category_slug,
-    correct:  t.correct,
-    total:    t.total,
+    category:    t.category_slug,
+    correct:     t.correct,
+    total:       t.total,
+    accuracy_pct: Number(t.accuracy_pct),
   }));
 
   return (

@@ -1,5 +1,5 @@
 import type { WeakTopic } from '@/types/database';
-import { CATEGORY_LABELS } from '@/lib/readiness';
+import { getCategoryLabel } from '@/lib/readiness';
 
 interface Props {
   topics: WeakTopic[];
@@ -20,7 +20,7 @@ export default function StrongTopics({ topics }: Props) {
             🏆
           </div>
           <p className="text-xs text-gray-400 leading-snug">
-            Master a topic by reaching 80% accuracy with at least 5 answers.
+            Master a topic by reaching 80% accuracy on 10+ questions.
           </p>
         </div>
       </div>
@@ -48,9 +48,9 @@ export default function StrongTopics({ topics }: Props) {
             <div key={`${t.category_slug}-${t.license_type}`}>
               <div className="flex justify-between items-center mb-1">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xs" style={{ color: '#16a34a' }}>✓</span>
+                  <span className="text-xs" style={{ color: '#16a34a' }}>🏆</span>
                   <span className="text-xs font-medium text-gray-700">
-                    {CATEGORY_LABELS[t.category_slug] ?? t.category_slug}
+                    {getCategoryLabel(t.category_slug)}
                   </span>
                 </div>
                 <span className="text-xs font-bold" style={{ color: '#16a34a' }}>
@@ -71,7 +71,7 @@ export default function StrongTopics({ topics }: Props) {
 
       {topics.length >= 3 && (
         <p className="text-xs mt-4 pt-3 border-t border-gray-100 font-semibold" style={{ color: '#16a34a' }}>
-          Great work — you&apos;ve mastered {topics.length} topic{topics.length > 1 ? 's' : ''}!
+          You&apos;ve mastered {topics.length} topic{topics.length > 1 ? 's' : ''}!
         </p>
       )}
     </div>

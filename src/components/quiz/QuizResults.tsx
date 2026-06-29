@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useQuizStore } from "@/store/quiz";
 import { createClient } from "@/lib/supabase/client";
 import WeakTopics from "@/components/dashboard/WeakTopics";
+import { getCategoryLabel } from "@/lib/readiness";
 import { trackQuizCompleted } from "@/lib/analytics";
 
 type SaveState = "saving" | "saved" | "error";
@@ -13,6 +15,7 @@ export default function QuizResults() {
   const result     = useQuizStore((s) => s.result);
   const config     = useQuizStore((s) => s.config);
   const resetQuiz  = useQuizStore((s) => s.resetQuiz);
+  const router     = useRouter();
 
   const [saveState, setSaveState] = useState<SaveState>("saving");
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -99,6 +102,7 @@ export default function QuizResults() {
       }
 
       setSaveState("saved");
+      router.refresh();
     }
 
     persist();
@@ -181,7 +185,7 @@ export default function QuizResults() {
       {/* Weak topics */}
       {topicData.length > 0 && (
         <div className="mb-6">
-          <WeakTopics topics={topicData} />
+          <WeakTopics topics={topicData} title="Topic Breakdown" />
         </div>
       )}
 
@@ -249,9 +253,7 @@ export default function QuizResults() {
               <span className="text-blue-500 text-base shrink-0 mt-0.5">↗</span>
               <p className="text-sm text-gray-700">
                 <strong>Top focus area:</strong>{" "}
-                {result.weakCategories[0]
-                  .replace(/_/g, " ")
-                  .replace(/\b\w/g, (c) => c.toUpperCase())}.{" "}
+                {getCategoryLabel(result.weakCategories[0])}.{" "}
                 <Link
                   href={`/quiz/${config?.testId ?? "california-permit"}?focus=${result.weakCategories[0]}`}
                   className="underline font-semibold"
