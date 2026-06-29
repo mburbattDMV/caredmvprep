@@ -6,6 +6,7 @@ import txDmvQuestions                from './dmv/texas';
 import flDmvQuestions                from './dmv/florida';
 import caMotoQuestions               from './motorcycle/california';
 import txMotoQuestions               from './motorcycle/texas';
+import flMotoQuestions               from './motorcycle/florida';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -73,8 +74,8 @@ export const quizRegistry: Record<string, QuizConfig> = {
     label:       'Florida DHSMV Motorcycle (Class E + M) Practice Test',
     state:       'florida',
     licenseType: 'motorcycle',
-    questions:   [],  // bank pending — fl-moto.ts to be authored
-    passingScore: 0.80,
+    questions:   verified(flMotoQuestions),
+    passingScore: 0.80,  // 20 of 25 — MSF/DHSMV standard
   },
   'florida-cdl-general': {
     testId:      'florida-cdl-general',
