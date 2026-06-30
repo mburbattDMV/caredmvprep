@@ -21,6 +21,9 @@ export function getDefaultTestId(
     'NY-permit':      'new-york-permit',
     'NY-motorcycle':  'new-york-motorcycle',
     'NY-cdl_general': 'new-york-cdl-general',
+    'PA-permit':      'pennsylvania-permit',
+    'PA-motorcycle':  'pennsylvania-motorcycle',
+    'PA-cdl_general': 'pennsylvania-cdl-general',
   };
   return MAP[key] ?? 'california-permit';
 }

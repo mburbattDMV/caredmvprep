@@ -5,6 +5,7 @@ import caDmvQuestions                from './dmv/california';
 import txDmvQuestions                from './dmv/texas';
 import flDmvQuestions                from './dmv/florida';
 import nyDmvQuestions                from './dmv/new-york';
+import paDmvQuestions                from './dmv/pennsylvania';
 import caMotoQuestions               from './motorcycle/california';
 import txMotoQuestions               from './motorcycle/texas';
 import flMotoQuestions               from './motorcycle/florida';
@@ -59,6 +60,32 @@ export const quizRegistry: Record<string, QuizConfig> = {
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal standard
+  },
+
+  // ── Pennsylvania ──────────────────────────────────────────────────────────
+  'pennsylvania-permit': {
+    testId:      'pennsylvania-permit',
+    label:       'Pennsylvania PennDOT Permit Practice Test',
+    state:       'pennsylvania',
+    licenseType: 'permit',
+    questions:   verified(paDmvQuestions),
+    passingScore: 0.80,  // 32 of 40 correct — PennDOT standard (80%)
+  },
+  'pennsylvania-motorcycle': {
+    testId:      'pennsylvania-motorcycle',
+    label:       'Pennsylvania PennDOT Motorcycle Practice Test',
+    state:       'pennsylvania',
+    licenseType: 'motorcycle',
+    questions:   [],  // bank pending
+    passingScore: 0.80,
+  },
+  'pennsylvania-cdl-general': {
+    testId:      'pennsylvania-cdl-general',
+    label:       'Pennsylvania CDL General Knowledge Practice Test',
+    state:       'pennsylvania',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — FMCSA federal standard
   },
 
   // ── New York ──────────────────────────────────────────────────────────────
@@ -325,6 +352,37 @@ export const MOCK_EXAM_DEFS: MockExamDef[] = [
     shortLabel:    'Mock Exam #3',
     baseTestId:    'florida-permit',
     questionCount: 50,
+    seed:          3,
+    timeLimitSecs: 60 * 60,
+    description:   'Third exam simulation — no repeated questions from #1 or #2.',
+  },
+  // ── Pennsylvania ──────────────────────────────────────────────────────────
+  {
+    examId:        'pennsylvania-permit-mock-1',
+    label:         'Pennsylvania PennDOT Permit Mock Exam #1',
+    shortLabel:    'Mock Exam #1',
+    baseTestId:    'pennsylvania-permit',
+    questionCount: 40,
+    seed:          1,
+    timeLimitSecs: 60 * 60,
+    description:   'Simulates the real PA PennDOT permit test — 40 questions, 60 min.',
+  },
+  {
+    examId:        'pennsylvania-permit-mock-2',
+    label:         'Pennsylvania PennDOT Permit Mock Exam #2',
+    shortLabel:    'Mock Exam #2',
+    baseTestId:    'pennsylvania-permit',
+    questionCount: 40,
+    seed:          2,
+    timeLimitSecs: 60 * 60,
+    description:   'A unique second simulation with a different question mix.',
+  },
+  {
+    examId:        'pennsylvania-permit-mock-3',
+    label:         'Pennsylvania PennDOT Permit Mock Exam #3',
+    shortLabel:    'Mock Exam #3',
+    baseTestId:    'pennsylvania-permit',
+    questionCount: 40,
     seed:          3,
     timeLimitSecs: 60 * 60,
     description:   'Third exam simulation — no repeated questions from #1 or #2.',
