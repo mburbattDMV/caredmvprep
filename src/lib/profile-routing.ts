@@ -33,6 +33,9 @@ export function getDefaultTestId(
     'IL-permit':      'illinois-permit',
     'IL-motorcycle':  'illinois-motorcycle',
     'IL-cdl_general': 'illinois-cdl-general',
+    'NC-permit':      'north-carolina-permit',
+    'NC-motorcycle':  'north-carolina-motorcycle',
+    'NC-cdl_general': 'north-carolina-cdl-general',
   };
   return MAP[key] ?? 'california-permit';
 }

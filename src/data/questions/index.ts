@@ -17,6 +17,8 @@ import ohDmvQuestions                from './dmv/ohio';
 import ohMotoQuestions               from './motorcycle/ohio';
 import gaDmvQuestions                from './dmv/georgia';
 import gaMotoQuestions               from './motorcycle/georgia';
+import ncDmvQuestions                from './dmv/north-carolina';
+import ncMotoQuestions               from './motorcycle/north-carolina';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -68,6 +70,32 @@ export const quizRegistry: Record<string, QuizConfig> = {
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal standard
+  },
+
+  // ── North Carolina ────────────────────────────────────────────────────────
+  'north-carolina-permit': {
+    testId:      'north-carolina-permit',
+    label:       'North Carolina NCDMV Permit Practice Test',
+    state:       'north-carolina',
+    licenseType: 'permit',
+    questions:   verified(ncDmvQuestions),
+    passingScore: 0.80,  // 20 of 25 — NCDMV standard (80%)
+  },
+  'north-carolina-motorcycle': {
+    testId:      'north-carolina-motorcycle',
+    label:       'North Carolina NCDMV Motorcycle Practice Test',
+    state:       'north-carolina',
+    licenseType: 'motorcycle',
+    questions:   verified(ncMotoQuestions),
+    passingScore: 0.80,
+  },
+  'north-carolina-cdl-general': {
+    testId:      'north-carolina-cdl-general',
+    label:       'North Carolina CDL General Knowledge Practice Test',
+    state:       'north-carolina',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
   },
 
   // ── Georgia ───────────────────────────────────────────────────────────────
@@ -440,6 +468,37 @@ export const MOCK_EXAM_DEFS: MockExamDef[] = [
     questionCount: 50,
     seed:          3,
     timeLimitSecs: 60 * 60,
+    description:   'Third exam simulation — no repeated questions from #1 or #2.',
+  },
+  // ── North Carolina ────────────────────────────────────────────────────────
+  {
+    examId:        'north-carolina-permit-mock-1',
+    label:         'North Carolina NCDMV Permit Mock Exam #1',
+    shortLabel:    'Mock Exam #1',
+    baseTestId:    'north-carolina-permit',
+    questionCount: 25,
+    seed:          1,
+    timeLimitSecs: 40 * 60,
+    description:   'Simulates the real NC NCDMV permit test — 25 questions, 40 min.',
+  },
+  {
+    examId:        'north-carolina-permit-mock-2',
+    label:         'North Carolina NCDMV Permit Mock Exam #2',
+    shortLabel:    'Mock Exam #2',
+    baseTestId:    'north-carolina-permit',
+    questionCount: 25,
+    seed:          2,
+    timeLimitSecs: 40 * 60,
+    description:   'A unique second simulation with a different question mix.',
+  },
+  {
+    examId:        'north-carolina-permit-mock-3',
+    label:         'North Carolina NCDMV Permit Mock Exam #3',
+    shortLabel:    'Mock Exam #3',
+    baseTestId:    'north-carolina-permit',
+    questionCount: 25,
+    seed:          3,
+    timeLimitSecs: 40 * 60,
     description:   'Third exam simulation — no repeated questions from #1 or #2.',
   },
   // ── Georgia ───────────────────────────────────────────────────────────────

@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     }
 
     // Resolve target state and license — stored in Stripe metadata and written to profile by webhook
-    const ALLOWED_STATES = new Set(['CA', 'TX', 'FL', 'NY', 'PA', 'IL', 'OH', 'GA']);
+    const ALLOWED_STATES = new Set(['CA', 'TX', 'FL', 'NY', 'PA', 'IL', 'OH', 'GA', 'NC']);
     const PRODUCT_LICENSE_MAP: Partial<Record<string, string>> = {
       dmv:        'permit',
       motorcycle: 'motorcycle',
