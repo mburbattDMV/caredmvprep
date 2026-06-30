@@ -19,6 +19,8 @@ import gaDmvQuestions                from './dmv/georgia';
 import gaMotoQuestions               from './motorcycle/georgia';
 import ncDmvQuestions                from './dmv/north-carolina';
 import ncMotoQuestions               from './motorcycle/north-carolina';
+import azDmvQuestions                from './dmv/arizona';
+import azMotoQuestions               from './motorcycle/arizona';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -70,6 +72,32 @@ export const quizRegistry: Record<string, QuizConfig> = {
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal standard
+  },
+
+  // ── Arizona ───────────────────────────────────────────────────────────────
+  'arizona-permit': {
+    testId:      'arizona-permit',
+    label:       'Arizona MVD Permit Practice Test',
+    state:       'arizona',
+    licenseType: 'permit',
+    questions:   verified(azDmvQuestions),
+    passingScore: 0.80,  // 24 of 30 — Arizona MVD standard (80%)
+  },
+  'arizona-motorcycle': {
+    testId:      'arizona-motorcycle',
+    label:       'Arizona MVD Motorcycle Practice Test',
+    state:       'arizona',
+    licenseType: 'motorcycle',
+    questions:   verified(azMotoQuestions),
+    passingScore: 0.80,
+  },
+  'arizona-cdl-general': {
+    testId:      'arizona-cdl-general',
+    label:       'Arizona CDL General Knowledge Practice Test',
+    state:       'arizona',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
   },
 
   // ── North Carolina ────────────────────────────────────────────────────────
@@ -468,6 +496,37 @@ export const MOCK_EXAM_DEFS: MockExamDef[] = [
     questionCount: 50,
     seed:          3,
     timeLimitSecs: 60 * 60,
+    description:   'Third exam simulation — no repeated questions from #1 or #2.',
+  },
+  // ── Arizona ───────────────────────────────────────────────────────────────
+  {
+    examId:        'arizona-permit-mock-1',
+    label:         'Arizona MVD Permit Mock Exam #1',
+    shortLabel:    'Mock Exam #1',
+    baseTestId:    'arizona-permit',
+    questionCount: 30,
+    seed:          1,
+    timeLimitSecs: 45 * 60,
+    description:   'Simulates the real Arizona MVD permit test — 30 questions, 45 min.',
+  },
+  {
+    examId:        'arizona-permit-mock-2',
+    label:         'Arizona MVD Permit Mock Exam #2',
+    shortLabel:    'Mock Exam #2',
+    baseTestId:    'arizona-permit',
+    questionCount: 30,
+    seed:          2,
+    timeLimitSecs: 45 * 60,
+    description:   'A unique second simulation with a different question mix.',
+  },
+  {
+    examId:        'arizona-permit-mock-3',
+    label:         'Arizona MVD Permit Mock Exam #3',
+    shortLabel:    'Mock Exam #3',
+    baseTestId:    'arizona-permit',
+    questionCount: 30,
+    seed:          3,
+    timeLimitSecs: 45 * 60,
     description:   'Third exam simulation — no repeated questions from #1 or #2.',
   },
   // ── North Carolina ────────────────────────────────────────────────────────

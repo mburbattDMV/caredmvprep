@@ -36,6 +36,9 @@ export function getDefaultTestId(
     'NC-permit':      'north-carolina-permit',
     'NC-motorcycle':  'north-carolina-motorcycle',
     'NC-cdl_general': 'north-carolina-cdl-general',
+    'AZ-permit':      'arizona-permit',
+    'AZ-motorcycle':  'arizona-motorcycle',
+    'AZ-cdl_general': 'arizona-cdl-general',
   };
   return MAP[key] ?? 'california-permit';
 }
