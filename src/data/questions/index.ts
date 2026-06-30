@@ -10,6 +10,9 @@ import ilDmvQuestions                from './dmv/illinois';
 import caMotoQuestions               from './motorcycle/california';
 import txMotoQuestions               from './motorcycle/texas';
 import flMotoQuestions               from './motorcycle/florida';
+import nyMotoQuestions               from './motorcycle/new-york';
+import paMotoQuestions               from './motorcycle/pennsylvania';
+import ilMotoQuestions               from './motorcycle/illinois';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -77,7 +80,7 @@ export const quizRegistry: Record<string, QuizConfig> = {
     label:       'Illinois Secretary of State Motorcycle Practice Test',
     state:       'illinois',
     licenseType: 'motorcycle',
-    questions:   [],  // bank pending
+    questions:   verified(ilMotoQuestions),
     passingScore: 0.80,
   },
   'illinois-cdl-general': {
@@ -103,7 +106,7 @@ export const quizRegistry: Record<string, QuizConfig> = {
     label:       'Pennsylvania PennDOT Motorcycle Practice Test',
     state:       'pennsylvania',
     licenseType: 'motorcycle',
-    questions:   [],  // bank pending
+    questions:   verified(paMotoQuestions),
     passingScore: 0.80,
   },
   'pennsylvania-cdl-general': {
@@ -129,8 +132,8 @@ export const quizRegistry: Record<string, QuizConfig> = {
     label:       'New York DMV Motorcycle Practice Test',
     state:       'new-york',
     licenseType: 'motorcycle',
-    questions:   [],  // bank pending
-    passingScore: 0.70,
+    questions:   verified(nyMotoQuestions),
+    passingScore: 0.70,  // NY DMV standard (70%)
   },
   'new-york-cdl-general': {
     testId:      'new-york-cdl-general',
