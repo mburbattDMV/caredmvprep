@@ -16,6 +16,7 @@ import ilMotoQuestions               from './motorcycle/illinois';
 import ohDmvQuestions                from './dmv/ohio';
 import ohMotoQuestions               from './motorcycle/ohio';
 import gaDmvQuestions                from './dmv/georgia';
+import gaMotoQuestions               from './motorcycle/georgia';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -83,7 +84,7 @@ export const quizRegistry: Record<string, QuizConfig> = {
     label:       'Georgia DDS Motorcycle Practice Test',
     state:       'georgia',
     licenseType: 'motorcycle',
-    questions:   [],
+    questions:   verified(gaMotoQuestions),
     passingScore: 0.75,
   },
   'georgia-cdl-general': {
