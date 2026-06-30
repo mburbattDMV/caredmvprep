@@ -14,6 +14,7 @@ import nyMotoQuestions               from './motorcycle/new-york';
 import paMotoQuestions               from './motorcycle/pennsylvania';
 import ilMotoQuestions               from './motorcycle/illinois';
 import ohDmvQuestions                from './dmv/ohio';
+import ohMotoQuestions               from './motorcycle/ohio';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -81,7 +82,7 @@ export const quizRegistry: Record<string, QuizConfig> = {
     label:       'Ohio BMV Motorcycle Practice Test',
     state:       'ohio',
     licenseType: 'motorcycle',
-    questions:   [],
+    questions:   verified(ohMotoQuestions),
     passingScore: 0.75,
   },
   'ohio-cdl-general': {
