@@ -25,6 +25,17 @@ export default function PricingPage() {
             Pay once for 3–6 months of access, or subscribe monthly and cancel anytime.
             No hidden fees.
           </p>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-6 text-sm text-gray-200">
+            <span className="flex items-center gap-1.5">
+              <span className="text-[#4ade80] font-bold">✓</span> Secure checkout via Stripe
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="text-[#4ade80] font-bold">✓</span> Instant access after purchase
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="text-[#4ade80] font-bold">✓</span> Cancel monthly plans anytime
+            </span>
+          </div>
         </div>
       </section>
 
