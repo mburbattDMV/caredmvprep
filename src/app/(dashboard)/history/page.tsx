@@ -2,6 +2,14 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import type { QuizSession } from "@/types/database";
+import { quizRegistry, MOCK_EXAM_DEFS } from "@/data/questions/index";
+
+// Single source of truth for every live state/license/mock-exam combo, so
+// this never falls behind as new states are launched.
+const TEST_LABELS: Record<string, string> = {
+  ...Object.fromEntries(Object.entries(quizRegistry).map(([id, cfg]) => [id, cfg.label])),
+  ...Object.fromEntries(MOCK_EXAM_DEFS.map((d) => [d.examId, d.label])),
+};
 
 export default async function HistoryPage() {
   const supabase = await createClient();
@@ -15,21 +23,6 @@ export default async function HistoryPage() {
     .not("completed_at", "is", null)
     .order("started_at", { ascending: false })
     .limit(50) as { data: QuizSession[] | null; error: unknown };
-
-  const TEST_LABELS: Record<string, string> = {
-    "california-permit": "CA Permit Test",
-    "california-motorcycle": "CA Motorcycle",
-    "california-cdl-general": "CA CDL General",
-    "texas-permit": "TX Permit Test",
-    "texas-motorcycle": "TX Motorcycle",
-    "texas-cdl-general": "TX CDL General",
-    "florida-permit": "FL Permit Test",
-    "florida-motorcycle": "FL Motorcycle",
-    "florida-cdl-general": "FL CDL General",
-    "new-york-permit": "NY Permit Test",
-    "new-york-motorcycle": "NY Motorcycle",
-    "new-york-cdl-general": "NY CDL General",
-  };
 
   return (
     <div className="max-w-3xl mx-auto">

@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getProfile, getUserSubscriptions } from "@/lib/supabase/queries";
 import SubscriptionPoller from "@/components/account/SubscriptionPoller";
 import EditProfileForm from "@/components/account/EditProfileForm";
+import stateFacts from "@/data/questions/state-facts";
 
 // ── Label maps ────────────────────────────────────────────────────────────────
 
@@ -31,14 +32,11 @@ function getProductLabel(product: string, state: string | null): string {
 // Kept for the checkout success banner (uses product key directly)
 const PRODUCT_LABELS = PRODUCT_BASE_LABELS;
 
-const STATE_LABELS: Record<string, string> = {
-  CA: "California",
-  TX: "Texas",
-  FL: "Florida",
-  NY: "New York",
-  PA: "Pennsylvania",
-  IL: "Illinois",
-};
+// Single source of truth (covers all 50 states, not just the live ones) so
+// this never drifts out of sync as new states are launched.
+const STATE_LABELS: Record<string, string> = Object.fromEntries(
+  stateFacts.map((f) => [f.abbr, f.state])
+);
 
 const LICENSE_LABELS: Record<string, string> = {
   permit:      "Driver's License",

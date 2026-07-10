@@ -22,6 +22,8 @@ const PRODUCT_TO_PROFILE: Partial<Record<string, { target_state: string; target_
   motorcycle: { target_state: 'CA', target_license: 'motorcycle' },
   cdl:        { target_state: 'CA', target_license: 'cdl_general' },
 };
+import { getDefaultTestId } from "@/lib/profile-routing";
+import { quizRegistry } from "@/data/questions";
 import { computeReadiness, computeWeeklyActivity } from "@/lib/readiness";
 import ReadinessCard from "@/components/dashboard/ReadinessCard";
 import CoachBanner from "@/components/dashboard/CoachBanner";
@@ -33,27 +35,11 @@ import StudyPlanCard from "@/components/dashboard/StudyPlanCard";
 import RecentActivity from "@/components/dashboard/RecentActivity";
 import StatsCard from "@/components/dashboard/StatsCard";
 
-// Maps profile fields to quiz routes.
-const STATE_SLUGS: Record<string, string> = {
-  CA: 'california',
-};
-const LICENSE_SUFFIX: Record<string, string> = {
-  permit:      'permit',
-  motorcycle:  'motorcycle',
-  cdl_general: 'cdl-general',
-};
+// Maps profile fields to quiz routes. Delegates to the single source of truth
+// (lib/profile-routing.ts) so this stays correct as states are added.
 function getQuizHref(state: string | null | undefined, license: string | null | undefined): string {
-  const slug   = STATE_SLUGS[state ?? ''] ?? 'california';
-  const suffix = LICENSE_SUFFIX[license ?? ''] ?? 'permit';
-  return `/quiz/${slug}-${suffix}`;
+  return `/quiz/${getDefaultTestId(state ?? null, license ?? null)}`;
 }
-
-// Only link to tests that exist in the question bank.
-const AVAILABLE_TESTS = [
-  { id: "california-permit",      label: "CA Permit",       questions: 200 },
-  { id: "california-motorcycle",  label: "CA Motorcycle",   questions: 125 },
-  { id: "california-cdl-general", label: "CA CDL",          questions: 200 },
-];
 
 function formatStudyTime(ms: number): string {
   if (ms === 0) return '—';
@@ -119,6 +105,16 @@ export default async function DashboardPage({ searchParams }: Props) {
   ]);
 
   const quizHref     = getQuizHref(profile.target_state, profile.target_license);
+  const stateTestId  = getDefaultTestId(profile.target_state ?? null, 'permit');
+  const stateSlug    = stateTestId.replace(/-permit$/, '');
+  const availableTests = (['permit', 'motorcycle', 'cdl-general'] as const)
+    .map((suffix) => `${stateSlug}-${suffix}`)
+    .filter((id) => quizRegistry[id])
+    .map((id) => ({
+      id,
+      label: quizRegistry[id].label,
+      questions: quizRegistry[id].questions.length,
+    }));
   const streak       = getStreak(profile);
   const readiness    = computeReadiness(stats, weakTopics, strongTopics);
   const weeklyActivity = computeWeeklyActivity(stats.sessions);
@@ -261,7 +257,7 @@ export default async function DashboardPage({ searchParams }: Props) {
           Start a Practice Test
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {AVAILABLE_TESTS.map((t) => (
+          {availableTests.map((t) => (
             <Link
               key={t.id}
               href={`/quiz/${t.id}`}

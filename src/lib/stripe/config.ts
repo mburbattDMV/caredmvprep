@@ -109,21 +109,34 @@ export const PRODUCT_CONFIG: Record<SubscriptionProduct, ProductConfig> = {
 
 // ─── Quiz → required subscription product ────────────────────────────────────
 
+const LIVE_STATE_SLUGS = [
+  'california',
+  'texas',
+  'florida',
+  'new-york',
+  'pennsylvania',
+  'illinois',
+  'ohio',
+  'georgia',
+  'north-carolina',
+  'arizona',
+] as const;
+
+function buildStateQuizProductMap(): Partial<Record<string, SubscriptionProduct>> {
+  const map: Partial<Record<string, SubscriptionProduct>> = {};
+  for (const slug of LIVE_STATE_SLUGS) {
+    map[`${slug}-permit`] = 'dmv';
+    map[`${slug}-motorcycle`] = 'motorcycle';
+    map[`${slug}-cdl-general`] = 'cdl';
+    map[`${slug}-permit-mock-1`] = 'dmv';
+    map[`${slug}-permit-mock-2`] = 'dmv';
+    map[`${slug}-permit-mock-3`] = 'dmv';
+  }
+  return map;
+}
+
 export const QUIZ_PRODUCT_MAP: Partial<Record<string, SubscriptionProduct>> = {
-  // California
-  'california-permit':        'dmv',
-  'california-motorcycle':    'motorcycle',
-  'california-cdl-general':   'cdl',
-  'california-permit-mock-1': 'dmv',
-  'california-permit-mock-2': 'dmv',
-  'california-permit-mock-3': 'dmv',
-  // Texas
-  'texas-permit':             'dmv',
-  'texas-motorcycle':         'motorcycle',
-  'texas-cdl-general':        'cdl',
-  'texas-permit-mock-1':      'dmv',
-  'texas-permit-mock-2':      'dmv',
-  'texas-permit-mock-3':      'dmv',
+  ...buildStateQuizProductMap(),
   // CDL endorsements (federal — state-agnostic)
   'cdl-hazmat':               'cdl_hazmat',
   'cdl-tank-vehicles':        'cdl_tanker',

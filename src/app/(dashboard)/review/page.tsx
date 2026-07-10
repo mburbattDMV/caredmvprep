@@ -9,15 +9,12 @@ import {
   getProfile,
 } from "@/lib/supabase/queries";
 import { getQuestionById } from "@/data/questions/index";
+import { getDefaultTestId } from "@/lib/profile-routing";
 
-const STATE_SLUGS: Record<string, string> = { CA: 'california' };
-const LICENSE_SUFFIX: Record<string, string> = {
-  permit: 'permit', motorcycle: 'motorcycle', cdl_general: 'cdl-general',
-};
+// Delegates to the single source of truth (lib/profile-routing.ts) so this
+// stays correct as states are added.
 function getQuizHref(state: string | null | undefined, license: string | null | undefined): string {
-  const slug   = STATE_SLUGS[state ?? ''] ?? 'california';
-  const suffix = LICENSE_SUFFIX[license ?? ''] ?? 'permit';
-  return `/quiz/${slug}-${suffix}`;
+  return `/quiz/${getDefaultTestId(state ?? null, license ?? null)}`;
 }
 
 export const metadata = {

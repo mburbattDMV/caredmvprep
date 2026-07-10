@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getProfile } from "@/lib/supabase/queries";
 import { MOCK_EXAM_DEFS } from "@/data/questions/index";
 import { getDefaultTestId, hasMockExams } from "@/lib/profile-routing";
+import stateFacts from "@/data/questions/state-facts";
 
 export const dynamic = 'force-dynamic';
 
@@ -12,29 +13,36 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-// State-specific exam metadata
-const STATE_META: Record<string, {
+interface StateMeta {
   questionCount: number;
   passingPct: number;
   passingLabel: string;
   timeMins: number;
   testName: string;
-}> = {
-  CA: {
-    questionCount: 46,
-    passingPct: 80,
-    passingLabel: '37 of 46 correct',
-    timeMins: 50,
-    testName: 'CA DMV permit test',
-  },
-  TX: {
-    questionCount: 30,
-    passingPct: 70,
-    passingLabel: '21 of 30 correct',
-    timeMins: 45,
-    testName: 'Texas DPS permit test',
-  },
-};
+}
+
+// Builds exam metadata for any state from the same authoritative sources the
+// rest of the app uses (MOCK_EXAM_DEFS for question count/time limit,
+// state-facts.ts for the official passing threshold) rather than a hardcoded
+// per-state table that has to be remembered on every state launch.
+function buildStateMeta(stateAbbr: string, exams: typeof MOCK_EXAM_DEFS): StateMeta {
+  const facts = stateFacts.find((f) => f.abbr === stateAbbr);
+  const firstExam = exams[0];
+  const questionCount = firstExam?.questionCount ?? 46;
+  const timeMins = firstExam ? Math.round(firstExam.timeLimitSecs / 60) : 50;
+
+  const permitQuestions = typeof facts?.permitQuestions === "number" ? facts.permitQuestions : questionCount;
+  const permitToPass = typeof facts?.permitToPass === "number" ? facts.permitToPass : Math.round(questionCount * 0.8);
+  const passingPct = Math.round((permitToPass / permitQuestions) * 100);
+
+  return {
+    questionCount,
+    passingPct,
+    passingLabel: `${permitToPass} of ${permitQuestions} correct`,
+    timeMins,
+    testName: facts ? `${facts.state} permit test` : `${stateAbbr} permit test`,
+  };
+}
 
 function ClockIcon() {
   return (
@@ -68,9 +76,9 @@ export default async function MockExamPage() {
   }
 
   // Filter exams to the user's state (permit only at this point)
-  const stateKey = stateAbbr === 'TX' ? 'texas-permit' : 'california-permit';
+  const stateKey = defaultTestId;
   const exams = MOCK_EXAM_DEFS.filter(e => e.baseTestId === stateKey);
-  const meta = STATE_META[stateAbbr] ?? STATE_META['CA'];
+  const meta = buildStateMeta(stateAbbr, exams);
 
   return (
     <div className="max-w-3xl mx-auto pb-12">

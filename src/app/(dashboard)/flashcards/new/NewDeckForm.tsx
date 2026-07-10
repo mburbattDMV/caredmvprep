@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { createDeckFromWeakTopic } from "./actions";
 
 interface Props {
   userId: string;
@@ -44,25 +45,21 @@ export default function NewDeckForm({ userId, weakTopics }: Props) {
   async function createFromWeakTopic(slug: string) {
     setLoading(true);
     setError(null);
-    const supabase = createClient();
 
-    // Create deck
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: deck, error: deckErr } = await (supabase.from("flashcard_decks") as any)
-      .insert({ user_id: userId, name: `${fmt(slug)} Review` })
-      .select("id")
-      .single();
+    const result = await createDeckFromWeakTopic(slug);
 
-    if (deckErr || !deck?.id) {
-      setError(deckErr?.message ?? "Failed to create deck.");
+    if (!result.deckId) {
+      setError(result.error ?? "Failed to create deck.");
       setLoading(false);
       return;
     }
+    if (result.error) {
+      // Deck was created but card population partially failed — still navigate,
+      // the deck manager page will show whatever cards did get created.
+      console.error(result.error);
+    }
 
-    // We'd need access to all questions filtered by category to populate the deck.
-    // For now just create the empty deck and let the user add cards manually.
-    // In a future sprint, import questions filtered by category_slug.
-    router.push(`/flashcards/${deck.id}`);
+    router.push(`/flashcards/${result.deckId}`);
   }
 
   return (
