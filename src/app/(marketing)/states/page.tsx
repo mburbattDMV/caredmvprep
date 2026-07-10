@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LIVE_STATE_ABBRS, LIVE_MOTORCYCLE_STATE_ABBRS } from "@/lib/stripe/config";
 
 export const metadata: Metadata = {
   title: "DMV Practice Tests for All 50 States – Free State-by-State Test Prep",
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: "How many states are available right now?",
-    a: "We currently have full practice test coverage for all 50 U.S. states. Every state includes a Driver's License permit practice test, a Motorcycle endorsement practice test, and a CDL knowledge practice test — each tailored to that state's official driver handbook, agency terminology, and unique traffic laws.",
+    a: "Free sample questions are available for all 50 U.S. states. Full practice tests, timed mock exams, and progress tracking after signup are live today for 15 states, with more added regularly — each tailored to that state's official driver handbook, agency terminology, and unique traffic laws.",
   },
   {
     q: "Are the questions state-specific?",
@@ -23,7 +24,7 @@ const faqs = [
   },
   {
     q: "Do you have motorcycle and CDL tests for each state?",
-    a: "Yes — all 50 states have separate Driver's License, Motorcycle, and CDL practice tests. Every test uses state-specific agency names, statute references, penalties, and road conditions rather than generic national content.",
+    a: "CDL General Knowledge is federally standardized, so it's available for every state with a live Driver's License test. Motorcycle question banks are rolling out state by state — check the state picker at checkout to see current motorcycle availability.",
   },
   {
     q: "Which states have the most unique driving laws tested?",
@@ -41,12 +42,11 @@ type StateEntry = {
 };
 
 // States with a full practice test bank, timed mock exams, and progress
-// tracking after signup — kept in sync with LIVE_STATE_SLUGS in
-// src/lib/stripe/config.ts. Every state has free sample questions on its
-// own landing page regardless of this list.
-const FULLY_LIVE_ABBRS = new Set([
-  "CA", "TX", "FL", "NY", "PA", "IL", "OH", "GA", "NC", "AZ",
-]);
+// tracking after signup. Sourced from the single live-state list in
+// src/lib/stripe/config.ts so this page can't drift out of sync with what's
+// actually purchasable. Every state has free sample questions on its own
+// landing page regardless of this list.
+const FULLY_LIVE_ABBRS = LIVE_STATE_ABBRS;
 
 const states: StateEntry[] = [
   {
@@ -415,9 +415,11 @@ export default function StatesPage() {
       <section className="py-14 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Available Now</h2>
-          <p className="text-gray-500 text-sm mb-8">Full coverage — Driver&apos;s License, Motorcycle, and CDL practice tests based on your official state handbook.</p>
+          <p className="text-gray-500 text-sm mb-8">Full practice tests, mock exams, and progress tracking — Driver&apos;s License and CDL for every state below; Motorcycle where noted.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {available.map((state) => (
+            {available.map((state) => {
+              const hasMoto = LIVE_MOTORCYCLE_STATE_ABBRS.has(state.abbr);
+              return (
               <div key={state.abbr} className="rounded-2xl border-2 border-[#1a7f3c] bg-green-50 p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-3xl">{state.emoji}</span>
@@ -443,7 +445,9 @@ export default function StatesPage() {
                   >
                     <div>
                       <span className="text-xs text-gray-500 block">Motorcycle</span>
-                      <span className="text-sm font-semibold text-gray-900">Motorcycle Practice Test</span>
+                      <span className="text-sm font-semibold text-gray-900">
+                        {hasMoto ? "Motorcycle Practice Test" : "Sample Questions (full test coming soon)"}
+                      </span>
                     </div>
                     <span className="text-[#1a7f3c] font-bold text-sm group-hover:underline">Start →</span>
                   </Link>
@@ -459,7 +463,8 @@ export default function StatesPage() {
                   </Link>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -21,6 +21,13 @@ import ncDmvQuestions                from './dmv/north-carolina';
 import ncMotoQuestions               from './motorcycle/north-carolina';
 import azDmvQuestions                from './dmv/arizona';
 import azMotoQuestions               from './motorcycle/arizona';
+import miDmvQuestions                from './dmv/michigan';
+import moDmvQuestions                from './dmv/missouri';
+import moMotoQuestions               from './motorcycle/missouri';
+import tnDmvQuestions                from './dmv/tennessee';
+import vaDmvQuestions                from './dmv/virginia';
+import vaMotoQuestions               from './motorcycle/virginia';
+import waDmvQuestions                from './dmv/washington';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -307,6 +314,112 @@ export const quizRegistry: Record<string, QuizConfig> = {
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — FMCSA federal standard, identical in all states
+  },
+
+  // ── Michigan ──────────────────────────────────────────────────────────────
+  'michigan-permit': {
+    testId:      'michigan-permit',
+    label:       'Michigan SOS Permit Practice Test',
+    state:       'michigan',
+    licenseType: 'permit',
+    questions:   verified(miDmvQuestions),
+    passingScore: 0.80,  // 40 of 50 — Michigan SOS standard (80% per section)
+  },
+  'michigan-cdl-general': {
+    testId:      'michigan-cdl-general',
+    label:       'Michigan CDL General Knowledge Practice Test',
+    state:       'michigan',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
+  },
+
+  // ── Missouri ──────────────────────────────────────────────────────────────
+  'missouri-permit': {
+    testId:      'missouri-permit',
+    label:       'Missouri DOR Permit Practice Test',
+    state:       'missouri',
+    licenseType: 'permit',
+    questions:   verified(moDmvQuestions),
+    passingScore: 0.80,  // 20 of 25 — Missouri DOR standard (80%)
+  },
+  'missouri-motorcycle': {
+    testId:      'missouri-motorcycle',
+    label:       'Missouri DOR Motorcycle Practice Test',
+    state:       'missouri',
+    licenseType: 'motorcycle',
+    questions:   verified(moMotoQuestions),
+    passingScore: 0.80,
+  },
+  'missouri-cdl-general': {
+    testId:      'missouri-cdl-general',
+    label:       'Missouri CDL General Knowledge Practice Test',
+    state:       'missouri',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
+  },
+
+  // ── Tennessee ─────────────────────────────────────────────────────────────
+  'tennessee-permit': {
+    testId:      'tennessee-permit',
+    label:       'Tennessee DOSHS Permit Practice Test',
+    state:       'tennessee',
+    licenseType: 'permit',
+    questions:   verified(tnDmvQuestions),
+    passingScore: 0.80,  // 24 of 30 — Tennessee standard (80%)
+  },
+  'tennessee-cdl-general': {
+    testId:      'tennessee-cdl-general',
+    label:       'Tennessee CDL General Knowledge Practice Test',
+    state:       'tennessee',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
+  },
+
+  // ── Virginia ──────────────────────────────────────────────────────────────
+  'virginia-permit': {
+    testId:      'virginia-permit',
+    label:       'Virginia DMV Permit Practice Test',
+    state:       'virginia',
+    licenseType: 'permit',
+    questions:   verified(vaDmvQuestions),
+    passingScore: 0.80,  // 28 of 35 — Virginia DMV standard (80%)
+  },
+  'virginia-motorcycle': {
+    testId:      'virginia-motorcycle',
+    label:       'Virginia DMV Motorcycle Practice Test',
+    state:       'virginia',
+    licenseType: 'motorcycle',
+    questions:   verified(vaMotoQuestions),
+    passingScore: 0.80,
+  },
+  'virginia-cdl-general': {
+    testId:      'virginia-cdl-general',
+    label:       'Virginia CDL General Knowledge Practice Test',
+    state:       'virginia',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
+  },
+
+  // ── Washington ────────────────────────────────────────────────────────────
+  'washington-permit': {
+    testId:      'washington-permit',
+    label:       'Washington DOL Permit Practice Test',
+    state:       'washington',
+    licenseType: 'permit',
+    questions:   verified(waDmvQuestions),
+    passingScore: 0.80,  // 32 of 40 — Washington DOL standard (80%)
+  },
+  'washington-cdl-general': {
+    testId:      'washington-cdl-general',
+    label:       'Washington CDL General Knowledge Practice Test',
+    state:       'washington',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
   },
 
   // ── CDL Endorsement Banks — federal (state-agnostic) ─────────────────────
@@ -713,6 +826,161 @@ export const MOCK_EXAM_DEFS: MockExamDef[] = [
     questionCount: 30,
     seed:          3,
     timeLimitSecs: 45 * 60,
+    description:   'Third exam simulation — no repeated questions from #1 or #2.',
+  },
+  // ── Michigan ──────────────────────────────────────────────────────────────
+  {
+    examId:        'michigan-permit-mock-1',
+    label:         'Michigan SOS Permit Mock Exam #1',
+    shortLabel:    'Mock Exam #1',
+    baseTestId:    'michigan-permit',
+    questionCount: 50,
+    seed:          1,
+    timeLimitSecs: 60 * 60,
+    description:   'Simulates the real Michigan SOS permit test — 50 questions, 60 min.',
+  },
+  {
+    examId:        'michigan-permit-mock-2',
+    label:         'Michigan SOS Permit Mock Exam #2',
+    shortLabel:    'Mock Exam #2',
+    baseTestId:    'michigan-permit',
+    questionCount: 50,
+    seed:          2,
+    timeLimitSecs: 60 * 60,
+    description:   'A unique second simulation with a different question mix.',
+  },
+  {
+    examId:        'michigan-permit-mock-3',
+    label:         'Michigan SOS Permit Mock Exam #3',
+    shortLabel:    'Mock Exam #3',
+    baseTestId:    'michigan-permit',
+    questionCount: 50,
+    seed:          3,
+    timeLimitSecs: 60 * 60,
+    description:   'Third exam simulation — no repeated questions from #1 or #2.',
+  },
+  // ── Missouri ──────────────────────────────────────────────────────────────
+  {
+    examId:        'missouri-permit-mock-1',
+    label:         'Missouri DOR Permit Mock Exam #1',
+    shortLabel:    'Mock Exam #1',
+    baseTestId:    'missouri-permit',
+    questionCount: 25,
+    seed:          1,
+    timeLimitSecs: 40 * 60,
+    description:   'Simulates the real Missouri DOR permit test — 25 questions, 40 min.',
+  },
+  {
+    examId:        'missouri-permit-mock-2',
+    label:         'Missouri DOR Permit Mock Exam #2',
+    shortLabel:    'Mock Exam #2',
+    baseTestId:    'missouri-permit',
+    questionCount: 25,
+    seed:          2,
+    timeLimitSecs: 40 * 60,
+    description:   'A unique second simulation with a different question mix.',
+  },
+  {
+    examId:        'missouri-permit-mock-3',
+    label:         'Missouri DOR Permit Mock Exam #3',
+    shortLabel:    'Mock Exam #3',
+    baseTestId:    'missouri-permit',
+    questionCount: 25,
+    seed:          3,
+    timeLimitSecs: 40 * 60,
+    description:   'Third exam simulation — no repeated questions from #1 or #2.',
+  },
+  // ── Tennessee ─────────────────────────────────────────────────────────────
+  {
+    examId:        'tennessee-permit-mock-1',
+    label:         'Tennessee DOSHS Permit Mock Exam #1',
+    shortLabel:    'Mock Exam #1',
+    baseTestId:    'tennessee-permit',
+    questionCount: 30,
+    seed:          1,
+    timeLimitSecs: 45 * 60,
+    description:   'Simulates the real Tennessee permit test — 30 questions, 45 min.',
+  },
+  {
+    examId:        'tennessee-permit-mock-2',
+    label:         'Tennessee DOSHS Permit Mock Exam #2',
+    shortLabel:    'Mock Exam #2',
+    baseTestId:    'tennessee-permit',
+    questionCount: 30,
+    seed:          2,
+    timeLimitSecs: 45 * 60,
+    description:   'A unique second simulation with a different question mix.',
+  },
+  {
+    examId:        'tennessee-permit-mock-3',
+    label:         'Tennessee DOSHS Permit Mock Exam #3',
+    shortLabel:    'Mock Exam #3',
+    baseTestId:    'tennessee-permit',
+    questionCount: 30,
+    seed:          3,
+    timeLimitSecs: 45 * 60,
+    description:   'Third exam simulation — no repeated questions from #1 or #2.',
+  },
+  // ── Virginia ──────────────────────────────────────────────────────────────
+  {
+    examId:        'virginia-permit-mock-1',
+    label:         'Virginia DMV Permit Mock Exam #1',
+    shortLabel:    'Mock Exam #1',
+    baseTestId:    'virginia-permit',
+    questionCount: 35,
+    seed:          1,
+    timeLimitSecs: 60 * 60,
+    description:   'Simulates the real Virginia DMV permit test — 35 questions, 60 min.',
+  },
+  {
+    examId:        'virginia-permit-mock-2',
+    label:         'Virginia DMV Permit Mock Exam #2',
+    shortLabel:    'Mock Exam #2',
+    baseTestId:    'virginia-permit',
+    questionCount: 35,
+    seed:          2,
+    timeLimitSecs: 60 * 60,
+    description:   'A unique second simulation with a different question mix.',
+  },
+  {
+    examId:        'virginia-permit-mock-3',
+    label:         'Virginia DMV Permit Mock Exam #3',
+    shortLabel:    'Mock Exam #3',
+    baseTestId:    'virginia-permit',
+    questionCount: 35,
+    seed:          3,
+    timeLimitSecs: 60 * 60,
+    description:   'Third exam simulation — no repeated questions from #1 or #2.',
+  },
+  // ── Washington ────────────────────────────────────────────────────────────
+  {
+    examId:        'washington-permit-mock-1',
+    label:         'Washington DOL Permit Mock Exam #1',
+    shortLabel:    'Mock Exam #1',
+    baseTestId:    'washington-permit',
+    questionCount: 40,
+    seed:          1,
+    timeLimitSecs: 60 * 60,
+    description:   'Simulates the real Washington DOL permit test — 40 questions, 60 min.',
+  },
+  {
+    examId:        'washington-permit-mock-2',
+    label:         'Washington DOL Permit Mock Exam #2',
+    shortLabel:    'Mock Exam #2',
+    baseTestId:    'washington-permit',
+    questionCount: 40,
+    seed:          2,
+    timeLimitSecs: 60 * 60,
+    description:   'A unique second simulation with a different question mix.',
+  },
+  {
+    examId:        'washington-permit-mock-3',
+    label:         'Washington DOL Permit Mock Exam #3',
+    shortLabel:    'Mock Exam #3',
+    baseTestId:    'washington-permit',
+    questionCount: 40,
+    seed:          3,
+    timeLimitSecs: 60 * 60,
     description:   'Third exam simulation — no repeated questions from #1 or #2.',
   },
 ];

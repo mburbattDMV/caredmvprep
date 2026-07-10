@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import BrandLogo from "@/components/BrandLogo";
 import { createClient } from "@/lib/supabase/client";
+import { LIVE_MOTORCYCLE_STATE_ABBRS } from "@/lib/stripe/config";
 
 const STATES = [
   { abbr: 'CA', name: 'California', available: true },
@@ -18,6 +19,11 @@ const STATES = [
   { abbr: 'GA', name: 'Georgia', available: true },
   { abbr: 'NC', name: 'North Carolina', available: true },
   { abbr: 'AZ', name: 'Arizona', available: true },
+  { abbr: 'MI', name: 'Michigan', available: true },
+  { abbr: 'MO', name: 'Missouri', available: true },
+  { abbr: 'TN', name: 'Tennessee', available: true },
+  { abbr: 'VA', name: 'Virginia', available: true },
+  { abbr: 'WA', name: 'Washington', available: true },
 ];
 
 const LICENSE_TYPES = [
@@ -164,26 +170,35 @@ export default function OnboardingPage() {
               </h1>
               <p className="text-sm text-gray-500 mb-6">Choose the license type you're preparing for.</p>
               <div className="space-y-3">
-                {LICENSE_TYPES.map((lt) => (
-                  <button
-                    key={lt.id}
-                    onClick={() => setSelectedLicense(lt.id)}
-                    className={`w-full flex items-center gap-4 px-4 py-4 rounded-xl border text-left transition ${
-                      selectedLicense === lt.id
-                        ? 'border-green-600 bg-green-50'
-                        : 'border-gray-200 hover:border-gray-400'
-                    }`}
-                  >
-                    <span className="text-2xl shrink-0">{lt.icon}</span>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold text-gray-900">{lt.label}</p>
-                      <p className="text-xs text-gray-500 mt-0.5">{lt.description}</p>
-                    </div>
-                    {selectedLicense === lt.id && (
-                      <span className="ml-auto shrink-0 text-green-600 text-sm font-bold">✓</span>
-                    )}
-                  </button>
-                ))}
+                {LICENSE_TYPES.map((lt) => {
+                  const disabled = lt.id === 'motorcycle' && selectedState !== null
+                    && !LIVE_MOTORCYCLE_STATE_ABBRS.has(selectedState);
+                  return (
+                    <button
+                      key={lt.id}
+                      disabled={disabled}
+                      onClick={() => setSelectedLicense(lt.id)}
+                      className={`w-full flex items-center gap-4 px-4 py-4 rounded-xl border text-left transition ${
+                        disabled
+                          ? 'border-gray-100 bg-gray-50 opacity-50 cursor-not-allowed'
+                          : selectedLicense === lt.id
+                          ? 'border-green-600 bg-green-50'
+                          : 'border-gray-200 hover:border-gray-400'
+                      }`}
+                    >
+                      <span className="text-2xl shrink-0">{lt.icon}</span>
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-gray-900">{lt.label}</p>
+                        <p className="text-xs text-gray-500 mt-0.5">
+                          {disabled ? 'Not available for your state yet' : lt.description}
+                        </p>
+                      </div>
+                      {!disabled && selectedLicense === lt.id && (
+                        <span className="ml-auto shrink-0 text-green-600 text-sm font-bold">✓</span>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
               <div className="flex gap-3 mt-6">
                 <button

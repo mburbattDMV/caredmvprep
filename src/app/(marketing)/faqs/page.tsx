@@ -30,7 +30,7 @@ const faqCategories = [
       },
       {
         q: "Which states are covered?",
-        a: "Free sample questions are available for all 50 states. Full practice tests, timed mock exams, and progress tracking are currently live for California, Texas, Florida, New York, Pennsylvania, Illinois, Ohio, Georgia, North Carolina, and Arizona — with more states added regularly. Sign up to be notified when your state gets full coverage.",
+        a: "Free sample questions are available for all 50 states. Full practice tests, timed mock exams, and progress tracking are currently live for 15 states, with more added regularly — see the current list on our All States page. Sign up to be notified when your state gets full coverage.",
       },
       {
         q: "How often are questions updated?",

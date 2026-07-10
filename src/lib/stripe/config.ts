@@ -109,6 +109,10 @@ export const PRODUCT_CONFIG: Record<SubscriptionProduct, ProductConfig> = {
 
 // ─── Quiz → required subscription product ────────────────────────────────────
 
+// States with a live Driver's License (permit) bank, mock exams, and CDL
+// General Knowledge (federal bank, so it's free to enable everywhere a state
+// goes live). Motorcycle is tracked separately below since not every live
+// state has a motorcycle question bank yet.
 const LIVE_STATE_SLUGS = [
   'california',
   'texas',
@@ -120,17 +124,52 @@ const LIVE_STATE_SLUGS = [
   'georgia',
   'north-carolina',
   'arizona',
+  'michigan',
+  'missouri',
+  'tennessee',
+  'virginia',
+  'washington',
 ] as const;
+
+// Subset of LIVE_STATE_SLUGS that also has a motorcycle question bank wired
+// into the quiz registry. Keep in sync with src/data/questions/index.ts —
+// do not add a state here until its motorcycle bank is actually registered.
+export const LIVE_MOTORCYCLE_STATE_SLUGS = [
+  'california',
+  'texas',
+  'florida',
+  'new-york',
+  'pennsylvania',
+  'illinois',
+  'ohio',
+  'georgia',
+  'north-carolina',
+  'arizona',
+  'missouri',
+  'virginia',
+] as const;
+
+// Abbr-keyed equivalents for callers (checkout, onboarding, pricing state
+// pickers) that work with two-letter state codes instead of URL slugs.
+export const LIVE_STATE_ABBRS = new Set<string>([
+  'CA', 'TX', 'FL', 'NY', 'PA', 'IL', 'OH', 'GA', 'NC', 'AZ', 'MI', 'MO', 'TN', 'VA', 'WA',
+]);
+export const LIVE_MOTORCYCLE_STATE_ABBRS = new Set<string>([
+  'CA', 'TX', 'FL', 'NY', 'PA', 'IL', 'OH', 'GA', 'NC', 'AZ', 'MO', 'VA',
+]);
 
 function buildStateQuizProductMap(): Partial<Record<string, SubscriptionProduct>> {
   const map: Partial<Record<string, SubscriptionProduct>> = {};
+  const motoSlugs = new Set<string>(LIVE_MOTORCYCLE_STATE_SLUGS);
   for (const slug of LIVE_STATE_SLUGS) {
     map[`${slug}-permit`] = 'dmv';
-    map[`${slug}-motorcycle`] = 'motorcycle';
     map[`${slug}-cdl-general`] = 'cdl';
     map[`${slug}-permit-mock-1`] = 'dmv';
     map[`${slug}-permit-mock-2`] = 'dmv';
     map[`${slug}-permit-mock-3`] = 'dmv';
+    if (motoSlugs.has(slug)) {
+      map[`${slug}-motorcycle`] = 'motorcycle';
+    }
   }
   return map;
 }

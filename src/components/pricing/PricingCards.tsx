@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import CheckoutButton from "@/components/ui/CheckoutButton";
 import { startCheckout } from "@/lib/stripe/client";
-import { PRODUCT_CONFIG, formatCents } from "@/lib/stripe/config";
+import { PRODUCT_CONFIG, formatCents, LIVE_MOTORCYCLE_STATE_ABBRS } from "@/lib/stripe/config";
 import { createClient } from "@/lib/supabase/client";
 import type { SubscriptionProduct, PaymentType } from "@/types/database";
 
@@ -15,17 +15,26 @@ const ENDORSEMENT_PRODUCTS: SubscriptionProduct[] = [
   "cdl_doubles_triples",
 ];
 
+// Full list of states with a live dmv/cdl bank. Motorcycle has a smaller
+// live set (LIVE_MOTORCYCLE_STATE_ABBRS) — filtered per-product below so a
+// customer can never buy motorcycle access for a state with no motorcycle
+// question bank.
 const STATES = [
-  { abbr: "CA", name: "California",   available: true  },
-  { abbr: "TX", name: "Texas",        available: true  },
-  { abbr: "FL", name: "Florida",      available: true  },
-  { abbr: "NY", name: "New York",     available: true  },
-  { abbr: "PA", name: "Pennsylvania", available: true  },
-  { abbr: "IL", name: "Illinois",     available: true  },
-  { abbr: "OH", name: "Ohio",         available: true  },
-  { abbr: "GA", name: "Georgia",      available: true  },
-  { abbr: "NC", name: "North Carolina", available: true },
-  { abbr: "AZ", name: "Arizona",        available: true },
+  { abbr: "CA", name: "California"   },
+  { abbr: "TX", name: "Texas"        },
+  { abbr: "FL", name: "Florida"      },
+  { abbr: "NY", name: "New York"     },
+  { abbr: "PA", name: "Pennsylvania" },
+  { abbr: "IL", name: "Illinois"     },
+  { abbr: "OH", name: "Ohio"         },
+  { abbr: "GA", name: "Georgia"      },
+  { abbr: "NC", name: "North Carolina" },
+  { abbr: "AZ", name: "Arizona"        },
+  { abbr: "MI", name: "Michigan"       },
+  { abbr: "MO", name: "Missouri"       },
+  { abbr: "TN", name: "Tennessee"      },
+  { abbr: "VA", name: "Virginia"       },
+  { abbr: "WA", name: "Washington"     },
 ];
 
 type AccessState =
@@ -81,13 +90,21 @@ function formatExpiry(iso: string): string {
 // ─── State picker modal ───────────────────────────────────────────────────────
 
 function StatePicker({
+  product,
   onConfirm,
   onCancel,
 }: {
+  product:   SubscriptionProduct;
   onConfirm: (state: string) => void;
   onCancel:  () => void;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
+
+  // Motorcycle has a smaller live-state list than dmv/cdl — filter here so a
+  // customer can never select a state with no motorcycle question bank.
+  const availableStates = product === "motorcycle"
+    ? STATES.filter((s) => LIVE_MOTORCYCLE_STATE_ABBRS.has(s.abbr))
+    : STATES;
 
   return (
     <div
@@ -103,24 +120,18 @@ function StatePicker({
         </p>
 
         <div className="grid grid-cols-2 gap-3 mb-6">
-          {STATES.map((s) => (
+          {availableStates.map((s) => (
             <button
               key={s.abbr}
-              disabled={!s.available}
               onClick={() => setSelected(s.abbr)}
               className={`relative flex items-center gap-3 px-4 py-3.5 rounded-xl border text-left transition ${
-                !s.available
-                  ? "border-gray-100 bg-gray-50 opacity-40 cursor-not-allowed"
-                  : selected === s.abbr
+                selected === s.abbr
                   ? "border-green-600 bg-green-50"
                   : "border-gray-200 hover:border-gray-400"
               }`}
             >
               <div>
                 <p className="text-sm font-semibold text-gray-900">{s.name}</p>
-                {!s.available && (
-                  <p className="text-xs text-gray-400">Coming soon</p>
-                )}
               </div>
               {selected === s.abbr && (
                 <span className="absolute top-2 right-2 text-green-600 text-xs font-bold">
@@ -421,6 +432,7 @@ export default function PricingCards() {
       {/* State picker modal */}
       {picker && (
         <StatePicker
+          product={picker.product}
           onConfirm={handlePickerConfirm}
           onCancel={() => { setPicker(null); setCheckingOut(null); }}
         />

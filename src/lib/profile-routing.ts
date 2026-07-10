@@ -39,6 +39,18 @@ export function getDefaultTestId(
     'AZ-permit':      'arizona-permit',
     'AZ-motorcycle':  'arizona-motorcycle',
     'AZ-cdl_general': 'arizona-cdl-general',
+    'MI-permit':      'michigan-permit',
+    'MI-cdl_general': 'michigan-cdl-general',
+    'MO-permit':      'missouri-permit',
+    'MO-motorcycle':  'missouri-motorcycle',
+    'MO-cdl_general': 'missouri-cdl-general',
+    'TN-permit':      'tennessee-permit',
+    'TN-cdl_general': 'tennessee-cdl-general',
+    'VA-permit':      'virginia-permit',
+    'VA-motorcycle':  'virginia-motorcycle',
+    'VA-cdl_general': 'virginia-cdl-general',
+    'WA-permit':      'washington-permit',
+    'WA-cdl_general': 'washington-cdl-general',
   };
   return MAP[key] ?? 'california-permit';
 }

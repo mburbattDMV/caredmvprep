@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { getStripe } from '@/lib/stripe/server';
-import { PRODUCT_CONFIG } from '@/lib/stripe/config';
+import { PRODUCT_CONFIG, LIVE_STATE_ABBRS, LIVE_MOTORCYCLE_STATE_ABBRS } from '@/lib/stripe/config';
 import type { SubscriptionProduct, PaymentType } from '@/types/database';
 
 export const dynamic = 'force-dynamic';
@@ -48,8 +48,10 @@ export async function POST(request: Request) {
       }
     }
 
-    // Resolve target state and license — stored in Stripe metadata and written to profile by webhook
-    const ALLOWED_STATES = new Set(['CA', 'TX', 'FL', 'NY', 'PA', 'IL', 'OH', 'GA', 'NC', 'AZ']);
+    // Resolve target state and license — stored in Stripe metadata and written to profile by webhook.
+    // Motorcycle has a smaller live-state list than dmv/cdl since not every
+    // state has a motorcycle question bank wired in yet.
+    const ALLOWED_STATES = product === 'motorcycle' ? LIVE_MOTORCYCLE_STATE_ABBRS : LIVE_STATE_ABBRS;
     const PRODUCT_LICENSE_MAP: Partial<Record<string, string>> = {
       dmv:        'permit',
       motorcycle: 'motorcycle',
