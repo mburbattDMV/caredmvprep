@@ -2,7 +2,7 @@
 
 > **Read this file first in every new Claude session before doing any work.**
 > Updated automatically after every completed state.
-> Last updated: 2026-07-15
+> Last updated: 2026-07-15 (NH queued)
 
 ---
 
@@ -61,6 +61,7 @@ All states below have complete question banks. They are blocked from activation 
 | **Idaho (ID)** | 2026-07-14 | 70 | 25 | DL count unverified (85% threshold, 40q/34 pass); moto count unverified | ID ITD (208) 334-8736 |
 | **West Virginia (WV)** | 2026-07-15 | 70 | 25 | Seat belt enforcement type (primary/secondary) NEEDS_VERIFICATION; DL (19/25, 76%) and moto (20/25, 80%) counts VERIFIED from handbook | WV DMV (304) 926-3499 |
 | **Hawaii (HI)** | 2026-07-15 | 70 | 25 | DL count (30/24/80%) and moto count (25/20/80%) VERIFIED from official HDOT sources — no blocking verification items | Honolulu DMV (808) 768-3391 |
+| **New Hampshire (NH)** | 2026-07-15 | 70 | 25 | DL count (40/32/80%) and moto count (25/20/80%) NEEDS_VERIFICATION (DMV site blocked; call 603-227-4000) | NH DMV (603) 227-4000 |
 
 ### Notable Corrections Made While Queuing
 - **MS motorcycle page**: Helmet law was stated as "under-21 only" — corrected to ALL ages (§ 63-7-64)
@@ -76,31 +77,35 @@ All states below have complete question banks. They are blocked from activation 
 - **HI marketing (DL)**: "OUI" terminology replaced with "OVUII" throughout; GDL phases corrected ("12 months" error fixed); OVUII enhanced threshold (0.15%) added; implied consent revocations added
 - **HI marketing (moto)**: Universal helmet law (§ 291-3.4) corrected to under-18 only (§ 286-81); wrong statute removed; moped all-ages requirement (Act 222) added; lane splitting ban added; MSF pre-permit requirement (Act 66) added; shoulder riding expiry noted; test count (25q/20 correct) added
 - **HI state-facts**: `motoQuestions` 25, `motoToPass` 20, `motoPassingPct` "80%", `handbookUrl` updated, `lastVerifiedAt` "2026-07-15" all updated
+- **NH state-facts**: `motoHelmetLaw` corrected "none" → "under-18" (RSA 265:122); `permitMinAge` corrected 15.5 → 16; `handbookUrl` updated; `lastVerifiedAt` updated to "2026-07-15"; notes corrected (prior entry incorrectly stated no helmet law for anyone)
+- **NH DL marketing**: Pass score corrected 75%/30 → 80%/32; permit age corrected 15½ → 16; GDL curfew corrected midnight → 1 a.m.–4 a.m.; cell phone law added with RSA 265:79-c and fine schedule; implied consent refusal period corrected 1 year → 180 days; adult seatbelt law clarified (~2 states, not "only state")
+- **NH moto marketing**: Test structure corrected (75%/19 → 80%/20); MSF waiver clarified waives BOTH written AND road tests (RSA 263:32); lane splitting explicitly called out as ILLEGAL (RSA 265:121); motorcycle profiling ban (RSA 265:1-c) added; permit restrictions (daylight only, no passengers, 45-day validity) added
+- **NH questions (DL)**: nh-dl-right_of_way-005 citation corrected RSA 265:35 → RSA 265:36; nh-dl-alcohol_drugs-009 source updated to RSA 265-A:30
+- **NH questions (moto)**: nh-moto-riding_skills-009 "high beams where legally appropriate" phrase removed; replaced with "Scan the roadside edges frequently and reduce speed when deer are likely"
 
 ---
 
 ## 🚧 In Progress
 
-*None currently. New Hampshire (NH, ~1.40M pop.) is next.*
+*None currently. Maine (ME, ~1.37M pop.) is next.*
 
 ---
 
-## ⬜ Remaining — Not Yet Started (10 states)
+## ⬜ Remaining — Not Yet Started (9 states)
 
 Ordered by population (highest first — process in this order):
 
 | Priority | State | Est. Population | Notes |
 |----------|-------|----------------|-------|
-| 1 | **New Hampshire (NH)** | ~1.40M | Next to build |
-| 2 | **Maine (ME)** | ~1.37M | |
-| 3 | **Montana (MT)** | ~1.12M | |
-| 4 | **Rhode Island (RI)** | ~1.09M | |
-| 5 | **Delaware (DE)** | ~1.02M | |
-| 6 | **South Dakota (SD)** | ~920K | |
-| 7 | **North Dakota (ND)** | ~780K | |
-| 8 | **Alaska (AK)** | ~730K | |
-| 9 | **Vermont (VT)** | ~650K | |
-| 10 | **Wyoming (WY)** | ~580K | |
+| 1 | **Maine (ME)** | ~1.37M | Next to build |
+| 2 | **Montana (MT)** | ~1.12M | |
+| 3 | **Rhode Island (RI)** | ~1.09M | |
+| 4 | **Delaware (DE)** | ~1.02M | |
+| 5 | **South Dakota (SD)** | ~920K | |
+| 6 | **North Dakota (ND)** | ~780K | |
+| 7 | **Alaska (AK)** | ~730K | |
+| 8 | **Vermont (VT)** | ~650K | |
+| 9 | **Wyoming (WY)** | ~580K | |
 
 ---
 
@@ -122,6 +127,7 @@ Key items logged in `/Users/vader/CAREDMVPREP.COM/VERIFICATION.md`:
 - New Mexico — DL count, moto count (motoQuestions corrected 20→40)
 - Nebraska — DL count, moto count, helmet law (corrected under-18→under-21)
 - Idaho — DL count, moto count, lane splitting confirmed illegal, helmet law verified (under-18 only)
+- New Hampshire — DL count NEEDS_VERIFICATION, moto count NEEDS_VERIFICATION, helmet law (under-18 only, RSA 265:122), no adult seatbelt law, lane splitting illegal, MSF waives both tests (RSA 263:32)
 
 ---
 
@@ -129,12 +135,12 @@ Key items logged in `/Users/vader/CAREDMVPREP.COM/VERIFICATION.md`:
 
 | Metric | Count |
 |--------|-------|
-| States completed (built) | 40 |
+| States completed (built) | 41 |
 | States activated (live) | 24 |
-| States queued (built, awaiting verification) | 16 |
-| States remaining (not yet started) | 10 |
-| **Total completion** | **40 / 50 = 80%** |
-| Total DL questions authored | ~4,180 (across all built states) |
-| Total motorcycle questions authored | ~1,510 (across states with moto banks) |
+| States queued (built, awaiting verification) | 17 |
+| States remaining (not yet started) | 9 |
+| **Total completion** | **41 / 50 = 82%** |
+| Total DL questions authored | ~4,337 (across all built states) |
+| Total motorcycle questions authored | ~1,535 (across states with moto banks) |
 
 *Completion = states with question banks authored. Activation requires additional phone verification per activation-gate rules.*

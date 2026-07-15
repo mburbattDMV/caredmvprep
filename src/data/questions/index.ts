@@ -56,6 +56,8 @@ import idDmvQuestions                from './dmv/idaho';
 import idMotoQuestions               from './motorcycle/idaho';
 import wvDmvQuestions                from './dmv/west-virginia';
 import wvMotoQuestions               from './motorcycle/west-virginia';
+import nhDmvQuestions                from './dmv/new-hampshire';
+import nhMotoQuestions               from './motorcycle/new-hampshire';
 import hiDmvQuestions                from './dmv/hawaii';
 import hiMotoQuestions               from './motorcycle/hawaii';
 import cdlFederalQuestions           from './cdl/federal';
@@ -873,6 +875,37 @@ export const quizRegistry: Record<string, QuizConfig> = {
     testId:      'west-virginia-cdl-general',
     label:       'West Virginia CDL General Knowledge Practice Test',
     state:       'west-virginia',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
+  },
+
+  // ── New Hampshire ─────────────────────────────────────────────────────────
+  // DL test: 40Q / 32-correct / 80% — NEEDS_VERIFICATION (DMV site blocked; widely reported)
+  // Motorcycle: 25Q / 20-correct / 80% — NEEDS_VERIFICATION
+  // No adult seat belt law (RSA 265:107-a). No adult helmet requirement (RSA 265:122).
+  // Youth Operator curfew: 1 a.m.–4 a.m. Aggravated DWI: 0.16%. MSF waives BOTH tests.
+  // NOT in LIVE_STATE_SLUGS or LIVE_STATE_ABBRS — needs_review status
+  'new-hampshire-permit': {
+    testId:      'new-hampshire-permit',
+    label:       'New Hampshire DMV Driver Knowledge Test Practice',
+    state:       'new-hampshire',
+    licenseType: 'permit',
+    questions:   verified(nhDmvQuestions),
+    passingScore: 0.80,  // 32 of 40 — NEEDS_VERIFICATION; widely reported, DMV site blocked
+  },
+  'new-hampshire-motorcycle': {
+    testId:      'new-hampshire-motorcycle',
+    label:       'New Hampshire Motorcycle Knowledge Test Practice',
+    state:       'new-hampshire',
+    licenseType: 'motorcycle',
+    questions:   verified(nhMotoQuestions),
+    passingScore: 0.80,  // 20 of 25 — NEEDS_VERIFICATION; widely reported
+  },
+  'new-hampshire-cdl-general': {
+    testId:      'new-hampshire-cdl-general',
+    label:       'New Hampshire CDL General Knowledge Practice Test',
+    state:       'new-hampshire',
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal FMCSA standard

@@ -830,3 +830,55 @@ All other states have been updated in `state-facts.ts` with official state CDL h
 - QUEUED (not activated) — DL and moto counts VERIFIED; no blocking verification items
 - Ready for phone confirmation of any remaining items before activation
 - Phone: Honolulu DMV (808) 768-3391
+
+---
+
+## New Hampshire (NH) — 2026-07-15
+
+### DL Test Structure
+- Questions: 40 | To pass: 32 correct (80%)
+- STATUS: NEEDS_VERIFICATION — NH DMV website returned 403 Forbidden; widely reported across prep sites but no official verbatim confirmation
+- Phone: NH DMV (603) 227-4000
+
+### Motorcycle Test Structure
+- Questions: 25 | To pass: 20 correct (80%)
+- STATUS: NEEDS_VERIFICATION — same 403 issue
+- Phone: NH DMV (603) 227-4000
+
+### Helmet Law
+- RSA 265:122: Under-18 ONLY required; adults 18+ NOT required
+- STATUS: VERIFIED (RSA 265:122 text confirmed)
+
+### No Adult Seat Belt Law
+- RSA 265:107-a: Only drivers/passengers under 18 required to wear belts
+- Adults 18+ NOT required — NH is one of only ~2 states with this
+- STATUS: VERIFIED (RSA 265:107-a confirmed)
+
+### Lane Splitting
+- ILLEGAL — RSA 265:121, II explicitly prohibits
+- Two motorcycles sharing one lane (max 2 abreast): PERMITTED
+- STATUS: VERIFIED
+
+### MSF Course Waiver (NH-distinctive)
+- RSA 263:32: Completing MSF/rider education waives BOTH written knowledge test AND road skills test
+- Most states only waive the skills test — NH waives both
+- STATUS: VERIFIED (RSA 263:32 confirmed)
+
+### Aggravated DWI
+- RSA 265-A:3: 0.16%+ BAC (standalone trigger) — NOT 0.15%
+- Also triggered by: passenger under 16, 30+ mph over limit, causing serious injury, eluding police
+- STATUS: VERIFIED
+
+### Implied Consent
+- RSA 265-A:14: 1st refusal = 180 days (NOT 1 year)
+- Prior conviction/refusal: 2-year suspension
+- Hearing: 30 days to request
+- STATUS: VERIFIED
+
+### School Zone Speed
+- RSA 265:60: School zones = 10 mph BELOW posted limit (not a fixed number)
+- STATUS: VERIFIED
+
+### Activation Status
+- QUEUED (not activated) pending phone verification of DL and motorcycle test counts
+- Phone: NH DMV (603) 227-4000
