@@ -155,29 +155,29 @@ const data: PracticeTestPageProps = {
         "Kansas's extensive wheat, corn, and soybean agricultural operations create specific motorcycle riding hazards. During wheat harvest (typically June) and corn/soybean harvest (October), combine operations adjacent to rural roads generate large dust plumes that can reduce visibility to near zero. Grain trucks on rural roads create loose gravel and dust in their wake. In open range western Kansas, cattle may be on rural roads. Riders should check conditions before riding near active harvest operations, use headlights for visibility in dusty conditions, and reduce speed significantly when dust plumes are visible near roads.",
     },
     {
-      question: "What documents do I need to bring to the Kansas DMV for my motorcycle knowledge test?",
+      question: "What documents do I need to bring to the Kansas DOR for my motorcycle knowledge test?",
       answer:
-        "For the motorcycle knowledge test in Kansas, you typically need to bring a valid form of ID (driver's license or ID card), proof of residency (if not already on file), and the application fee. If you are under 18, you may also need a parent or guardian's signature on a minor consent form. Check the Kansas DMV website before your visit to confirm current requirements, as they can change.",
+        "For the motorcycle knowledge test in Kansas, bring your current Kansas driver's license (or ID card if you do not yet have a license), and the applicable application fee. If you are under 18, a parent or guardian's signature on the minor consent form is required. Visit a Kansas Department of Revenue (DOR), Division of Vehicles office — not a 'Kansas DMV,' which does not exist. Find your nearest office at ksrevenue.gov/dovindex.html.",
     },
     {
-      question: "How long is the Kansas motorcycle permit valid, and can I ride alone with it?",
+      question: "How does the Kansas motorcycle endorsement process work?",
       answer:
-        "Motorcycle learner's permit validity varies by state, typically ranging from 90 days to 2 years. With a permit in Kansas, you are generally restricted from riding at night, on highways, or carrying passengers. These restrictions ensure new riders gain experience safely before obtaining a full license. Check the Kansas DMV website for specific permit restrictions and validity periods in your state.",
+        "Kansas adds a motorcycle endorsement (Class M) to your existing driver's license. You must visit a Kansas DOR Division of Vehicles office, pass the motorcycle knowledge test (25 questions, 80% to pass), and then either pass the DOR riding skills test at a DOR facility or present a completion certificate from an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse (BRC) or Rider 101 course from a Kansas-approved provider — which waives the riding skills test. Your DOR endorsement fee will be collected at that visit. You cannot ride a motorcycle on public roads until the endorsement appears on your license.",
     },
     {
       question: "Is a motorcycle endorsement required in Kansas, or is it a separate license?",
       answer:
-        "The structure varies by state. Some states, including Kansas, add a motorcycle endorsement (typically marked as 'M') to your existing driver's license, while others issue a separate motorcycle license or permit. Either way, you must pass a motorcycle knowledge test and, in most cases, a riding skills test or approved safety course before you can legally operate a motorcycle on public roads.",
+        "Kansas adds a motorcycle endorsement (marked as 'M') to your existing driver's license — it is not a separate license. To ride legally on Kansas public roads you must hold either a valid Kansas driver's license with the M endorsement, or a separate motorcycle-only license (available if you do not have a standard driver's license). The endorsement requires passing the motorcycle knowledge test and either the DOR riding skills test or completing an approved MSF Basic RiderCourse (which waives the skills test).",
     },
     {
-      question: "What types of motorcycles require a motorcycle license in Kansas?",
+      question: "What types of vehicles require a motorcycle endorsement in Kansas?",
       answer:
-        "In Kansas, a motorcycle license or endorsement is generally required to operate any two-wheeled, three-wheeled, or motor-driven cycle above a certain engine displacement or speed threshold. This includes standard motorcycles, sport bikes, cruisers, and most scooters above 50cc. Mopeds (typically under 50cc, max speed 30 mph) may have different requirements — check the Kansas DMV's specific definitions. Electric motorcycles and e-bikes are subject to separate regulations based on their maximum speed and motor output.",
+        "In Kansas, a motorcycle endorsement is required for any motorized two-wheeled vehicle (motorcycle) or motor-driven cycle. Standard motorcycles, sport bikes, cruisers, and scooters above 50cc generally require the endorsement. Mopeds (typically 50cc or under, max 30 mph by design) may be operated without a motorcycle endorsement but do require a valid driver's license. Electric motorcycles and larger electric two-wheeled vehicles are treated as motorcycles — check the Kansas DOR for current definitions on newer vehicle classes.",
     },
     {
       question: "Does completing a motorcycle safety course waive the skills test in Kansas?",
       answer:
-        "In many states, completing an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse or an equivalent state-approved program waives the DMV riding skills test requirement. Some states also waive the knowledge test for course graduates. Kansas DMV policies on course waivers vary — check the DMV website or contact them directly to confirm which approved courses qualify for test waivers and whether any age restrictions apply.",
+        "Yes — in Kansas, completing an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse (BRC) or an approved Rider 101/BRC course from a Kansas-approved provider waives the DOR riding skills test. You still must pass the motorcycle knowledge test at a DOR Division of Vehicles office. In-person approved courses from some providers (such as Motorcycle Rider University's Kansas-approved BRC) may also waive the knowledge test — check with the course provider and the Kansas DOR to confirm current waiver scope. The completion certificate must be presented to the DOR when you apply for the endorsement.",
     },
   ],
   relatedTests: [

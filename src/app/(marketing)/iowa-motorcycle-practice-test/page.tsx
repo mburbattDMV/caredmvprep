@@ -4,7 +4,7 @@ import PracticeTestPage, { type PracticeTestPageProps } from "@/components/Pract
 export const metadata: Metadata = {
   title: "Iowa Motorcycle Practice Test 2025 – Free IA Endorsement Exam Prep",
   description:
-    "Prepare for your Iowa motorcycle endorsement test with free practice questions covering Iowa's no-helmet law for adults, OWI zero-tolerance for under-21 riders, grain truck gravel road hazards, and tornado protocol for motorcyclists.",
+    "Prepare for your Iowa motorcycle endorsement test with free practice questions covering Iowa's no-helmet law for adults, Iowa's under-21 OWI limit of 0.02%, grain truck gravel road hazards, and tornado protocol for motorcyclists.",
   alternates: { canonical: "https://caredmvprep.com/iowa-motorcycle-practice-test" },
   openGraph: {
     url: "https://caredmvprep.com/iowa-motorcycle-practice-test",
@@ -19,10 +19,10 @@ const data: PracticeTestPageProps = {
   slug: "iowa-motorcycle-practice-test",
   headline: "Iowa Motorcycle Practice Test 2025",
   intro:
-    "Iowa requires a motorcycle endorsement on your driver's license to operate a motorcycle. The endorsement test is administered by the Iowa Department of Transportation (Iowa DOT). Iowa has no mandatory helmet law for adult riders. Iowa's OWI zero-tolerance rule (0.00% BAC for under-21) applies to motorcycle riders. Iowa riders face unique hazards including grain truck gravel road debris, tornado protocol on the open plains, and loose gravel on county roads during harvest season.",
+    "Iowa requires a motorcycle endorsement on your driver's license to operate a motorcycle. The endorsement test is administered by the Iowa Department of Transportation (Iowa DOT). Iowa has no mandatory helmet law for adult riders. Iowa's OWI limit of 0.02% BAC for riders under 21 (Iowa Code §321J.2A) applies to motorcycle riders. Iowa riders face unique hazards including grain truck gravel road debris, tornado protocol on the open plains, and loose gravel on county roads during harvest season.",
   basedOn: "Iowa Department of Transportation Motorcycle Operator Manual",
   about: [
-    "Iowa is a no-mandatory-helmet state for adult motorcycle riders — riders 18 and older are not required by Iowa law to wear a helmet. Iowa DOT and safety organizations strongly recommend helmet use for all riders regardless, as helmets are proven to dramatically reduce fatal head injury risk. The motorcycle endorsement is obtained through Iowa DOT by passing a knowledge test and skills test, or by completing an approved Motorcycle Safety Foundation (MSF) course, which waives the skills test. Iowa's OWI zero-tolerance law — 0.00% BAC for drivers under 21 — applies fully to motorcycle operators, making any detectable alcohol a violation for underage riders.",
+    "Iowa is a no-mandatory-helmet state for adult motorcycle riders — riders 18 and older are not required by Iowa law to wear a helmet. Iowa DOT and safety organizations strongly recommend helmet use for all riders regardless, as helmets are proven to dramatically reduce fatal head injury risk. The motorcycle endorsement is obtained through Iowa DOT by passing a knowledge test and skills test, or by completing an approved Motorcycle Safety Foundation (MSF) course, which waives the skills test. Under Iowa Code §321J.2A, the OWI limit for riders under 21 is 0.02% BAC. This applies fully to motorcycle operators.",
     "Iowa motorcycle riders face hazards unique to the state's agricultural landscape. Gravel county roads are extremely common throughout Iowa, and grain trucks traveling these roads during harvest season (September through November for corn and soybeans) create loose gravel conditions and visibility-reducing dust plumes. On Iowa's flat terrain, tornado protocol for motorcyclists is critical: if caught near a tornado while on a motorcycle, riders must dismount immediately and lie flat in a low ditch away from the motorcycle and trees. Iowa SF 547's hands-free law applies to motorcycle operators — riders may not hold a wireless device while operating a motorcycle.",
   ],
   sampleQuestions: [
@@ -56,9 +56,9 @@ const data: PracticeTestPageProps = {
       question:
         "What is Iowa's OWI blood alcohol concentration (BAC) limit for a motorcycle rider who is 20 years old?",
       options: ["0.08%", "0.02%", "0.04%", "0.00%"],
-      correctIndex: 3,
+      correctIndex: 1,
       explanation:
-        "Iowa enforces true zero tolerance for motorcycle riders under 21: the OWI BAC limit is 0.00%, meaning any detectable alcohol is a violation. Iowa's zero-tolerance standard is among the strictest in the nation for underage riders, stricter than states that set the under-21 limit at 0.02%. For riders 21 and older, Iowa's standard OWI BAC limit is 0.08%. Alcohol impairs the balance, reaction time, and fine motor control critical for safe motorcycle operation.",
+        "Iowa Code §321J.2A establishes a 0.02% BAC limit for operators under 21, including motorcycle riders. A 20-year-old rider at or above 0.02% BAC commits OWI. Iowa's under-21 OWI limit is lower than the adult 0.08% threshold but is not zero — it is specifically 0.02%. Alcohol impairs the balance, reaction time, and fine motor control that are especially critical for safe motorcycle operation.",
     },
     {
       question:
@@ -142,7 +142,7 @@ const data: PracticeTestPageProps = {
     {
       question: "What is Iowa's OWI rule for motorcycle riders under 21?",
       answer:
-        "Iowa enforces true zero tolerance for motorcycle riders under 21: the OWI BAC limit is 0.00%, meaning any detectable amount of alcohol is an OWI violation. This is stricter than most states that set under-21 limits at 0.02%. For riders 21 and older, the standard OWI limit is 0.08%. Penalties for OWI on a motorcycle include license revocation, fines, possible jail time, and mandatory substance abuse evaluation. Iowa's zero-tolerance standard for young riders reflects the state's commitment to preventing impaired riding by inexperienced operators.",
+        "Iowa Code §321J.2A sets the OWI BAC limit for riders under 21 at 0.02%. For riders 21 and older, the standard OWI limit is 0.08%. Penalties for OWI on a motorcycle include license revocation, fines, possible jail time, and mandatory substance abuse evaluation.",
     },
     {
       question: "What are the unique motorcycle riding hazards on Iowa county roads?",
@@ -155,29 +155,29 @@ const data: PracticeTestPageProps = {
         "Iowa motorcycle riders caught near a tornado should immediately: stop the motorcycle, dismount and move away from the vehicle (it provides no protection and will be tossed), get away from trees and power poles, and lie flat and face-down in the lowest available ditch or depression. Cover the back of your head and neck with your arms. Do NOT shelter under a highway overpass — this is dangerous because of the wind tunnel effect that concentrates debris. Iowa's flat landscape means riders may have good visibility of an approaching tornado but also little natural shelter. Act immediately when a warning is issued.",
     },
     {
-      question: "What documents do I need to bring to the Iowa DMV for my motorcycle knowledge test?",
+      question: "What documents do I need to bring to the Iowa DOT for my motorcycle knowledge test?",
       answer:
-        "For the motorcycle knowledge test in Iowa, you typically need to bring a valid form of ID (driver's license or ID card), proof of residency (if not already on file), and the application fee. If you are under 18, you may also need a parent or guardian's signature on a minor consent form. Check the Iowa DMV website before your visit to confirm current requirements, as they can change.",
+        "For the motorcycle knowledge test in Iowa, visit an Iowa DOT driver's license office with a valid form of ID (your current driver's license or state ID), proof of residency if not already on file, and the applicable fee. Applicants under 18 must have a parent or guardian signature on a minor consent form. Visit iowadot.gov or call your local Iowa DOT office to confirm current requirements.",
     },
     {
       question: "How long is the Iowa motorcycle permit valid, and can I ride alone with it?",
       answer:
-        "Motorcycle learner's permit validity varies by state, typically ranging from 90 days to 2 years. With a permit in Iowa, you are generally restricted from riding at night, on highways, or carrying passengers. These restrictions ensure new riders gain experience safely before obtaining a full license. Check the Iowa DMV website for specific permit restrictions and validity periods in your state.",
+        "Iowa motorcycle instruction permits are valid for one year. Permit holders are restricted from riding at night, on interstate highways, or carrying passengers. These restrictions apply until you pass the skills test or complete an approved motorcycle safety course. Check iowadot.gov for current permit conditions.",
     },
     {
       question: "Is a motorcycle endorsement required in Iowa, or is it a separate license?",
       answer:
-        "The structure varies by state. Some states, including Iowa, add a motorcycle endorsement (typically marked as 'M') to your existing driver's license, while others issue a separate motorcycle license or permit. Either way, you must pass a motorcycle knowledge test and, in most cases, a riding skills test or approved safety course before you can legally operate a motorcycle on public roads.",
+        "Iowa adds a motorcycle endorsement (marked 'M' or 'MC') to your existing Iowa driver's license rather than issuing a separate motorcycle license. You must pass a motorcycle knowledge test and either pass a skills test or complete an MSF Basic RiderCourse to receive the endorsement. The endorsement allows you to operate any motorcycle on Iowa public roads.",
     },
     {
       question: "What types of motorcycles require a motorcycle license in Iowa?",
       answer:
-        "In Iowa, a motorcycle license or endorsement is generally required to operate any two-wheeled, three-wheeled, or motor-driven cycle above a certain engine displacement or speed threshold. This includes standard motorcycles, sport bikes, cruisers, and most scooters above 50cc. Mopeds (typically under 50cc, max speed 30 mph) may have different requirements — check the Iowa DMV's specific definitions. Electric motorcycles and e-bikes are subject to separate regulations based on their maximum speed and motor output.",
+        "In Iowa, a motorcycle license or endorsement is generally required to operate any two-wheeled, three-wheeled, or motor-driven cycle above a certain engine displacement or speed threshold. This includes standard motorcycles, sport bikes, cruisers, and most scooters above 50cc. Mopeds (typically under 50cc, max speed 30 mph) may have different requirements — check the Iowa DOT's specific definitions. Electric motorcycles and e-bikes are subject to separate regulations based on their maximum speed and motor output.",
     },
     {
       question: "Does completing a motorcycle safety course waive the skills test in Iowa?",
       answer:
-        "In many states, completing an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse or an equivalent state-approved program waives the DMV riding skills test requirement. Some states also waive the knowledge test for course graduates. Iowa DMV policies on course waivers vary — check the DMV website or contact them directly to confirm which approved courses qualify for test waivers and whether any age restrictions apply.",
+        "In Iowa, completing an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse or equivalent Iowa DOT-approved program waives the motorcycle skills test. The motorcycle knowledge test is still required — course completion does NOT waive the knowledge test. This is confirmed by Iowa Admin Rules 761-604.10 and 761-604.12. Riders under 18 are required by Iowa Code §321.180B(5) to complete a motorcycle education course before receiving a license endorsement. Completing the MSF course may also qualify you for insurance discounts.",
     },
   ],
   relatedTests: [

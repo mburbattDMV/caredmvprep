@@ -3,7 +3,7 @@ import PracticeTestPage, { type PracticeTestPageProps } from "@/components/Pract
 
 export const metadata: Metadata = {
   title: "Mississippi Motorcycle Practice Test 2025 – Free DPS Endorsement Prep",
-  description: "Study for the Mississippi DPS motorcycle endorsement exam with state-specific questions on helmet laws for riders under 21, HB 1283 hands-free rules, extreme summer heat riding hazards, and Mississippi River bridge crossings.",
+  description: "Study for the Mississippi DPS motorcycle endorsement exam with state-specific questions on Mississippi's all-ages helmet law (§ 63-7-64), cell phone rules, extreme summer heat riding hazards, and Mississippi River bridge crossings.",
   alternates: { canonical: "https://caredmvprep.com/mississippi-motorcycle-practice-test" },
   openGraph: { url: "https://caredmvprep.com/mississippi-motorcycle-practice-test", images: [{ url: "https://caredmvprep.com/opengraph-image", width: 1200, height: 630 }] },
 };
@@ -14,24 +14,24 @@ const data: PracticeTestPageProps = {
   testLabel: "Motorcycle Practice Test",
   slug: "mississippi-motorcycle-practice-test",
   headline: "Mississippi Motorcycle Endorsement Practice Test 2025",
-  intro: "Mississippi requires a motorcycle endorsement on your DPS driver's license. The endorsement knowledge exam tests Mississippi-specific motorcycle laws: helmet requirements for riders under 21, HB 1283 (the 2025 hands-free law applicable to motorcyclists), DUI laws, extreme summer heat riding hazards, and specific considerations for Mississippi River bridge crossings on US-90 and I-20.",
+  intro: "Mississippi requires a motorcycle endorsement on your DPS driver's license. The endorsement knowledge exam tests Mississippi-specific motorcycle laws: Mississippi's all-ages helmet requirement (Miss. Code Ann. § 63-7-64), cell phone laws, DUI laws, extreme summer heat riding hazards, and specific considerations for Mississippi River bridge crossings on US-90 and I-20.",
   basedOn: "Mississippi DPS Motorcycle Operator Manual",
   about: [
-    "Mississippi requires a motorcycle endorsement (Class R) added to your driver's license through the Department of Public Safety, Driver Services. The helmet law in Mississippi applies only to riders under age 21 — adult riders 21 and older may legally operate a motorcycle without a helmet, though the DPS and safety advocates strongly recommend helmet use at all times. Mississippi's DUI law applies equally to motorcycle operators, with a 0.08% BAC threshold for adults and a 0.02% threshold for riders under 21. Mississippi House Bill 1283, effective January 1, 2025, also applies to motorcycle operators — riding while holding a handheld device is now a primary offense under HB 1283. Motorcyclists must use hands-free devices or pull over to use a phone.",
+    "Mississippi requires a motorcycle endorsement (Class R) added to your driver's license through the Department of Public Safety (MDPS), Driver Service Bureau. Mississippi's motorcycle helmet law (Miss. Code Ann. § 63-7-64) is an all-ages requirement — ALL riders and passengers must wear a FMVSS No. 218-compliant helmet regardless of age. There is a narrow exception: riders 18 or older participating in a parade at 30 mph or less. Mississippi's DUI law applies equally to motorcycle operators, with a 0.08% BAC threshold for adults and a 0.02% threshold for riders under 21. Mississippi's cell phone law (Miss. Code Ann. § 63-33-1) bans texting and social media while riding; handheld phone calls are not banned, but hands-free options are strongly recommended for safety.",
     "Mississippi's summer climate creates specific hazards for motorcycle riders that are tested on the DPS endorsement exam. Ambient temperatures exceeding 100°F combined with high humidity create dehydration risk, heat exhaustion, and reduced concentration during extended rides. Road surface temperatures reaching 150°F soften asphalt at intersections and on roads with heavy truck traffic — a condition known as 'rutting' or 'surface deformation' that creates unpredictable handling for motorcycle tires. Mississippi River crossings on bridges such as US-90 at Bay St. Louis–Ocean Springs (now replaced by the newer Biloxi Bay Bridge) and I-20 at Vicksburg require motorcyclists to be aware of bridge expansion joints, metal grating sections, and crosswinds that can occur over open river spans.",
   ],
   sampleQuestions: [
     {
-      question: "Mississippi's motorcycle helmet law requires helmets for which riders?",
-      options: ["All riders regardless of age", "Riders under age 21 only", "Riders under age 18 only", "Helmets are optional for all Mississippi motorcyclists"],
-      correctIndex: 1,
-      explanation: "Mississippi's motorcycle helmet law requires helmets for riders under age 21 — both operators and passengers. Riders who are 21 or older are not legally required to wear a helmet under Mississippi law. This makes Mississippi a partial helmet law state. Despite the legal exemption for adults, the Mississippi DPS motorcycle manual and safety experts strongly recommend all riders wear DOT-approved helmets at all times, as helmets dramatically reduce the severity of head injuries in crashes."
+      question: "Mississippi's motorcycle helmet law (Miss. Code Ann. § 63-7-64) requires helmets for which riders?",
+      options: ["All riders and passengers of all ages", "Riders under age 21 only", "Riders under age 18 only", "Helmets are optional for all Mississippi motorcyclists"],
+      correctIndex: 0,
+      explanation: "Mississippi's motorcycle helmet law (Miss. Code Ann. § 63-7-64) is an all-ages requirement — ALL riders and passengers must wear a FMVSS No. 218-compliant helmet when operating or riding on a motorcycle, regardless of age. This makes Mississippi one of the stricter helmet-law states. There is one narrow exception: riders 18 or older participating in a parade at 30 mph or less may ride without a helmet. Outside of that specific circumstance, the all-ages requirement applies."
     },
     {
-      question: "Mississippi House Bill 1283 took effect January 1, 2025. Does it apply to motorcycle operators?",
-      options: ["No — HB 1283 applies only to car and truck drivers", "Yes — motorcycle operators are prohibited from holding a handheld device while riding", "Only if the motorcycle has a windshield", "Only on interstate highways"],
+      question: "Under Mississippi's cell phone law (Miss. Code Ann. § 63-33-1), which activity is BANNED for motorcycle operators while riding?",
+      options: ["Making or receiving a handheld phone call", "Texting or posting to social media", "Using a Bluetooth headset paired to a phone", "Using voice-to-text navigation"],
       correctIndex: 1,
-      explanation: "HB 1283's handheld device ban applies to all motor vehicle operators, including motorcycle riders. A motorcyclist cannot hold a phone or other handheld electronic device while operating a motorcycle on Mississippi public roads. This is a primary offense — law enforcement can stop a motorcyclist solely for device use. Using Bluetooth headsets, tank-bag mounted speakers, or pulling over to use a device are the compliant alternatives for motorcycle communication."
+      explanation: "Miss. Code Ann. § 63-33-1 bans texting and posting to social media while operating any motor vehicle, including motorcycles. The $100 fine applies equally to motorcyclists. However, Mississippi does NOT ban handheld phone calls for motorcyclists — only texting and social media use are prohibited. Hands-free options like Bluetooth helmet speakers are permitted, and voice-to-text navigation is also allowed since it avoids manual input while riding."
     },
     {
       question: "A Mississippi motorcyclist is riding on an asphalt road during a summer afternoon when temperatures reach 105°F. What road surface hazard should the rider watch for at intersections?",
@@ -89,11 +89,11 @@ const data: PracticeTestPageProps = {
   faqs: [
     {
       question: "Does Mississippi require helmets for all motorcycle riders?",
-      answer: "Mississippi requires helmets only for motorcycle operators and passengers under age 21. Riders and passengers who are 21 or older are not legally required to wear a helmet under Mississippi's motorcycle helmet law. However, the Mississippi DPS motorcycle manual strongly recommends helmet use for all riders regardless of age, noting that DOT-approved helmets significantly reduce head injury severity and fatality rates in crashes. Riders should also be aware that some insurance policies may affect coverage for unhelmeted adult riders involved in crashes."
+      answer: "Yes — Mississippi's motorcycle helmet law (Miss. Code Ann. § 63-7-64) requires ALL riders and passengers to wear a FMVSS No. 218-compliant (DOT-labeled) helmet, regardless of age. This is an all-ages requirement, making Mississippi one of the stricter helmet-law states. The only exception is a narrow one: riders 18 or older who are participating in a parade while traveling at 30 mph or less may legally ride without a helmet. Outside of that specific circumstance, no age exemption exists — a 22-year-old rider is just as legally required to wear a helmet as a 17-year-old."
     },
     {
-      question: "Does HB 1283 (the 2025 hands-free law) apply to motorcyclists?",
-      answer: "Yes. Mississippi House Bill 1283, effective January 1, 2025, applies to all motor vehicle operators including motorcycle riders. Motorcyclists cannot hold a phone or handheld electronic device while riding on Mississippi public roads. The law is a primary offense — you can be stopped and cited solely for holding a device. Compliant options for motorcyclists include Bluetooth helmet speakers paired to a phone, tank-bag mounted devices with voice control, or simply pulling over safely to use any handheld device. The law applies on all Mississippi public roads regardless of speed limit."
+      question: "What does Mississippi's cell phone law say about motorcyclists?",
+      answer: "Miss. Code Ann. § 63-33-1 bans texting and posting to social media while riding — the $100 fine applies to motorcyclists just as it does to other drivers. However, Mississippi does NOT ban handheld phone calls for motorcyclists. A rider may legally hold their phone and make or receive a call while riding in Mississippi. Compliant and safer options include Bluetooth helmet speakers paired to a phone, tank-bag mounted devices with voice control, or pulling over to use a device. The texting/social media ban applies on all Mississippi public roads regardless of speed limit."
     },
     {
       question: "What are the unique summer heat hazards for Mississippi motorcycle riders?",
@@ -101,21 +101,21 @@ const data: PracticeTestPageProps = {
     },
     {
       question: "What is the motorcycle endorsement process in Mississippi?",
-      answer: "To obtain a motorcycle endorsement (Class R) in Mississippi, applicants must hold a valid Mississippi driver's license and pass the DPS motorcycle knowledge exam and a motorcycle skills road test. Alternatively, completion of an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse may waive the road test requirement. The knowledge exam tests Mississippi-specific laws (helmet requirements, DUI/HB 1283 rules, riding techniques, and hazard identification). The endorsement is then added to the existing Mississippi driver's license. Applicants who are new riders should consider completing the MSF course regardless of road test waiver benefits, as it provides structured riding skill development."
+      answer: "To obtain a motorcycle endorsement (Class R) in Mississippi, applicants must hold a valid Mississippi driver's license and pass the DPS motorcycle knowledge exam and a motorcycle skills road test. Alternatively, completion of an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse waives the road test requirement (the knowledge test is still required). The knowledge exam tests Mississippi-specific laws (all-ages helmet requirement § 63-7-64, cell phone texting/social media ban § 63-33-1, DUI thresholds, riding techniques, and hazard identification). The endorsement is then added to the existing Mississippi driver's license."
     },
     {
       question: "What DUI penalties apply specifically to motorcycle operators in Mississippi?",
       answer: "Mississippi DUI law applies equally to motorcycle operators and car drivers. A first adult DUI offense (0.08% BAC or higher) carries fines of $250 to $1,000, potential imprisonment up to 48 hours, and license suspension up to 90 days. Completion of the Mississippi Alcohol Safety Education Program (MASEP) is required for reinstatement. For riders under 21, the threshold is 0.02% BAC. Repeat DUI offenses carry progressively harsher penalties including longer suspensions, higher fines, mandatory ignition interlock requirements (which do not apply to motorcycles, so the suspension typically cannot be served with a motorcycle hardship license), and potential felony charges for third or subsequent convictions."
     },
     {
-      question: "What documents do I need to bring to the Mississippi DMV for my motorcycle knowledge test?",
+      question: "What documents do I need to bring to the Mississippi DPS Driver Service Bureau for my motorcycle knowledge test?",
       answer:
-        "For the motorcycle knowledge test in Mississippi, you typically need to bring a valid form of ID (driver's license or ID card), proof of residency (if not already on file), and the application fee. If you are under 18, you may also need a parent or guardian's signature on a minor consent form. Check the Mississippi DMV website before your visit to confirm current requirements, as they can change.",
+        "For the motorcycle knowledge test in Mississippi, you typically need to bring a valid form of ID (driver's license or ID card), proof of residency (if not already on file), and the application fee. If you are under 18, you may also need a parent or guardian's signature on a minor consent form. Check the Mississippi Driver Service Bureau website (driverservicebureau.dps.ms.gov) before your visit to confirm current requirements, as they can change.",
     },
     {
       question: "How long is the Mississippi motorcycle permit valid, and can I ride alone with it?",
       answer:
-        "Motorcycle learner's permit validity varies by state, typically ranging from 90 days to 2 years. With a permit in Mississippi, you are generally restricted from riding at night, on highways, or carrying passengers. These restrictions ensure new riders gain experience safely before obtaining a full license. Check the Mississippi DMV website for specific permit restrictions and validity periods in your state.",
+        "Motorcycle learner's permit validity varies by state, typically ranging from 90 days to 2 years. With a permit in Mississippi, you are generally restricted from riding at night, on highways, or carrying passengers. These restrictions ensure new riders gain experience safely before obtaining a full license. Check the Mississippi Driver Service Bureau website (driverservicebureau.dps.ms.gov) for specific permit restrictions and validity periods.",
     },
     {
       question: "Is a motorcycle endorsement required in Mississippi, or is it a separate license?",
@@ -125,12 +125,12 @@ const data: PracticeTestPageProps = {
     {
       question: "What types of motorcycles require a motorcycle license in Mississippi?",
       answer:
-        "In Mississippi, a motorcycle license or endorsement is generally required to operate any two-wheeled, three-wheeled, or motor-driven cycle above a certain engine displacement or speed threshold. This includes standard motorcycles, sport bikes, cruisers, and most scooters above 50cc. Mopeds (typically under 50cc, max speed 30 mph) may have different requirements — check the Mississippi DMV's specific definitions. Electric motorcycles and e-bikes are subject to separate regulations based on their maximum speed and motor output.",
+        "In Mississippi, a motorcycle endorsement (Class R) is generally required to operate any two-wheeled, three-wheeled, or motor-driven cycle above a certain engine displacement or speed threshold. This includes standard motorcycles, sport bikes, cruisers, and most scooters above 50cc. Mopeds (typically under 50cc, max speed 30 mph) may have different requirements — check the Mississippi Driver Service Bureau's specific definitions at driverservicebureau.dps.ms.gov. Electric motorcycles and e-bikes are subject to separate regulations based on their maximum speed and motor output.",
     },
     {
       question: "Does completing a motorcycle safety course waive the skills test in Mississippi?",
       answer:
-        "In many states, completing an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse or an equivalent state-approved program waives the DMV riding skills test requirement. Some states also waive the knowledge test for course graduates. Mississippi DMV policies on course waivers vary — check the DMV website or contact them directly to confirm which approved courses qualify for test waivers and whether any age restrictions apply.",
+        "Yes — completing an approved MSF (Motorcycle Safety Foundation) Basic RiderCourse in Mississippi waives the motorcycle skills (road) test only. The knowledge test is still required and must be passed at a Mississippi DPS Driver Service Bureau office. The MSF course demonstrates riding ability and replaces the hands-on skills evaluation, but it does not exempt you from the written knowledge examination. Contact the Mississippi Driver Service Bureau (driverservicebureau.dps.ms.gov) to confirm current approved courses.",
     },
   ],
   relatedTests: [

@@ -403,6 +403,122 @@ Four of seven states activated (partially or fully); three remain queued pending
 
 ---
 
+## Permit & Motorcycle Verification Queue — Arkansas (Added 2026-07-13)
+
+Arkansas's Driver License and Motorcycle question banks (75 DL + 28 moto questions) were built via the full 4-agent editorial pipeline. **The state is NOT activated** — the DL knowledge test's exact question count (commonly cited as 25Q/20/80%) cannot be confirmed from any directly parseable official source. The official DPS study guide PDFs exist at dps.arkansas.gov but could not be rendered as text by WebFetch during research. All third-party prep sources consistently cite 25/20/80% and attribute it to the official manual — confidence is HIGH but no verbatim official quote could be produced.
+
+**Pre-existing state-facts.ts corrections made:**
+- `motoHelmetLaw: "all-ages"` → **`"under-21"`** — Ark. Code §27-20-104 requires helmets only for riders/passengers under 21; riders 21+ are exempt. The notes field also said "Helmet law is universal" — corrected. This was a genuine hard-fact error, not just a confidence gap.
+- `handbookUrl` updated from dead DFA 2023 PDF to live DPS October 2024 URL
+- `motoHandbookUrl` updated from dead DFA URL to live DPS motorcycle manual URL
+- Both marketing pages (DMV and motorcycle) claimed the rural interstate speed limit is **70 mph** — corrected to **75 mph for passenger vehicles** (Act 784 of 2019, effective July 1, 2020, Ark. Code §27-51-201). A sample question had 70 mph as the marked-correct answer — corrected.
+- Both marketing pages attributed knowledge/skills testing to "DFA Revenue Division" or "Arkansas DMV" — corrected to **Arkansas State Police (DPS)**; DFA issues the license.
+- Motorcycle marketing page had generic boilerplate for permit duration, endorsement structure, and course waiver FAQs — replaced with Arkansas-specific confirmed content.
+
+**Current state-facts.ts values:**
+- `permitQuestions: 25, permitToPass: 20, permitPassingPct: "80%"` — high-confidence but PDF unreadable; not formally NEEDS_VERIFICATION in ts (left at numeric values given high consensus) but not confirmed via verbatim official quote
+- `motoQuestions: "NEEDS_VERIFICATION"`, `motoToPass: "NEEDS_VERIFICATION"`, `motoPassingPct: "NEEDS_VERIFICATION"`
+- `motoHelmetLaw: "under-21"` ✓ corrected (Ark. Code §27-20-104)
+- `motoLaneSplittingLegal: false` ✓ confirmed (Ark. Code §27-51-302)
+- `motoCourseWaivesSkillsTest: true` ✓ confirmed, skills test only; knowledge test still required; 90-day certificate window
+
+**Next step:** Call Arkansas State Police Driver Examination Branch (check dps.arkansas.gov for phone number) and ask: (1) the exact number of questions and passing score on the Class D driver's license knowledge test, and (2) the exact number of questions and passing score on the motorcycle knowledge test. Once the DL test structure is officially confirmed, activate both in the quiz registry, mock exams, `LIVE_STATE_SLUGS`/`LIVE_STATE_ABBRS`, `LIVE_MOTORCYCLE_STATE_SLUGS`/`LIVE_MOTORCYCLE_STATE_ABBRS`, and onboarding/pricing pickers, then change question `status` from `needs_review` to `verified`.
+
+---
+
+## Permit & Motorcycle Verification Queue — Iowa (Added 2026-07-13)
+
+Iowa's Driver License and Motorcycle question banks (70 DL + 23 moto questions) were built via the full 4-agent editorial pipeline (Research → Question Author → Adversarial QA → Final Editor) and are editorially ready to activate the moment the missing facts below are confirmed. **The state is NOT activated** — same deferred pattern as South Carolina/Alabama/Colorado/Minnesota/Louisiana/Kentucky — because no official source publicly states the Driver License knowledge test's exact question count (only the 80% passing percentage is confirmed on the practice test page).
+
+**Pre-existing `state-facts.ts` entry had wrongly marked `permitQuestions: 35`, `permitToPass: 28` as VERIFIED** — Iowa Admin Rule 761-604.9(1) explicitly states the department "reserves the right to revise a test at any time and will declare the minimum passing score for each test," and no Iowa Code section, official DOT page, or official PDF reviewed during research states a specific question count. The Iowa DOT practice test generates 25 questions but the official page does not state that the real test has 35 (or any specific number) of questions. Downgraded to `NEEDS_VERIFICATION`. Similarly, the motorcycle test's question count and passing score are not published in any official Iowa DOT source — the old `motoQuestions: 25`, `motoToPass: 20`, `motoPassingPct: "80%"` entries were unverified and have been downgraded.
+
+**Official sources checked:**
+- Iowa Driver's Manual (MM1170 08/19/2025): `https://iowadot.gov/media/7308/download?inline=` — confirms the 80% passing standard on the DOT practice test page but never states total question count anywhere in the manual.
+- Iowa DOT practice test page: `https://iowadot.gov/drivers-licenses-ids/driver-education/manuals-practice-tests/take-practice-test` — states "A score of 80% or higher is needed for a passing score" and generates 25-question practice sessions, but does NOT state real test question count.
+- Iowa Admin Rules Chapter 761.604, Rule 604.9(1): explicitly says the department sets the passing score without specifying question count in regulation.
+- Iowa Motorcycle Operator's Manual (Form 430008, 05/14/2024): `https://iowadot.gov/media/7175/download?inline` — shows sample questions but states no count or passing score for the motorcycle knowledge test.
+
+**What is NOT published on any official source found:**
+- Driver's License knowledge test: total question count, number correct to pass (only the 80% *percentage* is confirmed)
+- Motorcycle knowledge test: total question count, number correct to pass, passing percentage
+
+**Major error caught and corrected:** The pre-existing marketing pages (`iowa-dmv-practice-test`, `iowa-motorcycle-practice-test`) both asserted Iowa's under-21 OWI/BAC limit was **0.00% ("true zero tolerance")**. Iowa Code §321J.2A(1) explicitly sets this limit at **0.02%** — not zero. This error was in the metadata description, intro, a key rule tile, the about section, sample questions (with wrong `correctIndex`), and FAQs on both pages. All corrected to 0.02% with Iowa Code citation. Also corrected: the motorcycle page had boilerplate non-answers for several FAQs ("check the Iowa DMV website" repeated for agency name, permit duration, and course waiver facts when all three are confirmed); these were replaced with Iowa-specific confirmed answers citing Iowa DOT (not "Iowa DMV" — Iowa has no DMV) and the confirmed skills-test-only course waiver.
+
+**Current state-facts.ts values:**
+- `permitQuestions`, `permitToPass` — `"NEEDS_VERIFICATION"`; `permitPassingPct: "80%"` ✓ confirmed
+- `motoQuestions`, `motoToPass`, `motoPassingPct` — all `"NEEDS_VERIFICATION"`
+- `motoHelmetLaw: "none"` ✓ confirmed (Iowa Code Chapter 321 has no motorcycle helmet mandate for any age; §321.445 explicitly excludes motorcycles from seat belt law)
+- `motoLaneSplittingLegal: false` ✓ confirmed (Iowa Code §321.275(4) explicitly bans riding "between lanes of traffic or between adjacent lines or rows of vehicles")
+- `motoCourseWaivesSkillsTest: true` ✓ confirmed, skills test only (Iowa Admin Rules 761-604.10/604.12; knowledge test still required)
+- `motoHandbookUrl` updated to direct PDF URL: `https://iowadot.gov/media/7175/download?inline`
+
+**Iowa-specific notes confirmed in research (not previously in state-facts.ts):**
+- Under-21 OWI threshold: 0.02% (Iowa Code §321J.2A) — NOT zero
+- GDL curfew: 12:30 a.m.–5:00 a.m. (Iowa Code §321.180B(2)(b)) — unusual 12:30 start time (most states use midnight)
+- Business district unposted speed: 20 mph (Iowa Code §321.285(2)(a)(1)) — residential/school is 25 mph
+- Motorcycle daytime headlights required for 1977+ models (Iowa Code §321.275(5))
+- 2024 pedestrian conveyance law: vehicles must yield to cyclists, scooters, skateboards, wheelchairs, strollers in crosswalks (Iowa Driver's Manual Ch. 2.4)
+- Chemical test refusal: 1-year revocation (first offense) + $1,250 minimum fine (Iowa Code §321J.9)
+
+**Next step:** Call Iowa DOT Driver License Division at **(515) 244-8725** (or contact iowadot.gov) and ask: (1) the exact number of questions on the standard Class C Driver's License knowledge test, and (2) the exact number of questions and passing score on the motorcycle knowledge test. Once confirmed, activate in the quiz registry, mock exams, `LIVE_STATE_SLUGS`/`LIVE_STATE_ABBRS`, `LIVE_MOTORCYCLE_STATE_SLUGS`/`LIVE_MOTORCYCLE_STATE_ABBRS`, and onboarding/pricing pickers, then change question `status` from `needs_review` to `verified`.
+
+---
+
+## Nebraska (NE)
+- **DL test count (25/20/80%)**: NEEDS_VERIFICATION — strong third-party consensus; official DMV page does not state the count in accessible text. Phone: Nebraska DMV (402) 471-3918.
+- **Motorcycle test count (25/20/80%)**: NEEDS_VERIFICATION — same; one outlier source cited 30 questions.
+- **MSF waiver deadline**: Official DMV page states "within the past 24 months"; one third-party source cited 1 year. Use 24 months per official DMV page.
+- **Motorcycle helmet law**: CONFIRMED under-21 always required (NRS 60-6,279). 21+ waiver: pre-May 1, 2024 license → 3-hour MSF eCourse; post-May 1, 2024 license → full hands-on BRC. Eye protection required ALL riders.
+- **Move Over Law (LB 530, effective September 3, 2025)**: Expanded to ALL stopped vehicles and vulnerable road users. Repeat offense within 5 years = Class IIIA misdemeanor.
+- **Lane splitting**: Confirmed ILLEGAL (NRS 60-6,308).
+- **Seat belt**: Secondary enforcement; rear-seat adults NOT required (NRS 60-6,270). Fine $25.
+- **Cell phone**: Adults: texting-only ban (NRS 60-6,179.01; secondary; $200/$300/$500). Under-18: complete ban on ALL interactive wireless devices including hands-free (NRS 60-4,120.01, 60-4,124).
+- **Notable**: Business district 20 mph; residential 25 mph; gravel 50 mph; expressways 70 mph; rural interstate 75 mph; urban interstate (Douglas/Lancaster/Dakota) 65 mph. Headlight dim within 200 feet when following (not 500). Gravel following distance 6 seconds. Reckless driving = more than 2x posted speed limit. Minimum freeway speed 40 mph.
+
+---
+
+## Mississippi (MS) — (Added 2026-07-14)
+
+- **DL test count (30/24/80%)**: NEEDS_VERIFICATION — figures not stated in the December 2024 manual or any DPS webpage. Third-party sites consistently cite 30/24/80%. Phone: Mississippi DPS (601) 987-1224.
+- **Motorcycle test count (25/20/80%)**: NEEDS_VERIFICATION — DPS motorcycle endorsement pages do not state question count. Third-party sites cite 25/20 (not the 20/16 previously in state-facts.ts — that may be outdated). Phone: Mississippi DPS (601) 987-1224.
+- **GDL curfew (6am–10pm weekday / 6am–11:30pm weekend)**: Cited from Miss. Code Ann. § 63-1-9 via secondary sources. Could not directly access the statute text. Manual p. 13 does not include curfew hours — confirm from legislature.ms.gov.
+- **Handbook direct PDF URL**: Confirmed accessible: driverservicebureau.dps.ms.gov/sites/default/files/2025-02/1.15.2025 Revised MDPS Driver's Manual.pdf (Jan 15, 2025 edition, December 2024 content)
+- **Helmet law statute**: Confirmed § 63-7-64 (NOT § 63-7-67 which covers tires). HB 317 (2024) not enacted — all-ages law unchanged.
+- **Motorcycle test count previously was 20/16/80%**: Corrected in state-facts.ts to reflect NEEDS_VERIFICATION; third-party data leans toward 25/20/80%.
+- **Cell phone law**: Bans texting and social media only (§ 63-33-1). Does NOT ban handheld calls. $100 fine (July 2025 update).
+- **Notable facts**: No rearview mirror required (MS law); squatted vehicle law (front fender 4+ inches higher than rear); no GDL passenger restrictions; no road test for regular DL; Natchez Trace 50 mph under NPS jurisdiction.
+
+---
+
+## Kansas (KS) — (Added 2026-07-14)
+
+- **DL test count (25/20/80%)**: NEEDS_VERIFICATION — consistent across third-party sources but official KDOR page was not directly accessible. Official handbook PDF (ksrevenue.gov/pdf/dlhb.pdf) is binary-unreadable by automated fetch. Phone: Kansas Division of Vehicles (785) 296-3671.
+- **Motorcycle test count (25/20/80%)**: NEEDS_VERIFICATION — same issue; consistent third-party reports.
+- **Restricted License 25-hour requirement**: Sourced from KDOR GDL page (ksrevenue.gov/dovgdl.html) by Agent 1. Not independently readable from handbook PDF. Confirm against printed handbook.
+- **School bus stop distance**: Kansas statute (KSA 8-1556) does NOT specify a stop distance in feet. Do not write questions about a specific foot distance for school bus stops.
+- **Motorcycle helmet law**: CONFIRMED under-18 only (KSA 8-1598). Adults 18+ not required. NOTE: previous state-facts.ts entry may have been "all-ages" — verified and confirmed as "under-18".
+- **SB 366 (school/construction zone handheld ban)**: Signed April 3, 2026; effective July 1, 2026. Warning citations only through July 1, 2027; fines ($60) begin July 2027.
+- **MSF course waiver**: Skills test waiver confirmed. Knowledge test waiver: KDOR FAQ "OR" language implies course substitutes for both; in-person BRC/Rider 101 from approved KS provider explicitly waives both per provider statement (motorcyclerideruniversity.com).
+- **Notable facts**: Farm permit at age 14 (20+ acre parcels); GDL less-restricted curfew 5am–9pm; open container applies to passengers too; motorcycle headlights at all times (post-1978); implied consent 2/3/4-year escalating IID; Move Over Law expanded March 2025 to all stalled vehicles with hazard lights.
+
+---
+
+## New Mexico (NM) — (Added 2026-07-14)
+
+- **DL test count**: NEEDS_VERIFICATION — not stated on any accessible MVD page; official handbook PDF is binary-unreadable by automated fetch. Phone: NM MVD (888) 683-4636.
+- **Motorcycle test count (40/32/80%)**: NEEDS_VERIFICATION — consistent third-party reports; no official MVD page states these numbers. Phone: NM MVD (888) 683-4636.
+- **Motorcycle helmet law**: third-party sources indicate under-18 requirement; specific NMSA statute citation NOT confirmed from accessible sources. Likely NMSA Chapter 66 Article 3.
+- **Lane splitting**: ILLEGAL — no NM law permits it; no explicit prohibiting statute found but this is the operational assumption.
+- **Open range law**: Confirmed NMSA § 66-7-363 — driver responsible in livestock collision on unfenced open-range highway.
+- **"None for the Road"**: Confirmed requirement for first-time licensees ages 18–24 (from MVD official page).
+- **School bus stop distance**: Confirmed 10 feet (NMSA § 66-7-347).
+- **GDL supervisor**: 21+ with 3+ years experience (confirmed from MVD official page).
+- **Headlights**: half-hour after sunset to before sunrise; when visibility < 500 feet (NMSA § 66-3-802).
+- **Endorsement types W/Y/Z**: Confirmed via MVD (100cc+, 50-100cc, under 50cc; ages 15+ and 13+ respectively).
+- **Notable**: Aggravated DWI at 0.16% BAC (NMSA § 66-8-102); coasting prohibited (§ 66-7-360); TWLTL max 200 feet (§ 66-7-376). Texting ban NMSA § 66-7-374 — NO general handheld call ban for private drivers. Motorcycle permit: no passengers (NMSA § 66-5-8).
+
+---
+
 ## Priority 1 — Motorcycle Knowledge Test: Question Count & Passing Score
 
 ### ✅ Verified (42 states)
@@ -581,3 +697,49 @@ All other states have been updated in `state-facts.ts` with official state CDL h
 ---
 
 *Update `state-facts.ts` first, then update the relevant row in this file. Both files are co-authoritative.*
+
+---
+
+## Idaho (ID) — 2026-07-14
+
+### DL Test Structure
+- Questions: 40 | To pass: 34 correct (85%)
+- STATUS: NEEDS_VERIFICATION — 85% threshold confirmed by multiple consistent third-party sources; not verified against direct official Idaho DMV webpage text
+- Source used: Multiple third-party DMV prep sites; ITD official page does not state test count verbatim
+- Phone: (208) 334-8736 (ITD DMV)
+
+### Motorcycle Test Structure
+- Questions: 25 | To pass: 20 correct (80%)
+- STATUS: NEEDS_VERIFICATION — confirmed by STAR Idaho (official ITD partner) and consistent third-party sources
+- Phone: (208) 334-8736
+
+### Helmet Law
+- Idaho Code § 49-666: Required for riders and passengers under 18 ONLY
+- STATUS: VERIFIED (§ 49-666 text read directly)
+- Adults 18+ NOT required to wear helmets
+
+### Lane Splitting / Filtering
+- BOTH lane splitting and lane filtering: ILLEGAL in Idaho
+- CRITICAL: motoLaneSplittingLegal was confirmed FALSE in state-facts.ts — already correctly set; lastVerifiedAt updated to 2026-07-14
+- HB 236 (2023) was the State Public Defender Act, NOT a lane filtering bill
+- Confirmed by: Idaho State Police statement (May 2025); no authorizing statute found in Idaho Code Title 49
+
+### MSF/STAR Course
+- Waives: SKILLS (road) test only
+- Knowledge test: ALWAYS required regardless of course completion
+
+### Idaho Stop
+- § 49-720: BICYCLES only may treat stop signs as yield signs
+- Does NOT apply to motorcycles or motor vehicles
+
+### Cell Phone / Handheld Device Law
+- Idaho Code § 49-1401A: ALL drivers banned from reading/typing/watching on handheld device while driving (PRIMARY enforcement)
+- Under-18: complete ban on all handheld use while driving
+- Adults: one-touch calls permitted; hands-free always permitted
+- Fines: $75 first offense / $150 second / $300 third+
+- NOTE: Prior marketing page copy incorrectly attributed this law to "HB 236 hands-free law (July 1, 2024)" — HB 236 (2023) was the State Public Defender Act. All references corrected to § 49-1401A on 2026-07-14.
+
+### Activation Status
+- QUEUED (not activated) pending phone verification of DL and motorcycle test counts
+- Do not add to LIVE_STATE_SLUGS or LIVE_STATE_ABBRS until verified
+- Current state: Idaho is NOT in LIVE_STATE_SLUGS, LIVE_STATE_ABBRS, LIVE_MOTORCYCLE_STATE_SLUGS, or LIVE_MOTORCYCLE_STATE_ABBRS (confirmed 2026-07-14)

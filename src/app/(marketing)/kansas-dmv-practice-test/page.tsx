@@ -4,7 +4,7 @@ import PracticeTestPage, { type PracticeTestPageProps } from "@/components/Pract
 export const metadata: Metadata = {
   title: "Kansas DMV Practice Test 2025 – Free KS Driver's License Exam Prep",
   description:
-    "Prepare for your Kansas DOR knowledge test with free practice questions covering I-70 crosswinds, SB 6 hands-free law, tornado protocol, Kansas Turnpike, open range law, and Kansas DOR-specific licensing rules. 25 questions, 80% to pass.",
+    "Prepare for your Kansas DOR knowledge test with free practice questions covering I-70 crosswinds, texting ban, tornado protocol, Kansas Turnpike, open range law, and Kansas DOR-specific licensing rules. 25 questions, 80% to pass.",
   alternates: { canonical: "https://caredmvprep.com/kansas-dmv-practice-test" },
   openGraph: {
     url: "https://caredmvprep.com/kansas-dmv-practice-test",
@@ -19,7 +19,7 @@ const data: PracticeTestPageProps = {
   slug: "kansas-dmv-practice-test",
   headline: "Kansas DMV Practice Test 2025",
   intro:
-    "Kansas driver licensing is administered by the Kansas Department of Revenue (DOR), Division of Vehicles — not a DMV. The knowledge test has 25 questions and requires 80% (20/25) to pass. This free practice test covers Kansas-specific topics: the dangerous I-70 crosswind corridor, SB 6 hands-free law (July 1, 2025), tornado protocol, Kansas Turnpike toll procedures, the open range law in western Kansas, and Kansas DUI rules.",
+    "Kansas driver licensing is administered by the Kansas Department of Revenue (DOR), Division of Vehicles — not a DMV. The knowledge test has 25 questions and requires 80% (20/25) to pass. This free practice test covers Kansas-specific topics: the dangerous I-70 crosswind corridor, Kansas texting and cell phone laws, tornado protocol, Kansas Turnpike toll procedures, the open range law in western Kansas, and Kansas DUI rules.",
   basedOn: "Kansas Department of Revenue Driver's License Manual",
   keyRules: [
     {
@@ -30,9 +30,9 @@ const data: PracticeTestPageProps = {
     },
     {
       icon: "📱",
-      rule: "SB 6: Hands-Free Law (July 1, 2025)",
+      rule: "Cell Phone Laws: Texting Ban + School/Work Zone Handheld Ban",
       detail:
-        "Kansas Senate Bill 6, effective July 1, 2025, bans all drivers from holding a wireless device while driving — among the most recent handheld device bans enacted by any state. Violations are primary enforcement. The law applies at all times while the vehicle is in motion.",
+        "Kansas bans texting for ALL drivers under KSA 8-15,111 ($60 fine, primary enforcement). SB 366, effective July 1, 2026, adds a handheld device ban in school zones and construction/work zones (warning citations only through July 1, 2027; fines begin July 2027). Kansas does NOT have a general handheld call ban on open roads — only texting and school/construction zone use are prohibited. Permit and restricted license holders may NOT use any wireless device (except to report emergencies or illegal activity).",
     },
     {
       icon: "🌪️",
@@ -72,7 +72,7 @@ const data: PracticeTestPageProps = {
     },
   ],
   about: [
-    "Kansas driver licensing is administered by the Kansas Department of Revenue (DOR), Division of Vehicles — not a traditional DMV. The DOR Division of Vehicles operates licensing offices throughout Kansas. The knowledge test consists of 25 multiple-choice questions from the Kansas Driver's License Manual, with 80% (20 out of 25 correct) required to pass. Kansas's permit age of 14 is among the youngest in the nation. Kansas Senate Bill 6, effective July 1, 2025, established one of the most recently enacted hands-free driving laws in the country.",
+    "Kansas driver licensing is administered by the Kansas Department of Revenue (DOR), Division of Vehicles — not a traditional DMV. The DOR Division of Vehicles operates licensing offices throughout Kansas. The knowledge test consists of 25 multiple-choice questions from the Kansas Driver's License Manual, with 80% (20 out of 25 correct) required to pass. Kansas's permit age of 14 is among the youngest in the nation. Kansas bans texting for all drivers (KSA 8-15,111), and SB 366 (effective July 1, 2026) adds a school zone and construction zone handheld device ban. Kansas does not have a general handheld call ban on open roads.",
     "Kansas I-70 is infamous for crosswind conditions: sustained winds of 30–50 mph regularly cross the highway, and high-profile vehicles such as RVs, box trucks, and empty trailers have been blown off the road. KDOT issues crosswind advisories and specific restrictions for high-profile vehicles in extreme wind events. Kansas's flat terrain also creates significant tornado hazards — the state sits in the center of 'Tornado Alley' and experiences frequent tornado activity. Kansas drivers must know that sheltering under a highway overpass is dangerous and that lying flat in a low ditch is the correct protocol.",
     "Kansas has distinct open range rules depending on geography: eastern Kansas is generally fenced range (where ranchers are responsible for keeping livestock off roads), while western Kansas is largely open range (where livestock may legally be on roads and drivers may bear responsibility if they hit cattle). The Kansas Turnpike (I-335, also segments of I-70 through the Wichita area managed by the Kansas Turnpike Authority) uses toll collection that drivers must navigate with exact change or K-TAG electronic transponders.",
   ],
@@ -105,16 +105,16 @@ const data: PracticeTestPageProps = {
     },
     {
       question:
-        "Kansas Senate Bill 6 (effective July 1, 2025) prohibits which behavior for Kansas drivers?",
+        "Which cell phone behavior is banned for ALL Kansas drivers on ALL roads at ALL times?",
       options: [
+        "Talking hands-free on a Bluetooth earpiece",
+        "Holding a phone to make a call on an open highway",
+        "Texting or composing an electronic message while driving",
         "Using a GPS app on a phone mounted in a dashboard holder",
-        "Talking on Bluetooth speakerphone",
-        "Physically holding a wireless device while operating a vehicle",
-        "Listening to music via a phone connected by USB",
       ],
       correctIndex: 2,
       explanation:
-        "Kansas SB 6 specifically prohibits physically holding a wireless communications device while operating a motor vehicle. Hands-free use — via a dashboard mount, Bluetooth, earpiece, or speakerphone — is permitted. The law took effect July 1, 2025, making Kansas one of the most recent states to enact a comprehensive handheld device ban. The law is primary enforcement, meaning officers can stop a driver solely for holding a device without any other traffic violation.",
+        "Kansas bans texting and composing electronic messages for ALL drivers at ALL times under KSA 8-15,111 ($60 fine, primary enforcement). Kansas does NOT have a general ban on handheld calls on open roads — you can legally hold a phone to call on a rural highway. SB 366 (effective July 1, 2026) adds a handheld device ban specifically in school zones and construction/work zones, but that is separate from the universal texting ban. Permit and restricted license holders face a stricter rule: no wireless device use at all (except to report emergencies or illegal activity).",
     },
     {
       question:
@@ -220,9 +220,9 @@ const data: PracticeTestPageProps = {
         "Kansas I-70 is notorious for sustained crosswinds of 30–50 mph — among the highest consistent crosswind conditions on any U.S. interstate. These crosswinds can push high-profile vehicles sideways, reducing traction and control. The flat Kansas terrain provides no natural windbreaks. KDOT monitors wind conditions and issues crosswind advisories for specific vehicle types (RVs, box trucks, enclosed trailers, empty flatbeds). Drivers of high-profile vehicles should monitor KDOT's 511 service before traveling I-70 during windy weather and may need to reduce speed significantly or wait for winds to subside.",
     },
     {
-      question: "What is Kansas's SB 6 hands-free law?",
+      question: "What are Kansas's cell phone and wireless device laws for drivers?",
       answer:
-        "Kansas Senate Bill 6, effective July 1, 2025, prohibits all drivers from physically holding a wireless communications device while operating a motor vehicle. Kansas is among the most recent states to enact such a law. The law is primary enforcement — officers can stop a driver solely for holding a device. Hands-free use via dashboard mounts, Bluetooth, or earpieces is permitted. Violations carry fines that increase for repeat offenses.",
+        "Kansas has two separate cell phone restrictions. First, texting is banned for ALL drivers at ALL times under KSA 8-15,111 — a $60 fine, primary enforcement (officers can stop you solely for texting). Second, SB 366, signed April 3, 2026, and effective July 1, 2026, bans handheld device use in school zones and construction/work zones. Warning citations only will be issued through July 1, 2027; fines ($60) begin July 2027. Kansas does NOT have a general ban on handheld calls on open roads — holding your phone to make a voice call on a rural highway is currently legal for most drivers. Exception: permit holders and restricted license holders may not use any wireless device at all while driving, except to report an emergency or illegal activity.",
     },
     {
       question: "What is the DUI BAC limit in Kansas?",

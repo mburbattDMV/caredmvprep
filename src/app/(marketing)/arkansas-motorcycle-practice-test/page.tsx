@@ -19,10 +19,10 @@ const data: PracticeTestPageProps = {
   slug: "arkansas-motorcycle-practice-test",
   headline: "Arkansas Motorcycle Practice Test 2025",
   intro:
-    "Arkansas requires a motorcycle endorsement on your driver's license to operate any motorcycle. The endorsement test is administered by the DFA Revenue Division and covers Arkansas-specific topics including the partial helmet law (required under 21), feral hog crossing hazards on rural roads, Ozark mountain curve techniques, and DWI rules as they apply to riders.",
+    "Arkansas requires a motorcycle endorsement on your driver's license to operate any motorcycle. The motorcycle knowledge and skills tests are administered by the Arkansas State Police. Upon passing, the motorcycle endorsement is added to your license by the Arkansas DFA Revenue Division. This practice test covers Arkansas-specific topics including the partial helmet law (required under 21), feral hog crossing hazards on rural roads, Ozark mountain curve techniques, and DWI rules as they apply to riders.",
   basedOn: "Arkansas DFA Revenue Division Motorcycle Operator Study Guide",
   about: [
-    "Arkansas requires motorcycle operators under 21 years old to wear a helmet — the state does not have a universal helmet law requiring all adult riders to wear one. The motorcycle endorsement is obtained through the DFA Revenue Division, and applicants must pass a knowledge test and a skills test, or complete a DFA-approved Motorcycle Safety Foundation (MSF) Basic RiderCourse to waive the skills test. Arkansas's rural roads present unique hazards for motorcycle riders: feral hog sounders crossing at night, flash-flooding low-water crossings in the Ozark and Ouachita regions, and the winding mountain roads of US-62 and US-412.",
+    "Arkansas requires motorcycle operators under 21 years old to wear a helmet — the state does not have a universal helmet law requiring all adult riders to wear one. The motorcycle endorsement process in Arkansas involves two agencies: the Arkansas State Police (DPS) administers the knowledge test and skills test; the DFA Revenue Division issues the actual license with the 'M' endorsement added. Applicants may complete a DFA-approved Motorcycle Safety Foundation (MSF) Basic RiderCourse to waive the skills test. Arkansas's rural roads present unique hazards for motorcycle riders: feral hog sounders crossing at night, flash-flooding low-water crossings in the Ozark and Ouachita regions, and the winding mountain roads of US-62 and US-412.",
     "Riding motorcycles in the Arkansas Ozarks and Ouachita Mountains is popular but demands specific skills. The Talimena Scenic Drive and highways through the Ozark National Forest include sharp switchbacks, steep descents where brake fade is a risk, and limited sight distances on curves. Arkansas DWI law uses a 0.08% BAC limit for adults and 0.02% for riders under 21 — the DWI designation rather than DUI applies equally to motorcycle operators. Arkansas Act 1018's hands-free law also applies to motorcycle operators: riders may not hold a wireless device while riding.",
   ],
   sampleQuestions: [
@@ -137,7 +137,7 @@ const data: PracticeTestPageProps = {
     {
       question: "How do I get a motorcycle endorsement in Arkansas?",
       answer:
-        "To get a motorcycle endorsement in Arkansas, you must visit a DFA Revenue Division office and pass a motorcycle knowledge test. You then must either pass a motorcycle riding skills test administered at a DFA-approved testing site, or complete an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse, which waives the skills test. The endorsement is added to your existing Arkansas driver's license (or your new license if you're getting one simultaneously).",
+        "To get a motorcycle endorsement in Arkansas, you must visit an Arkansas State Police driver examination station and pass a motorcycle knowledge test. You then must either pass a motorcycle riding skills test at a State Police testing location, or complete an approved MSF Basic RiderCourse within 90 days prior, which waives the skills test. After passing, the endorsement is added to your existing Arkansas driver's license by the DFA Revenue Division.",
     },
     {
       question: "What wildlife hazards should Arkansas motorcycle riders be most aware of?",
@@ -155,14 +155,14 @@ const data: PracticeTestPageProps = {
         "Arkansas mountain roads including the Talimena Scenic Drive, US-62 through the Ozarks, and routes through the Ouachita National Forest present steep grades with brake fade risk, sharp curves with limited sight distance, gravel or sand that accumulates on road surfaces near curves, and sudden weather changes including fog in valleys. Motorcycle riders should approach these routes at conservative speeds, downshift before descending grades, and watch for sand or gravel on pavement at the apex of curves — a common cause of motorcycle crashes on mountain roads.",
     },
     {
-      question: "What documents do I need to bring to the Arkansas DMV for my motorcycle knowledge test?",
+      question: "What do I need to bring to the Arkansas State Police office for my motorcycle knowledge test?",
       answer:
-        "For the motorcycle knowledge test in Arkansas, you typically need to bring a valid form of ID (driver's license or ID card), proof of residency (if not already on file), and the application fee. If you are under 18, you may also need a parent or guardian's signature on a minor consent form. Check the Arkansas DMV website before your visit to confirm current requirements, as they can change.",
+        "To take the motorcycle knowledge test at an Arkansas State Police driver examination station, bring a valid Arkansas driver's license or photo ID, proof of residency if not already on file, and the applicable test fee. Minors must have a parent or guardian present. Check the Arkansas DPS website (dps.arkansas.gov) for current requirements at your local station.",
     },
     {
       question: "How long is the Arkansas motorcycle permit valid, and can I ride alone with it?",
       answer:
-        "Motorcycle learner's permit validity varies by state, typically ranging from 90 days to 2 years. With a permit in Arkansas, you are generally restricted from riding at night, on highways, or carrying passengers. These restrictions ensure new riders gain experience safely before obtaining a full license. Check the Arkansas DMV website for specific permit restrictions and validity periods in your state.",
+        "An Arkansas motorcycle instruction permit is typically valid for six months and may be renewed. Permit holders may ride motorcycles but are restricted from riding at night and from carrying passengers. Exact current restrictions and permit validity periods are set by the Arkansas State Police — check dps.arkansas.gov for current rules.",
     },
     {
       question: "Is a motorcycle endorsement required in Arkansas, or is it a separate license?",
@@ -172,12 +172,12 @@ const data: PracticeTestPageProps = {
     {
       question: "What types of motorcycles require a motorcycle license in Arkansas?",
       answer:
-        "In Arkansas, a motorcycle license or endorsement is generally required to operate any two-wheeled, three-wheeled, or motor-driven cycle above a certain engine displacement or speed threshold. This includes standard motorcycles, sport bikes, cruisers, and most scooters above 50cc. Mopeds (typically under 50cc, max speed 30 mph) may have different requirements — check the Arkansas DMV's specific definitions. Electric motorcycles and e-bikes are subject to separate regulations based on their maximum speed and motor output.",
+        "In Arkansas, a Class M endorsement or standalone Class MD license is required to operate any motorcycle (including street bikes, cruisers, sport bikes, and dual-sport bikes). Mopeds with an engine displacement of 50cc or less and a maximum speed of 30 mph may be ridden with a regular driver's license and do not require a Class M endorsement. Electric motorcycles that exceed 30 mph require a Class M endorsement. Contact the Arkansas DFA Revenue Division for definitive classification of a specific vehicle.",
     },
     {
       question: "Does completing a motorcycle safety course waive the skills test in Arkansas?",
       answer:
-        "In many states, completing an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse or an equivalent state-approved program waives the DMV riding skills test requirement. Some states also waive the knowledge test for course graduates. Arkansas DMV policies on course waivers vary — check the DMV website or contact them directly to confirm which approved courses qualify for test waivers and whether any age restrictions apply.",
+        "In Arkansas, completing an approved MSF Basic RiderCourse waives the motorcycle skills (road) test — you do not need to take the riding skills exam at a State Police station. However, the motorcycle knowledge test is still required and cannot be waived by course completion. You must submit your MSF completion certificate to an Arkansas State Police examiner within 90 days of completing the course. The certificate qualifies you for the skills test waiver; after that, you must still pass the knowledge test.",
     },
   ],
   relatedTests: [

@@ -4,7 +4,7 @@ import PracticeTestPage, { type PracticeTestPageProps } from "@/components/Pract
 export const metadata: Metadata = {
   title: "Iowa DMV Practice Test 2025 – Free IA Driver's License Exam Prep",
   description:
-    "Prepare for your Iowa DOT knowledge test with free practice questions covering Iowa's permit age of 14, SF 547 hands-free law, OWI zero tolerance under-21, county road grid system, tornado protocol, and Iowa DOT rules. 35 questions, 80% to pass.",
+    "Prepare for your Iowa DOT knowledge test with free practice questions covering Iowa's permit age of 14, SF 547 hands-free law, Iowa's under-21 OWI limit of 0.02%, county road grid system, tornado protocol, and Iowa DOT rules.",
   alternates: { canonical: "https://caredmvprep.com/iowa-dmv-practice-test" },
   openGraph: {
     url: "https://caredmvprep.com/iowa-dmv-practice-test",
@@ -19,7 +19,7 @@ const data: PracticeTestPageProps = {
   slug: "iowa-dmv-practice-test",
   headline: "Iowa DMV Practice Test 2025",
   intro:
-    "Iowa driver licensing is administered by the Iowa Department of Transportation (Iowa DOT), Motor Vehicle Division — not a DMV. The knowledge test has 35 questions and requires 80% (28/35) to pass. This free practice test covers Iowa-specific topics: the permit age of 14, SF 547 hands-free law (January 1, 2024), Iowa's true zero-tolerance OWI for under-21, the county road grid naming system, and tornado protocol on Iowa's flat landscape.",
+    "Iowa driver licensing is administered by the Iowa Department of Transportation (Iowa DOT), Motor Vehicle Division — not a DMV. The knowledge test is administered by Iowa DOT and covers traffic laws, road signs, and Iowa-specific rules — the test requires 80% to pass. This free practice test covers Iowa-specific topics: the permit age of 14, SF 547 hands-free law (January 1, 2024), Iowa's under-21 OWI limit of 0.02%, the county road grid naming system, and tornado protocol on Iowa's flat landscape.",
   basedOn: "Iowa Department of Transportation Driver's Manual",
   keyRules: [
     {
@@ -42,9 +42,9 @@ const data: PracticeTestPageProps = {
     },
     {
       icon: "🍺",
-      rule: "OWI Zero Tolerance: 0.00% Under-21",
+      rule: "Under-21 OWI: 0.02% BAC Limit",
       detail:
-        "Iowa uses OWI (Operating While Intoxicated) terminology. The adult BAC limit is 0.08%. For drivers under 21, Iowa enforces TRUE zero tolerance — a BAC of 0.00% is the legal limit. Any detectable alcohol in a driver under 21 is a violation. The adult standard is 0.08%.",
+        "Iowa Code §321J.2A sets the OWI limit for drivers under 21 at 0.02% — meaning even a small amount of alcohol triggers a violation. Iowa uses OWI (Operating While Intoxicated) terminology rather than DUI. The adult OWI limit is 0.08%. Commercial drivers face a 0.04% limit. Iowa's under-21 limit of 0.02% is lower than the adult standard but is NOT absolute zero — it is 0.02%.",
     },
     {
       icon: "🗺️",
@@ -72,8 +72,8 @@ const data: PracticeTestPageProps = {
     },
   ],
   about: [
-    "Iowa driver licensing is administered by the Iowa Department of Transportation (Iowa DOT), Motor Vehicle Division — not a DMV. This is an important distinction: when Iowa residents search for a driver's license office, they should search for 'Iowa DOT' rather than 'DMV.' The knowledge test consists of 35 questions from the Iowa Driver's Manual, requiring 28 correct answers (80%) to pass. Iowa's permit age of 14 is among the youngest in the nation, reflecting the state's deep agricultural heritage and the need for young people in farming communities to begin driving training early.",
-    "Iowa's OWI (Operating While Intoxicated) law is stricter than most states for young drivers: Iowa enforces true zero tolerance for drivers under 21, with a 0.00% BAC legal limit — any detectable alcohol in a driver under 21 is a violation. Iowa Senate File 547, effective January 1, 2024, established a comprehensive hands-free law banning all drivers from holding a wireless device. Iowa's rural road network uses a unique county road grid system with lettered and numbered roads that Iowa drivers must understand for rural navigation.",
+    "Iowa driver licensing is administered by the Iowa Department of Transportation (Iowa DOT), Motor Vehicle Division — not a DMV. This is an important distinction: when Iowa residents search for a driver's license office, they should search for 'Iowa DOT' rather than 'DMV.' The knowledge test is based on the Iowa Driver's Manual and requires 80% to pass. Iowa's permit age of 14 is among the youngest in the nation, reflecting the state's deep agricultural heritage and the need for young people in farming communities to begin driving training early.",
+    "Under Iowa Code §321J.2A, the OWI limit for drivers under 21 is 0.02% — meaning a blood alcohol concentration at or above 0.02% is a violation. Iowa uses 'OWI' (Operating While Intoxicated) rather than DUI or DWI. Iowa Senate File 547, effective January 1, 2024, established a comprehensive hands-free law banning all drivers from holding a wireless device. Iowa's rural road network uses a unique county road grid system with lettered and numbered roads that Iowa drivers must understand for rural navigation.",
     "Iowa's flat landscape creates unique tornado hazards. Tornadoes in Iowa move quickly with the jet stream and can approach from any direction with minimal visual obstruction — but the same flat terrain provides excellent early visual warning of funnel clouds. Iowa drivers who observe a tornado while in a vehicle should never shelter under a highway overpass, which creates a dangerous wind tunnel effect. The correct procedure is to exit the vehicle, move away from it, and lie flat in a low ditch away from trees. Iowa Code § 321.463 also authorizes seasonal overweight permits for grain and livestock haulers, a common agricultural industry benefit in Iowa.",
   ],
   sampleQuestions: [
@@ -83,15 +83,15 @@ const data: PracticeTestPageProps = {
       options: ["15 years old", "15½ years old", "16 years old", "14 years old"],
       correctIndex: 3,
       explanation:
-        "Iowa issues instruction permits to residents as young as 14 years old — one of the very few states with this policy. The permit age of 14 reflects Iowa's strong agricultural heritage: young people in farming communities have traditionally needed to learn to drive tractors, implements, and vehicles at younger ages. Permit holders at 14 must be accompanied by a licensed driver 25 or older in the front seat at all times while driving.",
+        "Iowa issues instruction permits to residents as young as 14 years old — one of the very few states with this policy. The permit age of 14 reflects Iowa's strong agricultural heritage: young people in farming communities have traditionally needed to learn to drive tractors, implements, and vehicles at younger ages. Under Iowa Code §321.180B, permit holders must be accompanied by a licensed parent, guardian, or immediate family member (age 21 or older), or by any other licensed adult 25 or older with written parental permission.",
     },
     {
       question:
         "Iowa uses OWI terminology for impaired driving. What is the blood alcohol concentration (BAC) limit for a driver who is 19 years old in Iowa?",
       options: ["0.08%", "0.02%", "0.04%", "0.00%"],
-      correctIndex: 3,
+      correctIndex: 1,
       explanation:
-        "Iowa enforces true zero tolerance for drivers under 21: the legal BAC limit is 0.00%, meaning any detectable alcohol in a driver under 21 is an OWI violation. Iowa's zero-tolerance standard is stricter than states like Arkansas (0.02%) or Delaware (0.02%). For drivers 21 and older, Iowa's OWI BAC limit is 0.08%. Iowa uses 'OWI' (Operating While Intoxicated) terminology rather than DUI or DWI.",
+        "Iowa Code §321J.2A sets the OWI limit for drivers under 21 at 0.02% blood alcohol concentration. A 19-year-old driver with a BAC of 0.02% or higher is in violation. Iowa's under-21 limit is lower than the adult 0.08% standard but is NOT absolute zero (0.00%) — it is specifically 0.02%. Iowa uses 'OWI' (Operating While Intoxicated) terminology for impaired driving. Commercial drivers face a separate 0.04% threshold.",
     },
     {
       question:
@@ -173,16 +173,11 @@ const data: PracticeTestPageProps = {
     },
     {
       question:
-        "Iowa enforces true zero-tolerance OWI for drivers under 21. What does '0.00%' BAC limit mean in practice?",
-      options: [
-        "Drivers under 21 can have up to 0.01% BAC without violation",
-        "Any amount of alcohol detectable by a chemical test in a driver under 21 constitutes an OWI violation",
-        "The 0.00% limit applies only to drivers who have had a previous OWI",
-        "Zero tolerance means drivers under 21 must wait 8 hours after any drink before driving",
-      ],
-      correctIndex: 1,
+        "Under Iowa Code §321J.2A, what blood alcohol concentration (BAC) level triggers an OWI violation for a driver who is 20 years old?",
+      options: ["0.08% or higher", "0.01% or higher", "0.04% or higher", "0.02% or higher"],
+      correctIndex: 3,
       explanation:
-        "Iowa's 0.00% BAC zero-tolerance OWI law for drivers under 21 means that any detectable amount of alcohol — even an amount below what most breath test equipment can reliably measure — constitutes a legal violation. A driver under 21 who has consumed even one drink may test above 0.00% depending on the sensitivity of the testing equipment. Iowa's zero-tolerance standard is among the strictest in the nation for underage drinking and driving, stricter than states that set the under-21 limit at 0.02%.",
+        "Iowa Code §321J.2A(1) establishes a 0.02% BAC limit for drivers under 21 — separate from the adult 0.08% standard under §321J.2(1)(b). A 20-year-old driver with a BAC of 0.02% or higher commits OWI. Iowa's under-21 limit is often mischaracterized as 'zero tolerance' but it is specifically 0.02%, not 0.00%. For context, the commercial driver threshold is 0.04% (§321J.6(1)(e)).",
     },
     {
       question:
@@ -202,7 +197,7 @@ const data: PracticeTestPageProps = {
     {
       question: "What is the Iowa knowledge test format?",
       answer:
-        "The Iowa Department of Transportation (Iowa DOT) administers a 35-question multiple-choice knowledge test. You must correctly answer at least 28 questions — an 80% passing score — to pass. The test covers traffic laws, road signs, safe driving practices, and Iowa-specific topics including OWI law, the county road grid system, tornado protocol, and agricultural vehicle rules. The test is based on the Iowa Driver's Manual and available at Iowa DOT offices throughout the state.",
+        "The Iowa Department of Transportation (Iowa DOT) administers a multiple-choice knowledge test requiring 80% to pass. The test covers traffic laws, road signs, safe driving practices, and Iowa-specific topics including OWI law, the county road grid system, tornado protocol, and agricultural vehicle rules. The test is based on the Iowa Driver's Manual and available at Iowa DOT offices throughout the state.",
     },
     {
       question: "Which agency handles driver licensing in Iowa — is there an Iowa DMV?",
@@ -212,12 +207,12 @@ const data: PracticeTestPageProps = {
     {
       question: "What are the graduated licensing stages in Iowa?",
       answer:
-        "Iowa's GDL system has three stages. At age 14, teens can obtain an Instruction Permit after passing the knowledge test and vision screening. Permit holders must be accompanied by a licensed driver 25 or older at all times. At age 16, after holding the permit for at least 12 months and completing 20 supervised driving hours (2 at night), an Intermediate License is available after passing a driving test. The intermediate license has nighttime and passenger restrictions. At age 17 (or after 12 months on the intermediate license), a Full License is available.",
+        "Iowa's GDL system has three stages. At age 14, teens can obtain an Instruction Permit after passing the knowledge test and vision screening. Under Iowa Code §321.180B, permit holders must be accompanied by a licensed parent, guardian, or immediate family member (age 21 or older), or by any other licensed adult 25 or older with written parental permission. At age 16, after holding the permit for at least 12 months and completing 20 supervised driving hours (2 at night), an Intermediate License is available after passing a driving test. The intermediate license has nighttime and passenger restrictions. At age 17 (or after 12 months on the intermediate license), a Full License is available.",
     },
     {
       question: "What is Iowa's OWI law?",
       answer:
-        "Iowa uses OWI (Operating While Intoxicated) terminology for impaired driving. The adult BAC limit is 0.08% or higher. For drivers under 21, Iowa enforces true zero tolerance with a 0.00% BAC limit — any detectable alcohol is an OWI violation. Commercial drivers face a 0.04% limit while operating a CMV. Iowa OWI penalties include license revocation, fines, possible jail time, and mandatory substance abuse evaluation. Iowa uses 'OWI' rather than 'DUI' or 'DWI' in all official documents.",
+        "Iowa uses OWI (Operating While Intoxicated) terminology for impaired driving. The adult BAC limit is 0.08% or higher. Under Iowa Code §321J.2A, the OWI limit for drivers under 21 is 0.02%. Commercial drivers face a 0.04% limit while operating a CMV. Iowa OWI penalties include license revocation, fines, possible jail time, and mandatory substance abuse evaluation. Iowa uses 'OWI' rather than 'DUI' or 'DWI' in all official documents.",
     },
     {
       question: "What is Iowa's SF 547 hands-free law?",
@@ -247,7 +242,7 @@ const data: PracticeTestPageProps = {
     {
       question: "What permit does a 14-year-old need to drive legally in Iowa?",
       answer:
-        "A 14-year-old in Iowa may obtain an instruction permit from the Iowa DOT after passing the knowledge test and vision screening. The permit allows the 14-year-old to drive only when accompanied by a licensed driver who is at least 25 years old and is seated in the front passenger seat. The young driver may not drive after a specified curfew hour and must comply with all other instruction permit restrictions. Iowa's 14-year permit age is specifically designed to accommodate agricultural community families.",
+        "A 14-year-old in Iowa may obtain an instruction permit from the Iowa DOT after passing the knowledge test and vision screening. The permit allows the 14-year-old to drive only when accompanied by a qualified licensed adult as specified by Iowa Code §321.180B — a licensed parent, guardian, or immediate family member (age 21 or older), or any other licensed adult 25 or older with written parental permission, seated in the front passenger seat. The young driver must comply with all other instruction permit restrictions. Iowa's 14-year permit age is specifically designed to accommodate agricultural community families.",
     },
   ],
   relatedTests: [

@@ -4,7 +4,7 @@ import PracticeTestPage, { type PracticeTestPageProps } from "@/components/Pract
 export const metadata: Metadata = {
   title: "Arkansas DMV Practice Test 2025 – Free AR Driver's License Exam Prep",
   description:
-    "Free Arkansas DFA practice test covering Act 1018 hands-free law (Jan 2024), ACA § 27-51-1404 flash flood barrier law (Class A misdemeanor), feral hog collision hazards, permit age 14, DWI terminology, Buffalo National River road closures, and 70 mph interstate limits. 25 questions, 80% to pass.",
+    "Free Arkansas DFA practice test covering Act 1018 hands-free law (Jan 2024), ACA § 27-51-1404 flash flood barrier law (Class A misdemeanor), feral hog collision hazards, permit age 14, DWI terminology, Buffalo National River road closures, and 75 mph rural interstate limits. 25 questions, 80% to pass.",
   alternates: { canonical: "https://caredmvprep.com/arkansas-dmv-practice-test" },
   openGraph: {
     url: "https://caredmvprep.com/arkansas-dmv-practice-test",
@@ -19,7 +19,7 @@ const data: PracticeTestPageProps = {
   slug: "arkansas-dmv-practice-test",
   headline: "Arkansas DFA Practice Test – Driver's License Knowledge Exam",
   intro:
-    "Arkansas has no DMV — driver licensing is administered by the Department of Finance and Administration (DFA), Revenue Division, within a tax and revenue agency, a nationally unusual placement. The DFA administers a 25-question test requiring 80% (20/25) to pass. This free practice test targets content specific to Arkansas: Act 1018 hands-free law effective January 1, 2024 (one of the last states to enact a statewide adult handheld ban), ACA § 27-51-1404 making it a Class A misdemeanor to drive around a flood barrier, feral hog road hazards (Arkansas has 2+ million feral swine), instruction permit eligibility at age 14 (one of the youngest in the U.S.), DWI terminology under ACA § 5-65-103, and the 70 mph interstate speed limit.",
+    "Arkansas has no DMV — driver licensing is administered by the Department of Finance and Administration (DFA), Revenue Division, within a tax and revenue agency, a nationally unusual placement. The Arkansas State Police administers the knowledge and skills tests, while DFA issues the license. This free practice test targets content specific to Arkansas: Act 1018 hands-free law effective January 1, 2024 (one of the last states to enact a statewide adult handheld ban), ACA § 27-51-1404 making it a Class A misdemeanor to drive around a flood barrier, feral hog road hazards (Arkansas has 2+ million feral swine), instruction permit eligibility at age 14 (one of the youngest in the U.S.), DWI terminology under ACA § 5-65-103, and the 75 mph rural interstate speed limit for passenger vehicles (70 mph for commercial vehicles).",
   basedOn: "Arkansas Department of Finance and Administration Driver's License Study Guide",
   keyRules: [
     { icon: "📱", rule: "Act 1018: Hands-Free Law (January 1, 2024) — one of the last states to enact it", detail: "Arkansas Act 1018 banned all drivers from holding a wireless device while driving, effective January 1, 2024. Before this law, Arkansas only restricted texting for novice drivers. First offense: $250. Subsequent: $500." },
@@ -29,7 +29,7 @@ const data: PracticeTestPageProps = {
     { icon: "🍺", rule: "DWI terminology (ACA § 5-65-103) — 0.08% adult / 0.02% under-21", detail: "Arkansas uses DWI (Driving While Intoxicated), not DUI. Adult BAC: 0.08%. Under-21: 0.02%. Commercial drivers in a CMV: 0.04%. DWI penalties include mandatory suspension, fines, and possible IID for repeat offenders." },
     { icon: "⛰️", rule: "Ozark/Ouachita mountain roads — narrow lanes, no guardrails, switchbacks", detail: "AR-74, AR-21, AR-7 in the Buffalo National River corridor and other Ozark/Ouachita mountain roads have tight switchbacks, minimal shoulders, and no guardrails. Some sections are unpaved with seasonal closures." },
     { icon: "📋", rule: "DFA Revenue Division — not a DMV", detail: "Arkansas driver licensing sits within the Department of Finance and Administration (DFA), Revenue Division — a tax and revenue agency. There is no 'Arkansas DMV.' This is a common source of confusion for new Arkansas residents." },
-    { icon: "🚀", rule: "70 mph interstate / 65 mph four-lane divided highway outside urban areas", detail: "Arkansas has a 70 mph maximum speed on interstates and 65 mph on four-lane divided highways outside urban areas — among the higher speed limits in the south-central U.S." },
+    { icon: "🚀", rule: "75 mph rural interstate (cars) / 65 mph urban controlled-access", detail: "Arkansas raised the rural interstate speed limit to 75 mph for passenger vehicles effective July 1, 2020 (Act 784 of 2019). Commercial motor vehicles are limited to 70 mph on rural interstates. Urban controlled-access highways are 65 mph. Urban districts default to 30 mph, and school zones are 25 mph when children are present." },
   ],
   about: [
     "Arkansas driver licensing is administered by the Department of Finance and Administration (DFA), Revenue Division — not a DMV. The DFA is Arkansas's tax and revenue agency, and placing driver licensing functions within a revenue department is nationally unusual. Most states use a DMV, licensing division, or motor vehicle administration within a transportation or public safety department. DFA driver licensing offices are located throughout the state. The knowledge test consists of 25 multiple-choice questions requiring at least 20 correct answers (80%) to pass. Arkansas's instruction permit age of 14 makes it one of the youngest permit ages in the country.",
@@ -105,11 +105,11 @@ const data: PracticeTestPageProps = {
         "Arkansas uses DWI (Driving While Intoxicated) under ACA § 5-65-103 — not DUI. The adult BAC threshold is 0.08%, consistent with the federal standard. Drivers under 21 face a DWI charge at 0.02% BAC — effectively near-zero tolerance. Commercial vehicle operators face the federal 0.04% CDL standard. A first DWI in Arkansas carries a minimum 6-month license suspension, fines of $150–$1,000, and possible jail time. Repeat offenders may face mandatory ignition interlock device installation.",
     },
     {
-      question: "What is the maximum speed limit for vehicles on Arkansas interstates?",
+      question: "What is the maximum speed limit for passenger vehicles on rural Arkansas interstates?",
       options: ["65 mph", "70 mph", "75 mph", "60 mph"],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
-        "Arkansas has a maximum interstate speed limit of 70 mph. Four-lane divided highways outside urban areas are posted at 65 mph. Two-lane highways typically carry limits of 55–65 mph depending on the specific route and terrain. Mountain roads in the Ozarks and Ouachitas may have lower posted limits due to curves and grades. Arkansas's 70 mph interstate maximum is among the higher limits in the south-central region, though lower than some western states' 75–80 mph limits.",
+        "Arkansas Code § 27-51-201 sets the rural interstate speed limit at 75 mph for passenger vehicles (effective July 1, 2020 via Act 784 of 2019). Commercial motor vehicles are limited to 70 mph on these same rural interstates. Urban controlled-access highways have a 65 mph limit. This 75 mph limit is one of the higher rural interstate limits in the central United States.",
     },
     {
       question: "Low-water crossings (low-water bridges) in Arkansas's Ozark and Ouachita regions are specifically dangerous during flash floods because:",
@@ -182,7 +182,7 @@ const data: PracticeTestPageProps = {
     {
       question: "What are Arkansas's maximum speed limits?",
       answer:
-        "Arkansas maximum speed limits: 70 mph on interstates; 65 mph on four-lane divided highways outside urban areas; 55 mph on most two-lane state highways; lower posted limits on mountain roads in the Ozarks and Ouachitas. School zones are typically posted at 20–25 mph when children are present. Arkansas's 70 mph interstate maximum is among the higher limits in the south-central region. Always observe posted signs, which take precedence over default limits.",
+        "Arkansas maximum speed limits: 75 mph on rural interstates (passenger vehicles), 70 mph for commercial motor vehicles on those same rural interstates; 65 mph on urban controlled-access highways; 55 mph on most two-lane state highways; lower posted limits on mountain roads in the Ozarks and Ouachitas. School zones are 25 mph when children are present. Urban districts default to 30 mph when no sign is posted. Always observe posted signs, which take precedence over default limits.",
     },
     {
       question: "What is the fine for violating Arkansas's Act 1018 hands-free law?",

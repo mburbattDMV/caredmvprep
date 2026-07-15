@@ -19,6 +19,8 @@ import gaDmvQuestions                from './dmv/georgia';
 import gaMotoQuestions               from './motorcycle/georgia';
 import ncDmvQuestions                from './dmv/north-carolina';
 import ncMotoQuestions               from './motorcycle/north-carolina';
+import arDmvQuestions                from './dmv/arkansas';
+import arMotoQuestions               from './motorcycle/arkansas';
 import azDmvQuestions                from './dmv/arizona';
 import azMotoQuestions               from './motorcycle/arizona';
 import miDmvQuestions                from './dmv/michigan';
@@ -40,6 +42,18 @@ import okDmvQuestions                from './dmv/oklahoma';
 import ctDmvQuestions                from './dmv/connecticut';
 import nvDmvQuestions                from './dmv/nevada';
 import utDmvQuestions                from './dmv/utah';
+import iaDmvQuestions                from './dmv/iowa';
+import iaMotoQuestions               from './motorcycle/iowa';
+import msDmvQuestions                from './dmv/mississippi';
+import msMotoQuestions               from './motorcycle/mississippi';
+import ksDmvQuestions                from './dmv/kansas';
+import ksMotoQuestions               from './motorcycle/kansas';
+import nmDmvQuestions                from './dmv/new-mexico';
+import nmMotoQuestions               from './motorcycle/new-mexico';
+import neDmvQuestions                from './dmv/nebraska';
+import neMotoQuestions               from './motorcycle/nebraska';
+import idDmvQuestions                from './dmv/idaho';
+import idMotoQuestions               from './motorcycle/idaho';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -91,6 +105,34 @@ export const quizRegistry: Record<string, QuizConfig> = {
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal standard
+  },
+
+  // ── Arkansas ──────────────────────────────────────────────────────────────
+  // DL test: 25Q/20-correct/80% — high confidence but PDF could not be parsed; NEEDS_VERIFICATION.
+  // Motorcycle test: same situation. Helmet law: under-21 only (Ark. Code §27-20-104).
+  'ar-permit': {
+    testId:      'ar-permit',
+    label:       'Arkansas Driver License Knowledge Test Practice',
+    state:       'arkansas',
+    licenseType: 'permit',
+    questions:   verified(arDmvQuestions),
+    passingScore: 0.80,
+  },
+  'ar-motorcycle': {
+    testId:      'ar-motorcycle',
+    label:       'Arkansas Motorcycle Knowledge Test Practice',
+    state:       'arkansas',
+    licenseType: 'motorcycle',
+    questions:   verified(arMotoQuestions),
+    passingScore: 0.80,
+  },
+  'ar-cdl-general': {
+    testId:      'ar-cdl-general',
+    label:       'Arkansas CDL General Knowledge Practice Test',
+    state:       'arkansas',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
   },
 
   // ── Arizona ───────────────────────────────────────────────────────────────
@@ -606,6 +648,181 @@ export const quizRegistry: Record<string, QuizConfig> = {
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,
+  },
+
+  // ── Iowa ──────────────────────────────────────────────────────────────────
+  // Motorcycle question count not officially published by Iowa DOT; knowledge test still required.
+  'iowa-permit': {
+    testId:      'iowa-permit',
+    label:       'Iowa DOT Driver Knowledge Test Practice',
+    state:       'iowa',
+    licenseType: 'permit',
+    questions:   verified(iaDmvQuestions),
+    passingScore: 0.80,  // 80% — confirmed in Iowa Driver's Manual MM1170
+  },
+  'iowa-motorcycle': {
+    testId:      'iowa-motorcycle',
+    label:       'Iowa DOT Motorcycle Knowledge Test Practice',
+    state:       'iowa',
+    licenseType: 'motorcycle',
+    questions:   verified(iaMotoQuestions),
+    passingScore: 0.80,  // 80% expected; motorcycle test question count not officially confirmed
+  },
+  'iowa-cdl-general': {
+    testId:      'iowa-cdl-general',
+    label:       'Iowa CDL General Knowledge Practice Test',
+    state:       'iowa',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
+  },
+
+  // ── Mississippi ───────────────────────────────────────────────────────────────
+  // DL test: 30Q/24-correct/80% — UNVERIFIED; not stated in the December 2024 manual.
+  // Motorcycle test: 25Q/20-correct/80% — UNVERIFIED; not stated in official source.
+  // Helmet law: all ages required (Miss. Code Ann. § 63-7-64); parade exception for 18+ at ≤30 mph.
+  'mississippi-permit': {
+    testId:      'mississippi-permit',
+    label:       'Mississippi Driver Knowledge Test Practice',
+    state:       'mississippi',
+    licenseType: 'permit',
+    questions:   verified(msDmvQuestions),
+    passingScore: 0.80,  // 24 of 30 — UNVERIFIED; not stated in the manual
+  },
+  'mississippi-motorcycle': {
+    testId:      'mississippi-motorcycle',
+    label:       'Mississippi Motorcycle Knowledge Test Practice',
+    state:       'mississippi',
+    licenseType: 'motorcycle',
+    questions:   verified(msMotoQuestions),
+    passingScore: 0.80,  // 20 of 25 — UNVERIFIED; not stated in official source
+  },
+  'mississippi-cdl-general': {
+    testId:      'mississippi-cdl-general',
+    label:       'Mississippi CDL General Knowledge Practice Test',
+    state:       'mississippi',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
+  },
+
+  // ── Kansas ────────────────────────────────────────────────────────────────────
+  // DL test: 25Q/20-correct/80% — LIKELY accurate (not confirmed from official DL page directly).
+  // Motorcycle test: 25Q/20-correct/80%.
+  // Helmet law: under-18 only (KSA 8-1598). Eye protection required for all riders.
+  'kansas-permit': {
+    testId:      'kansas-permit',
+    label:       'Kansas Driver Knowledge Test Practice',
+    state:       'kansas',
+    licenseType: 'permit',
+    questions:   verified(ksDmvQuestions),
+    passingScore: 0.80,
+  },
+  'kansas-motorcycle': {
+    testId:      'kansas-motorcycle',
+    label:       'Kansas Motorcycle Knowledge Test Practice',
+    state:       'kansas',
+    licenseType: 'motorcycle',
+    questions:   verified(ksMotoQuestions),
+    passingScore: 0.80,
+  },
+  'kansas-cdl-general': {
+    testId:      'kansas-cdl-general',
+    label:       'Kansas CDL General Knowledge Practice Test',
+    state:       'kansas',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
+  },
+
+  // ── New Mexico ────────────────────────────────────────────────────────────────
+  // DL test: 25Q/20-correct/80% — standard NM MVD knowledge test.
+  // Motorcycle test: 40Q/32-correct/80% — NM MVD motorcycle endorsement standard.
+  // Helmet law: under-18 only. Lane splitting illegal. MSF BRC waives both tests.
+  'new-mexico-permit': {
+    testId:      'new-mexico-permit',
+    label:       'New Mexico MVD Permit Practice Test',
+    state:       'new-mexico',
+    licenseType: 'permit',
+    questions:   verified(nmDmvQuestions),
+    passingScore: 0.80,
+  },
+  'new-mexico-motorcycle': {
+    testId:      'new-mexico-motorcycle',
+    label:       'New Mexico MVD Motorcycle Endorsement Practice Test',
+    state:       'new-mexico',
+    licenseType: 'motorcycle',
+    questions:   verified(nmMotoQuestions),
+    passingScore: 0.80,
+  },
+  'new-mexico-cdl-general': {
+    testId:      'new-mexico-cdl-general',
+    label:       'New Mexico CDL General Knowledge Practice Test',
+    state:       'new-mexico',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,
+  },
+
+  // ── Nebraska ──────────────────────────────────────────────────────────────────
+  // DL test: 25Q/20-correct/80% — strong third-party consensus (not officially confirmed from DMV page)
+  // Motorcycle test: 25Q/20-correct/80% — same
+  // Helmet law: under-21 always required; 21+ may waive with MSF course (bifurcated by May 1, 2024)
+  // Lane splitting: illegal (NRS 60-6,308). Eye protection: required all riders all ages.
+  'nebraska-permit': {
+    testId:      'nebraska-permit',
+    label:       'Nebraska DMV Driver Knowledge Test Practice',
+    state:       'nebraska',
+    licenseType: 'permit',
+    questions:   verified(neDmvQuestions),
+    passingScore: 0.80,  // 20 of 25 — strong third-party consensus; not officially confirmed from DMV page
+  },
+  'nebraska-motorcycle': {
+    testId:      'nebraska-motorcycle',
+    label:       'Nebraska DMV Motorcycle Knowledge Test Practice',
+    state:       'nebraska',
+    licenseType: 'motorcycle',
+    questions:   verified(neMotoQuestions),
+    passingScore: 0.80,  // 20 of 25 — same consensus as DL test; not officially confirmed
+  },
+  'nebraska-cdl-general': {
+    testId:      'nebraska-cdl-general',
+    label:       'Nebraska CDL General Knowledge Practice Test',
+    state:       'nebraska',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
+  },
+
+  // ── Idaho ─────────────────────────────────────────────────────────────────────
+  // DL test: 40 questions / 34 correct / 85% — Idaho Transportation Department (ITD)
+  // Motorcycle test: 25 questions / 20 correct / 80%
+  // Helmet law: under-18 only (§ 49-666). Lane splitting/filtering: both illegal.
+  // MSF/STAR course waives skills test only — knowledge test always required.
+  // Permit minimum age: 14½ (one of youngest in US).
+  'idaho-permit': {
+    testId:      'idaho-permit',
+    label:       'Idaho ITD Driver Knowledge Test Practice',
+    state:       'idaho',
+    licenseType: 'permit',
+    questions:   verified(idDmvQuestions),
+    passingScore: 0.85,  // 34 of 40 — Idaho Transportation Department (ITD) standard (85%)
+  },
+  'idaho-motorcycle': {
+    testId:      'idaho-motorcycle',
+    label:       'Idaho ITD Motorcycle Knowledge Test Practice',
+    state:       'idaho',
+    licenseType: 'motorcycle',
+    questions:   verified(idMotoQuestions),
+    passingScore: 0.80,  // 20 of 25 — ITD motorcycle endorsement standard (80%)
+  },
+  'idaho-cdl-general': {
+    testId:      'idaho-cdl-general',
+    label:       'Idaho CDL General Knowledge Practice Test',
+    state:       'idaho',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
   },
 
   // ── Utah (DL + CDL only — motorcycle passing score not officially confirmed) ──

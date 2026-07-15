@@ -4,7 +4,7 @@ import PracticeTestPage, { type PracticeTestPageProps } from "@/components/Pract
 export const metadata: Metadata = {
   title: "Idaho DMV Practice Test 2025 – Free ID Driver's License Exam Prep",
   description:
-    "Prepare for your Idaho ITD knowledge test with free practice questions covering open range law, HB 236 hands-free law, Sawtooth mountain driving, Snake River Plain dust hazards, and Idaho-specific traffic laws. 40 questions, 85% to pass.",
+    "Prepare for your Idaho ITD knowledge test with free practice questions covering open range law, § 49-1401A handheld device law, Sawtooth mountain driving, Snake River Plain dust hazards, and Idaho-specific traffic laws. 40 questions, 85% to pass.",
   alternates: { canonical: "https://caredmvprep.com/idaho-dmv-practice-test" },
   openGraph: {
     url: "https://caredmvprep.com/idaho-dmv-practice-test",
@@ -19,7 +19,7 @@ const data: PracticeTestPageProps = {
   slug: "idaho-dmv-practice-test",
   headline: "Idaho DMV Practice Test 2025",
   intro:
-    "The Idaho Transportation Department (ITD), Division of Motor Vehicles administers a 40-question knowledge test — one of the longest in the nation. You must answer at least 34 questions correctly (85%) to pass — one of the highest passing thresholds in the country. This free practice test covers Idaho-specific laws including the open range livestock rule, HB 236 hands-free law (July 1, 2024), Sawtooth Scenic Byway mountain grades, Snake River Plain dust devil hazards, and Idaho's agricultural equipment season.",
+    "The Idaho Transportation Department (ITD), Division of Motor Vehicles administers a 40-question knowledge test — one of the longest in the nation. You must answer at least 34 questions correctly (85%) to pass — one of the highest passing thresholds in the country. This free practice test covers Idaho-specific laws including the open range livestock rule, Idaho Code § 49-1401A handheld device restrictions, Sawtooth Scenic Byway mountain grades, Snake River Plain dust devil hazards, and Idaho's agricultural equipment season.",
   basedOn: "Idaho Transportation Department Driver's Manual",
   keyRules: [
     {
@@ -30,9 +30,9 @@ const data: PracticeTestPageProps = {
     },
     {
       icon: "📱",
-      rule: "HB 236: Hands-Free Law (July 1, 2024)",
+      rule: "Idaho Code § 49-1401A: Handheld Device Restrictions",
       detail:
-        "Idaho House Bill 236, effective July 1, 2024, bans handheld device use while driving. Idaho was one of the more recent states to enact such a law. Drivers may use devices mounted on the dashboard or windshield in hands-free mode. Primary enforcement — officers can stop drivers solely for holding a device.",
+        "Idaho Code § 49-1401A bans all drivers from reading, typing, or watching on a handheld wireless device while driving — primary enforcement, meaning officers can stop drivers solely for this violation. Adults may make one-touch calls; under-18 drivers face a complete ban on all handheld use while driving. Fines: $75 first offense, $150 second, $300 third and subsequent. Hands-free (mounted dashboard/windshield) use is permitted.",
     },
     {
       icon: "⛰️",
@@ -74,7 +74,7 @@ const data: PracticeTestPageProps = {
   about: [
     "The Idaho Transportation Department (ITD), Division of Motor Vehicles, administers driver licensing for Idaho residents. Unlike most states, Idaho's knowledge test consists of 40 questions — one of the longest knowledge tests in the nation — requiring 34 correct answers (85%) to pass — one of the highest passing thresholds in the nation. The test covers Idaho's Driver's Manual including traffic laws, road signs, and Idaho-specific hazards. Idaho's permit age of 14½ allows young residents to begin learning to drive earlier than most states.",
     "Idaho's open range law (Idaho Code § 25-2118) is one of the most important laws for Idaho drivers to understand, and it is the opposite of what most people expect. In open range areas of Idaho, if a driver hits cattle on the road, the driver bears legal responsibility for damages to the animals — not the rancher. The rancher is not required to fence livestock out of the right-of-way in open range territory. This open range doctrine applies throughout much of rural southern and central Idaho and makes watching for livestock on roadways a legal — not merely a safety — obligation for Idaho drivers.",
-    "Idaho HB 236, effective July 1, 2024, established a hands-free driving law banning all handheld device use while driving — Idaho was among the more recent states to enact comprehensive handheld device legislation. Southern Idaho's Snake River Plain presents dust devil hazards on hot days, while the Sawtooth Mountains (ID-75) and Salmon River Canyon (US-95) present mountain driving challenges including steep grades, rockfall, and possible snowfall at elevation at any time of year. August through October brings heavy agricultural equipment traffic for potato and grain harvest in southern Idaho.",
+    "Idaho Code § 49-1401A restricts handheld device use while driving — it bans reading, typing, and watching on a handheld device (primary enforcement), with a complete ban for drivers under 18. Adults may make one-touch calls with a handheld device; hands-free use is always permitted. Southern Idaho's Snake River Plain presents dust devil hazards on hot days, while the Sawtooth Mountains (ID-75) and Salmon River Canyon (US-95) present mountain driving challenges including steep grades, rockfall, and possible snowfall at elevation at any time of year. August through October brings heavy agricultural equipment traffic for potato and grain harvest in southern Idaho.",
   ],
   sampleQuestions: [
     {
@@ -92,16 +92,16 @@ const data: PracticeTestPageProps = {
     },
     {
       question:
-        "Idaho House Bill 236, effective July 1, 2024, prohibits which behavior for Idaho drivers?",
+        "Idaho Code § 49-1401A restricts handheld device use while driving. Which of the following is prohibited for ALL drivers, including adults?",
       options: [
         "Using a GPS app on a phone mounted on the dashboard",
         "Talking through a Bluetooth headset",
-        "Holding a wireless device while driving",
+        "Reading, typing, or watching on a handheld wireless device while driving",
         "Listening to music via a phone connected by aux cable",
       ],
       correctIndex: 2,
       explanation:
-        "Idaho HB 236 specifically prohibits physically holding a wireless device while operating a motor vehicle. Hands-free use — such as a GPS app on a dashboard-mounted phone, Bluetooth calling, or speakerphone placed on a mount — is permitted. The law took effect July 1, 2024, and is a primary enforcement law, meaning officers can stop a driver solely for holding a device. Idaho was one of the later states in the nation to pass a comprehensive handheld device ban.",
+        "Idaho Code § 49-1401A prohibits ALL drivers from reading, typing, or watching content on a handheld wireless device while driving — this is primary enforcement, meaning an officer can stop a driver solely for this violation. Hands-free use (GPS app on a dashboard mount, Bluetooth calling) is permitted. Adults may make one-touch calls; drivers under 18 face a complete ban on all handheld use. Fines are $75 for a first offense, $150 for a second, and $300 for a third or subsequent violation.",
     },
     {
       question:
@@ -210,9 +210,9 @@ const data: PracticeTestPageProps = {
         "Idaho's GDL has three stages. At age 14½, teens may obtain an instruction permit after passing the knowledge test. The permit holder must be accompanied by a licensed driver 21 or older at all times. At age 15, after at least 6 months with the permit and completing required supervised driving hours, a Supervised Instruction Permit (restricted license) is available after passing a road skills test. At age 17, after meeting all GDL requirements with a clean record, a full unrestricted license is available.",
     },
     {
-      question: "What does Idaho's HB 236 hands-free law prohibit?",
+      question: "What does Idaho Code § 49-1401A prohibit for drivers?",
       answer:
-        "Idaho HB 236, effective July 1, 2024, prohibits all drivers from physically holding a wireless communications device while operating a motor vehicle. This includes holding a phone for calls, texting, navigation input, or any other use while driving. Hands-free use — including a phone in a dashboard or windshield mount, Bluetooth calling, or earpiece use — is permitted. The law is primary enforcement, meaning an officer can stop a driver solely for holding a device.",
+        "Idaho Code § 49-1401A prohibits ALL drivers from reading, typing, or watching on a handheld wireless device while driving — primary enforcement, meaning an officer can stop a driver solely for this violation. Adults may make a one-touch call using a handheld device, but drivers under 18 face a complete ban on all handheld device use while driving. Hands-free use — a phone in a dashboard or windshield mount, Bluetooth calling, or earpiece — is permitted for all drivers. Fines are $75 (first offense), $150 (second), and $300 (third or subsequent).",
     },
     {
       question: "What mountain driving hazards should Idaho drivers be aware of?",
