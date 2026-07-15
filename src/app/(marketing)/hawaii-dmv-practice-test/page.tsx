@@ -19,7 +19,7 @@ const data: PracticeTestPageProps = {
   slug: "hawaii-dmv-practice-test",
   headline: "Hawaii DMV Practice Test 2025",
   intro:
-    "Hawaii driver licensing is administered by the Hawaii Department of Transportation (DOT) through county offices on Oahu (City and County of Honolulu), Maui, Hawaii Island, and Kauai. The knowledge test has 30 questions and requires 80% (24/30) to pass. This free practice test covers Hawaii-specific topics: lava flow road closures, volcanic haze (vog), tsunami evacuation routes, the OUI terminology, and island-specific driving conditions.",
+    "Hawaii driver licensing is administered by the Hawaii Department of Transportation (DOT) through county offices on Oahu (City and County of Honolulu), Maui, Hawaii Island, and Kauai. The knowledge test has 30 questions and requires 80% (24/30) to pass. This free practice test covers Hawaii-specific topics: lava flow road closures, volcanic haze (vog), tsunami evacuation routes, Hawaii's unique OVUII impaired-driving law, and island-specific driving conditions.",
   basedOn: "Hawaii Department of Transportation Driver's Manual",
   keyRules: [
     {
@@ -66,13 +66,13 @@ const data: PracticeTestPageProps = {
     },
     {
       icon: "🍺",
-      rule: "OUI Terminology: 0.08% for Adults",
+      rule: "OVUII: Hawaii's Unique Term for Impaired Driving",
       detail:
-        "Hawaii uses OUI (Operating Under the Influence) terminology rather than DUI or DWI. The adult OUI BAC limit is 0.08%. For drivers under 21, any measurable amount of alcohol — 0.02% or above — is an OUI violation. Hawaii's OUI penalties include mandatory license revocation and fines.",
+        "Hawaii uses OVUII (Operating a Vehicle Under the Influence of an Intoxicant) — a term no other U.S. state uses. The adult BAC limit is 0.08% under HRS § 291E-61. For drivers under 21, a BAC of 0.02% or above is an OVUII violation. Implied consent refusals carry administrative revocations of 2 years (1st), 4 years (2nd), and 8 years (3rd) — among the longest in the country.",
     },
   ],
   about: [
-    "Hawaii driver licensing is administered by the Hawaii Department of Transportation (DOT), Highways Division, through county-level offices: the City and County of Honolulu on Oahu, Maui County, Hawaii County (Big Island), and Kauai County. The knowledge test consists of 30 multiple-choice questions, and a passing score of 80% (24 out of 30 correct) is required. Hawaii uses OUI (Operating Under the Influence) terminology for impaired driving offenses rather than DUI or DWI. The permit age in Hawaii is 15½ years old.",
+    "Hawaii driver licensing is administered by the Hawaii Department of Transportation (DOT), Highways Division, through county-level offices: the City and County of Honolulu on Oahu, Maui County, Hawaii County (Big Island), and Kauai County. The knowledge test consists of 30 multiple-choice questions, and a passing score of 80% (24 out of 30 correct) is required. Hawaii uses the unique term OVUII (Operating a Vehicle Under the Influence of an Intoxicant, HRS § 291E-61) for impaired driving — no other U.S. state uses this designation. The permit age in Hawaii is 15½ years old.",
     "Hawaii drivers face hazards found nowhere else in the United States. On Hawaii Island (the Big Island), active volcanic eruptions from Kilauea have permanently destroyed roads — the 2018 eruption destroyed Highway 137 (Lower Puna Road) and permanently closed portions of the road network in lower Puna district. Volcanic haze (vog) — created when sulfur dioxide from Kilauea mixes with moisture — reduces visibility and affects air quality on the Big Island and sometimes other islands. Tsunami evacuation routes are marked with blue signs throughout coastal areas of all Hawaiian islands, and all Hawaii drivers must know to immediately move to higher ground when a tsunami warning is issued.",
     "Hawaii's geography presents unique road network facts: the H-1, H-2, and H-3 highways are federally designated Interstate highways but they exist entirely on Oahu and do not connect to the mainland or other islands. There is no road connection between islands — vehicle transport requires cargo ship or ferry service. Hilo, on Hawaii Island, receives over 120 inches of rain annually, making it one of the wettest cities in the U.S., and sudden rainfall on volcanic basalt road surfaces creates extremely slippery conditions requiring immediate speed reduction.",
   ],
@@ -153,7 +153,7 @@ const data: PracticeTestPageProps = {
       ],
       correctIndex: 3,
       explanation:
-        "Hawaii uses the specific legal term OVUII — Operating a Vehicle Under the Influence of an Intoxicant — for impaired driving offenses under Hawaii Revised Statutes § 291E-61. The adult BAC threshold is 0.08%. For drivers under 21, a BAC of 0.02% or higher constitutes an OVUII violation. Common usage often refers to this as OUI or OVUII, distinguishing it from the DUI/DWI terminology used by most other states.",
+        "Hawaii uses the specific legal term OVUII — Operating a Vehicle Under the Influence of an Intoxicant — for impaired driving offenses under Hawaii Revised Statutes § 291E-61. The adult BAC threshold is 0.08%. For drivers under 21, a BAC of 0.02% or higher constitutes an OVUII violation. No other U.S. state uses this exact designation — all official Hawaii court documents, statutes, and law enforcement records use OVUII, not DUI or OUI.",
     },
     {
       question:
@@ -217,7 +217,7 @@ const data: PracticeTestPageProps = {
     {
       question: "What is OVUII and what are the BAC limits in Hawaii?",
       answer:
-        "OVUII stands for Operating a Vehicle Under the Influence of an Intoxicant — Hawaii's legal term for impaired driving (what most states call DUI or DWI). The adult BAC threshold is 0.08% under Hawaii Revised Statutes § 291E-61. For drivers under 21, the limit is 0.02% — any measurable BAC at or above this level is an OVUII violation. Hawaii OVUII penalties include mandatory license revocation, fines, possible jail time, and mandatory substance abuse assessment. The term 'OUI' is commonly used informally, but the official Hawaii law term is OVUII.",
+        "OVUII stands for Operating a Vehicle Under the Influence of an Intoxicant — Hawaii's legal term for impaired driving (what most states call DUI or DWI). The adult BAC threshold is 0.08% under Hawaii Revised Statutes § 291E-61. For drivers under 21, the limit is 0.02% — any measurable BAC at or above this level is an OVUII violation. A BAC of 0.15% or higher triggers enhanced aggravated OVUII penalties, including mandatory ignition interlock on a first conviction. Hawaii OVUII penalties include mandatory license revocation, fines, possible jail time, and mandatory substance abuse assessment. OVUII is the official legal designation — no other U.S. state uses this specific term.",
     },
     {
       question: "What should drivers do if a lava flow approaches a road on Hawaii Island?",
@@ -237,7 +237,7 @@ const data: PracticeTestPageProps = {
     {
       question: "What are the graduated licensing stages in Hawaii?",
       answer:
-        "Hawaii's Graduated Driver License (GDL) system has multiple stages. At age 15½, teens can obtain a Learner's Permit after passing the knowledge test. Permit holders must be accompanied by a licensed driver 21 or older at all times. At age 16 (after at least 180 days holding the permit and completing required supervised hours), a provisional license is available after passing a road skills test. The provisional license has nighttime driving restrictions and passenger limitations. After 12 months with a provisional license (and no traffic violations), a full unrestricted license is available.",
+        "Hawaii's Graduated Driver License (GDL) system has three stages. Phase 1 (Learner's Permit): available at age 15½; requires a licensed supervisor 21+ at all times (parent/guardian only between 11 p.m. and 5 a.m.); requires 50 supervised hours (at least 10 at night). Phase 2 (Provisional License): available at age 16 after holding Phase 1 for at least 180 days; restricts passengers (max 1 under-18 unless parent/guardian present) and nighttime driving (11 p.m.–5 a.m., with exceptions for documented work or school). Phase 3 (Full License): available at age 17 after holding Phase 2 for at least 6 months.",
     },
     {
       question: "What is vog and when should Hawaii drivers be concerned about it?",
@@ -252,7 +252,7 @@ const data: PracticeTestPageProps = {
     {
       question: "What is the permit age in Hawaii?",
       answer:
-        "Hawaii issues driver's instruction permits at age 15½ years old. The permit is obtained through the county licensing office serving the island where the applicant resides. After obtaining the permit, the permit holder must complete a minimum number of supervised driving hours — including nighttime driving hours — before being eligible to apply for a provisional license. The county licensing office processes all permit applications and conducts the knowledge test.",
+        "Hawaii issues driver's instruction permits at age 15½ years old (HRS § 286-102.6). The permit is obtained through the county licensing office serving the island where the applicant resides. After obtaining the permit, the holder must complete at least 50 supervised hours (minimum 10 at night) and hold the permit for at least 180 days before being eligible for a Phase 2 Provisional License at age 16. If you fail the knowledge test, Hawaii requires a 30-day wait before retesting — one of the strictest retest policies in the U.S.",
     },
   ],
   relatedTests: [

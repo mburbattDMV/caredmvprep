@@ -4,7 +4,7 @@ import PracticeTestPage, { type PracticeTestPageProps } from "@/components/Pract
 export const metadata: Metadata = {
   title: "Hawaii Motorcycle Practice Test 2025 – Free HI Endorsement Exam Prep",
   description:
-    "Prepare for your Hawaii motorcycle endorsement test with free practice questions covering universal helmet laws, vog visibility hazards, volcanic road surfaces, Pali Highway crosswinds, and HI OUI/OVUII rules.",
+    "Prepare for your Hawaii motorcycle endorsement test with free practice questions covering Hawaii's under-18 helmet law, lane splitting ban, MSF course requirement, vog visibility hazards, volcanic road surfaces, Pali Highway crosswinds, and HI OVUII rules.",
   alternates: { canonical: "https://caredmvprep.com/hawaii-motorcycle-practice-test" },
   openGraph: {
     url: "https://caredmvprep.com/hawaii-motorcycle-practice-test",
@@ -19,25 +19,25 @@ const data: PracticeTestPageProps = {
   slug: "hawaii-motorcycle-practice-test",
   headline: "Hawaii Motorcycle Practice Test 2025",
   intro:
-    "Hawaii requires a motorcycle endorsement on your driver's license to operate a motorcycle. The endorsement test is administered through Hawaii's county licensing offices under the Department of Transportation. Hawaii's universal helmet law (HRS § 291-3.4) requires all riders to wear a DOT-approved helmet. Hawaii motorcycle riders also face unique hazards: volcanic basalt road surfaces, vog visibility reduction, Pali Highway crosswinds, and the reality that motorcycles must be shipped between islands via cargo vessel.",
+    "Hawaii requires a motorcycle endorsement on your driver's license to operate a motorcycle. The endorsement test has 25 questions and requires 80% (20/25) to pass. Under Act 66 (December 2025), the MSF Basic RiderCourse must be completed BEFORE applying for a motorcycle permit; completing it may also waive the skills test. Under HRS § 286-81, helmet use is required for operators and passengers under 18 — adults 18+ are not legally required to wear one (though strongly recommended). Lane splitting is illegal under HRS § 291C-153(c). Hawaii motorcycle riders also face unique hazards: volcanic basalt road surfaces, vog visibility reduction, Pali Highway crosswinds, and the reality that motorcycles must be shipped between islands via cargo vessel.",
   basedOn: "Hawaii Department of Transportation Motorcycle Operator Manual",
   about: [
-    "Hawaii's universal motorcycle helmet law under Hawaii Revised Statutes § 291-3.4 requires all motorcycle operators and passengers to wear a DOT-approved helmet regardless of age or experience. The motorcycle endorsement is obtained through county licensing offices (Honolulu, Maui, Hawaii County, Kauai) by passing a knowledge test and either a riding skills test or an approved Motorcycle Safety Foundation (MSF) course. Hawaii's OVUII law (Operating a Vehicle Under the Influence of an Intoxicant, HRS § 291E-61) applies fully to motorcycle operators, with a 0.08% BAC limit for adults and 0.02% for riders under 21.",
+    "Hawaii's motorcycle helmet law (HRS § 286-81) requires operators and passengers under 18 to wear a DOT-approved helmet. Adults 18 and older are not legally required to wear a helmet on motorcycles. Moped operators of ALL ages must wear a helmet under Act 222 (effective June 2025). The motorcycle endorsement is obtained through county licensing offices (Honolulu, Maui, Hawaii County, Kauai). Under Act 66 (December 2025), the MSF Basic RiderCourse must be completed before applying for a motorcycle permit; completing it may waive the skills test, but the written knowledge test is always required. Lane splitting is illegal under HRS § 291C-153(c); two motorcycles riding side-by-side in the same lane is also illegal under HRS § 291C-153(d). Hawaii's OVUII law (Operating a Vehicle Under the Influence of an Intoxicant, HRS § 291E-61) applies fully to motorcycle operators, with a 0.08% BAC limit for adults and 0.02% for riders under 21.",
     "Riding motorcycles in Hawaii presents challenges unique to the state. Volcanic basalt road surfaces — particularly on Hawaii Island — become dangerously slippery when wet, and Hilo's annual rainfall of over 120 inches means wet-road riding is common. Vog from Kilauea reduces visibility and can irritate a rider's eyes and respiratory system. The Pali Highway on Oahu features strong channeled winds through the Ko'olau Mountains that can affect motorcycle stability. Motorcycles cannot be ridden between islands — they must be shipped via cargo vessel (Matson Navigation or Young Brothers). Each island has completely separate road networks.",
   ],
   sampleQuestions: [
     {
       question:
-        "Under Hawaii Revised Statutes § 291-3.4, who must wear a helmet while riding a motorcycle in Hawaii?",
+        "Under Hawaii Revised Statutes § 286-81, who is REQUIRED to wear a helmet while riding a motorcycle in Hawaii?",
       options: [
-        "Only riders under 18 years old",
-        "Only riders under 21 years old",
         "All motorcycle operators and passengers, regardless of age",
         "Only riders who have been licensed for less than 2 years",
+        "Only riders under 21 years old",
+        "Operators and passengers under 18 years of age only",
       ],
-      correctIndex: 2,
+      correctIndex: 3,
       explanation:
-        "Hawaii's universal helmet law (HRS § 291-3.4) requires all motorcycle operators and all passengers to wear a DOT-approved protective helmet, regardless of age or riding experience. There are no age-based exceptions in Hawaii. The helmet must meet federal safety standards. Riding without a compliant helmet is a traffic violation subject to fines under Hawaii law.",
+        "HRS § 286-81 requires helmet use only for motorcycle operators and passengers under 18 years of age. Adult riders (18 and older) are NOT legally required to wear a helmet in Hawaii, making it a partial-helmet state. However, safety experts strongly recommend helmets for all riders — in a crash, a DOT-approved helmet reduces fatality risk by approximately 37%. Note that moped operators of ALL ages must wear a helmet under Act 222 (June 2025), which is stricter than the motorcycle rule.",
     },
     {
       question:
@@ -132,12 +132,12 @@ const data: PracticeTestPageProps = {
     {
       question: "Is a helmet required to ride a motorcycle in Hawaii?",
       answer:
-        "Yes. Hawaii has a universal motorcycle helmet law under HRS § 291-3.4 that requires all motorcycle operators and all passengers to wear a DOT-approved helmet regardless of age. There are no age-based exceptions — unlike states that only require helmets for riders under 21 or under 18. Riding without a compliant helmet is a traffic violation subject to fines under Hawaii law.",
+        "It depends on age. Under HRS § 286-81, motorcycle operators and passengers under 18 years old are required to wear a DOT-approved helmet. Adults 18 and older are NOT legally required to wear a motorcycle helmet in Hawaii. However, moped operators of ALL ages must wear a helmet under Act 222 (effective June 2025). Safety experts strongly recommend helmets for all riders regardless of the law — a DOT-approved helmet reduces fatality risk by approximately 37% in a crash.",
     },
     {
       question: "How do I get a motorcycle endorsement in Hawaii?",
       answer:
-        "To obtain a motorcycle endorsement in Hawaii, visit the county licensing office for the island where you reside (City and County of Honolulu for Oahu; Maui County for Maui, Molokai, and Lanai; Hawaii County for the Big Island; Kauai County). You must pass a motorcycle knowledge test and either pass a motorcycle riding skills test at a county testing site or complete an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse, which waives the skills test. The endorsement is added to your Hawaii driver's license.",
+        "Under Act 66 (December 2025), you must complete the MSF Basic RiderCourse (BRC) BEFORE applying for a motorcycle instruction permit. After completing the BRC, visit the county licensing office for your island (City and County of Honolulu for Oahu; Maui County for Maui, Molokai, and Lanai; Hawaii County for the Big Island; Kauai County). You must pass the motorcycle knowledge test — this is always required and cannot be waived. Completing the BRC may waive the riding skills test. The endorsement is added to your Hawaii driver's license. Under a motorcycle instruction permit, you may not carry passengers and may not ride at night.",
     },
     {
       question: "What is OVUII and how does it apply to motorcycle riders in Hawaii?",
@@ -160,24 +160,24 @@ const data: PracticeTestPageProps = {
         "For the motorcycle knowledge test in Hawaii, you typically need to bring a valid form of ID (driver's license or ID card), proof of residency (if not already on file), and the application fee. If you are under 18, you may also need a parent or guardian's signature on a minor consent form. Check the Hawaii DMV website before your visit to confirm current requirements, as they can change.",
     },
     {
-      question: "How long is the Hawaii motorcycle permit valid, and can I ride alone with it?",
+      question: "What restrictions apply to a Hawaii motorcycle instruction permit?",
       answer:
-        "Motorcycle learner's permit validity varies by state, typically ranging from 90 days to 2 years. With a permit in Hawaii, you are generally restricted from riding at night, on highways, or carrying passengers. These restrictions ensure new riders gain experience safely before obtaining a full license. Check the Hawaii DMV website for specific permit restrictions and validity periods in your state.",
+        "A Hawaii motorcycle instruction permit holder may NOT carry passengers and may NOT ride at night. These restrictions apply until you pass the skills test (or have it waived via the MSF BRC) and receive your full motorcycle endorsement. Under Act 66 (December 2025), the MSF Basic RiderCourse must be completed before you can even apply for the instruction permit. The written knowledge test is always required regardless of BRC completion. Children under 7 years old are prohibited from riding as motorcycle passengers under any circumstances (HRS § 291-11).",
     },
     {
       question: "Is a motorcycle endorsement required in Hawaii, or is it a separate license?",
       answer:
-        "The structure varies by state. Some states, including Hawaii, add a motorcycle endorsement (typically marked as 'M') to your existing driver's license, while others issue a separate motorcycle license or permit. Either way, you must pass a motorcycle knowledge test and, in most cases, a riding skills test or approved safety course before you can legally operate a motorcycle on public roads.",
+        "Hawaii adds a motorcycle endorsement (marked 'M') to your existing driver's license — it is not a separate license document. To obtain the endorsement you must: (1) complete the MSF Basic RiderCourse before applying for a permit (Act 66, December 2025); (2) pass the written motorcycle knowledge test (25 questions, 80% to pass); and (3) either pass the riding skills test at a county site or have it waived via the BRC. Lane splitting is illegal in Hawaii (HRS § 291C-153(c)), so riding between lanes of traffic is never permitted.",
     },
     {
-      question: "What types of motorcycles require a motorcycle license in Hawaii?",
+      question: "What types of motorcycles require a motorcycle endorsement in Hawaii?",
       answer:
-        "In Hawaii, a motorcycle license or endorsement is generally required to operate any two-wheeled, three-wheeled, or motor-driven cycle above a certain engine displacement or speed threshold. This includes standard motorcycles, sport bikes, cruisers, and most scooters above 50cc. Mopeds (typically under 50cc, max speed 30 mph) may have different requirements — check the Hawaii DMV's specific definitions. Electric motorcycles and e-bikes are subject to separate regulations based on their maximum speed and motor output.",
+        "A motorcycle endorsement is required for motorcycles (engine displacement above 50cc or capable of speeds above 30 mph). Mopeds — defined in Hawaii as motorized cycles with 50cc or less and a maximum speed of 30 mph — do not require a motorcycle endorsement but do require a driver's license. Under Act 222 (June 2025), ALL moped operators regardless of age must wear a helmet. Children under 7 are prohibited from riding as passengers on any motorcycle (HRS § 291-11). Motorcycles may not be operated in bicycle lanes (HRS § 291C-153).",
     },
     {
-      question: "Does completing a motorcycle safety course waive the skills test in Hawaii?",
+      question: "Does completing the MSF Basic RiderCourse waive the skills test in Hawaii?",
       answer:
-        "In many states, completing an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse or an equivalent state-approved program waives the DMV riding skills test requirement. Some states also waive the knowledge test for course graduates. Hawaii DMV policies on course waivers vary — check the DMV website or contact them directly to confirm which approved courses qualify for test waivers and whether any age restrictions apply.",
+        "Yes — completing the MSF Basic RiderCourse (BRC) may waive the riding skills test in Hawaii. However, under Act 66 (December 2025), the BRC must be completed BEFORE applying for the motorcycle permit (not just before the skills test). The written knowledge test is ALWAYS required and cannot be waived by the BRC or any other course. The BRC waives the skills test only — every applicant must still pass the 25-question written knowledge test at a county licensing office. This sequence — BRC first, then permit application, then knowledge test — is Hawaii-specific and differs from most states.",
     },
   ],
   relatedTests: [

@@ -60,6 +60,7 @@ All states below have complete question banks. They are blocked from activation 
 | **Nebraska (NE)** | 2026-07-14 | 70 | 25 | DL count unverified; moto count unverified | NE DMV (402) 471-3918 |
 | **Idaho (ID)** | 2026-07-14 | 70 | 25 | DL count unverified (85% threshold, 40q/34 pass); moto count unverified | ID ITD (208) 334-8736 |
 | **West Virginia (WV)** | 2026-07-15 | 70 | 25 | Seat belt enforcement type (primary/secondary) NEEDS_VERIFICATION; DL (19/25, 76%) and moto (20/25, 80%) counts VERIFIED from handbook | WV DMV (304) 926-3499 |
+| **Hawaii (HI)** | 2026-07-15 | 70 | 25 | DL count (30/24/80%) and moto count (25/20/80%) VERIFIED from official HDOT sources — no blocking verification items | Honolulu DMV (808) 768-3391 |
 
 ### Notable Corrections Made While Queuing
 - **MS motorcycle page**: Helmet law was stated as "under-21 only" — corrected to ALL ages (§ 63-7-64)
@@ -71,32 +72,35 @@ All states below have complete question banks. They are blocked from activation 
 - **WV DL marketing**: Pass score corrected 80%/20 → 76%/19; "SB 268" bill reference replaced with WV Code § 17C-14-15
 - **WV moto marketing**: Test structure added (25 questions, 20 correct, 80%); contact lens eye protection insufficiency added; lane splitting illegal noted; MSF waives skills test only clarified
 - **WV state-facts**: `motoQuestions` 25, `motoToPass` 20, `motoPassingPct` "80%", `lastVerifiedAt` "2026-07-15" all updated from NEEDS_VERIFICATION
+- **HI DL questions**: Truncated options fixed in hi-dl-gdl-005 and hi-dl-gdl-010 (3 options restored); hi-moto-hawaii_laws-010 explanation contradiction fixed + isStateSpecificLaw updated; hi-moto-hawaii_laws-005 isStateSpecificLaw corrected false → true
+- **HI marketing (DL)**: "OUI" terminology replaced with "OVUII" throughout; GDL phases corrected ("12 months" error fixed); OVUII enhanced threshold (0.15%) added; implied consent revocations added
+- **HI marketing (moto)**: Universal helmet law (§ 291-3.4) corrected to under-18 only (§ 286-81); wrong statute removed; moped all-ages requirement (Act 222) added; lane splitting ban added; MSF pre-permit requirement (Act 66) added; shoulder riding expiry noted; test count (25q/20 correct) added
+- **HI state-facts**: `motoQuestions` 25, `motoToPass` 20, `motoPassingPct` "80%", `handbookUrl` updated, `lastVerifiedAt` "2026-07-15" all updated
 
 ---
 
 ## 🚧 In Progress
 
-*None currently. Hawaii (HI, ~1.44M pop.) is next.*
+*None currently. New Hampshire (NH, ~1.40M pop.) is next.*
 
 ---
 
-## ⬜ Remaining — Not Yet Started (11 states)
+## ⬜ Remaining — Not Yet Started (10 states)
 
 Ordered by population (highest first — process in this order):
 
 | Priority | State | Est. Population | Notes |
 |----------|-------|----------------|-------|
-| 1 | **Hawaii (HI)** | ~1.44M | Next to build |
-| 2 | **New Hampshire (NH)** | ~1.40M | |
-| 3 | **Maine (ME)** | ~1.37M | |
-| 4 | **Montana (MT)** | ~1.12M | |
-| 5 | **Rhode Island (RI)** | ~1.09M | |
-| 6 | **Delaware (DE)** | ~1.02M | |
-| 7 | **South Dakota (SD)** | ~920K | |
-| 8 | **North Dakota (ND)** | ~780K | |
-| 9 | **Alaska (AK)** | ~730K | |
-| 10 | **Vermont (VT)** | ~650K | |
-| 11 | **Wyoming (WY)** | ~580K | |
+| 1 | **New Hampshire (NH)** | ~1.40M | Next to build |
+| 2 | **Maine (ME)** | ~1.37M | |
+| 3 | **Montana (MT)** | ~1.12M | |
+| 4 | **Rhode Island (RI)** | ~1.09M | |
+| 5 | **Delaware (DE)** | ~1.02M | |
+| 6 | **South Dakota (SD)** | ~920K | |
+| 7 | **North Dakota (ND)** | ~780K | |
+| 8 | **Alaska (AK)** | ~730K | |
+| 9 | **Vermont (VT)** | ~650K | |
+| 10 | **Wyoming (WY)** | ~580K | |
 
 ---
 
@@ -125,12 +129,12 @@ Key items logged in `/Users/vader/CAREDMVPREP.COM/VERIFICATION.md`:
 
 | Metric | Count |
 |--------|-------|
-| States completed (built) | 39 |
+| States completed (built) | 40 |
 | States activated (live) | 24 |
-| States queued (built, awaiting verification) | 15 |
-| States remaining (not yet started) | 11 |
-| **Total completion** | **39 / 50 = 78%** |
-| Total DL questions authored | ~4,110 (across all built states) |
-| Total motorcycle questions authored | ~1,485 (across states with moto banks) |
+| States queued (built, awaiting verification) | 16 |
+| States remaining (not yet started) | 10 |
+| **Total completion** | **40 / 50 = 80%** |
+| Total DL questions authored | ~4,180 (across all built states) |
+| Total motorcycle questions authored | ~1,510 (across states with moto banks) |
 
 *Completion = states with question banks authored. Activation requires additional phone verification per activation-gate rules.*

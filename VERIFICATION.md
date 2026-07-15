@@ -575,7 +575,7 @@ Iowa's Driver License and Motorcycle question banks (70 DL + 23 moto questions) 
 |-------|-----------------|-------|---------------|
 | AR | 25Q/20P/80% suggested | Third-party only, no .gov page text | Check dfa.arkansas.gov/office/driver-services/licenses-ids-permits/motorcycle-license/ |
 | **CT** | **16Q confirmed** ✓ | **Passing threshold unknown** | Check portal.ct.gov/DMV or call CT DMV: (860) 263-5700 |
-| HI | 25Q/20P/80% suggested | County-administered, HIDOT didn't publish count | Contact county offices (Honolulu, Maui, Hawaii, Kauai) |
+| HI | 25Q/20P/80% **VERIFIED** | HDOT motorcycle page + KnowToDrive confirm 25Q/80% | VERIFIED 2026-07-15 — see Hawaii section at bottom |
 | MN | 40Q/32P/80% suggested | Atypical format, not from .gov page text | Check dps.mn.gov/divisions/dvs |
 | RI | 25Q/20P/80% suggested | Unclear if moto test ≠ 40Q general test | Check dmv.ri.gov/licenses-permits-ids/motorcycles or call |
 | SC | 30Q/24P/80% suggested | Third-party only, no .gov confirmation | Check dmv.sc.gov — call (803) 896-5000 |
@@ -786,3 +786,47 @@ All other states have been updated in `state-facts.ts` with official state CDL h
 ### Activation Status
 - QUEUED (not activated) — DL and moto test counts VERIFIED from handbook; other items above need phone confirmation before activation
 - Do NOT add to LIVE_STATE_SLUGS or LIVE_STATE_ABBRS until seat belt enforcement type confirmed (optional) and activation approved
+
+---
+
+## Hawaii (HI) — 2026-07-15
+
+### DL Test Structure
+- Questions: 30 | To pass: 24 correct (80%)
+- STATUS: VERIFIED — multiple official HDOT sources confirm; KnowToDrive platform listing confirms 30q/80%
+
+### Motorcycle Test Structure
+- Questions: 25 | To pass: 20 correct (80%)
+- STATUS: VERIFIED — consistent across official HDOT motorcycle page and KnowToDrive
+
+### Helmet Law
+- HRS § 286-81: Motorcycle operators and passengers UNDER 18 required; adults 18+ NOT required
+- Moped: ALL ages required (Act 222, June 2025)
+- STATUS: VERIFIED (§ 286-81 confirmed via Justia 2025)
+
+### Lane Splitting
+- ILLEGAL — HRS § 291C-153(c) prohibits operating between lanes
+- Side-by-side in same lane: also ILLEGAL (§ 291C-153(d))
+- Shoulder riding: ILLEGAL since Dec 31, 2020 (temporary law expired)
+- STATUS: VERIFIED
+
+### OVUII
+- Hawaii calls DUI "OVUII" — Operating a Vehicle Under the Influence of an Intoxicant
+- Enhanced threshold: 0.15%+ (not 0.16%)
+- STATUS: VERIFIED (HRS § 291E-61)
+
+### Implied Consent
+- 1st refusal: 2 years; 2nd: 4 years; 3rd: 8 years
+- Hearing: 6 days to request
+- STATUS: VERIFIED (HRS § 291E-41)
+
+### Headlight Distinctive Rules
+- Required 30 min AFTER sunset (not just at sunset)
+- Required when windshield wipers in use
+- Dim when following: 300 feet (most states: 200 feet)
+- STATUS: VERIFIED (HRS § 291-25)
+
+### Activation Status
+- QUEUED (not activated) — DL and moto counts VERIFIED; no blocking verification items
+- Ready for phone confirmation of any remaining items before activation
+- Phone: Honolulu DMV (808) 768-3391

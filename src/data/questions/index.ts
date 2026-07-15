@@ -56,6 +56,8 @@ import idDmvQuestions                from './dmv/idaho';
 import idMotoQuestions               from './motorcycle/idaho';
 import wvDmvQuestions                from './dmv/west-virginia';
 import wvMotoQuestions               from './motorcycle/west-virginia';
+import hiDmvQuestions                from './dmv/hawaii';
+import hiMotoQuestions               from './motorcycle/hawaii';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -871,6 +873,36 @@ export const quizRegistry: Record<string, QuizConfig> = {
     testId:      'west-virginia-cdl-general',
     label:       'West Virginia CDL General Knowledge Practice Test',
     state:       'west-virginia',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
+  },
+
+  // ── Hawaii ────────────────────────────────────────────────────────────────
+  // DL test: 30Q / 24-correct / 80% — Hawaii DOT / KnowToDrive
+  // Motorcycle: 25Q / 20-correct / 80%
+  // Permit minimum age: 15½; OVUII (not DUI); max speed 60 mph (lowest in US)
+  // NOT in LIVE_STATE_SLUGS or LIVE_STATE_ABBRS — needs_review status
+  'hawaii-permit': {
+    testId:      'hawaii-permit',
+    label:       'Hawaii Driver Knowledge Test Practice',
+    state:       'hawaii',
+    licenseType: 'permit',
+    questions:   verified(hiDmvQuestions),
+    passingScore: 0.80,  // 24 of 30 — Hawaii DOT standard
+  },
+  'hawaii-motorcycle': {
+    testId:      'hawaii-motorcycle',
+    label:       'Hawaii Motorcycle Knowledge Test Practice',
+    state:       'hawaii',
+    licenseType: 'motorcycle',
+    questions:   verified(hiMotoQuestions),
+    passingScore: 0.80,  // 20 of 25 — Hawaii DOT standard
+  },
+  'hawaii-cdl-general': {
+    testId:      'hawaii-cdl-general',
+    label:       'Hawaii CDL General Knowledge Practice Test',
+    state:       'hawaii',
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
