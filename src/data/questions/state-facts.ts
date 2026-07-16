@@ -682,26 +682,26 @@ const stateFacts: StateFacts[] = [
     abbr: "MT",
     agencyName: "Montana Motor Vehicle Division (Dept. of Justice)",
     agencyUrl: "https://mvdmt.gov",
-    handbookUrl: "https://mvdmt.gov/driving/drivers-manual/",
+    handbookUrl: "https://doj.mt.gov/driving-and-vehicles/driver-license/",
     handbookYear: 2025,
-    permitQuestions: 33,
-    permitToPass: 27,
-    permitPassingPct: "82%",
-    permitMinAge: 14.5,
+    permitQuestions: 33,          // NEEDS_VERIFICATION — not stated in official sources
+    permitToPass: 27,             // NEEDS_VERIFICATION
+    permitPassingPct: "82%",      // NEEDS_VERIFICATION
+    permitMinAge: 15,             // 15 with driver ed; 16 standard
     motoHandbookUrl: "https://mvdmt.gov/motorcycle/",
-    motoQuestions: 25,
-    motoToPass: 20,
-    motoPassingPct: "80%",
-    motoHelmetLaw: "under-18",
-    motoLaneSplittingLegal: true,
+    motoQuestions: 25,            // NEEDS_VERIFICATION
+    motoToPass: 20,               // NEEDS_VERIFICATION
+    motoPassingPct: "80%",        // NEEDS_VERIFICATION
+    motoHelmetLaw: "under-18",    // MCA 61-9-417 — verified
+    motoLaneSplittingLegal: false, // Lane splitting illegal; lane FILTERING is legal (MCA 61-8-392): target ≤10 mph, filter at ≤20 mph
     motoCourseWaivesSkillsTest: true,
     cdlHandbookUrl: "https://mvdmt.gov/wp-content/uploads/2023/09/Montana-CDL-Manual.pdf",
     cdlGeneralKnowledgeQuestions: 50,
     cdlGeneralKnowledgeToPass: 40,
     cdlGeneralKnowledgePassingPct: "80%",
-    lastVerifiedAt: VERIFIED,
+    lastVerifiedAt: "2026-07-15",
     notes:
-      "33-question test with 82% passing score (27/33). Lane filtering legal since 2021 (traffic stopped or ≤10 mph, motorcyclist ≤20 mph). Helmet required under 18. Course waiver: MSF BRC or state-equivalent waives skills test only; knowledge test still required.",
+      "permitMinAge: 15 with driver education; 16 standard (no driver ed). Test counts NEEDS_VERIFICATION — not stated in official DOJ/MVD sources. Lane FILTERING is legal since 2021 (MCA 61-8-392): may pass vehicles stopped or traveling ≤10 mph while filtering at ≤20 mph. Lane SPLITTING (between moving traffic lanes) remains illegal; motoLaneSplittingLegal reflects the splitting status. Helmet required under 18 (MCA 61-9-417). MSF BRC waives skills test only; knowledge test still required. Motorcycle liability insurance NOT required by Montana law.",
   },
   {
     state: "Nebraska",

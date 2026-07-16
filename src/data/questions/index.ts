@@ -62,6 +62,8 @@ import hiDmvQuestions                from './dmv/hawaii';
 import hiMotoQuestions               from './motorcycle/hawaii';
 import meDmvQuestions                from './dmv/maine';
 import meMotoQuestions               from './motorcycle/maine';
+import mtDmvQuestions                from './dmv/montana';
+import mtMotoQuestions               from './motorcycle/montana';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -938,6 +940,37 @@ export const quizRegistry: Record<string, QuizConfig> = {
     testId:      'maine-cdl-general',
     label:       'Maine CDL Practice Test',
     state:       'ME',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
+  },
+
+  // ── Montana ───────────────────────────────────────────────────────────────
+  // DL test: 33Q / 27-correct / 82% — NEEDS_VERIFICATION; not confirmed from official DOJ source
+  // Motorcycle: 25Q / 20-correct / 80% — NEEDS_VERIFICATION
+  // Helmet law: under-18 only (MCA 61-9-417). Lane filtering legal (MCA 61-8-392).
+  // MSF course waives skills test only; knowledge test still required.
+  // NOT in LIVE_STATE_SLUGS or LIVE_STATE_ABBRS — queued, not activated
+  'montana-permit': {
+    testId:      'montana-permit',
+    label:       'Montana DMV Practice Test',
+    state:       'MT',
+    licenseType: 'permit',
+    questions:   verified(mtDmvQuestions),
+    passingScore: 0.80,  // NEEDS_VERIFICATION — 27 of 33 would be ~82%; using 80% pending confirmation
+  },
+  'montana-motorcycle': {
+    testId:      'montana-motorcycle',
+    label:       'Montana Motorcycle Practice Test',
+    state:       'MT',
+    licenseType: 'motorcycle',
+    questions:   verified(mtMotoQuestions),
+    passingScore: 0.80,  // NEEDS_VERIFICATION — 20 of 25 assumed
+  },
+  'montana-cdl-general': {
+    testId:      'montana-cdl-general',
+    label:       'Montana CDL Practice Test',
+    state:       'MT',
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
