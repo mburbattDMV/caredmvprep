@@ -68,6 +68,8 @@ import riDmvQuestions                from './dmv/rhode-island';
 import riMotoQuestions               from './motorcycle/rhode-island';
 import deDmvQuestions                from './dmv/delaware';
 import deMotoQuestions               from './motorcycle/delaware';
+import sdDmvQuestions                from './dmv/south-dakota';
+import sdMotoQuestions               from './motorcycle/south-dakota';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -1067,6 +1069,41 @@ export const quizRegistry: Record<string, QuizConfig> = {
     testId:      'delaware-cdl-general',
     label:       'Delaware CDL Practice Test',
     state:       'DE',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
+  },
+
+  // ── South Dakota ──────────────────────────────────────────────────────────────
+  // DL test: 25Q / 20-correct / 80% — NEEDS_VERIFICATION (official DPS site not accessible)
+  // Motorcycle: 25Q / 20-correct / 80% — NEEDS_VERIFICATION
+  // Permit min age: 14 — one of youngest in US. Helmet law: under-18 only (§ 32-20-4).
+  // Eye protection: required all riders unless windscreen (§ 32-20-4.1).
+  // Lane splitting: illegal. MSF BRC waives BOTH knowledge and skills tests.
+  // DUI: adult 0.08%; under-21 0.02%; enhanced at 0.17% BAC.
+  // Implied consent refusal: 1st = 1 year; 2nd = 2 years revocation.
+  // Interstate speed: 80 mph (one of highest in US). School zone: 15 mph.
+  // NOT in LIVE_STATE_SLUGS or LIVE_STATE_ABBRS — needs_review status.
+  'south-dakota-permit': {
+    testId:      'south-dakota-permit',
+    label:       'South Dakota DPS Driver Knowledge Test Practice',
+    state:       'SD',
+    licenseType: 'permit',
+    questions:   verified(sdDmvQuestions),
+    passingScore: 0.80,  // 20 of 25 — NEEDS_VERIFICATION; widely reported, DPS site not accessible
+  },
+  'south-dakota-motorcycle': {
+    testId:      'south-dakota-motorcycle',
+    label:       'South Dakota DPS Motorcycle Knowledge Test Practice',
+    state:       'SD',
+    licenseType: 'motorcycle',
+    questions:   verified(sdMotoQuestions),
+    passingScore: 0.80,  // 20 of 25 — NEEDS_VERIFICATION; widely reported
+  },
+  'south-dakota-cdl-general': {
+    testId:      'south-dakota-cdl-general',
+    label:       'South Dakota CDL General Knowledge Practice Test',
+    state:       'SD',
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal FMCSA standard

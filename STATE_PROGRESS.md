@@ -2,7 +2,7 @@
 
 > **Read this file first in every new Claude session before doing any work.**
 > Updated automatically after every completed state.
-> Last updated: 2026-07-15 (MT queued; Rhode Island next)
+> Last updated: 2026-07-16 (DE queued; South Dakota next)
 
 ---
 
@@ -64,6 +64,8 @@ All states below have complete question banks. They are blocked from activation 
 | **New Hampshire (NH)** | 2026-07-15 | 70 | 25 | DL count (40/32/80%) and moto count (25/20/80%) NEEDS_VERIFICATION (DMV site blocked; call 603-227-4000) | NH DMV (603) 227-4000 |
 | **Maine (ME)** | 2026-07-15 | 70 | 25 | DL count (30/24/80%) VERIFIED; moto count (25/20/80%) NEEDS_VERIFICATION; first OUI conviction suspension (150d per statute) NEEDS_VERIFICATION; helmet law scope NEEDS_VERIFICATION | ME BMV (207) 624-9000 |
 | **Montana (MT)** | 2026-07-15 | 70 | 25 | DL count NEEDS_VERIFICATION (not in official sources); moto count NEEDS_VERIFICATION; helmet under-18 VERIFIED (MCA 61-9-417); lane filtering legal VERIFIED (MCA 61-8-392) | MT DOJ (406) 444-1772 |
+| **Rhode Island (RI)** | 2026-07-16 | 70 | 25 | DL count 40q VERIFIED (dmv.ri.gov); passing score NEEDS_VERIFICATION (call 401-462-4368); moto count NEEDS_VERIFICATION; helmet under-21+first-year VERIFIED (§31-10.1-4) | RI DMV (401) 462-4368 |
+| **Delaware (DE)** | 2026-07-16 | 70 | 25 | DL count NEEDS_VERIFICATION; moto count NEEDS_VERIFICATION; helmet under-19+first-2yr VERIFIED (§4185); 0.02% under-21 BAC VERIFIED (§4177L); aggravated DUI 0.15%/0.20% VERIFIED | DE DMV (302) 434-3200 |
 
 ### Notable Corrections Made While Queuing
 - **MS motorcycle page**: Helmet law was stated as "under-21 only" — corrected to ALL ages (§ 63-7-64)
@@ -89,17 +91,17 @@ All states below have complete question banks. They are blocked from activation 
 
 ## 🚧 In Progress
 
-*None currently. Rhode Island (RI, ~1.09M pop.) is next.*
+*None currently. South Dakota (SD, ~920K pop.) is next.*
 
 ---
 
-## ⬜ Remaining — Not Yet Started (7 states)
+## ⬜ Remaining — Not Yet Started (5 states)
 
 Ordered by population (highest first — process in this order):
 
 | Priority | State | Est. Population | Notes |
 |----------|-------|----------------|-------|
-| 1 | **Rhode Island (RI)** | ~1.09M | Next to build |
+| 1 | **South Dakota (SD)** | ~920K | Next to build |
 | 3 | **Rhode Island (RI)** | ~1.09M | |
 | 4 | **Delaware (DE)** | ~1.02M | |
 | 5 | **South Dakota (SD)** | ~920K | |
@@ -136,11 +138,11 @@ Key items logged in `/Users/vader/CAREDMVPREP.COM/VERIFICATION.md`:
 
 | Metric | Count |
 |--------|-------|
-| States completed (built) | 43 |
+| States completed (built) | 45 |
 | States activated (live) | 24 |
-| States queued (built, awaiting verification) | 19 |
-| States remaining (not yet started) | 7 |
-| **Total completion** | **43 / 50 = 86%** |
+| States queued (built, awaiting verification) | 21 |
+| States remaining (not yet started) | 5 |
+| **Total completion** | **45 / 50 = 90%** |
 | Total DL questions authored | ~4,337 (across all built states) |
 | Total motorcycle questions authored | ~1,535 (across states with moto banks) |
 

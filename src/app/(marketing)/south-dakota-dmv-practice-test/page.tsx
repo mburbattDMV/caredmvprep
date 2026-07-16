@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import PracticeTestPage, { type PracticeTestPageProps } from "@/components/PracticeTestPage";
 
 export const metadata: Metadata = {
-  title: "South Dakota DMV Practice Test 2025 – Free SD Driver's License Exam Prep",
+  title: "South Dakota DMV Practice Test 2026 – Free SD Driver's License Exam Prep",
   description:
-    "Prepare for your South Dakota DMV knowledge test with free practice questions covering Needles Highway tunnel clearances, 80 mph interstate limits, open range laws, Sturgis Rally traffic, and SD-specific driving rules. 25 questions, 80% to pass.",
+    "Free South Dakota DMV practice test. Covers DUI (0.08% adult, 0.02% under-21, enhanced at 0.17%), implied consent (1-yr/2-yr refusal), GDL permit at 14, 80 mph interstate, 15 mph school zone, secondary seat belt enforcement, and cell phone ban. Based on SDCL.",
   alternates: { canonical: "https://caredmvprep.com/south-dakota-dmv-practice-test" },
   openGraph: {
     url: "https://caredmvprep.com/south-dakota-dmv-practice-test",
@@ -17,222 +17,174 @@ const data: PracticeTestPageProps = {
   stateAbbr: "SD",
   testLabel: "DMV Practice Test",
   slug: "south-dakota-dmv-practice-test",
-  headline: "South Dakota DMV Practice Test 2025",
+  headline: "South Dakota DMV Practice Test 2026",
   intro:
-    "The Division of Motor Vehicles (DMV), South Dakota Department of Public Safety, administers a 25-question knowledge test. You must answer at least 20 questions correctly (80%) to pass. This free practice test covers South Dakota-specific topics including Needles Highway tunnel clearances, the 80 mph rural interstate speed limit, open range livestock laws, Sturgis Rally traffic management, and Iron Mountain Road restrictions.",
-  basedOn: "South Dakota Driver's License Manual (Department of Public Safety)",
+    "The South Dakota Department of Public Safety administers the driver knowledge test for all license applicants. This free practice test is based on verified South Dakota Codified Laws (SDCL), covering DUI law, the graduated driver licensing (GDL) program, speed limits, seat belt and cell phone law, headlight requirements, and right-of-way rules. South Dakota's minimum permit age of 14, the 80 mph interstate speed limit, and the 0.17% BAC enhancement threshold are among the state's distinctive laws covered here.",
+  basedOn: "South Dakota Codified Laws (SDCL) / South Dakota DPS Driver Manual",
   keyRules: [
     {
-      icon: "⛰️",
-      rule: "Needles Highway: No RVs, Buses, or Large Vehicles",
-      detail:
-        "SD-87 (Needles Highway) in Custer State Park has tunnels as low as 8'4\" tall and 8'9\" wide. RVs, buses, and any vehicle exceeding these dimensions CANNOT use the Needles Highway. Drivers must check their vehicle's height and width before entering. Attempting to enter with an oversized vehicle can result in the vehicle being stuck in a tunnel.",
+      icon: "🍺",
+      rule: "DUI — Adult 0.08%; Under-21 0.02%; Enhanced at 0.17%",
+      detail: "SDCL § 32-23-1 sets 0.08% BAC as the adult DUI per se threshold. Under-21 drivers face a 0.02% limit under § 32-23-21. Commercial drivers face 0.04% under § 32-12A-44. South Dakota's notable enhancement threshold is 0.17%: at that level, § 32-23-2.1 mandates a chemical dependency evaluation and increases the administrative license revocation from 30 to 120 days. A third DUI within 10 years is a Class 6 felony (§ 32-23-4).",
+    },
+    {
+      icon: "🚫",
+      rule: "Implied Consent — 1-Year Revocation (1st Refusal), 2 Years (2nd)",
+      detail: "SDCL § 32-23-10 deems all South Dakota drivers to have consented to chemical testing. Refusing a test triggers license revocation: 1st refusal = 1 year; 2nd refusal within 10 years = 2 years (§ 32-23-11). Under § 32-23-10.1, the refusal itself is admissible as evidence in any DUI proceeding — refusing does not prevent prosecution.",
+    },
+    {
+      icon: "📋",
+      rule: "GDL Permit at Age 14 — 180-Day Hold (90 Days With Driver's Ed)",
+      detail: "South Dakota allows instruction permits at age 14 — one of the youngest ages in the US (SDCL § 32-12-6). The standard hold period before applying for a restricted minor's permit is 180 days, reduced to 90 days with a completed state-approved driver's education course. The supervising adult must be seated in the front passenger seat at all times during the permit stage.",
+    },
+    {
+      icon: "🌙",
+      rule: "GDL Curfew: 10 PM to 6 AM",
+      detail: "South Dakota restricted permit holders cannot drive without a parent or legal guardian in the front seat between 10 PM and 6 AM. During permissible hours, passenger restrictions apply: first 6 months = immediate family only; after 6 months = 1 non-family passenger. All restrictions are removed when a parent or legal guardian is in the front seat.",
     },
     {
       icon: "🚗",
-      rule: "80 MPH Rural Interstate Speed Limit",
-      detail:
-        "South Dakota's rural Interstate highways (I-90 and I-29) have an 80 mph speed limit — one of the highest in the continental United States. This limit applies only in ideal conditions. Always adjust speed for weather, traffic, and road conditions, which in South Dakota can change rapidly.",
+      rule: "Speed Limits: Interstate 80 mph / Urban 25 mph / School Zone 15 mph",
+      detail: "SDCL § 32-25-4 sets 80 mph as the maximum interstate speed — one of the highest in the US. The minimum interstate speed is 40 mph (§ 32-25-5). Urban unposted areas default to 25 mph (§ 32-25-12). School zones are 15 mph when children are present (§ 32-25-14). Rural divided highways may be posted up to 70 mph by the Transportation Commission (§ 32-25-7.1). Township roads default to 55 mph (§ 32-25-9.2).",
     },
     {
-      icon: "🐄",
-      rule: "Open Range: Livestock on Roads",
-      detail:
-        "Most of western South Dakota (and significant portions of central SD) is open range. Livestock owners are not legally required to fence cattle and horses away from public roads. If you strike livestock in an open range area, the driver may bear financial liability. Scan rural roads constantly for animals, especially at night.",
+      icon: "🪑",
+      rule: "Seat Belt: SECONDARY Enforcement — $25 Adult Minimum Fine",
+      detail: "South Dakota has secondary enforcement for adult seat belts — police must have another reason to stop a vehicle before citing a seat belt violation. The minimum adult fine is $25 with no points assessed. Operators must ensure passengers ages 5–18 are buckled (§ 32-37-1.1). Children under 5 require an approved child restraint system. Booster seats recommended until 8 years old or 4'9\" tall.",
     },
     {
-      icon: "🏍️",
-      rule: "Sturgis Rally: Temporary Traffic Regulations",
-      detail:
-        "The Sturgis Motorcycle Rally (held annually in August in Meade County) brings 500,000–750,000 riders and spectators. Temporary traffic rules, officer-controlled intersections, and specific parking regulations apply throughout Sturgis and surrounding communities. Follow all officer and signage directions during the rally period.",
+      icon: "📱",
+      rule: "Cell Phone: Mobile Electronic Device Ban — Class 2 Misdemeanor",
+      detail: "SDCL § 32-26-47.1 prohibits operating a motor vehicle while using a mobile electronic device. Violations are classified as Class 2 misdemeanors carrying fines up to $500. This is stronger than a simple traffic infraction — it is a criminal misdemeanor. South Dakota does not have a separate texting-only ban; the law addresses mobile electronic device use broadly.",
     },
     {
-      icon: "🧒",
-      rule: "Permit Age: 14 Years Old",
-      detail:
-        "South Dakota issues instruction permits at age 14, one of the youngest ages in the nation. Permit holders between 14 and 16 must be accompanied by a licensed driver at least 18 years old. A restricted license is available at 16 after meeting GDL requirements, and a full license is available at 16 years and 6 months.",
-    },
-    {
-      icon: "🍺",
-      rule: "DUI: 0.08% Adults, 0.02% Under-21",
-      detail:
-        "South Dakota's DUI threshold is 0.08% BAC for adults and 0.02% for drivers under 21. South Dakota uses 'DUI' terminology. Implied consent applies — refusing a chemical test results in automatic license revocation. South Dakota has administrative revocation for DUI arrest even before conviction.",
-    },
-    {
-      icon: "🏔️",
-      rule: "Iron Mountain Road: 12'4\" Height Limit",
-      detail:
-        "US-16A (Iron Mountain Road) near Mount Rushmore has rock tunnel clearances of 12'4\" — no vehicles taller than 12'4\" may use this route. Pigtail bridges on this road also restrict long vehicles. Check all vehicle dimensions before approaching the Mount Rushmore area.",
-    },
-    {
-      icon: "🦬",
-      rule: "Badlands and Wildlife on Road",
-      detail:
-        "South Dakota's Badlands (SD-240) and Black Hills parks have prairie dogs, bison, pronghorn, and other wildlife on roadways. Never accelerate to pass wildlife on a park road — animals are unpredictable, and a bison weighing 2,000 lbs can destroy a vehicle. Park speed limits are strictly enforced.",
+      icon: "💡",
+      rule: "Headlights: Dim When Road Reveals Person at 200 Feet (§ 32-17-7)",
+      detail: "SDCL § 32-17-7 requires tilting headlamp beams downward in two situations: (1) when the highway is sufficiently lit to reveal a person 200 feet ahead, and (2) whenever meeting or overtaking any other vehicle. The 200-foot trigger distance applies to both the well-lit road scenario and the vehicle-meeting scenario.",
     },
   ],
   about: [
-    "The Division of Motor Vehicles (DMV), within the South Dakota Department of Public Safety, administers all driver licensing and testing in South Dakota. The knowledge test consists of 25 multiple-choice questions drawn from the South Dakota Driver's License Manual, covering traffic laws, road signs, and the unique driving conditions of the Mount Rushmore State. A passing score of 80% — 20 correct answers out of 25 — is required. Like neighboring North Dakota, South Dakota issues instruction permits at age 14, reflecting the state's agricultural and rural heritage.",
-    "South Dakota's most distinctive and consistently tested vehicle restriction is the Needles Highway (SD-87) in Custer State Park. The famous scenic route features granite needle rock formations and, critically, tunnels with clearances as low as 8'4\" tall and 8'9\" wide. RVs, buses, and any vehicle exceeding these dimensions absolutely cannot use the Needles Highway. This restriction is not always prominently marked at the highway's entrance points, meaning drivers must proactively check their vehicle dimensions. A related restriction exists on US-16A (Iron Mountain Road) near Mount Rushmore, where Pigtail Bridges and rock tunnels limit vehicle height to 12'4\" — again, requiring advance planning for any large vehicle.",
-    "Western South Dakota presents open range conditions across most of the region, requiring drivers to remain vigilant for livestock at all times. The state's rural Interstate highways — I-90 (crossing the state east to west) and I-29 (along the eastern border) — have an 80 mph speed limit, one of the highest in the continental United States. Every August, the Sturgis Motorcycle Rally transforms Meade County and the Black Hills region into one of the world's largest temporary gatherings, with 500,000 to 750,000 motorcyclists and visitors creating temporary traffic management protocols that all drivers in the region must follow. South Dakota's Badlands National Park (SD-240), Mount Rushmore National Memorial (US-16A), and Custer State Park (SD-87) each have specific vehicle and wildlife rules that drivers must know before entering.",
+    "South Dakota's driver licensing program stands out for several state-specific rules. The minimum permit age of 14 (SDCL § 32-12-6) is one of the youngest in the country, reflecting the state's large rural and agricultural geography where young people have long needed to operate vehicles. The GDL hold period is 180 days standard, or 90 days with a state-approved driver's ed course. During the restricted minor's permit stage, a 10 PM to 6 AM curfew requires a parent or legal guardian in the front seat. Passenger restrictions begin strictly: no non-family passengers in the first 6 months; only 1 non-family passenger allowed after 6 months. Both the curfew and passenger restrictions are waived entirely when a parent or guardian is in the front seat.",
+    "South Dakota's DUI law (SDCL § 32-23) covers all motor vehicle operators. The adult threshold is 0.08% BAC. Under-21 drivers face a 0.02% limit (§ 32-23-21). South Dakota's notable enhancement threshold is 0.17% BAC: above this level, § 32-23-2.1 mandates a chemical dependency evaluation AND increases the administrative license revocation from the standard 30 days to 120 days. A work permit at this BAC level requires participation in the 24/7 Sobriety Program (§ 32-23-23). A third DUI within 10 years is elevated to a Class 6 felony carrying up to 2 years in prison (§ 32-23-4). Implied consent refusal penalties are 1 year (first refusal) or 2 years (second within 10 years), and the refusal itself is admissible as evidence in DUI proceedings (§ 32-23-10.1).",
+    "South Dakota's speed limits reflect its vast open landscape: the interstate maximum is 80 mph (§ 32-25-4) with a 40 mph minimum (§ 32-25-5), making South Dakota's interstates among the fastest-posted in the continental United States. By contrast, school zones require a reduction to just 15 mph (§ 32-25-14) — lower than the 20 mph school zone found in many other states. Urban areas unposted default to 25 mph (§ 32-25-12). The seat belt law is secondary enforcement for adults — a distinctive feature as roughly half of states have primary enforcement. South Dakota's cell phone law (§ 32-26-47.1) classifies mobile electronic device use while driving as a Class 2 misdemeanor, which is more serious than a simple traffic ticket. Headlight dimming under § 32-17-7 is triggered when the road is lit well enough to reveal a person at 200 feet or when meeting or overtaking any vehicle.",
   ],
   sampleQuestions: [
     {
-      question:
-        "What is the minimum vehicle clearance required to legally drive through the tunnels on South Dakota's Needles Highway (SD-87) in Custer State Park?",
-      options: [
-        "Height: 11'6\", Width: 10'0\"",
-        "Height: 8'4\", Width: 8'9\"",
-        "Height: 12'4\", Width: 9'0\"",
-        "Height: 9'8\", Width: 9'4\"",
-      ],
+      question: "Under SDCL § 32-23-1, what is the adult DUI per se BAC threshold in South Dakota?",
+      options: ["0.10% or more", "0.08% or more", "0.06% or more", "0.05% or more"],
       correctIndex: 1,
       explanation:
-        "The Needles Highway (SD-87) has tunnels with minimum clearances of 8'4\" in height and 8'9\" in width — the smallest road tunnels on a major U.S. scenic highway. RVs, buses, box trucks, trailers, and any vehicle exceeding these dimensions are prohibited from using the Needles Highway. Motorcycles and standard passenger vehicles can typically navigate these tunnels. Drivers who attempt to enter with an oversized vehicle risk becoming stuck inside the tunnel, causing a major traffic disruption in a location with extremely limited emergency access.",
+        "SDCL § 32-23-1 establishes 0.08% BAC as the per se adult DUI threshold — a driver at or above this level is guilty of DUI regardless of apparent impairment. South Dakota uses 'DUI' (Driving Under the Influence) terminology throughout Chapter 32-23.",
     },
     {
-      question:
-        "What is the maximum rural interstate speed limit on South Dakota's I-90 and I-29?",
-      options: ["70 mph", "75 mph", "80 mph", "65 mph"],
+      question: "South Dakota imposes enhanced DUI penalties when a driver's BAC reaches what level?",
+      options: ["0.10% or more", "0.15% or more", "0.17% or more", "0.20% or more"],
       correctIndex: 2,
       explanation:
-        "South Dakota's rural Interstate highways — I-90 (crossing the state east to west, passing through Rapid City, the Badlands, and Sioux Falls) and I-29 (running north-south along the Minnesota border) — have an 80 mph speed limit. This is one of the highest rural Interstate speed limits in the continental United States. As always, the posted limit is a maximum in ideal conditions — South Dakota's spring blizzards, summer thunderstorms, and fall fog can require driving well below 80 mph to maintain safety.",
+        "SDCL § 32-23-2.1 triggers enhanced consequences at 0.17% BAC: a mandatory chemical dependency evaluation and an administrative license revocation of 120 days (versus 30 days for standard first-offense DUI). A work permit at this level requires participation in the 24/7 Sobriety Program under § 32-23-23. This 0.17% threshold is distinctive to South Dakota.",
     },
     {
-      question:
-        "During the annual Sturgis Motorcycle Rally in August, traffic management in and around Sturgis, South Dakota includes:",
-      options: [
-        "No special rules — normal traffic laws apply during the rally",
-        "Temporary traffic rules, officer-controlled intersections, and specific parking regulations throughout Sturgis and surrounding communities",
-        "Mandatory detour routes for non-motorcycle vehicles only",
-        "Speed limit increases on US-14 through Sturgis to accommodate increased traffic volume",
-      ],
-      correctIndex: 1,
-      explanation:
-        "The Sturgis Motorcycle Rally, held annually in August in Meade County, is one of the world's largest motorcycle rallies, attracting 500,000–750,000 attendees. During the rally, law enforcement implements temporary traffic management including officer-controlled intersections (where officer hand signals override normal traffic signals), temporary no-parking zones, alternate routing instructions, and special parking regulations in Sturgis and surrounding Black Hills communities. All drivers — not just motorcyclists — must follow these temporary instructions, which supersede normal traffic rules.",
-    },
-    {
-      question:
-        "In western South Dakota's open range territory, a driver strikes a steer that walked onto US-16 at night. What does South Dakota's open range law say about liability?",
-      options: [
-        "The rancher is always liable for cattle on public roads",
-        "Liability is split 50/50 between the driver and rancher under comparative fault",
-        "In open range areas, the driver may bear financial liability — ranchers are not required to fence livestock away from roads",
-        "The South Dakota Department of Transportation compensates drivers who hit livestock on state highways",
-      ],
+      question: "How long is a South Dakota driver's license revoked for a FIRST refusal to submit to chemical testing?",
+      options: ["90 days", "6 months", "1 year", "2 years"],
       correctIndex: 2,
       explanation:
-        "Most of western South Dakota is open range territory, where livestock owners have no legal obligation to fence animals away from public roads. When a driver strikes livestock in an open range area, the driver may bear the financial liability for damage to the animal — not the rancher. This makes vigilant scanning for cattle, horses, and other livestock on rural roads absolutely critical, especially at night. Cattle have dark coats and low eye placement, making them difficult to see in headlights until very close.",
+        "SDCL § 32-23-11 imposes a 1-year license revocation for a first refusal to submit to chemical testing under the implied consent law. A second refusal within 10 years carries a 2-year revocation. Under § 32-23-10.1, the fact of refusal is admissible as evidence in any DUI proceeding.",
     },
     {
-      question:
-        "US-16A (Iron Mountain Road) near Mount Rushmore has what maximum vehicle height restriction due to rock tunnel clearances?",
-      options: ["8'4\"", "10'6\"", "12'4\"", "14'0\""],
+      question: "What is the minimum age to obtain an instruction permit in South Dakota?",
+      options: ["15 years old", "15½ years old", "14 years old", "16 years old"],
       correctIndex: 2,
       explanation:
-        "Iron Mountain Road (US-16A) near Mount Rushmore has rock tunnel clearances that limit vehicles to a maximum height of 12'4\". The road also features Pigtail Bridges (spiral wooden bridges that gain elevation in a small horizontal distance) that restrict long vehicles. Any vehicle taller than 12'4\" — including many RVs, box trucks, and vans with roof accessories — is prohibited from this route. Drivers approaching the Mount Rushmore area should verify their vehicle's height before choosing a route through the Black Hills.",
+        "SDCL § 32-12-6 allows applicants to obtain an instruction permit at age 14 — one of the youngest minimum ages in the United States. South Dakota's large rural agricultural areas, where young people have historically needed to drive, contribute to this young permit age.",
     },
     {
-      question:
-        "What is the minimum age to obtain an instruction permit in South Dakota?",
-      options: ["15 years old", "15½ years old", "16 years old", "14 years old"],
+      question: "What is the maximum speed limit on South Dakota interstate highways under SDCL § 32-25-4?",
+      options: ["70 mph", "75 mph", "65 mph", "80 mph"],
       correctIndex: 3,
       explanation:
-        "South Dakota issues instruction permits at age 14 — one of the youngest permit ages in the United States. Permit holders between 14 and 15 must be accompanied by a parent, guardian, or licensed driver who is at least 18 years old. This young permit age reflects South Dakota's agricultural heritage, where young people have operated farm equipment for generations. A restricted license becomes available at 16 after meeting all GDL requirements, and a full unrestricted license is available at 16½.",
+        "SDCL § 32-25-4 sets the maximum speed limit on South Dakota's interstate highways at 80 mph — one of the highest posted speed limits in the continental United States. The statute also establishes a minimum speed of 40 mph on interstate highways (§ 32-25-5).",
     },
     {
-      question:
-        "While driving on SD-240 (Badlands Loop Road), you see a small herd of bison on the road ahead. What is the correct action?",
-      options: [
-        "Sound your horn repeatedly to move the bison off the road",
-        "Drive slowly and carefully through the herd — bison generally ignore vehicles",
-        "Stop and wait for the bison to move — never try to pass through or around wildlife on park roads",
-        "Turn around immediately and exit the park by a different route",
-      ],
-      correctIndex: 2,
-      explanation:
-        "Bison and other large wildlife encountered on Badlands Loop Road (SD-240) and other Black Hills and Badlands park roads must be treated with extreme caution. The correct response is to stop and wait for the animals to move on their own. Never sound your horn repeatedly (which can provoke aggressive behavior) and never try to drive through a bison herd. A bison can weigh up to 2,000 pounds and can charge a vehicle if provoked. Park roads have strictly enforced low speed limits, and wildlife encounters are a known and expected part of the driving experience.",
-    },
-    {
-      question:
-        "What is the DUI blood alcohol concentration (BAC) limit for a driver under 21 in South Dakota?",
-      options: ["0.00%", "0.02%", "0.04%", "0.08%"],
+      question: "South Dakota's adult seat belt law is classified as what type of enforcement?",
+      options: ["Primary — police may stop solely for a seat belt violation", "Secondary — requires another reason to make a traffic stop", "Advisory — tickets issued with a written warning only", "There is no seat belt law for adults in South Dakota"],
       correctIndex: 1,
       explanation:
-        "South Dakota enforces a 0.02% BAC limit for drivers under 21 — effectively prohibiting any meaningful alcohol consumption before driving. This near-zero tolerance policy means that a single standard drink can result in a DUI charge for an underage driver. For adult drivers 21 and older, the standard 0.08% threshold applies. South Dakota's implied consent law means that refusing a chemical test triggers automatic license revocation separate from criminal DUI charges.",
+        "South Dakota has secondary enforcement for the adult seat belt law — police must have a separate, primary reason to stop a vehicle before issuing a seat belt citation for adult occupants. The minimum adult fine is $25 with no points assessed. Under § 32-37-1.1, operators must ensure passengers ages 5–18 are buckled.",
     },
     {
-      question:
-        "You are driving a standard passenger vehicle and want to drive the Needles Highway (SD-87). Which vehicle would be prohibited from using this road?",
-      options: [
-        "A standard four-door sedan with a rooftop cargo carrier adding 4 inches of height",
-        "A Honda Gold Wing motorcycle",
-        "A 30-foot Class A motorhome (RV)",
-        "A compact SUV with factory roof rails",
-      ],
+      question: "What is the maximum speed limit in a South Dakota school zone when children are going to or leaving school?",
+      options: ["25 mph", "20 mph", "15 mph", "10 mph"],
       correctIndex: 2,
       explanation:
-        "A 30-foot Class A motorhome is definitively prohibited from the Needles Highway because its height (typically 12–13+ feet) far exceeds the 8'4\" tunnel clearance, and its length would make navigating the tight switchbacks impossible. Standard motorcycles, sedans, and compact SUVs can typically navigate the Needles Highway. A rooftop cargo carrier adding a small amount of height may potentially approach the limit — drivers should carefully measure total vehicle height before entering. When in doubt, use an alternate route.",
+        "SDCL § 32-25-14 limits speed to 15 mph when passing a school during recess or while children are going to or leaving school during opening or closing hours. South Dakota's 15 mph school zone limit is lower than the 20 mph school zone found in many other states.",
     },
     {
-      question:
-        "South Dakota's Badlands National Park is located primarily along which state route?",
-      options: ["SD-44", "SD-240", "SD-87", "US-16A"],
+      question: "Under SDCL § 32-26-47.1, using a mobile electronic device while driving is classified as:",
+      options: ["A petty infraction with a $50 maximum fine", "A Class 1 misdemeanor with mandatory jail time", "A Class 2 misdemeanor with fines up to $500", "A civil violation with a $100 fine"],
+      correctIndex: 2,
+      explanation:
+        "SDCL § 32-26-47.1 classifies mobile electronic device use while driving as a Class 2 misdemeanor, carrying fines up to $500 and potential jail time. This makes South Dakota's distracted driving law more serious than a simple traffic infraction — it is a criminal misdemeanor.",
+    },
+    {
+      question: "During the first 6 months of a South Dakota restricted minor's permit, what passengers are permitted without a parent/guardian present?",
+      options: ["Up to 2 passengers of any kind", "Up to 1 non-family passenger", "No non-family passengers — immediate family only", "Any number of passengers are permitted"],
+      correctIndex: 2,
+      explanation:
+        "During the first 6 months of a South Dakota restricted minor's permit, the holder may only transport immediate family members — no non-family passengers — unless a parent or legal guardian is in the front seat. After 6 months, 1 non-family passenger is permitted. All restrictions are waived when a parent or guardian rides in the front seat.",
+    },
+    {
+      question: "SDCL § 32-17-7 requires South Dakota drivers to dim headlights under what condition?",
+      options: ["Only when entering city limits", "When the road is lit to reveal a person 200 feet ahead, or when meeting/overtaking another vehicle", "Only when a vehicle within 500 feet is approaching", "Only during the period between 10 PM and 6 AM"],
       correctIndex: 1,
       explanation:
-        "SD-240 (Badlands Loop Road) is the primary scenic road through Badlands National Park, running approximately 30 miles through the eroded butte formations of the South Dakota Badlands. The road has unique driving characteristics: dust can reduce visibility, many sections have no guardrails, and prairie dogs create burrow hazards at road edges. Wildlife including prairie dogs, pronghorn, bighorn sheep, and bison are commonly encountered on the road. Speed limits in the park are strictly enforced and are lower than South Dakota's rural highway limits.",
+        "SDCL § 32-17-7 requires tilting headlamps downward in two scenarios: (1) when the highway is sufficiently lighted to reveal a person on the highway at a distance of 200 feet ahead, and (2) whenever meeting or overtaking another vehicle on any highway. Both conditions — well-lit roads and the presence of other vehicles — trigger the low-beam requirement.",
     },
   ],
   faqs: [
     {
-      question: "What agency administers driver licensing in South Dakota?",
+      question: "What are South Dakota's DUI BAC limits?",
       answer:
-        "The Division of Motor Vehicles (DMV), within the South Dakota Department of Public Safety, administers all driver licensing, knowledge testing, and skills testing in South Dakota. Driver's license exam stations are located at Highway Patrol offices throughout the state. The Department of Public Safety also oversees the Highway Patrol, which enforces traffic laws on South Dakota's roads.",
+        "SDCL § 32-23-1 sets the adult DUI per se threshold at 0.08% BAC. Under-21 drivers face a 0.02% limit under § 32-23-21. Commercial vehicle operators face 0.04% under § 32-12A-44. South Dakota's distinctive enhancement threshold is 0.17% BAC: at this level, a mandatory chemical dependency evaluation is required and the administrative license revocation increases from 30 to 120 days (§ 32-23-2.1). A third DUI within 10 years is a Class 6 felony (§ 32-23-4).",
     },
     {
-      question: "What is the South Dakota DMV knowledge test format?",
+      question: "What are South Dakota's implied consent refusal penalties?",
       answer:
-        "The South Dakota knowledge test consists of 25 multiple-choice questions drawn from the South Dakota Driver's License Manual. A passing score of 80% — at least 20 correct answers — is required. The test covers South Dakota traffic laws, road signs, and state-specific driving rules. If you fail, a waiting period applies before you can retake the test. The manual is available online from the South Dakota Department of Public Safety.",
+        "Under SDCL § 32-23-10, operating a vehicle in South Dakota constitutes consent to chemical testing. Refusing a test results in license revocation: 1st refusal = 1 year; 2nd refusal within 10 years = 2 years (§ 32-23-11). Under § 32-23-10.1, the refusal is admissible as evidence in any DUI proceeding. Refusal does not prevent prosecution — police may seek a warrant for a blood draw.",
     },
     {
-      question: "Why can't RVs and large vehicles use the Needles Highway?",
+      question: "What are South Dakota's GDL requirements?",
       answer:
-        "The Needles Highway (SD-87) in Custer State Park was carved through the famous Needles granite rock formations in the 1920s, creating a scenic route with tunnels as low as 8'4\" in height and 8'9\" in width. These dimensions are far too small for RVs (typically 10–13+ feet tall), buses, box trucks, and most towed trailers. There are no alternative routes once you are inside the tunnel sections — a vehicle that is stuck in a Needles Highway tunnel cannot back out easily due to the curves. Drivers of any large vehicle must use alternate routes through the Black Hills.",
+        "South Dakota allows instruction permits at age 14 (SDCL § 32-12-6). The instruction permit hold period is 180 days (reduced to 90 days with a state-approved driver's ed course). During the restricted minor's permit stage, a 10 PM to 6 AM curfew applies (parent/guardian must be in front seat during curfew hours). Passenger restrictions: first 6 months = immediate family only; after 6 months = 1 non-family passenger. All restrictions removed when parent/guardian is in the front seat.",
     },
     {
-      question: "What are the graduated driver licensing stages in South Dakota?",
+      question: "What are South Dakota's speed limits?",
       answer:
-        "South Dakota's GDL program begins with an instruction permit at age 14 (one of the youngest in the nation). Permit holders must be accompanied by a licensed driver at least 18 years old. A restricted license (Stage 2) is available at 16 after holding the permit for 6 months and completing required supervised driving hours. Stage 2 restricts nighttime driving (no driving between midnight and 6 AM for the first 6 months) and limits passengers. A full unrestricted license (Stage 3) is available at 16 years and 6 months.",
+        "SDCL establishes: interstate maximum 80 mph (§ 32-25-4); interstate minimum 40 mph (§ 32-25-5); urban unposted areas 25 mph (§ 32-25-12); school zone 15 mph when children present (§ 32-25-14); rural divided highways up to 70 mph where authorized by Transportation Commission (§ 32-25-7.1); township roads 55 mph (§ 32-25-9.2).",
     },
     {
-      question: "What driving rules apply during the Sturgis Motorcycle Rally?",
+      question: "Is South Dakota's seat belt law primary or secondary enforcement?",
       answer:
-        "During the annual Sturgis Motorcycle Rally (typically the first full week of August), all drivers in Sturgis and surrounding communities in the Black Hills must follow temporary traffic management rules. These include officer-controlled intersections where hand signals from law enforcement officers override traffic signals, no-parking zones on rally routes, temporary one-way streets in Sturgis proper, and alternate routing suggestions. The South Dakota Highway Patrol and local police departments coordinate rally traffic management. Even non-motorcycle drivers visiting the area must be prepared for extremely high traffic volumes and follow all temporary instructions.",
+        "South Dakota has secondary enforcement for the adult seat belt law — police must have another reason to make a traffic stop before issuing a seat belt citation for adult occupants. The minimum adult fine is $25 with no points assessed. However, operators must ensure passengers between ages 5 and 18 are properly buckled (§ 32-37-1.1). Children under 5 must be secured in an approved child passenger restraint system.",
     },
     {
-      question: "What are South Dakota's open range laws and how do they affect drivers?",
+      question: "What is South Dakota's cell phone driving law?",
       answer:
-        "Open range law applies to most of western South Dakota and significant portions of central and eastern South Dakota outside of cities and towns. Under open range law, ranchers and farmers are not legally required to fence their livestock away from public roads. If a driver strikes cattle, horses, or other livestock on a road in an open range area, the driver may bear financial liability for injury to the animal. This makes scanning for livestock on rural roads — especially at night — a life-safety practice. Cattle in particular are very difficult to see at night as they have dark coats and relatively low-positioned eyes.",
+        "SDCL § 32-26-47.1 prohibits operating a motor vehicle while using a mobile electronic device. Violations are Class 2 misdemeanors — not just traffic infractions — carrying fines up to $500 and potential jail time. South Dakota does not have a separate texting-only prohibition; the statute applies to mobile electronic device use broadly. Emergency calls to 911 are typically exempt.",
     },
     {
-      question: "What is South Dakota's DUI law and penalties?",
+      question: "When must South Dakota drivers use headlights?",
       answer:
-        "South Dakota's DUI law sets the BAC threshold at 0.08% for adults 21 and older and 0.02% for drivers under 21. South Dakota uses 'DUI' (Driving Under the Influence) terminology. First DUI offense penalties include mandatory license revocation (30 days or more), a fine of at least $1,000, mandatory DUI program completion, and possible jail time of up to one year. South Dakota's implied consent law means refusing a chemical test triggers immediate license revocation — separate from any criminal DUI charge.",
+        "South Dakota requires headlights from sunset to sunrise and during periods of low visibility such as rain, snow, or fog. Under SDCL § 32-17-7, drivers must dim headlamps to low beam when: (1) the highway is sufficiently lit to reveal a person 200 feet ahead, and (2) whenever meeting or overtaking another vehicle. The 200-foot trigger applies in both scenarios.",
     },
     {
-      question: "What height restrictions apply to Iron Mountain Road (US-16A)?",
+      question: "What are South Dakota's child restraint requirements?",
       answer:
-        "Iron Mountain Road (US-16A) near Mount Rushmore has rock tunnel clearances that restrict vehicles to a maximum height of 12'4\". The road also features three Pigtail Bridges — wooden spiral bridges that restrict vehicle length due to their tight curves. RVs, buses, and trucks that exceed 12'4\" in height cannot use Iron Mountain Road. Drivers in any large vehicle approaching the Mount Rushmore area should check their vehicle dimensions and plan alternate routes (typically US-16 or SD-244) if their vehicle exceeds the height limit.",
+        "Children under 5 must be secured in an approved child passenger restraint system under SDCL § 32-37. Children ages 5 through 18 must wear a properly adjusted seat belt (§ 32-37-1.1). Booster seats are recommended until a child is at least 8 years old or 4'9\" (57 inches) tall. Children should remain rear-facing as long as possible, then in a forward-facing harness, then a booster seat, and finally a seat belt.",
     },
     {
-      question: "Can motorcycles legally drive through the Needles Highway tunnels?",
+      question: "How does completing driver's education affect South Dakota GDL requirements?",
       answer:
-        "Yes — motorcycles are among the vehicles for which the Needles Highway was essentially designed. The tunnels' 8'4\" height and 8'9\" width clearances are not a problem for standard motorcycles. In fact, the Needles Highway is one of South Dakota's most famous motorcycle destinations. During the Sturgis Rally in August, the Needles Highway sees very high motorcycle traffic. Motorcycle riders should still be aware of the tight switchbacks, limited guardrails, and blind curves on the route.",
-    },
-    {
-      question: "What should I know about driving in Badlands National Park?",
-      answer:
-        "Driving on SD-240 (Badlands Loop Road) through Badlands National Park requires awareness of several unique hazards. The road has sections with no guardrails adjacent to steep drop-offs into eroded butte formations. Dust kicked up by wind or passing vehicles can suddenly reduce visibility. Prairie dog colonies create burrow hazards at road edges — driving over prairie dog towns can damage tires. Wildlife including bison, pronghorn, bighorn sheep, and prairie dogs frequently cross the road. Speed limits within the park are strictly enforced. Fuel is not available inside the park, so fill up in Interior, Wall, or other surrounding towns before entering.",
+        "Completing a state-approved driver's education course in South Dakota reduces the instruction permit hold period from 180 days (6 months) to 90 days (3 months). This is the primary benefit of driver's ed within South Dakota's GDL structure. After completing the reduced hold period, the applicant may apply for a restricted minor's permit.",
     },
   ],
   relatedTests: [
