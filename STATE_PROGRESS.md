@@ -2,7 +2,7 @@
 
 > **Read this file first in every new Claude session before doing any work.**
 > Updated automatically after every completed state.
-> Last updated: 2026-07-15 (NH queued)
+> Last updated: 2026-07-15 (MT queued; Rhode Island next)
 
 ---
 
@@ -62,6 +62,8 @@ All states below have complete question banks. They are blocked from activation 
 | **West Virginia (WV)** | 2026-07-15 | 70 | 25 | Seat belt enforcement type (primary/secondary) NEEDS_VERIFICATION; DL (19/25, 76%) and moto (20/25, 80%) counts VERIFIED from handbook | WV DMV (304) 926-3499 |
 | **Hawaii (HI)** | 2026-07-15 | 70 | 25 | DL count (30/24/80%) and moto count (25/20/80%) VERIFIED from official HDOT sources — no blocking verification items | Honolulu DMV (808) 768-3391 |
 | **New Hampshire (NH)** | 2026-07-15 | 70 | 25 | DL count (40/32/80%) and moto count (25/20/80%) NEEDS_VERIFICATION (DMV site blocked; call 603-227-4000) | NH DMV (603) 227-4000 |
+| **Maine (ME)** | 2026-07-15 | 70 | 25 | DL count (30/24/80%) VERIFIED; moto count (25/20/80%) NEEDS_VERIFICATION; first OUI conviction suspension (150d per statute) NEEDS_VERIFICATION; helmet law scope NEEDS_VERIFICATION | ME BMV (207) 624-9000 |
+| **Montana (MT)** | 2026-07-15 | 70 | 25 | DL count NEEDS_VERIFICATION (not in official sources); moto count NEEDS_VERIFICATION; helmet under-18 VERIFIED (MCA 61-9-417); lane filtering legal VERIFIED (MCA 61-8-392) | MT DOJ (406) 444-1772 |
 
 ### Notable Corrections Made While Queuing
 - **MS motorcycle page**: Helmet law was stated as "under-21 only" — corrected to ALL ages (§ 63-7-64)
@@ -87,18 +89,17 @@ All states below have complete question banks. They are blocked from activation 
 
 ## 🚧 In Progress
 
-*None currently. Maine (ME, ~1.37M pop.) is next.*
+*None currently. Rhode Island (RI, ~1.09M pop.) is next.*
 
 ---
 
-## ⬜ Remaining — Not Yet Started (9 states)
+## ⬜ Remaining — Not Yet Started (7 states)
 
 Ordered by population (highest first — process in this order):
 
 | Priority | State | Est. Population | Notes |
 |----------|-------|----------------|-------|
-| 1 | **Maine (ME)** | ~1.37M | Next to build |
-| 2 | **Montana (MT)** | ~1.12M | |
+| 1 | **Rhode Island (RI)** | ~1.09M | Next to build |
 | 3 | **Rhode Island (RI)** | ~1.09M | |
 | 4 | **Delaware (DE)** | ~1.02M | |
 | 5 | **South Dakota (SD)** | ~920K | |
@@ -135,11 +136,11 @@ Key items logged in `/Users/vader/CAREDMVPREP.COM/VERIFICATION.md`:
 
 | Metric | Count |
 |--------|-------|
-| States completed (built) | 41 |
+| States completed (built) | 43 |
 | States activated (live) | 24 |
-| States queued (built, awaiting verification) | 17 |
-| States remaining (not yet started) | 9 |
-| **Total completion** | **41 / 50 = 82%** |
+| States queued (built, awaiting verification) | 19 |
+| States remaining (not yet started) | 7 |
+| **Total completion** | **43 / 50 = 86%** |
 | Total DL questions authored | ~4,337 (across all built states) |
 | Total motorcycle questions authored | ~1,535 (across states with moto banks) |
 

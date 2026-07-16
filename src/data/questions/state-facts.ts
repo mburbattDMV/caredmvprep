@@ -1028,26 +1028,27 @@ const stateFacts: StateFacts[] = [
     abbr: "RI",
     agencyName: "Rhode Island Division of Motor Vehicles",
     agencyUrl: "https://dmv.ri.gov",
-    handbookUrl: "https://dmv.ri.gov/licenses-permits-ids/permits-tests/operator-manuals",
+    handbookUrl: "https://dmv.ri.gov/licenses-permits-ids/permits-tests/knowledge-exams",
     handbookYear: 2025,
     permitQuestions: 40,
-    permitToPass: 32,
-    permitPassingPct: "80%",
+    permitToPass: 28,              // NEEDS_VERIFICATION — third-party: 28/40 = 70%; official not confirmed
+    permitPassingPct: "70%",       // NEEDS_VERIFICATION — 70%, 80%, 85% all reported from different sources
     permitMinAge: 16,
-    motoHandbookUrl: "https://dmv.ri.gov/licenses-permits-ids/permits-tests/operator-manuals",
-    motoQuestions: "NEEDS_VERIFICATION",
-    motoToPass: "NEEDS_VERIFICATION",
-    motoPassingPct: "NEEDS_VERIFICATION",
-    motoHelmetLaw: "under-18",
+    motoHandbookUrl: "https://dmv.ri.gov/licenses-permits-ids/permits-tests/knowledge-exams",
+    motoQuestions: 25,             // NEEDS_VERIFICATION
+    motoToPass: 20,                // NEEDS_VERIFICATION
+    motoPassingPct: "80%",         // NEEDS_VERIFICATION
+    motoHelmetLaw: "under-21",     // § 31-10.1-4 — under-21 AND first-year riders of any age
     motoLaneSplittingLegal: false,
     motoCourseWaivesSkillsTest: true,
     cdlHandbookUrl: "https://dmv.ri.gov/media/1096/download?language=en",
     cdlGeneralKnowledgeQuestions: 50,
     cdlGeneralKnowledgeToPass: 40,
     cdlGeneralKnowledgePassingPct: "80%",
-    lastVerifiedAt: VERIFIED,
+    lastVerifiedAt: "2026-07-16",
+    verifiedBy: "Agent 4 Final Editorial Review 2026-07-16; DL question count (40) VERIFIED from dmv.ri.gov; passing score NEEDS_VERIFICATION (conflicting: 70%/80%/85% all reported); moto test counts NEEDS_VERIFICATION",
     notes:
-      "Car test passing score is conflicted across sources (70%, 80%, 85% all reported); used 80% (32/40). Helmet required under 21 and for first-year licensees of any age. Course waiver: MSF BRC or state-equivalent waives skills test only; knowledge test still required.",
+      "Car test: 40 questions VERIFIED from dmv.ri.gov knowledge-exams page. Passing score is conflicted — third-party sources most commonly cite 28/40 (70%); some cite 32/40 (80%); official RI DMV page does not plainly state the passing threshold — NEEDS_VERIFICATION via direct call to RI DMV. Helmet required under 21 (§ 31-10.1-4) AND for any operator in their first year after endorsement issuance regardless of age — the 'under-21' schema value is an approximation; the true rule is an OR-gate (age < 21 OR endorsement age < 1 year). Eye protection required for ALL riders regardless of helmet status (§ 31-10.1-4) — a distinctive RI requirement. Lane splitting AND lane filtering: ILLEGAL as of February 1, 2026 — pilot program H 5658 expired January 31, 2026, not renewed. No separate motorcycle learner permit — CCRI-approved MSF course leads directly to 'M' endorsement (course waives both knowledge and skills tests at DMV). GDL: permit at 16; 33-hour in-person CCRI-certified driver ed required (online not accepted since 2022); 6-month hold; 50 supervised hours (10 at night); 1:00 AM–5:00 AM curfew; max 1 unrelated passenger under 21 in first 12 months. Under-21 DUI: 0.02%+ BAC = civil 'Driving While Impaired' (§ 31-27-2.7), NOT criminal DUI; criminal DUI threshold is 0.08% for any driver. Enhanced DUI tier: 0.15%+ BAC triggers mandatory ignition interlock. Interior dome light required during police stops before dawn or after dusk (§ 31-22-24). Moto test counts NEEDS_VERIFICATION — call RI DMV (401) 462-4368.",
   },
   {
     state: "South Carolina",

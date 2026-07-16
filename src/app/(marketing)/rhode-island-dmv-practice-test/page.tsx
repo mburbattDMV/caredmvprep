@@ -2,14 +2,10 @@ import type { Metadata } from "next";
 import PracticeTestPage, { type PracticeTestPageProps } from "@/components/PracticeTestPage";
 
 export const metadata: Metadata = {
-  title: "Rhode Island DMV Practice Test 2025 – Free RI Driver's License Exam Prep",
-  description:
-    "Prepare for your Rhode Island DMV knowledge test with free practice questions covering rotary right-of-way, Providence No Turn on Red rules, Pell Bridge procedures, chemical test refusal penalties, and RI traffic laws. 25 questions, 80% to pass.",
+  title: "Rhode Island DMV Practice Test 2026 – Free RI Knowledge Exam Prep",
+  description: "Prepare for the Rhode Island DMV 40-question knowledge test. Covers RI-specific laws: 0.02% under-21 BAC civil offense, 0.15% enhanced DUI tier, GDL 1–5 AM curfew, all-handheld cell phone ban, high-beam dimming at 500/200 ft, and school bus rules.",
   alternates: { canonical: "https://caredmvprep.com/rhode-island-dmv-practice-test" },
-  openGraph: {
-    url: "https://caredmvprep.com/rhode-island-dmv-practice-test",
-    images: [{ url: "https://caredmvprep.com/opengraph-image", width: 1200, height: 630 }],
-  },
+  openGraph: { url: "https://caredmvprep.com/rhode-island-dmv-practice-test", images: [{ url: "https://caredmvprep.com/opengraph-image", width: 1200, height: 630 }] },
 };
 
 const data: PracticeTestPageProps = {
@@ -17,227 +13,120 @@ const data: PracticeTestPageProps = {
   stateAbbr: "RI",
   testLabel: "DMV Practice Test",
   slug: "rhode-island-dmv-practice-test",
-  headline: "Rhode Island DMV Practice Test 2025",
-  intro:
-    "The Rhode Island Division of Motor Vehicles (DMV), part of the Department of Revenue, administers a 25-question knowledge test. You must answer at least 20 questions correctly (80%) to pass. This free practice test covers Rhode Island's unique rotary right-of-way rules, Providence's No Turn on Red intersections, Pell Bridge procedures, chemical test refusal penalties, and the RI Distracted Driving Act.",
-  basedOn: "Rhode Island Division of Motor Vehicles Driver's Manual",
+  headline: "Rhode Island DMV Practice Test 2026",
+  intro: "The Rhode Island Division of Motor Vehicles (DMV) administers a 40-question knowledge exam. This practice test covers the Rhode Island-specific laws you need to know: the two-tier impaired driving system (civil § 31-27-2.7 vs. criminal DUI), GDL requirements, cell phone ban, the unique high-beam dimming distances, and more.",
+  basedOn: "Rhode Island General Laws Title 31; Rhode Island DMV Driver's Manual",
   keyRules: [
-    {
-      icon: "🔄",
-      rule: "Rotary Right-of-Way: Yield to Circulating Traffic",
-      detail:
-        "Rhode Island has the highest density of traffic circles (rotaries/roundabouts) in the U.S. Vehicles already IN the rotary have the right of way. Entering drivers must yield to all circulating traffic before entering. Never assume you can enter just because you arrived at the rotary first.",
-    },
-    {
-      icon: "🚫",
-      rule: "No Right Turn on Red in Downtown Providence",
-      detail:
-        "The City of Providence's downtown core prohibits right turns on red at many intersections. Posted 'No Turn on Red' signs are common throughout Providence. Never assume right-on-red is permitted in Providence — always look for a sign before proceeding on red.",
-    },
-    {
-      icon: "🌉",
-      rule: "Pell Bridge (I-138) Toll and Wind Procedures",
-      detail:
-        "The Claiborne Pell Newport Bridge on I-138 crosses Narragansett Bay on a 1.6-mile span. Tolls are collected using E-ZPass or cash. High winds on the bridge can affect high-profile vehicles. Follow all posted speed limits and lane restrictions on the bridge.",
-    },
-    {
-      icon: "📱",
-      rule: "RI Distracted Driving Act: No Handheld Devices",
-      detail:
-        "Rhode Island's Distracted Driving Act bans all handheld mobile device use while driving. You may not hold your phone while your vehicle is in motion. Hands-free Bluetooth calling is permitted. First-offense fines apply, and the violation is a primary offense.",
-    },
-    {
-      icon: "🍺",
-      rule: "DUI Threshold: 0.08% Adults, 0.02% Under-21",
-      detail:
-        "Rhode Island uses 'DUI' terminology (not OUI or OWI). Adults 21+ face a DUI at 0.08% BAC. Drivers under 21 face a 0.02% threshold. Refusing a chemical test in Rhode Island triggers an automatic 6-month suspension for a first refusal, and 1 year for a second refusal (RIGL § 31-27-2).",
-    },
-    {
-      icon: "⛴️",
-      rule: "Ferry Procedures: Block Island and Conanicut",
-      detail:
-        "Rhode Island ferries (Block Island Ferry and Conanicut Island Ferry) carry vehicles. Specific boarding procedures apply: arrive before departure time, follow ferry crew instructions for vehicle positioning, set your parking brake, and remain outside your vehicle during transit unless directed otherwise.",
-    },
-    {
-      icon: "🧒",
-      rule: "Permit Age: 16 Years Old",
-      detail:
-        "Rhode Island issues learner's permits at age 16. Permit holders must be accompanied by a licensed driver 21 or older at all times. Rhode Island's GDL program includes mandatory supervised driving hours before a restricted license can be issued. A full unrestricted license is available at age 17½ after meeting all requirements.",
-    },
-    {
-      icon: "🚗",
-      rule: "Chemical Test Refusal Penalties",
-      detail:
-        "Under RIGL § 31-27-2, refusing a chemical test (breathalyzer or blood test) in Rhode Island carries automatic administrative penalties: 6-month license suspension for a first refusal, and 1-year suspension for a second or subsequent refusal. These are separate from any DUI criminal penalties and apply even if you are not convicted of DUI.",
-    },
+    { icon: "🍺", rule: "Under-21 BAC: 0.02% Civil Offense — Not Criminal DUI", detail: "Rhode Island § 31-27-2.7 creates a civil 'Driving While Impaired' offense for drivers under 21 with a BAC at or above 0.02% but below 0.08%. This is NOT a criminal DUI — it is a civil penalty with license consequences. At 0.08% or higher, criminal DUI (§ 31-27-2) applies to any driver regardless of age." },
+    { icon: "🔒", rule: "Enhanced DUI at 0.15%+ BAC", detail: "Rhode Island imposes an enhanced DUI penalty tier at 0.15% BAC or higher (§ 31-27-2). This triggers mandatory ignition interlock device installation, extended suspension, and significantly higher fines — in addition to base DUI penalties." },
+    { icon: "📋", rule: "Implied Consent — Escalating Refusal Penalties", detail: "Refusing a chemical test (§ 31-27-2.1) carries: 1st refusal = 6–12 months suspension + $200–$500 fine; 2nd refusal = 1–2 years + up to 6 months jail; 3rd or more = 2–5 years. Refusal is also admissible as evidence at trial." },
+    { icon: "🧑‍🎓", rule: "GDL: 16+, 33-Hour In-Person Driver Ed Required", detail: "Rhode Island requires a 33-hour in-person driver education course certified by CCRI before teens can get a Stage 1 permit at age 16. Online courses are not accepted (banned since 2022). Teens must hold the permit 6 months, complete 50 supervised hours (10 at night), and submit a signed affidavit." },
+    { icon: "🕐", rule: "GDL Curfew: 1:00 AM–5:00 AM", detail: "Stage 2 Limited Provisional License holders may not drive unsupervised between 1:00 AM and 5:00 AM. Exceptions: driving to/from work and school athletic events. In the first 12 months, Stage 2 drivers are limited to a maximum of 1 unrelated passenger under 21 (family members are exempt)." },
+    { icon: "📱", rule: "Cell Phones: All-Handheld Ban; Absolute Ban Under 18", detail: "Rhode Island § 31-22-30 bans ALL handheld device use for every driver — calling, texting, navigation, and music. Adults 18+ may use hands-free devices. Drivers under 18 face an absolute ban including hands-free, with the only exception being a genuine 911 emergency call." },
+    { icon: "🪑", rule: "Seat Belt: Primary Enforcement, $40 Fine", detail: "Rhode Island has primary enforcement — officers can stop a vehicle solely for a seat belt violation. The base fine is $40 per violation. Children must use an approved restraint when under 8 years old AND under 57 inches tall AND under 80 lbs — all three conditions must apply together." },
+    { icon: "💡", rule: "High Beams: 500 ft Oncoming / 200 ft Following", detail: "Rhode Island § 31-24-23 requires dimming high beams within 500 feet of oncoming traffic and within 200 feet of a vehicle being followed. The 200-foot following distance is shorter than most states' 300-foot standard — a commonly tested Rhode Island distinction." },
+    { icon: "🌙", rule: "Interior Dome Light at Police Stops (Night)", detail: "Rhode Island § 31-22-24 uniquely requires drivers to turn on the vehicle's interior dome light when stopped by law enforcement before dawn or after dusk. This RI-distinctive law is directly tested on the exam." },
+    { icon: "🚌", rule: "School Bus: All Directions + 50-ft Following Distance", detail: "All traffic in both directions must stop for a school bus with red lights flashing (divided highway exception applies). Drivers must maintain at least a 50-foot following distance behind a school bus in the same lane. First-offense fine: up to $300." },
   ],
   about: [
-    "The Rhode Island Division of Motor Vehicles (DMV), operating within the Department of Revenue, administers driver licensing and testing for Rhode Island residents. The knowledge test consists of 25 multiple-choice questions drawn from the Rhode Island Driver's Manual, covering traffic laws, road signs, and Rhode Island-specific driving rules. A passing score of 80% — 20 correct answers out of 25 — is required. Rhode Island's DMV offices are located in Cranston (headquarters), Providence, and other locations throughout the state.",
-    "Rhode Island's most consequential and consistently tested unique driving rule is the rotary (traffic circle) right-of-way. Rhode Island has the highest density of traffic circles of any U.S. state, and the state follows the modern roundabout rule: vehicles already circulating inside the rotary have the right of way. Drivers approaching the rotary must yield to all circulating traffic before entering. This is the opposite of how some older rotary designs worked, where entering traffic had priority. Additionally, Providence's downtown core prohibits right turns on red at many intersections — 'No Turn on Red' signs are posted throughout the city, and drivers must never assume right-on-red is permitted in Providence without seeing a green signal.",
-    "Rhode Island law (RIGL § 31-27-2) creates significant penalties for refusing a chemical test when suspected of DUI. A first refusal triggers an automatic 6-month administrative license suspension; a second refusal triggers a 1-year suspension. These administrative penalties apply separately from any criminal DUI charges. Rhode Island also enforces a 0.02% BAC limit for drivers under 21. The state's Distracted Driving Act prohibits all handheld device use while driving — violations are primary offenses. Rhode Island's geography also means that many drivers use the Claiborne Pell Newport Bridge (I-138) across Narragansett Bay and the Block Island Ferry, both of which have specific procedures that licensed drivers must understand.",
+    "Rhode Island's knowledge exam consists of 40 questions drawn from the Rhode Island Driver's Manual and General Laws Title 31. The test covers traffic laws, road signs, GDL requirements, alcohol and drug statutes, and safe driving practices. Contact the RI DMV directly to confirm the current passing threshold — sources have varied on this figure, and the official number should be verified before your test.",
+    "Rhode Island has a distinctive two-tier impaired driving system for underage drivers. Under § 31-27-2.7, a driver under 21 with a BAC of 0.02% to 0.07% faces a civil 'Driving While Impaired' offense — not the criminal DUI label — with penalties including license suspension and fines. A BAC at or above 0.08% triggers criminal DUI (§ 31-27-2) for any driver regardless of age. An enhanced penalty tier at 0.15%+ BAC imposes mandatory ignition interlock requirements. Implied consent refusals carry escalating suspensions from 6–12 months (first) up to 2–5 years (third or more).",
+    "Rhode Island's Graduated Driver Licensing (GDL) program begins at age 16 with a Stage 1 Limited Instruction Permit. Applicants must first complete a 33-hour in-person CCRI-certified driver education course — online courses have not been accepted since 2022. Stage 1 requires a 6-month holding period and 50 supervised driving hours (10 at night), documented by an affidavit. Stage 2 provisional drivers face a 1:00 AM–5:00 AM curfew and a limit of one unrelated passenger under 21 during the first 12 months. Rhode Island also has a distinctive law requiring drivers to turn on their interior dome light when stopped by law enforcement at night (§ 31-22-24).",
   ],
   sampleQuestions: [
     {
-      question:
-        "You are approaching a rotary (roundabout) in Rhode Island. There is a vehicle already circulating inside the rotary. Who has the right of way?",
-      options: [
-        "You do, because you arrived at the rotary first",
-        "The vehicle already circulating inside the rotary has the right of way",
-        "Whichever vehicle is on the right has the right of way",
-        "Right of way alternates by direction — northbound vehicles have priority",
-      ],
+      question: "A 19-year-old Rhode Island driver tests at 0.05% BAC at a traffic stop. What is their legal situation?",
+      options: ["No violation — 0.05% is below any limit for all drivers", "Civil 'Driving While Impaired' under § 31-27-2.7 because 0.05% is at or above the 0.02% under-21 threshold", "Criminal DUI under § 31-27-2 because they are under 21", "Federal impairment charge because they are under 21"],
       correctIndex: 1,
-      explanation:
-        "Rhode Island follows the modern roundabout rule: vehicles already inside the rotary circulating have the right of way over vehicles entering the rotary. All entering drivers must yield to circulating traffic. This rule applies at all of Rhode Island's numerous traffic circles. Rhode Island has the highest density of rotaries of any U.S. state, making this one of the most important — and most frequently tested — rules in the Rhode Island Driver's Manual.",
+      explanation: "Rhode Island § 31-27-2.7 sets a 0.02% civil impairment threshold for drivers under 21. A 0.05% BAC exceeds that threshold, triggering the civil 'Driving While Impaired' offense — not the criminal DUI statute (§ 31-27-2), which requires 0.08%. The civil charge still carries serious consequences including license suspension."
     },
     {
-      question:
-        "You are driving in downtown Providence, Rhode Island, and reach an intersection with a red light. You want to turn right. There is no sign at the intersection. What should you do?",
-      options: [
-        "Turn right after stopping — right on red is always permitted in Rhode Island",
-        "Look for a 'No Turn on Red' sign — downtown Providence prohibits right on red at many intersections, and you must not assume it is permitted",
-        "Wait for a green light — right on red is never permitted in Rhode Island",
-        "Turn right only if no pedestrians are in the crosswalk",
-      ],
+      question: "At what BAC does Rhode Island impose its enhanced DUI penalty tier — including mandatory ignition interlock?",
+      options: ["0.10% or higher", "0.12% or higher", "0.15% or higher", "0.18% or higher"],
+      correctIndex: 2,
+      explanation: "Rhode Island's DUI statute (§ 31-27-2) establishes an enhanced penalty tier when a driver's BAC reaches 0.15% or higher. This triggers mandatory ignition interlock device installation, extended suspension, and significantly higher fines than a standard 0.08% DUI."
+    },
+    {
+      question: "Rhode Island law requires dimming high beams at what distance when following another vehicle?",
+      options: ["300 feet", "100 feet", "500 feet", "200 feet"],
+      correctIndex: 3,
+      explanation: "Rhode Island § 31-24-23 requires drivers to dim high beams within 200 feet of a vehicle being followed. Most states use a 300-foot standard — Rhode Island's 200-foot threshold is shorter and is a commonly tested distinction on the knowledge exam."
+    },
+    {
+      question: "Under Rhode Island law, what must a driver do when stopped by police before dawn or after dusk?",
+      options: ["Turn on the interior dome light", "Turn off the engine and step outside immediately", "Activate hazard flashers", "Lower all windows and show hands on steering wheel"],
+      correctIndex: 0,
+      explanation: "Rhode Island § 31-22-24 uniquely requires drivers to turn on the vehicle's interior dome light whenever stopped by law enforcement before dawn or after dusk. This improves officer visibility into the vehicle during nighttime or pre-dawn stops and is a directly tested Rhode Island-distinctive rule."
+    },
+    {
+      question: "A 17-year-old Rhode Island driver wants to use a Bluetooth earpiece to make a call while driving. Is this allowed?",
+      options: ["No — drivers under 18 face an absolute ban on all device use, including hands-free, except to call 911", "Yes — hands-free is always legal for all drivers", "Yes — hands-free is permitted for drivers 16 and older", "Yes — but only on highways, not in school zones"],
+      correctIndex: 0,
+      explanation: "Rhode Island § 31-22-30 imposes an absolute ban on all device use — handheld AND hands-free — for drivers under 18. The only exception is calling 911 in a genuine emergency. A third or subsequent violation results in a $250 fine plus suspension of driving privileges until they turn 18."
+    },
+    {
+      question: "Rhode Island requires a child restraint system when a child meets all three of which combined conditions?",
+      options: ["Under 7 AND under 60 inches AND under 80 lbs", "Under 8 AND under 57 inches AND under 80 lbs", "Under 9 AND under 57 inches AND under 100 lbs", "Under 8 AND under 4 feet 9 inches AND under 60 lbs"],
       correctIndex: 1,
-      explanation:
-        "Downtown Providence has numerous intersections where right turns on red are specifically prohibited by posted 'No Turn on Red' signs. Drivers must not assume right-on-red is permitted just because they do not immediately see a sign — they must look carefully for the prohibition sign. If no 'No Turn on Red' sign is posted, right on red is permitted after a complete stop and yielding to all traffic and pedestrians. Never pull into the intersection before confirming no sign is posted.",
+      explanation: "Rhode Island requires an approved child restraint when a child is under 8 years old AND under 57 inches tall AND under 80 pounds — all three conditions must apply together. A child who exceeds any single threshold may use a standard seat belt."
     },
     {
-      question:
-        "In Rhode Island, what is the administrative penalty for a FIRST refusal to submit to a chemical test when suspected of DUI, under RIGL § 31-27-2?",
-      options: [
-        "30-day license suspension",
-        "3-month license suspension",
-        "6-month license suspension",
-        "12-month license suspension",
-      ],
+      question: "What is the default daytime speed limit on unposted Rhode Island roads outside residential and business areas?",
+      options: ["55 mph", "45 mph", "50 mph", "60 mph"],
       correctIndex: 2,
-      explanation:
-        "Rhode Island General Law § 31-27-2 imposes automatic administrative license suspensions for refusing a chemical test (breathalyzer, blood, or urine test) when lawfully requested by law enforcement. A first refusal results in a 6-month license suspension. A second or subsequent refusal results in a 1-year suspension. These are administrative penalties imposed by the DMV and are separate from any criminal DUI charges — meaning you can face both the administrative suspension and criminal penalties simultaneously.",
+      explanation: "Rhode Island § 31-14-2 sets the default daytime speed at 50 mph on unposted roads outside business and residential districts. This drops to 45 mph during nighttime hours on the same roads — one of the few states with a statutory day/night speed split for unposted roads."
     },
     {
-      question:
-        "What is the blood alcohol concentration (BAC) limit that constitutes DUI for an adult driver (age 21+) in Rhode Island?",
-      options: ["0.06%", "0.08%", "0.10%", "0.05%"],
+      question: "A Rhode Island Stage 2 provisional driver needs to drive at 2:00 AM. Which two activities are recognized exceptions to the 1:00 AM–5:00 AM curfew?",
+      options: ["Medical emergencies and religious activities", "Driving to work and attending school athletic events", "Any supervised driving and pre-approved school trips", "Driving with a parent and driving to a hospital"],
       correctIndex: 1,
-      explanation:
-        "Rhode Island uses a 0.08% BAC threshold for DUI charges against adult drivers 21 and older. Rhode Island uses the term 'DUI' (Driving Under the Influence) rather than OUI or OWI terminology used in some other states. Drivers under 21 face a much stricter 0.02% BAC limit. Commercial vehicle operators face the federal CDL standard of 0.04%. Rhode Island's implied consent law (RIGL § 31-27-2) means refusing a test triggers automatic license suspension.",
+      explanation: "Rhode Island's Stage 2 curfew (1:00 AM–5:00 AM) has two explicit exceptions: driving to or from work, and driving to or from school athletic events. These recognize legitimate late-night commitments beyond teens' control."
     },
     {
-      question:
-        "You are boarding the Block Island Ferry with your vehicle for the first time. What is the correct procedure?",
-      options: [
-        "Drive aboard and remain in your vehicle throughout the crossing for security",
-        "Arrive before departure time, follow ferry crew instructions for vehicle positioning, set your parking brake, and exit your vehicle during transit",
-        "Vehicles must be parked in neutral on the ferry — never use the parking brake on a boat",
-        "Only vehicles with Rhode Island registration may use the Block Island Ferry",
-      ],
-      correctIndex: 1,
-      explanation:
-        "When using Rhode Island's ferry services (including the Block Island Ferry), drivers should arrive before the scheduled departure time, follow all instructions from ferry crew regarding vehicle placement and positioning, set the parking brake once parked on the ferry deck, and exit the vehicle during the crossing unless specifically instructed otherwise. Remaining in a vehicle on a ferry during transit is discouraged for safety reasons. Ferry crew directions take precedence over normal driving habits.",
-    },
-    {
-      question:
-        "Under Rhode Island's Distracted Driving Act, which of the following is permitted while driving in Rhode Island?",
-      options: [
-        "Holding your phone to your ear to take a call at a stoplight",
-        "Texting while driving at low speeds in a parking lot",
-        "Using a hands-free Bluetooth earpiece to make a phone call",
-        "Checking your phone screen while stopped at a red light",
-      ],
+      question: "What is Rhode Island's speed limit within 300 feet of school entrances during school days?",
+      options: ["15 mph", "25 mph", "20 mph", "10 mph"],
       correctIndex: 2,
-      explanation:
-        "Rhode Island's Distracted Driving Act prohibits all handheld mobile device use while operating a motor vehicle. The prohibition covers holding the phone for any reason while the vehicle is in motion. Hands-free operation via a Bluetooth headset or vehicle-integrated system is the only permitted method for phone calls while driving. The law applies at red lights and stop signs, not just while the vehicle is moving. Violations are primary offenses — officers can stop you solely for this violation.",
+      explanation: "RI Gen. Laws § 31-14-2 sets a 20 mph speed limit within 300 feet of school entrances and exits during school days. The 300-foot zone protects children in the school's immediate vicinity."
     },
     {
-      question:
-        "The Claiborne Pell Newport Bridge carries what Interstate highway across Narragansett Bay in Rhode Island?",
-      options: ["I-195", "I-95", "I-138", "US-1"],
+      question: "Under Rhode Island's implied consent law, what is the license suspension for a first-time refusal of a chemical test?",
+      options: ["30 days", "3 months", "6 to 12 months", "1 to 2 years"],
       correctIndex: 2,
-      explanation:
-        "The Claiborne Pell Newport Bridge carries I-138 across Narragansett Bay between Jamestown and Newport, Rhode Island. The bridge is approximately 1.6 miles long and includes a toll collection system accepting E-ZPass and cash. High winds are a hazard on the bridge, particularly for high-profile vehicles. The bridge connects the Aquidneck Island communities (Newport, Middletown, Portsmouth) to the mainland via Jamestown.",
-    },
-    {
-      question:
-        "What is the minimum age to obtain a learner's permit in Rhode Island?",
-      options: ["15 years old", "15½ years old", "16 years old", "17 years old"],
-      correctIndex: 2,
-      explanation:
-        "Rhode Island issues learner's permits at age 16. Permit holders must be accompanied by a licensed driver who is at least 21 years old whenever they are behind the wheel. Rhode Island's Graduated Driver License (GDL) program requires permit holders to complete a minimum number of supervised driving hours before becoming eligible for a restricted license. A full unrestricted license is available at age 17½ after completing all GDL requirements.",
-    },
-    {
-      question:
-        "A Rhode Island driver with a learner's permit is driving with their supervising driver when a police officer stops them for a traffic violation. Under RI law, what BAC level would constitute a DUI for the permit holder if they were under 21?",
-      options: ["0.08%", "0.04%", "0.02%", "0.00%"],
-      correctIndex: 2,
-      explanation:
-        "Rhode Island enforces a 0.02% BAC limit for drivers under 21 years old — a near-zero tolerance policy that effectively prohibits any alcohol consumption before driving. This is far more restrictive than the 0.08% adult standard. At 0.02%, even a small amount of alcohol (less than one drink for most people) can result in a DUI charge. Combined with the administrative consequences of the learner's permit program, an underage DUI can derail a young driver's licensing process entirely.",
-    },
-    {
-      question:
-        "In Rhode Island, vehicles approaching a rotary must yield to circulating traffic. When is it legal for an entering vehicle to proceed into a Rhode Island rotary?",
-      options: [
-        "When you reach the yield line at the rotary entry",
-        "When there is a gap in circulating traffic large enough to enter safely without causing circulating vehicles to brake",
-        "When you have been waiting at the yield line for more than 10 seconds",
-        "When the vehicle to your right inside the rotary signals an exit",
-      ],
-      correctIndex: 1,
-      explanation:
-        "The correct time to enter a Rhode Island rotary is when there is a sufficient gap in the circulating traffic to enter safely without requiring vehicles already in the rotary to reduce speed or brake for you. Simply reaching the yield line does not create the right to enter — you must wait for a safe gap. The size of the needed gap depends on your vehicle's speed of entry and the speed of circulating traffic. Pedestrians in crosswalks at rotary entries must also be yielded to.",
+      explanation: "Rhode Island § 31-27-2.1 (implied consent) provides that a first refusal results in a 6- to 12-month license suspension, a $200–$500 fine, and 10–60 hours of community service. Refusal is also admissible as evidence in court."
     },
   ],
   faqs: [
     {
-      question: "What agency administers driver licensing in Rhode Island?",
-      answer:
-        "The Rhode Island Division of Motor Vehicles (DMV), within the Department of Revenue, administers all driver licensing, knowledge testing, and skills testing in Rhode Island. The DMV's main office is located in Cranston on Branch Avenue, with additional offices in other communities. The Rhode Island DMV also handles vehicle registration, title, and other motor vehicle services.",
+      question: "How many questions are on the Rhode Island DMV knowledge test?",
+      answer: "The Rhode Island DMV knowledge exam consists of 40 questions drawn from the Rhode Island Driver's Manual and General Laws Title 31. Contact the RI DMV directly to confirm the current passing score — figures of 70% and 80% have been reported by different sources, and the official threshold should be confirmed before your appointment."
     },
     {
-      question: "What is the Rhode Island DMV knowledge test format?",
-      answer:
-        "The Rhode Island knowledge test consists of 25 multiple-choice questions drawn from the Rhode Island Driver's Manual. A passing score of 80% — at least 20 correct answers — is required. The test covers Rhode Island traffic laws, road signs, safe driving practices, and Rhode Island-specific rules including rotary right-of-way and DUI/chemical test refusal laws. If you fail, a waiting period applies before retaking.",
+      question: "What is Rhode Island's BAC limit for drivers under 21?",
+      answer: "Rhode Island has a two-tier system for underage drivers. A BAC at or above 0.02% but below 0.08% triggers the civil 'Driving While Impaired' offense under § 31-27-2.7 — not a criminal DUI. At 0.08% or higher, criminal DUI (§ 31-27-2) applies to any driver regardless of age. The 0.02% threshold is not 'zero tolerance' — drivers below 0.02% do not face a civil impairment violation."
     },
     {
-      question: "What are the rotary right-of-way rules in Rhode Island?",
-      answer:
-        "Rhode Island's rotary (roundabout/traffic circle) rule is clear: vehicles already circulating inside the rotary have the right of way over entering vehicles. All drivers approaching a rotary must yield to circulating traffic before entering. This is the modern roundabout rule and is the opposite of older rotary conventions where entering vehicles sometimes had priority. Rhode Island has more traffic circles per square mile than any other U.S. state, making this rule essential knowledge for all Rhode Island drivers.",
+      question: "What does Rhode Island's enhanced DUI tier mean?",
+      answer: "Rhode Island's DUI statute (§ 31-27-2) includes an enhanced penalty tier triggered at 0.15% BAC or higher. Penalties include mandatory ignition interlock device installation, extended license suspension, and significantly higher fines. This enhanced tier applies in addition to the base DUI penalties."
     },
     {
-      question: "Why are right turns on red restricted in Providence, Rhode Island?",
-      answer:
-        "The City of Providence has designated many downtown intersections as 'No Turn on Red' locations to improve pedestrian safety in the dense downtown area. These intersections are marked with posted 'No Turn on Red' signs. Providence's downtown has high pedestrian volumes near Brown University, Providence College, hospitals, restaurants, and the State House area. Drivers in Providence must always look for 'No Turn on Red' signage before proceeding on red and should never assume right-on-red is permitted in the downtown core without verifying.",
+      question: "What are Rhode Island's GDL requirements?",
+      answer: "Rhode Island's Graduated Driver Licensing program: Stage 1 permit requires age 16 plus completion of a 33-hour in-person CCRI-certified driver education course (online courses not accepted since 2022). Stage 1 requires a 6-month holding period and 50 supervised hours (10 at night), certified by an adult affidavit. Stage 2 provisional drivers face a 1:00 AM–5:00 AM curfew (exceptions for work and school athletics) and a maximum of 1 unrelated passenger under 21 in the first 12 months."
     },
     {
-      question: "What are Rhode Island's GDL (Graduated Driver License) stages?",
-      answer:
-        "Rhode Island's GDL program has three stages. Stage 1 (Learner's Permit): available at age 16, requires a licensed driver 21 or older in the vehicle at all times, and mandates a minimum of 50 hours of supervised driving (including 10 hours at night). Stage 2 (Restricted License): available at age 17 after 12 months with the permit and completion of all requirements; includes a nighttime driving restriction and passenger limits. Stage 3 (Full License): available at age 17½ after completing Stage 2 requirements.",
+      question: "What are Rhode Island's cell phone rules for drivers?",
+      answer: "Rhode Island § 31-22-30 bans ALL handheld device use for every driver — calling, texting, navigation, and music streaming. Adults 18 and older may use hands-free devices. Drivers under 18 face an absolute ban on ALL device use (handheld and hands-free), with the only exception being a genuine 911 emergency call. Fines: 1st offense $100, 2nd $150, 3rd or more $250."
     },
     {
-      question: "What are the chemical test refusal penalties in Rhode Island?",
-      answer:
-        "Under Rhode Island General Law § 31-27-2, refusing to submit to a chemical test (breathalyzer, blood, or urine) when lawfully requested by police in a DUI investigation triggers automatic administrative license suspensions: a first refusal results in a 6-month suspension, and a second or subsequent refusal results in a 1-year suspension. These administrative penalties are imposed by the Rhode Island DMV and are completely separate from any criminal DUI charges. You can face both simultaneously — and refusing a test does not prevent prosecution for DUI.",
+      question: "What is Rhode Island's school bus law?",
+      answer: "Rhode Island § 31-20-12 requires all approaching vehicles in both directions to stop when a school bus displays red warning lights. An exception applies for divided highways with a physical median barrier. Drivers must maintain at least a 50-foot following distance behind a school bus in the same lane. First-offense fine for failing to stop: up to $300."
     },
     {
-      question: "Does Rhode Island have a hands-free cell phone driving law?",
-      answer:
-        "Yes. Rhode Island's Distracted Driving Act prohibits all handheld mobile device use while operating a motor vehicle. Drivers may not hold their phone for any reason while driving, including at red lights and stop signs. Hands-free operation via Bluetooth headsets or vehicle-integrated systems is permitted. Violations are primary offenses, meaning law enforcement can stop drivers solely for holding a device. First-offense fines apply, with higher penalties for subsequent violations.",
+      question: "What is Rhode Island's seat belt and child restraint law?",
+      answer: "Rhode Island has primary seat belt enforcement (§ 31-22-22) — officers can stop a vehicle solely for a seat belt violation. The base fine is $40. Children must use an approved child restraint system if they are under 8 years old AND under 57 inches tall AND under 80 pounds — all three conditions must be present. Children under 2 years old or under 30 pounds must be in a rear-facing restraint."
     },
     {
-      question: "What should Rhode Island drivers know about the Pell Bridge?",
-      answer:
-        "The Claiborne Pell Newport Bridge (I-138) is a 1.6-mile cable-stayed bridge spanning Narragansett Bay between Jamestown and Newport. Tolls are collected in the westbound direction using E-ZPass or cash. The bridge experiences significant wind exposure, particularly affecting high-profile vehicles and motorcycles. Drivers should observe posted speed limits on the bridge, maintain lane position in wind, and have their E-ZPass ready or cash available for the toll. The bridge is the only fixed link between the West Bay mainland and Aquidneck Island.",
-    },
-    {
-      question: "What is the DUI penalty for a first offense in Rhode Island?",
-      answer:
-        "A first DUI offense in Rhode Island for an adult driver (0.08% BAC or higher) carries penalties including a 30–180 day license suspension, fines of $100–$300 plus court costs, 10–60 hours of community service, mandatory participation in a DUI treatment program, and possible installation of an ignition interlock device. Aggravating factors (high BAC, minor passenger, prior record) increase penalties. Drivers under 21 face the same criminal process plus enhanced penalties for their 0.02% BAC threshold violation.",
-    },
-    {
-      question: "How do Rhode Island ferry services work for vehicles?",
-      answer:
-        "Rhode Island's ferry services include the Interstate Navigation Company's Block Island Ferry (from Point Judith in Narragansett) and the Jamestown-Newport Ferry among others. Vehicle ferry service to Block Island operates seasonally. Drivers must purchase vehicle tickets in advance or at the terminal, arrive well before departure time, and follow all directions from ferry crew for vehicle loading, positioning, and parking. Vehicles must be secured with the parking brake set. Passengers must typically exit vehicles during the crossing. Vehicle size and weight restrictions apply, and advance reservations are strongly recommended for vehicle passage.",
+      question: "What is the unique Rhode Island dome light rule?",
+      answer: "Rhode Island § 31-22-24 requires drivers to turn on the vehicle's interior dome light whenever stopped by law enforcement before dawn or after dusk. This law — unusual among U.S. states — allows the officer to see inside the vehicle more easily during nighttime stops, improving safety for both the driver and the officer. It is directly tested on the Rhode Island DMV knowledge exam."
     },
   ],
   relatedTests: [
@@ -249,6 +138,6 @@ const data: PracticeTestPageProps = {
   ],
 };
 
-export default function RhodeIslandDmvPracticeTestPage() {
+export default function RhodeIslandDMVPage() {
   return <PracticeTestPage {...data} />;
 }

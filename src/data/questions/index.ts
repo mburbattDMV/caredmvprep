@@ -64,6 +64,8 @@ import meDmvQuestions                from './dmv/maine';
 import meMotoQuestions               from './motorcycle/maine';
 import mtDmvQuestions                from './dmv/montana';
 import mtMotoQuestions               from './motorcycle/montana';
+import riDmvQuestions                from './dmv/rhode-island';
+import riMotoQuestions               from './motorcycle/rhode-island';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -1001,6 +1003,37 @@ export const quizRegistry: Record<string, QuizConfig> = {
     testId:      'hawaii-cdl-general',
     label:       'Hawaii CDL General Knowledge Practice Test',
     state:       'hawaii',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
+  },
+
+  // ── Rhode Island ──────────────────────────────────────────────────────────
+  // DL test: 40Q (VERIFIED from dmv.ri.gov); passing score NEEDS_VERIFICATION (third-party: 28/40 = 70%)
+  // Motorcycle test: question count and passing score NEEDS_VERIFICATION
+  // Helmet law: under-21 AND first-year riders of any age (§ 31-10.1-4)
+  // Lane splitting: ILLEGAL (pilot H 5658 expired January 31, 2026)
+  // NOT in LIVE_STATE_SLUGS or LIVE_STATE_ABBRS — queued, not activated
+  'rhode-island-permit': {
+    testId:      'rhode-island-permit',
+    label:       'Rhode Island DMV Practice Test',
+    state:       'RI',
+    licenseType: 'permit',
+    questions:   verified(riDmvQuestions),
+    passingScore: 0.80,  // NEEDS_VERIFICATION — 28/40 = 70% also reported; using 80% pending confirmation
+  },
+  'rhode-island-motorcycle': {
+    testId:      'rhode-island-motorcycle',
+    label:       'Rhode Island Motorcycle Practice Test',
+    state:       'RI',
+    licenseType: 'motorcycle',
+    questions:   verified(riMotoQuestions),
+    passingScore: 0.80,  // NEEDS_VERIFICATION
+  },
+  'rhode-island-cdl-general': {
+    testId:      'rhode-island-cdl-general',
+    label:       'Rhode Island CDL Practice Test',
+    state:       'RI',
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
