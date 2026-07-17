@@ -75,6 +75,30 @@ const questions: Question[] = [
   { id: 'tn-dmv-penalties-001', fingerprint: fp('Tennessee reckless driving definition willful disregard'), jurisdiction: 'state', state: 'TN', testType: 'dmv', category: 'fines_penalties', subcategory: 'reckless_driving', difficulty: 2, question: 'Reckless driving in Tennessee is defined as:', options: ['Going 20 mph over the speed limit', 'Driving with willful or wanton disregard for safety of persons or property', 'Any combination of two violations', 'Driving while distracted'], correctIndex: 1, explanation: 'Tennessee defines reckless driving as operating a vehicle in willful or wanton disregard for the safety of persons or property.', source: SOURCE, sourceUrl: SOURCE_URL, sourceSection: 'Fines and Penalties', isStateSpecificLaw: true, status: 'verified', createdAt: TODAY, lastVerifiedAt: TODAY, verifiedBy: 'initial-seed' },
   { id: 'tn-dmv-penalties-002', fingerprint: fp('Tennessee reckless driving fine 30 days jail 500'), jurisdiction: 'state', state: 'TN', testType: 'dmv', category: 'fines_penalties', subcategory: 'reckless_driving', difficulty: 2, question: 'Tennessee\'s first reckless driving conviction carries a maximum of:', options: ['$100 fine, no jail', '30 days in jail and/or $500 fine', '6 months jail and $1,000 fine', '1 year jail and permanent suspension'], correctIndex: 1, explanation: 'First reckless driving conviction in Tennessee: up to 30 days jail and/or up to $500 fine.', source: SOURCE, sourceUrl: SOURCE_URL, sourceSection: 'Fines and Penalties', isStateSpecificLaw: true, status: 'verified', createdAt: TODAY, lastVerifiedAt: TODAY, verifiedBy: 'initial-seed' },
   { id: 'tn-dmv-penalties-003', fingerprint: fp('Tennessee DUI aggravated 0.20 BAC enhanced penalty'), jurisdiction: 'state', state: 'TN', testType: 'dmv', category: 'fines_penalties', subcategory: 'dwi_penalties', difficulty: 2, question: 'Tennessee imposes enhanced DUI penalties when the BAC is:', options: ['0.10% or above', '0.15% or above', '0.20% or above', '0.25% or above'], correctIndex: 2, explanation: 'Tennessee imposes enhanced penalties for DUI with a BAC of 0.20% or higher, including longer mandatory jail time.', source: SOURCE, sourceUrl: SOURCE_URL, sourceSection: 'Fines and Penalties', isStateSpecificLaw: true, status: 'verified', createdAt: TODAY, lastVerifiedAt: TODAY, verifiedBy: 'initial-seed' },
+
+  // ── Bicycle Passing Clearance ─────────────────────────────────────────────
+  {
+    id: 'tn-dmv-sharing-004',
+    fingerprint: fp('How much clearance must a Tennessee driver leave when passing a bicyclist on the road?'),
+    jurisdiction: 'state',
+    state: 'TN',
+    testType: 'dmv',
+    category: 'sharing_road',
+    subcategory: 'bicycles',
+    difficulty: 2,
+    question: 'How much clearance must a Tennessee driver leave when overtaking and passing a bicyclist?',
+    options: ['1 foot', '2 feet', '3 feet', '5 feet'],
+    correctIndex: 2,
+    explanation: 'Tennessee law requires motorists to give bicyclists at least 3 feet of clearance when passing. This Safe Passing law is intended to protect vulnerable road users, and drivers may cross a center line to provide the required space when it is safe to do so, per the Tennessee Driver\'s Manual, Sharing the Road section.',
+    source: SOURCE,
+    sourceUrl: SOURCE_URL,
+    sourceSection: 'Sharing the Road — Bicycles',
+    isStateSpecificLaw: true,
+    status: 'verified',
+    createdAt: '2026-07-17',
+    lastVerifiedAt: '2026-07-17',
+    verifiedBy: 'system',
+  },
 ];
 
 export default questions;
