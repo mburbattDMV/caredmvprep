@@ -74,6 +74,8 @@ import ndDmvQuestions                from './dmv/north-dakota';
 import ndMotoQuestions               from './motorcycle/north-dakota';
 import akDmvQuestions                from './dmv/alaska';
 import akMotoQuestions               from './motorcycle/alaska';
+import vtDmvQuestions                from './dmv/vermont';
+import vtMotoQuestions               from './motorcycle/vermont';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -1166,6 +1168,41 @@ export const quizRegistry: Record<string, QuizConfig> = {
     testId:      'alaska-cdl-general',
     label:       'Alaska CDL General Knowledge Practice Test',
     state:       'AK',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
+  },
+
+  // ── Vermont ───────────────────────────────────────────────────────────────
+  // DL test: 20Q / 16-correct / 80% — state-facts.ts (online test confirmed)
+  // Motorcycle: 25Q / 20-correct / 80% — state-facts.ts confirmed
+  // Helmet law: all-ages universal (23 VSA § 1182). Lane splitting: ILLEGAL.
+  // Permit min age: 15. GDL: 1-year hold; 40 supervised hrs (10 night).
+  // MSF BRC waives BOTH knowledge and skills tests — state-facts.ts notes.
+  // OUI terminology (23 VSA § 1201); adult 0.08%; under-21 0.02%.
+  // Vermont-distinctive: no roadside billboards; covered bridge weight limits;
+  //   frost heaves; Appalachian Gap 18%+ grades; moose hazard; foliage season.
+  // NOT in LIVE_STATE_SLUGS or LIVE_STATE_ABBRS — needs_review status.
+  'vermont-permit': {
+    testId:      'vermont-permit',
+    label:       'Vermont DMV Practice Test',
+    state:       'VT',
+    licenseType: 'permit',
+    questions:   verified(vtDmvQuestions),
+    passingScore: 0.80,  // 16 of 20 — Vermont DMV standard (80%), confirmed state-facts.ts
+  },
+  'vermont-motorcycle': {
+    testId:      'vermont-motorcycle',
+    label:       'Vermont Motorcycle Practice Test',
+    state:       'VT',
+    licenseType: 'motorcycle',
+    questions:   verified(vtMotoQuestions),
+    passingScore: 0.80,  // 20 of 25 — Vermont DMV standard (80%), confirmed state-facts.ts
+  },
+  'vermont-cdl-general': {
+    testId:      'vermont-cdl-general',
+    label:       'Vermont CDL General Knowledge Practice Test',
+    state:       'VT',
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal FMCSA standard

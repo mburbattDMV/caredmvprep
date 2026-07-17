@@ -1208,8 +1208,8 @@ const stateFacts: StateFacts[] = [
     cdlGeneralKnowledgeQuestions: 50,
     cdlGeneralKnowledgeToPass: 40,
     cdlGeneralKnowledgePassingPct: "80%",
-    lastVerifiedAt: VERIFIED,
-    notes: "Vermont test is taken online (20 questions). Helmet required for all riders. Course waiver: MSF BRC or state-equivalent waives BOTH knowledge and skills tests at DMV.",
+    lastVerifiedAt: "2026-07-16",
+    notes: "Vermont DL test is 20 questions taken online; 80% (16/20) to pass — confirmed state-facts. Permit age 15; 1-year hold; 40 supervised hours (10 night); junior license at 16. GDL: first 3 months no passengers (unless licensed adult 25+ present); months 4-6 family only; after 6 months no restriction. GDL nighttime curfew 9 PM–5 AM for first 6 months (NEEDS_VERIFICATION exact hours). OUI terminology (23 VSA § 1201): adult 0.08%; under-21 0.02%; CDL 0.04%. 1st OUI = 90-day suspension + $750 fine + IID on reinstatement. Implied consent refusal: 1st = 6 months (NEEDS_VERIFICATION). Seat belt: all occupants; under-18 primary; 18+ secondary; $25/$100 fine. Cell phone: handheld ban all drivers (primary); $100-200 first, $250-500 second. Helmet law: ALL ages required (23 VSA § 1182) — universal. Lane splitting: ILLEGAL. MSF BRC waives BOTH knowledge and skills tests. Vermont-distinctive: no roadside billboards statewide (Outdoor Advertising Act); covered bridge weight limits legally enforceable; frost heaves on mountain roads; App Gap grades exceed 18%; moose hazard US-2/I-89 north; foliage season VT-100 traffic 2-3x normal. Speed limits: interstate 65 mph; rural 50 mph; residential 25 mph; school zone 15 mph when children present (NEEDS_VERIFICATION exact values). Implied consent suspension periods NEED_VERIFICATION against 23 VSA § 1202. Child restraint: under 8 OR under 80 lbs (NEEDS_VERIFICATION).",
   },
   {
     state: "Virginia",

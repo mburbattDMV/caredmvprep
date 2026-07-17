@@ -4,7 +4,7 @@ import PracticeTestPage, { type PracticeTestPageProps } from "@/components/Pract
 export const metadata: Metadata = {
   title: "Vermont Motorcycle Practice Test 2025 – Free VT Endorsement Exam Prep",
   description:
-    "Prepare for your Vermont motorcycle endorsement test with free practice questions covering Vermont's no-helmet law for adults, OUI rules for riders, Appalachian Gap steep grade technique, moose hazards in northern Vermont, and foliage season riding.",
+    "Prepare for your Vermont motorcycle endorsement test with free practice questions covering Vermont's universal helmet law (all ages required), OUI rules for riders, Appalachian Gap steep grade technique, moose hazards in northern Vermont, and foliage season riding.",
   alternates: { canonical: "https://caredmvprep.com/vermont-motorcycle-practice-test" },
   openGraph: {
     url: "https://caredmvprep.com/vermont-motorcycle-practice-test",
@@ -19,10 +19,10 @@ const data: PracticeTestPageProps = {
   slug: "vermont-motorcycle-practice-test",
   headline: "Vermont Motorcycle Practice Test 2025",
   intro:
-    "Earning a Vermont motorcycle endorsement requires passing a knowledge test at the Vermont DMV and a skills test. This free practice test covers Vermont-specific motorcycle topics: the adult helmet exemption (no mandatory helmet for riders 18+), OUI law under 23 VSA § 1201, extreme grade technique on Appalachian Gap roads, moose hazards on northern Vermont roads, and managing foliage season traffic on VT-100.",
+    "Earning a Vermont motorcycle endorsement requires passing a knowledge test at the Vermont DMV and a skills test — or completing an approved MSF Basic RiderCourse that waives BOTH tests in Vermont. This free practice test covers Vermont-specific motorcycle topics: Vermont's universal (all-ages) helmet law under 23 VSA § 1182, OUI law under 23 VSA § 1201, extreme grade technique on Appalachian Gap roads, moose hazards on northern Vermont roads, and managing foliage season traffic on VT-100.",
   basedOn: "Vermont Motorcycle Operator Manual (Vermont DMV)",
   about: [
-    "The Vermont Department of Motor Vehicles requires all motorcycle operators to hold a valid motorcycle endorsement. To earn the endorsement, applicants must pass a knowledge test based on the Vermont Motorcycle Operator Manual and a skills test — or complete an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse to waive the skills test. Vermont does not require helmets for adult motorcycle riders 18 and older — Vermont is one of the few northeastern states with no mandatory helmet law for adult riders. Riders under 18 must wear a helmet. Eye protection is required for all riders unless the motorcycle has a windshield.",
+    "The Vermont Department of Motor Vehicles requires all motorcycle operators to hold a valid motorcycle endorsement. To earn the endorsement, applicants must pass a knowledge test based on the Vermont Motorcycle Operator Manual and a skills test — or complete an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse, which in Vermont waives BOTH the knowledge test AND the skills test. Vermont requires helmets for ALL motorcycle riders and passengers regardless of age (23 VSA § 1182) — Vermont has a universal helmet law. Eye protection is required for all riders unless the motorcycle has a windshield.",
     "Vermont offers some of New England's most spectacular motorcycle riding through the Green Mountains and along VT-100 (the 'Foliage Highway'). However, Vermont's riding environment includes significant hazards that require skill and preparation. The Appalachian Gap roads (VT-17, Lincoln Gap Road) have grades exceeding 18% on some sections — motorcycle riders must use low gears on descents to maintain control and avoid brake fade. Northern Vermont roads near US-2 and I-89 north of Montpelier have significant moose activity, particularly at dawn and dusk. Moose eyes sit above headlight height and do not produce visible eye-shine, making them nearly invisible at night until dangerously close. October foliage season brings 2–3 times normal traffic to VT-100, creating congestion and increased pedestrian activity at small overlooks throughout the route.",
   ],
   sampleQuestions: [
@@ -30,14 +30,14 @@ const data: PracticeTestPageProps = {
       question:
         "Vermont law requires motorcycle helmets for which riders?",
       options: [
-        "All riders regardless of age",
-        "Riders under 21 years old only",
         "Riders under 18 years old only",
-        "No helmet requirement exists in Vermont for any riders",
+        "Riders under 21 years old only",
+        "No helmet requirement exists in Vermont for adult riders",
+        "All riders and passengers regardless of age — Vermont has a universal helmet law",
       ],
-      correctIndex: 2,
+      correctIndex: 3,
       explanation:
-        "Vermont requires helmets only for motorcycle riders under 18 years old. Adult riders 18 and older are not required by Vermont law to wear a helmet. Vermont is one of the few northeastern states with no mandatory helmet law for adults — most nearby states (New York, Massachusetts, Connecticut) require helmets for all riders. Despite the legal exemption for adults in Vermont, safety organizations strongly recommend helmets for all riders — head injuries are the leading cause of motorcycle fatalities.",
+        "Vermont has a universal motorcycle helmet law (23 VSA § 1182) — ALL riders and passengers of any age must wear a DOT-approved helmet when operating or riding on a motorcycle. There is no adult age exemption in Vermont. Vermont's all-ages requirement reflects the proven effectiveness of helmets in preventing fatal head injuries. Riders must also use eye protection (goggles or face shield) unless the motorcycle has an approved windshield.",
     },
     {
       question:
@@ -130,14 +130,14 @@ const data: PracticeTestPageProps = {
   ],
   faqs: [
     {
-      question: "Does Vermont require motorcycle helmets for adult riders?",
+      question: "Does Vermont require motorcycle helmets for all riders?",
       answer:
-        "No. Vermont does not require helmets for adult motorcycle riders 18 and older. Vermont is one of the few states in New England without a universal helmet law — neighboring states New York, Massachusetts, and Connecticut require helmets for all riders. Vermont requires helmets only for riders under 18. Eye protection (goggles or face shield) is required for all riders unless the motorcycle has a windshield. Despite the legal exemption, safety organizations recommend helmets for all riders — head injuries are the primary cause of motorcycle fatalities.",
+        "Yes. Vermont has a universal motorcycle helmet law (23 VSA § 1182) — ALL riders and passengers of any age must wear a DOT-approved helmet when operating or riding on a motorcycle. There is no adult age exemption in Vermont. Eye protection (goggles or face shield) is also required for all riders unless the motorcycle has an approved windshield. Vermont's all-ages requirement applies to both riders and passengers.",
     },
     {
       question: "What is required to get a motorcycle endorsement in Vermont?",
       answer:
-        "To earn a Vermont motorcycle endorsement, you must hold a valid Vermont driver's license (Level 2 or Level 3), pass a motorcycle knowledge test at a Vermont DMV office, and pass a motorcycle skills test on a closed course. Completing an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse waives the skills test requirement. The knowledge test covers the Vermont Motorcycle Operator Manual. Riders under 18 must complete an approved motorcycle safety course.",
+        "To earn a Vermont motorcycle endorsement, you must hold a valid Vermont driver's license (Level 2 or Level 3), pass a motorcycle knowledge test at a Vermont DMV office, and pass a motorcycle skills test on a closed course. Completing an approved Motorcycle Safety Foundation (MSF) Basic RiderCourse waives BOTH the knowledge test AND the skills test in Vermont — unlike some states where only the skills test is waived. Present your MSF course completion card to the Vermont DMV to receive the motorcycle (M) endorsement directly. The knowledge test covers the Vermont Motorcycle Operator Manual.",
     },
     {
       question: "What are the OUI penalties for motorcycle riders in Vermont?",
