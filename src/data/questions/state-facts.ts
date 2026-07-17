@@ -1345,9 +1345,10 @@ const stateFacts: StateFacts[] = [
     cdlGeneralKnowledgeQuestions: 50,
     cdlGeneralKnowledgeToPass: 40,
     cdlGeneralKnowledgePassingPct: "80%",
-    lastVerifiedAt: VERIFIED,
+    lastVerifiedAt: '2026-07-16',
+    verifiedBy: 'Wyoming DOT (dot.wyoming.gov), dmv.org WY teen driver page, autoinsurance.com WY summary, IIHS speed limit laws table — re-verified 2026-07-16; question banks authored 2026-07-16',
     notes:
-      "Wyoming does not offer online testing. English only (interpreters allowed for non-commercial). Helmet required under 18; all riders must have eye protection. Course waiver: MSF BRC or state-equivalent waives BOTH knowledge and skills tests at DMV.",
+      'Wyoming does not offer online testing. English only (interpreters allowed for non-commercial). Helmet required under 18 (W.S. § 31-5-960); all riders must have eye protection (goggles/face shield) unless motorcycle has approved windscreen. MSF BRC waives BOTH knowledge and skills tests. Wyoming uses DWUI (not DUI) terminology (W.S. § 31-5-233); adult 0.08%; aggravated at 0.15%; under-21 near-zero-tolerance 0.02%; CDL 0.04%. Implied consent: 90-day admin suspension at BAC ≥ 0.08% (W.S. § 31-6-102); refusal suspension durations: NEEDS_VERIFICATION. Speed: rural interstate 75 mph (80 mph on designated segments per IIHS); other roads 70 mph; school zone: NEEDS_VERIFICATION. Seat belt: SECONDARY enforcement for adults (W.S. § 31-5-1402); primary for under-9. Texting while driving banned, $75 fine; NO statewide handheld phone ban. GDL: permit min age 15; 10-day minimum hold; 50 supervised hours (10 at night); intermediate curfew 11pm-5am; max 1 non-family passenger under 18; full license at 17 (or 16.5 with driver\'s ed). Open-range state — livestock on roads; rancher not liable for animals in open-range areas. Wyoming-distinctive: DWUI terminology; 80 mph interstates; secondary seat belt; cattle guards on rural roads; extreme winds (WYDOT wind advisories); wildlife hazards (bison near Yellowstone/Tetons); Teton Pass steep grades; coal/oil truck traffic on rural highways; ground blizzards on I-80.',
   },
 ];
 

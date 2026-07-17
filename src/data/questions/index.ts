@@ -76,6 +76,8 @@ import akDmvQuestions                from './dmv/alaska';
 import akMotoQuestions               from './motorcycle/alaska';
 import vtDmvQuestions                from './dmv/vermont';
 import vtMotoQuestions               from './motorcycle/vermont';
+import wyDmvQuestions                from './dmv/wyoming';
+import wyMotoQuestions               from './motorcycle/wyoming';
 import cdlFederalQuestions           from './cdl/federal';
 import cdlSchoolBusQuestions         from './cdl/school-bus';
 import cdlTankVehicleQuestions       from './cdl/tank-vehicles';
@@ -1203,6 +1205,40 @@ export const quizRegistry: Record<string, QuizConfig> = {
     testId:      'vermont-cdl-general',
     label:       'Vermont CDL General Knowledge Practice Test',
     state:       'VT',
+    licenseType: 'cdl_general',
+    questions:   verified(cdlFederalQuestions),
+    passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
+  },
+
+  // ── Wyoming ───────────────────────────────────────────────────────────────
+  // DL test: 25Q / 20-correct / 80% — state-facts.ts (confirmed)
+  // Motorcycle test: 25Q / 20-correct / 80% — state-facts.ts (confirmed)
+  // Helmet law: under-18 required (W.S. § 31-5-960); all riders eye protection
+  // DWUI (not DUI) terminology; adult 0.08%; aggravated at 0.15%; under-21 0.02%
+  // Seat belt: SECONDARY enforcement; texting ban $75 fine; no statewide handheld ban
+  // Interstate 75 mph (80 mph on designated segments); open range livestock hazard
+  // MSF BRC waives BOTH knowledge AND skills tests — state-facts.ts
+  // NOT in LIVE_STATE_SLUGS or LIVE_STATE_ABBRS — needs_review status
+  'wyoming-permit': {
+    testId:      'wyoming-permit',
+    label:       'Wyoming DOT Driver Knowledge Test Practice',
+    state:       'WY',
+    licenseType: 'permit',
+    questions:   verified(wyDmvQuestions),
+    passingScore: 0.80,  // 20 of 25 — Wyoming DOT standard (80%), confirmed state-facts.ts
+  },
+  'wyoming-motorcycle': {
+    testId:      'wyoming-motorcycle',
+    label:       'Wyoming Motorcycle Knowledge Test Practice',
+    state:       'WY',
+    licenseType: 'motorcycle',
+    questions:   verified(wyMotoQuestions),
+    passingScore: 0.80,  // 20 of 25 — Wyoming DOT standard (80%), confirmed state-facts.ts
+  },
+  'wyoming-cdl-general': {
+    testId:      'wyoming-cdl-general',
+    label:       'Wyoming CDL General Knowledge Practice Test',
+    state:       'WY',
     licenseType: 'cdl_general',
     questions:   verified(cdlFederalQuestions),
     passingScore: 0.80,  // 40 of 50 — federal FMCSA standard
