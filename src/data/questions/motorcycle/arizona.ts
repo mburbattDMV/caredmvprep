@@ -444,6 +444,50 @@ const questions: Question[] = [
     source: SOURCE, sourceUrl: SOURCE_URL, sourceSection: 'Passengers and Cargo', isStateSpecificLaw: false,
     status: 'verified', createdAt: TODAY, lastVerifiedAt: TODAY, verifiedBy: 'initial-seed',
   },
+
+  // ── Night Riding ───────────────────────────────────────────────────────────
+  {
+    id: 'az-moto-night-001', fingerprint: fp('Arizona motorcycle night riding reduce speed see farther headlight range'),
+    jurisdiction: 'state', state: 'AZ', testType: 'motorcycle', category: 'hazards', subcategory: 'adverse_conditions', difficulty: 2,
+    question: 'When riding an Arizona motorcycle at night, you should reduce speed so that:',
+    options: ['You are always below 45 mph on any road', 'You can stop within the range of your headlight — never outride your lights', 'You keep your high beams off to avoid blinding other drivers', 'You increase following distance to 5 seconds only on highways'], correctIndex: 1,
+    explanation: 'At night, visibility is limited to your headlight beam. Reduce speed so you can stop within the distance illuminated — "riding within your headlight" prevents over-running your sight distance on Arizona\'s unlit desert roads.',
+    source: SOURCE, sourceUrl: SOURCE_URL, sourceSection: 'Hazards', isStateSpecificLaw: false,
+    status: 'verified', createdAt: '2026-07-17', lastVerifiedAt: '2026-07-17', verifiedBy: 'system',
+  },
+
+  // ── Crosswind Hazard ───────────────────────────────────────────────────────
+  {
+    id: 'az-moto-hazard-007', fingerprint: fp('Arizona motorcycle crosswind desert open road lean into wind'),
+    jurisdiction: 'state', state: 'AZ', testType: 'motorcycle', category: 'hazards', subcategory: 'adverse_conditions', difficulty: 2,
+    question: 'When riding across Arizona\'s open desert and a crosswind pushes the motorcycle sideways, the correct response is:',
+    options: ['Immediately pull over — crosswinds make riding impossible', 'Grip the handlebars tightly, lean slightly into the wind, and reduce speed', 'Accelerate to reduce the wind\'s effect on the motorcycle', 'Ride on the center line to have more lane space to drift'], correctIndex: 1,
+    explanation: 'Lean slightly into a crosswind to counteract its push, reduce speed to improve stability, and grip the handlebars firmly. Arizona\'s open terrain produces sudden, strong crosswinds — especially when exiting protected canyons.',
+    source: SOURCE, sourceUrl: SOURCE_URL, sourceSection: 'Hazards', isStateSpecificLaw: false,
+    status: 'verified', createdAt: '2026-07-17', lastVerifiedAt: '2026-07-17', verifiedBy: 'system',
+  },
+
+  // ── Passenger Boarding ─────────────────────────────────────────────────────
+  {
+    id: 'az-moto-passenger-004', fingerprint: fp('Arizona motorcycle passenger boarding mounting instructions'),
+    jurisdiction: 'state', state: 'AZ', testType: 'motorcycle', category: 'passengers_cargo', subcategory: 'passengers', difficulty: 2,
+    question: 'Before a passenger mounts an Arizona motorcycle, the operator should:',
+    options: ['Start moving slowly so the passenger can step on while rolling', 'Instruct the passenger to mount only after the engine is running and the operator is seated and stable', 'Ask the passenger to mount from the front over the handlebars', 'Let the passenger choose when and how to board'], correctIndex: 1,
+    explanation: 'Brief the passenger: mount only after the operator is seated with both feet on the ground; hold the operator\'s waist; use the foot pegs; lean with the motorcycle in turns. Proper boarding prevents tipping from unexpected weight shifts.',
+    source: SOURCE, sourceUrl: SOURCE_URL, sourceSection: 'Passengers and Cargo', isStateSpecificLaw: false,
+    status: 'verified', createdAt: '2026-07-17', lastVerifiedAt: '2026-07-17', verifiedBy: 'system',
+  },
+
+  // ── Curve Entry Technique ──────────────────────────────────────────────────
+  {
+    id: 'az-moto-control-006', fingerprint: fp('Arizona motorcycle slow look lean roll curve entry four steps'),
+    jurisdiction: 'state', state: 'AZ', testType: 'motorcycle', category: 'basic_control', subcategory: 'turning', difficulty: 2,
+    question: 'The four-step curve technique taught in the Arizona Motorcycle Operator Manual is:',
+    options: ['Signal, position, look, execute', 'Slow, Look, Lean, Roll', 'Brake, Shift, Lean, Accelerate', 'Check, Swerve, Lean, Brake'], correctIndex: 1,
+    explanation: 'Slow — reduce speed before the curve; Look — turn head and eyes through the curve; Lean — initiate the lean with countersteering; Roll — smoothly roll on the throttle through the exit. Completing all four steps before the apex gives maximum control.',
+    source: SOURCE, sourceUrl: SOURCE_URL, sourceSection: 'Basic Control', isStateSpecificLaw: false,
+    status: 'verified', createdAt: '2026-07-17', lastVerifiedAt: '2026-07-17', verifiedBy: 'system',
+  },
 ];
 
 export default questions;

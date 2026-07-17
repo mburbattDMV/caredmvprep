@@ -469,6 +469,17 @@ const questions: Question[] = [
     source: SOURCE, sourceUrl: SOURCE_URL, sourceSection: 'Road Rules', isStateSpecificLaw: true,
     status: 'verified', createdAt: TODAY, lastVerifiedAt: TODAY, verifiedBy: 'initial-seed',
   },
+
+  // ── Night Riding ───────────────────────────────────────────────────────────
+  {
+    id: 'nc-moto-night-001', fingerprint: fp('North Carolina motorcycle night riding overdriving headlights stop distance'),
+    jurisdiction: 'state', state: 'NC', testType: 'motorcycle', category: 'hazards', subcategory: 'adverse_conditions', difficulty: 2,
+    question: 'At night on a North Carolina road, a motorcyclist should reduce speed to avoid:',
+    options: ['Blinding oncoming drivers with the headlight', 'Overdriving the headlight — riding so fast you cannot stop within the distance the light illuminates', 'Triggering speed cameras that are less visible at night', 'Headlight overheating from extended use'], correctIndex: 1,
+    explanation: 'At night, your stopping distance must never exceed your headlight\'s sight distance. Reduce speed, increase following distance to at least 4 seconds, and use the high beam whenever oncoming traffic is not present to maximize the illuminated distance ahead.',
+    source: SOURCE, sourceUrl: SOURCE_URL, sourceSection: 'Hazards', isStateSpecificLaw: false,
+    status: 'verified', createdAt: '2026-07-17', lastVerifiedAt: '2026-07-17', verifiedBy: 'system',
+  },
 ];
 
 export default questions;
