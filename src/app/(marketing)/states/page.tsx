@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LIVE_STATE_ABBRS, LIVE_MOTORCYCLE_STATE_ABBRS } from "@/lib/stripe/config";
+import USStateMap from "@/components/USStateMap";
+import { US_STATES } from "@/data/us-states";
 
 export const metadata: Metadata = {
   title: "DMV Practice Tests for All 50 States – Free State-by-State Test Prep",
@@ -32,326 +34,16 @@ const faqs = [
   },
 ];
 
-type StateEntry = {
-  name: string;
-  abbr: string;
-  emoji: string;
-  license?: string;
-  motorcycle?: string;
-  cdl?: string;
-};
-
-// States with a full practice test bank, timed mock exams, and progress
-// tracking after signup. Sourced from the single live-state list in
-// src/lib/stripe/config.ts so this page can't drift out of sync with what's
-// actually purchasable. Every state has free sample questions on its own
-// landing page regardless of this list.
 const FULLY_LIVE_ABBRS = LIVE_STATE_ABBRS;
 
-const states: StateEntry[] = [
-  {
-    name: "Alabama", abbr: "AL", emoji: "🌲",
-    license: "/alabama-dmv-practice-test",
-    motorcycle: "/alabama-motorcycle-practice-test",
-    cdl: "/alabama-cdl-practice-test",
-  },
-  {
-    name: "Alaska", abbr: "AK", emoji: "🏔️",
-    license: "/alaska-dmv-practice-test",
-    motorcycle: "/alaska-motorcycle-practice-test",
-    cdl: "/alaska-cdl-practice-test",
-  },
-  {
-    name: "Arizona", abbr: "AZ", emoji: "🌵",
-    license: "/arizona-dmv-practice-test",
-    motorcycle: "/arizona-motorcycle-practice-test",
-    cdl: "/arizona-cdl-practice-test",
-  },
-  {
-    name: "Arkansas", abbr: "AR", emoji: "💎",
-    license: "/arkansas-dmv-practice-test",
-    motorcycle: "/arkansas-motorcycle-practice-test",
-    cdl: "/arkansas-cdl-practice-test",
-  },
-  {
-    name: "California", abbr: "CA", emoji: "🌊",
-    license: "/california-dmv-practice-test",
-    motorcycle: "/california-motorcycle-practice-test",
-    cdl: "/california-cdl-practice-test",
-  },
-  {
-    name: "Colorado", abbr: "CO", emoji: "⛷️",
-    license: "/colorado-dmv-practice-test",
-    motorcycle: "/colorado-motorcycle-practice-test",
-    cdl: "/colorado-cdl-practice-test",
-  },
-  {
-    name: "Connecticut", abbr: "CT", emoji: "🏛️",
-    license: "/connecticut-dmv-practice-test",
-    motorcycle: "/connecticut-motorcycle-practice-test",
-    cdl: "/connecticut-cdl-practice-test",
-  },
-  {
-    name: "Delaware", abbr: "DE", emoji: "🦅",
-    license: "/delaware-dmv-practice-test",
-    motorcycle: "/delaware-motorcycle-practice-test",
-    cdl: "/delaware-cdl-practice-test",
-  },
-  {
-    name: "Florida", abbr: "FL", emoji: "🌴",
-    license: "/florida-dmv-practice-test",
-    motorcycle: "/florida-motorcycle-practice-test",
-    cdl: "/florida-cdl-practice-test",
-  },
-  {
-    name: "Georgia", abbr: "GA", emoji: "🍑",
-    license: "/georgia-dmv-practice-test",
-    motorcycle: "/georgia-motorcycle-practice-test",
-    cdl: "/georgia-cdl-practice-test",
-  },
-  {
-    name: "Hawaii", abbr: "HI", emoji: "🌺",
-    license: "/hawaii-dmv-practice-test",
-    motorcycle: "/hawaii-motorcycle-practice-test",
-    cdl: "/hawaii-cdl-practice-test",
-  },
-  {
-    name: "Idaho", abbr: "ID", emoji: "🥔",
-    license: "/idaho-dmv-practice-test",
-    motorcycle: "/idaho-motorcycle-practice-test",
-    cdl: "/idaho-cdl-practice-test",
-  },
-  {
-    name: "Illinois", abbr: "IL", emoji: "🌆",
-    license: "/illinois-dmv-practice-test",
-    motorcycle: "/illinois-motorcycle-practice-test",
-    cdl: "/illinois-cdl-practice-test",
-  },
-  {
-    name: "Indiana", abbr: "IN", emoji: "🏎️",
-    license: "/indiana-dmv-practice-test",
-    motorcycle: "/indiana-motorcycle-practice-test",
-    cdl: "/indiana-cdl-practice-test",
-  },
-  {
-    name: "Iowa", abbr: "IA", emoji: "🌽",
-    license: "/iowa-dmv-practice-test",
-    motorcycle: "/iowa-motorcycle-practice-test",
-    cdl: "/iowa-cdl-practice-test",
-  },
-  {
-    name: "Kansas", abbr: "KS", emoji: "🌾",
-    license: "/kansas-dmv-practice-test",
-    motorcycle: "/kansas-motorcycle-practice-test",
-    cdl: "/kansas-cdl-practice-test",
-  },
-  {
-    name: "Kentucky", abbr: "KY", emoji: "🏇",
-    license: "/kentucky-dmv-practice-test",
-    motorcycle: "/kentucky-motorcycle-practice-test",
-    cdl: "/kentucky-cdl-practice-test",
-  },
-  {
-    name: "Louisiana", abbr: "LA", emoji: "🎷",
-    license: "/louisiana-dmv-practice-test",
-    motorcycle: "/louisiana-motorcycle-practice-test",
-    cdl: "/louisiana-cdl-practice-test",
-  },
-  {
-    name: "Maine", abbr: "ME", emoji: "🦞",
-    license: "/maine-dmv-practice-test",
-    motorcycle: "/maine-motorcycle-practice-test",
-    cdl: "/maine-cdl-practice-test",
-  },
-  {
-    name: "Maryland", abbr: "MD", emoji: "🦀",
-    license: "/maryland-dmv-practice-test",
-    motorcycle: "/maryland-motorcycle-practice-test",
-    cdl: "/maryland-cdl-practice-test",
-  },
-  {
-    name: "Massachusetts", abbr: "MA", emoji: "🦃",
-    license: "/massachusetts-dmv-practice-test",
-    motorcycle: "/massachusetts-motorcycle-practice-test",
-    cdl: "/massachusetts-cdl-practice-test",
-  },
-  {
-    name: "Michigan", abbr: "MI", emoji: "🏭",
-    license: "/michigan-dmv-practice-test",
-    motorcycle: "/michigan-motorcycle-practice-test",
-    cdl: "/michigan-cdl-practice-test",
-  },
-  {
-    name: "Minnesota", abbr: "MN", emoji: "🌊",
-    license: "/minnesota-dmv-practice-test",
-    motorcycle: "/minnesota-motorcycle-practice-test",
-    cdl: "/minnesota-cdl-practice-test",
-  },
-  {
-    name: "Mississippi", abbr: "MS", emoji: "🎸",
-    license: "/mississippi-dmv-practice-test",
-    motorcycle: "/mississippi-motorcycle-practice-test",
-    cdl: "/mississippi-cdl-practice-test",
-  },
-  {
-    name: "Missouri", abbr: "MO", emoji: "🌉",
-    license: "/missouri-dmv-practice-test",
-    motorcycle: "/missouri-motorcycle-practice-test",
-    cdl: "/missouri-cdl-practice-test",
-  },
-  {
-    name: "Montana", abbr: "MT", emoji: "🏔️",
-    license: "/montana-dmv-practice-test",
-    motorcycle: "/montana-motorcycle-practice-test",
-    cdl: "/montana-cdl-practice-test",
-  },
-  {
-    name: "Nebraska", abbr: "NE", emoji: "🌽",
-    license: "/nebraska-dmv-practice-test",
-    motorcycle: "/nebraska-motorcycle-practice-test",
-    cdl: "/nebraska-cdl-practice-test",
-  },
-  {
-    name: "Nevada", abbr: "NV", emoji: "🎰",
-    license: "/nevada-dmv-practice-test",
-    motorcycle: "/nevada-motorcycle-practice-test",
-    cdl: "/nevada-cdl-practice-test",
-  },
-  {
-    name: "New Hampshire", abbr: "NH", emoji: "🍁",
-    license: "/new-hampshire-dmv-practice-test",
-    motorcycle: "/new-hampshire-motorcycle-practice-test",
-    cdl: "/new-hampshire-cdl-practice-test",
-  },
-  {
-    name: "New Jersey", abbr: "NJ", emoji: "🏖️",
-    license: "/new-jersey-dmv-practice-test",
-    motorcycle: "/new-jersey-motorcycle-practice-test",
-    cdl: "/new-jersey-cdl-practice-test",
-  },
-  {
-    name: "New Mexico", abbr: "NM", emoji: "🌵",
-    license: "/new-mexico-dmv-practice-test",
-    motorcycle: "/new-mexico-motorcycle-practice-test",
-    cdl: "/new-mexico-cdl-practice-test",
-  },
-  {
-    name: "New York", abbr: "NY", emoji: "🗽",
-    license: "/new-york-dmv-practice-test",
-    motorcycle: "/new-york-motorcycle-practice-test",
-    cdl: "/new-york-cdl-practice-test",
-  },
-  {
-    name: "North Carolina", abbr: "NC", emoji: "🏔️",
-    license: "/north-carolina-dmv-practice-test",
-    motorcycle: "/north-carolina-motorcycle-practice-test",
-    cdl: "/north-carolina-cdl-practice-test",
-  },
-  {
-    name: "North Dakota", abbr: "ND", emoji: "🌾",
-    license: "/north-dakota-dmv-practice-test",
-    motorcycle: "/north-dakota-motorcycle-practice-test",
-    cdl: "/north-dakota-cdl-practice-test",
-  },
-  {
-    name: "Ohio", abbr: "OH", emoji: "🎡",
-    license: "/ohio-dmv-practice-test",
-    motorcycle: "/ohio-motorcycle-practice-test",
-    cdl: "/ohio-cdl-practice-test",
-  },
-  {
-    name: "Oklahoma", abbr: "OK", emoji: "🌾",
-    license: "/oklahoma-dmv-practice-test",
-    motorcycle: "/oklahoma-motorcycle-practice-test",
-    cdl: "/oklahoma-cdl-practice-test",
-  },
-  {
-    name: "Oregon", abbr: "OR", emoji: "🌲",
-    license: "/oregon-dmv-practice-test",
-    motorcycle: "/oregon-motorcycle-practice-test",
-    cdl: "/oregon-cdl-practice-test",
-  },
-  {
-    name: "Pennsylvania", abbr: "PA", emoji: "🔔",
-    license: "/pennsylvania-dmv-practice-test",
-    motorcycle: "/pennsylvania-motorcycle-practice-test",
-    cdl: "/pennsylvania-cdl-practice-test",
-  },
-  {
-    name: "Rhode Island", abbr: "RI", emoji: "⚓",
-    license: "/rhode-island-dmv-practice-test",
-    motorcycle: "/rhode-island-motorcycle-practice-test",
-    cdl: "/rhode-island-cdl-practice-test",
-  },
-  {
-    name: "South Carolina", abbr: "SC", emoji: "🌴",
-    license: "/south-carolina-dmv-practice-test",
-    motorcycle: "/south-carolina-motorcycle-practice-test",
-    cdl: "/south-carolina-cdl-practice-test",
-  },
-  {
-    name: "South Dakota", abbr: "SD", emoji: "🦅",
-    license: "/south-dakota-dmv-practice-test",
-    motorcycle: "/south-dakota-motorcycle-practice-test",
-    cdl: "/south-dakota-cdl-practice-test",
-  },
-  {
-    name: "Tennessee", abbr: "TN", emoji: "🎸",
-    license: "/tennessee-dmv-practice-test",
-    motorcycle: "/tennessee-motorcycle-practice-test",
-    cdl: "/tennessee-cdl-practice-test",
-  },
-  {
-    name: "Texas", abbr: "TX", emoji: "⭐",
-    license: "/texas-dmv-practice-test",
-    motorcycle: "/texas-motorcycle-practice-test",
-    cdl: "/texas-cdl-practice-test",
-  },
-  {
-    name: "Utah", abbr: "UT", emoji: "🏜️",
-    license: "/utah-dmv-practice-test",
-    motorcycle: "/utah-motorcycle-practice-test",
-    cdl: "/utah-cdl-practice-test",
-  },
-  {
-    name: "Vermont", abbr: "VT", emoji: "🍁",
-    license: "/vermont-dmv-practice-test",
-    motorcycle: "/vermont-motorcycle-practice-test",
-    cdl: "/vermont-cdl-practice-test",
-  },
-  {
-    name: "Virginia", abbr: "VA", emoji: "🏛️",
-    license: "/virginia-dmv-practice-test",
-    motorcycle: "/virginia-motorcycle-practice-test",
-    cdl: "/virginia-cdl-practice-test",
-  },
-  {
-    name: "Washington", abbr: "WA", emoji: "☕",
-    license: "/washington-dmv-practice-test",
-    motorcycle: "/washington-motorcycle-practice-test",
-    cdl: "/washington-cdl-practice-test",
-  },
-  {
-    name: "West Virginia", abbr: "WV", emoji: "⛏️",
-    license: "/west-virginia-dmv-practice-test",
-    motorcycle: "/west-virginia-motorcycle-practice-test",
-    cdl: "/west-virginia-cdl-practice-test",
-  },
-  {
-    name: "Wisconsin", abbr: "WI", emoji: "🧀",
-    license: "/wisconsin-dmv-practice-test",
-    motorcycle: "/wisconsin-motorcycle-practice-test",
-    cdl: "/wisconsin-cdl-practice-test",
-  },
-  {
-    name: "Wyoming", abbr: "WY", emoji: "🤠",
-    license: "/wyoming-dmv-practice-test",
-    motorcycle: "/wyoming-motorcycle-practice-test",
-    cdl: "/wyoming-cdl-practice-test",
-  },
-];
+const states = US_STATES.map((s) => ({
+  ...s,
+  license:    `/${s.slug}-dmv-practice-test`,
+  motorcycle: `/${s.slug}-motorcycle-practice-test`,
+  cdl:        `/${s.slug}-cdl-practice-test`,
+}));
 
-const available = states.filter((s) => FULLY_LIVE_ABBRS.has(s.abbr));
+const available  = states.filter((s) => FULLY_LIVE_ABBRS.has(s.abbr));
 const sampleOnly = states.filter((s) => !FULLY_LIVE_ABBRS.has(s.abbr));
 
 export default function StatesPage() {
@@ -410,6 +102,22 @@ export default function StatesPage() {
           </ol>
         </div>
       </nav>
+
+      {/* Interactive Map */}
+      <section className="py-12 bg-white border-b border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold mb-1" style={{ color: '#0d2240' }}>Select Your State</h2>
+            <p className="text-sm" style={{ color: '#6b7280' }}>Choose a state on the map or browse all 50 states below.</p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            <USStateMap
+              urlPattern="/{slug}-dmv-practice-test"
+              highlightedAbbrs={LIVE_STATE_ABBRS}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Available Now */}
       <section className="py-14 bg-white">

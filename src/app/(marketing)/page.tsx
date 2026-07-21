@@ -19,7 +19,7 @@ const websiteSchema = {
       "@id": "https://caredmvprep.com/#website",
       "url": "https://caredmvprep.com",
       "name": "CAREDMVPrep",
-      "description": "Free DMV sample questions for all 50 states, with full practice tests, mock exams, CDL, and motorcycle available in 15 states and growing.",
+      "description": "Free DMV practice tests for all 50 states — Driver's License, CDL, and Motorcycle. State-specific questions based on official DMV handbooks.",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
@@ -144,7 +144,7 @@ const whyItems = [
       </svg>
     ),
     title: "All 50 States Covered",
-    desc: "Free sample questions for every state, with full practice tests, mock exams, and progress tracking live in 15 states and growing.",
+    desc: "Full practice tests, mock exams, and progress tracking — Driver's License, Motorcycle, and CDL — for all 50 states.",
   },
 ];
 
@@ -266,7 +266,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-xl font-bold mb-2" style={{ color: '#0d1a2d' }}>Driver&apos;s License Tests</h3>
               <p className="text-sm leading-relaxed mb-5" style={{ color: '#6b7280' }}>
-                Practice for your state&apos;s written knowledge test. Sample questions for all 50 states, full practice tests in 15 and growing.
+                Practice for your state&apos;s written knowledge test. Full practice tests, timed mock exams, and progress tracking for all 50 states.
               </p>
               <span className="inline-flex items-center gap-1 text-sm font-bold" style={{ color: '#1a7f3c' }}>
                 Start Practicing →
@@ -325,8 +325,9 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-1" style={{ color: '#111827' }}>Choose Your State</h2>
-            <p className="text-sm" style={{ color: '#6b7280' }}>Select your state to start your DMV practice test</p>
+            <p className="text-sm" style={{ color: '#6b7280' }}>Select your state to start your DMV practice test.</p>
           </div>
+
           <StateSearch />
         </div>
       </section>
