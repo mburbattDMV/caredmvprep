@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import type { Question, QuizConfig } from '@/types/question';
+import type { ClientQuestion, ClientQuizConfig } from '@/types/question';
 
 export interface AnswerRecord {
   questionId: string;
@@ -9,6 +9,9 @@ export interface AnswerRecord {
   isCorrect: boolean;
   category: string;
   timeSpentMs: number;
+  // Populated from the server grading response — never computed client-side.
+  explanation: string;
+  sourceRef?: string;
 }
 
 export interface QuizResult {
@@ -24,9 +27,55 @@ export interface QuizResult {
 
 type Phase = 'idle' | 'active' | 'complete';
 
+interface GradeResponse {
+  correct: boolean;
+  correctIndex: number;
+  correctText: string;
+  explanation: string;
+  sourceRef?: string;
+  error?: string;
+}
+
+async function gradeOne(id: string, token: string, selected: number): Promise<GradeResponse | null> {
+  try {
+    const res = await fetch('/api/grade-answer', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, token, selected }),
+    });
+    const data = await res.json();
+    if (!res.ok || data?.error) return null;
+    return data as GradeResponse;
+  } catch {
+    return null;
+  }
+}
+
+async function gradeBatch(
+  entries: { id: string; token: string; selected: number }[]
+): Promise<Map<string, GradeResponse>> {
+  const out = new Map<string, GradeResponse>();
+  if (entries.length === 0) return out;
+  try {
+    const res = await fetch('/api/grade-answer', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ answers: entries }),
+    });
+    const data = await res.json();
+    if (!res.ok || !Array.isArray(data?.results)) return out;
+    for (const r of data.results) {
+      if (r?.id && !r.error) out.set(r.id, r as GradeResponse);
+    }
+  } catch {
+    // Network failure — caller falls back to a locally-marked-wrong record.
+  }
+  return out;
+}
+
 interface QuizStore {
-  // Config
-  config: QuizConfig | null;
+  // Config — client-safe only; never carries answer keys.
+  config: ClientQuizConfig | null;
 
   // Identifies which session request (testId + focus/practiceAll/count/etc.)
   // produced the current config, so a page remount (e.g. an accidental
@@ -42,6 +91,10 @@ interface QuizStore {
   questionStartTime: number | null;
   timeRemaining: number | null;  // seconds, null = no timer
 
+  // True while the current question's answer is in flight to the grading
+  // endpoint — the UI disables further clicks until this resolves.
+  isGrading: boolean;
+
   // Computed result (set on complete)
   result: QuizResult | null;
 
@@ -55,21 +108,21 @@ interface QuizStore {
   setHasHydrated: (value: boolean) => void;
 
   // Actions
-  startQuiz: (config: QuizConfig, sessionKey?: string) => void;
-  submitAnswer: (selectedIndex: number) => void;
-  nextQuestion: () => void;
-  skipQuestion: () => void;
+  startQuiz: (config: ClientQuizConfig, sessionKey?: string) => void;
+  submitAnswer: (selectedIndex: number) => Promise<void>;
+  nextQuestion: () => Promise<void>;
+  skipQuestion: () => Promise<void>;
   tickTimer: () => void;
   resetQuiz: () => void;
 
   // Helpers
-  currentQuestion: () => Question | null;
+  currentQuestion: () => ClientQuestion | null;
   currentAnswer: () => AnswerRecord | undefined;
   isAnswered: () => boolean;
   progress: () => { answered: number; total: number; percent: number };
 }
 
-function computeResult(config: QuizConfig, answers: AnswerRecord[], totalTimeMs: number): QuizResult {
+function computeResult(config: ClientQuizConfig, answers: AnswerRecord[], totalTimeMs: number): QuizResult {
   const correctCount = answers.filter((a) => a.isCorrect).length;
   const scorePercent = answers.length > 0 ? correctCount / answers.length : 0;
 
@@ -96,6 +149,47 @@ function computeResult(config: QuizConfig, answers: AnswerRecord[], totalTimeMs:
   };
 }
 
+/**
+ * Backfills correctIndex/explanation (via a batch grade call) for any
+ * answers that were recorded locally-only — i.e. timeout auto-submits,
+ * where we mark the question wrong immediately without waiting on a
+ * network round trip per question. Answers already graded by the server
+ * (isCorrect already resolved via submitAnswer/skipQuestion) pass through
+ * unchanged. This is the last point before a result is shown or persisted,
+ * so it's the final integrity check regardless of how an answer was
+ * recorded.
+ */
+async function finalizeAnswers(
+  config: ClientQuizConfig,
+  answers: AnswerRecord[]
+): Promise<AnswerRecord[]> {
+  const needsGrading = answers.filter((a) => a.correctIndex === -1);
+  if (needsGrading.length === 0) return answers;
+
+  const byId = new Map(config.questions.map((q) => [q.id, q]));
+  const entries = needsGrading
+    .map((a) => {
+      const q = byId.get(a.questionId);
+      return q ? { id: q.id, token: q.token, selected: a.selectedIndex } : null;
+    })
+    .filter((e): e is { id: string; token: string; selected: number } => e !== null);
+
+  const graded = await gradeBatch(entries);
+
+  return answers.map((a) => {
+    if (a.correctIndex !== -1) return a;
+    const g = graded.get(a.questionId);
+    if (!g) return a; // grading unavailable — leave as locally-marked-wrong
+    return {
+      ...a,
+      correctIndex: g.correctIndex,
+      isCorrect: g.correct,
+      explanation: g.explanation,
+      sourceRef: g.sourceRef,
+    };
+  });
+}
+
 export const useQuizStore = create<QuizStore>()(
   persist(
     (set, get) => ({
@@ -107,6 +201,7 @@ export const useQuizStore = create<QuizStore>()(
   sessionStartTime: null,
   questionStartTime: null,
   timeRemaining: null,
+  isGrading: false,
   result: null,
   hasHydrated: false,
   setHasHydrated: (value) => set({ hasHydrated: value }),
@@ -125,9 +220,9 @@ export const useQuizStore = create<QuizStore>()(
     });
   },
 
-  submitAnswer: (selectedIndex) => {
-    const { config, currentIndex, answers, questionStartTime } = get();
-    if (!config) return;
+  submitAnswer: async (selectedIndex) => {
+    const { config, currentIndex, answers, questionStartTime, isGrading } = get();
+    if (!config || isGrading) return;
     const q = config.questions[currentIndex];
     if (!q) return;
 
@@ -135,36 +230,61 @@ export const useQuizStore = create<QuizStore>()(
     if (answers.find((a) => a.questionId === q.id)) return;
 
     const timeSpentMs = questionStartTime ? Date.now() - questionStartTime : 0;
-    const record: AnswerRecord = {
-      questionId: q.id,
-      selectedIndex,
-      correctIndex: q.correctIndex,
-      isCorrect: selectedIndex === q.correctIndex,
-      category: q.category,
-      timeSpentMs,
-    };
+
+    set({ isGrading: true });
+    const graded = await gradeOne(q.id, q.token, selectedIndex);
+    set({ isGrading: false });
+
+    // A network/token failure must never silently reveal or fabricate
+    // correctness — mark it for the batch-grade backfill at completion
+    // time instead of guessing.
+    const record: AnswerRecord = graded
+      ? {
+          questionId: q.id,
+          selectedIndex,
+          correctIndex: graded.correctIndex,
+          isCorrect: graded.correct,
+          category: q.category,
+          timeSpentMs,
+          explanation: graded.explanation,
+          sourceRef: graded.sourceRef,
+        }
+      : {
+          questionId: q.id,
+          selectedIndex,
+          correctIndex: -1,
+          isCorrect: false,
+          category: q.category,
+          timeSpentMs,
+          explanation: '',
+        };
 
     set((s) => ({ answers: [...s.answers, record] }));
   },
 
-  nextQuestion: () => {
+  nextQuestion: async () => {
     const { config, currentIndex, answers, sessionStartTime } = get();
     if (!config) return;
 
     const nextIndex = currentIndex + 1;
 
     if (nextIndex >= config.questions.length) {
-      // Quiz complete
+      // Quiz complete — backfill any locally-unresolved answers before
+      // computing the final result.
+      const finalAnswers = await finalizeAnswers(config, answers);
       const totalTimeMs = sessionStartTime ? Date.now() - sessionStartTime : 0;
-      const result = computeResult(config, answers, totalTimeMs);
-      set({ phase: 'complete', result, currentIndex: nextIndex });
+      const result = computeResult(config, finalAnswers, totalTimeMs);
+      set({ phase: 'complete', result, currentIndex: nextIndex, answers: finalAnswers });
     } else {
       set({ currentIndex: nextIndex, questionStartTime: Date.now() });
     }
   },
 
-  skipQuestion: () => {
-    // Treat skip as wrong answer with selectedIndex -1
+  skipQuestion: async () => {
+    // Treat skip as wrong answer with selectedIndex -1. correctIndex is
+    // deliberately left unresolved (-1) here rather than fetched inline —
+    // the batch backfill at completion time resolves it, keeping "skip"
+    // instant instead of blocking on a network call.
     const { config, currentIndex } = get();
     if (!config) return;
     const q = config.questions[currentIndex];
@@ -173,13 +293,14 @@ export const useQuizStore = create<QuizStore>()(
     const record: AnswerRecord = {
       questionId: q.id,
       selectedIndex: -1,
-      correctIndex: q.correctIndex,
+      correctIndex: -1,
       isCorrect: false,
       category: q.category,
       timeSpentMs: 0,
+      explanation: '',
     };
     set((s) => ({ answers: [...s.answers, record] }));
-    get().nextQuestion();
+    await get().nextQuestion();
   },
 
   tickTimer: () => {
@@ -187,25 +308,36 @@ export const useQuizStore = create<QuizStore>()(
       if (s.timeRemaining === null || s.timeRemaining <= 0) return s;
       const next = s.timeRemaining - 1;
       if (next <= 0) {
-        // Time's up — auto-submit unanswered questions as skipped and complete.
-        // Exclude questions already in `answers` (e.g. the current one, if the
-        // user submitted it the instant before the timer hit zero) to avoid
-        // double-counting a question and deflating the final score.
+        // Time's up — auto-submit unanswered questions as skipped.
+        // correctIndex is left unresolved (-1); finalizeAnswers backfills
+        // it via a single batch call once we transition to 'complete'
+        // below, rather than firing N sequential grading requests here.
         const answeredIds = new Set(s.answers.map((a) => a.questionId));
         const remaining = s.config!.questions.slice(s.currentIndex)
           .filter((q) => !answeredIds.has(q.id))
           .map((q) => ({
             questionId: q.id,
             selectedIndex: -1,
-            correctIndex: q.correctIndex,
+            correctIndex: -1,
             isCorrect: false,
             category: q.category,
             timeSpentMs: 0,
+            explanation: '',
           }));
         const allAnswers = [...s.answers, ...remaining];
         const totalTimeMs = s.sessionStartTime ? Date.now() - s.sessionStartTime : 0;
-        const result = computeResult(s.config!, allAnswers, totalTimeMs);
-        return { timeRemaining: 0, phase: 'complete', result, answers: allAnswers };
+
+        // Fire-and-await the backfill without blocking this synchronous
+        // tick — the result is provisional (locally-marked-wrong) until it
+        // resolves, then gets corrected in place.
+        const config = s.config!;
+        finalizeAnswers(config, allAnswers).then((finalAnswers) => {
+          const result = computeResult(config, finalAnswers, totalTimeMs);
+          useQuizStore.setState({ result, answers: finalAnswers });
+        });
+
+        const provisionalResult = computeResult(config, allAnswers, totalTimeMs);
+        return { timeRemaining: 0, phase: 'complete', result: provisionalResult, answers: allAnswers };
       }
       return { timeRemaining: next };
     });
@@ -221,6 +353,7 @@ export const useQuizStore = create<QuizStore>()(
       sessionStartTime: null,
       questionStartTime: null,
       timeRemaining: null,
+      isGrading: false,
       result: null,
     }),
 

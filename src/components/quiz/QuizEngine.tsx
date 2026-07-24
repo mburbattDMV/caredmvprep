@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useQuizStore } from "@/store/quiz";
-import type { QuizConfig } from "@/types/question";
+import type { ClientQuizConfig } from "@/types/question";
 import QuizProgress from "./QuizProgress";
 import QuizQuestion from "./QuizQuestion";
 import QuizTimer from "./QuizTimer";
@@ -10,7 +10,7 @@ import QuizResults from "./QuizResults";
 import { trackQuizStarted } from "@/lib/analytics";
 
 interface QuizEngineProps {
-  config: QuizConfig;
+  config: ClientQuizConfig;
   // Identifies this specific session request (testId + focus/practiceAll/
   // count/etc.). Lets the mount effect tell "the user reloaded mid-quiz,
   // resume it" apart from "this is a genuinely different session request
@@ -53,7 +53,7 @@ export default function QuizEngine({ config, sessionKey }: QuizEngineProps) {
   function handleStart(size?: number | null) {
     const count = (size ?? selectedSize) ?? bankTotal;
     const questions = shuffled(config.questions).slice(0, count);
-    const sessionConfig: QuizConfig = { ...config, questions };
+    const sessionConfig: ClientQuizConfig = { ...config, questions };
     startQuiz(sessionConfig, sessionKey);
     trackQuizStarted(config.testId, questions.length);
   }

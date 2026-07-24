@@ -216,12 +216,14 @@ export default function QuizResults() {
                   <div className="min-w-0">
                     <p className="text-sm font-medium text-gray-900 leading-snug mb-1">{q.question}</p>
                     <p className="text-xs text-gray-500">
-                      {ans.isCorrect
-                        ? `✓ ${q.options[q.correctIndex]}`
-                        : `✗ You chose: ${ans.selectedIndex >= 0 ? q.options[ans.selectedIndex] : "Skipped"} · Correct: ${q.options[q.correctIndex]}`}
+                      {ans.correctIndex === -1
+                        ? "Grading unavailable for this question — not counted toward accuracy review below."
+                        : ans.isCorrect
+                        ? `✓ ${q.options[ans.correctIndex]}`
+                        : `✗ You chose: ${ans.selectedIndex >= 0 ? q.options[ans.selectedIndex] : "Skipped"} · Correct: ${q.options[ans.correctIndex]}`}
                     </p>
-                    {!ans.isCorrect && (
-                      <p className="text-xs text-gray-400 mt-1 leading-relaxed">{q.explanation}</p>
+                    {!ans.isCorrect && ans.correctIndex !== -1 && (
+                      <p className="text-xs text-gray-400 mt-1 leading-relaxed">{ans.explanation}</p>
                     )}
                   </div>
                 </div>

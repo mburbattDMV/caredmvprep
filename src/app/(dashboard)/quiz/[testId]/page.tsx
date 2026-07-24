@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getUserSubscriptions, hasActiveProduct, getWeakTopics } from "@/lib/supabase/queries";
 import { getQuizConfig } from "@/data/questions/index";
 import { QUIZ_PRODUCT_MAP } from "@/lib/stripe/config";
+import { sanitizeQuizConfig } from "@/lib/quizGrading";
 import QuizEngine from "@/components/quiz/QuizEngine";
 import SubscriptionGate from "@/components/ui/SubscriptionGate";
 import type { QuizConfig, Question } from "@/types/question";
@@ -19,13 +20,17 @@ export default async function QuizPage({ params, searchParams }: Props) {
   const config = getQuizConfig(testId);
   if (!config || config.questions.length === 0) notFound();
 
+  // Any quiz not yet commercially activated is treated as non-existent.
+  // This prevents registered-but-not-live quizzes from bypassing the gate.
+  const requiredProduct = QUIZ_PRODUCT_MAP[testId];
+  if (!requiredProduct) notFound();
+
   // Always resolve the user — needed for gating and practiceAll
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  // Subscription gate
-  const requiredProduct = QUIZ_PRODUCT_MAP[testId];
-  if (requiredProduct && user) {
+  // Subscription gate — layout guarantees auth, but enforce product entitlement.
+  if (user) {
     const subscriptions = await getUserSubscriptions(supabase, user.id);
     if (!hasActiveProduct(subscriptions, requiredProduct)) {
       return <SubscriptionGate product={requiredProduct} />;
@@ -119,7 +124,7 @@ export default async function QuizPage({ params, searchParams }: Props) {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <QuizEngine key={sessionKey} sessionKey={sessionKey} config={activeConfig} />
+      <QuizEngine key={sessionKey} sessionKey={sessionKey} config={sanitizeQuizConfig(activeConfig)} />
     </div>
   );
 }

@@ -34,3 +34,20 @@ export interface QuizConfig {
   // real, practicable test to link back to.
   baseTestId?:    string;
 }
+
+// Client-safe question shape — deliberately omits `correctIndex` and
+// `explanation`. Everything the browser holds before an answer is submitted
+// must be this shape, never `Question`. See src/lib/quizGrading.ts.
+export interface ClientQuestion {
+  id:         string;
+  question:   string;
+  options:    [string, string, string, string];
+  category:   string;
+  sourceRef?: string;
+  /** Opaque, encrypted. Sent back unchanged at grading time. */
+  token:      string;
+}
+
+export interface ClientQuizConfig extends Omit<QuizConfig, "questions"> {
+  questions: ClientQuestion[];
+}

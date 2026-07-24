@@ -10,11 +10,17 @@ export default function QuizQuestion() {
   const nextQuestion = useQuizStore((s) => s.nextQuestion);
   const currentIndex = useQuizStore((s) => s.currentIndex);
   const config = useQuizStore((s) => s.config);
+  const isGrading = useQuizStore((s) => s.isGrading);
 
   if (!q || !config) return null;
 
   const isAnswered = !!answer;
   const isLast = currentIndex >= config.questions.length - 1;
+  // Grading is unresolved for skipped/timed-out answers until the
+  // completion-time batch backfill runs — there's no per-question UI for
+  // that path (results screen handles it), so this only ever gates the
+  // interactive click-to-answer flow below.
+  const correctIndexKnown = isAnswered && answer.correctIndex !== -1;
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
@@ -29,7 +35,7 @@ export default function QuizQuestion() {
       {/* Answer options */}
       <div className="px-6 py-5 space-y-3">
         {q.options.map((opt, oi) => {
-          const isCorrect = oi === q.correctIndex;
+          const isCorrect = correctIndexKnown && oi === answer.correctIndex;
           const isSelected = oi === answer?.selectedIndex;
 
           let borderColor = "border-gray-200";
@@ -71,11 +77,11 @@ export default function QuizQuestion() {
           return (
             <button
               key={oi}
-              onClick={() => !isAnswered && submitAnswer(oi)}
-              disabled={isAnswered}
+              onClick={() => !isAnswered && !isGrading && submitAnswer(oi)}
+              disabled={isAnswered || isGrading}
               className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border text-left transition-all ${borderColor} ${bg} ${
-                !isAnswered ? "hover:border-blue-400 hover:bg-blue-50 cursor-pointer active:scale-[0.99]" : "cursor-default"
-              }`}
+                !isAnswered && !isGrading ? "hover:border-blue-400 hover:bg-blue-50 cursor-pointer active:scale-[0.99]" : "cursor-default"
+              } ${isGrading ? "opacity-60" : ""}`}
             >
               <span
                 className="shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold transition-colors"
@@ -90,21 +96,26 @@ export default function QuizQuestion() {
         })}
       </div>
 
-      {/* Explanation — shown after answering */}
-      {isAnswered && (
+      {/* Explanation — shown after answering, once server grading resolves */}
+      {correctIndexKnown && (
         <div className="px-6 py-4 border-t border-gray-100 bg-gray-50">
           <p className="text-sm font-semibold text-gray-800 mb-1">
-            Correct Answer: {String.fromCharCode(65 + q.correctIndex)} — {q.options[q.correctIndex]}
+            Correct Answer: {String.fromCharCode(65 + answer.correctIndex)} — {q.options[answer.correctIndex]}
           </p>
-          <p className="text-sm text-gray-600 leading-relaxed">{q.explanation}</p>
+          <p className="text-sm text-gray-600 leading-relaxed">{answer.explanation}</p>
           <div className="flex items-center justify-between mt-2">
-            {q.sourceRef ? (
-              <p className="text-xs text-gray-400">Source: {q.sourceRef}</p>
+            {answer.sourceRef ? (
+              <p className="text-xs text-gray-400">Source: {answer.sourceRef}</p>
             ) : (
               <span />
             )}
             <BookmarkButton questionId={q.id} />
           </div>
+        </div>
+      )}
+      {isGrading && !isAnswered && (
+        <div className="px-6 py-4 border-t border-gray-100 bg-gray-50 text-sm text-gray-400">
+          Grading…
         </div>
       )}
 
