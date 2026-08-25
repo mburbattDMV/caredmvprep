@@ -1,25 +1,75 @@
 "use client";
 
 import { useState } from "react";
-import type { SampleQuestion } from "./PracticeTestPage";
+import type { ClientSampleQuestion } from "./PracticeTestPage";
 
 interface Props {
-  questions: SampleQuestion[];
+  questions: ClientSampleQuestion[];
   state: string;
   testLabel: string;
 }
 
+interface AnsweredState {
+  selected: number;
+  loading: boolean;
+  /** Populated once the grading response arrives. */
+  correct?: boolean;
+  correctIndex?: number;
+  explanation?: string;
+  error?: boolean;
+}
+
 export default function SampleQuestions({ questions }: Props) {
-  const [selected, setSelected] = useState<Record<number, number>>({});
+  const [answers, setAnswers] = useState<Record<number, AnsweredState>>({});
 
-  const answeredCount = Object.keys(selected).length;
-  const correctCount = Object.entries(selected).filter(
-    ([qi, choice]) => questions[Number(qi)].correctIndex === Number(choice)
-  ).length;
+  const answeredCount = Object.keys(answers).length;
+  const gradedEntries = Object.values(answers).filter((a) => a.correct !== undefined);
+  const correctCount = gradedEntries.filter((a) => a.correct).length;
 
-  function handleSelect(qi: number, oi: number) {
-    if (selected[qi] !== undefined) return;
-    setSelected((prev) => ({ ...prev, [qi]: oi }));
+  async function handleSelect(qi: number, oi: number) {
+    if (answers[qi] !== undefined) return;
+
+    // Optimistic: lock the question and show a "checking" state immediately,
+    // same interaction latency as before from the student's perspective.
+    setAnswers((prev) => ({ ...prev, [qi]: { selected: oi, loading: true } }));
+
+    const q = questions[qi];
+    try {
+      const res = await fetch("/api/grade-sample-answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question: q.question,
+          options: q.options,
+          token: q.token,
+          selected: oi,
+        }),
+      });
+
+      if (!res.ok) {
+        setAnswers((prev) => ({ ...prev, [qi]: { selected: oi, loading: false, error: true } }));
+        return;
+      }
+
+      const result = (await res.json()) as {
+        correct: boolean;
+        correctIndex: number;
+        explanation: string;
+      };
+
+      setAnswers((prev) => ({
+        ...prev,
+        [qi]: {
+          selected: oi,
+          loading: false,
+          correct: result.correct,
+          correctIndex: result.correctIndex,
+          explanation: result.explanation,
+        },
+      }));
+    } catch {
+      setAnswers((prev) => ({ ...prev, [qi]: { selected: oi, loading: false, error: true } }));
+    }
   }
 
   return (
@@ -39,13 +89,20 @@ export default function SampleQuestions({ questions }: Props) {
           Score:{" "}
           <span
             className="font-bold"
-            style={{ color: answeredCount === 0 ? "#9ca3af" : correctCount === answeredCount ? "#1a7f3c" : "#b91c1c" }}
+            style={{
+              color:
+                gradedEntries.length === 0
+                  ? "#9ca3af"
+                  : correctCount === gradedEntries.length
+                    ? "#1a7f3c"
+                    : "#b91c1c",
+            }}
           >
-            {correctCount}/{answeredCount > 0 ? answeredCount : questions.length}
+            {correctCount}/{gradedEntries.length > 0 ? gradedEntries.length : questions.length}
           </span>{" "}
           correct
         </span>
-        {answeredCount === questions.length && (
+        {gradedEntries.length === questions.length && questions.length > 0 && (
           <span
             className="ml-auto text-xs font-semibold px-2.5 py-1 rounded-full"
             style={{
@@ -62,8 +119,11 @@ export default function SampleQuestions({ questions }: Props) {
 
       <div className="space-y-3">
         {questions.map((q, qi) => {
-          const userChoice = selected[qi];
+          const answer = answers[qi];
+          const userChoice = answer?.selected;
           const isAnswered = userChoice !== undefined;
+          const isGraded = answer?.correct !== undefined;
+          const correctIndex = answer?.correctIndex;
 
           return (
             <div
@@ -86,7 +146,7 @@ export default function SampleQuestions({ questions }: Props) {
               {/* Answer options */}
               <div className="px-5 pb-4 space-y-2 pl-[3.25rem]">
                 {q.options.map((opt, oi) => {
-                  const isCorrect = oi === q.correctIndex;
+                  const isCorrect = isGraded && oi === correctIndex;
                   const isSelected = oi === userChoice;
 
                   // Determine visual state
@@ -97,7 +157,7 @@ export default function SampleQuestions({ questions }: Props) {
                   let badgeText = "#6b7280";
                   let icon: React.ReactNode = null;
 
-                  if (isAnswered) {
+                  if (isGraded) {
                     if (isCorrect) {
                       borderStyle = "border-green-500";
                       bgStyle = "bg-green-50";
@@ -137,6 +197,10 @@ export default function SampleQuestions({ questions }: Props) {
                       textStyle = "text-gray-400";
                       badgeText = "#d1d5db";
                     }
+                  } else if (isSelected && answer?.loading) {
+                    // Awaiting grading response — brief, same-origin round trip
+                    borderStyle = "border-blue-300";
+                    bgStyle = "bg-blue-50";
                   }
 
                   return (
@@ -163,14 +227,26 @@ export default function SampleQuestions({ questions }: Props) {
                 })}
               </div>
 
-              {/* Explanation — revealed after answering */}
-              {isAnswered && (
+              {/* Explanation — revealed after grading */}
+              {isAnswered && answer?.loading && (
+                <div className="px-5 py-4 border-t border-gray-200 bg-gray-50 pl-[3.25rem]">
+                  <p className="text-sm text-gray-400">Checking…</p>
+                </div>
+              )}
+              {isAnswered && answer?.error && (
+                <div className="px-5 py-4 border-t border-gray-200 bg-gray-50 pl-[3.25rem]">
+                  <p className="text-sm text-red-600">
+                    Couldn&apos;t check that answer — please refresh and try again.
+                  </p>
+                </div>
+              )}
+              {isGraded && correctIndex !== undefined && (
                 <div className="px-5 py-4 border-t border-gray-200 bg-gray-50 pl-[3.25rem]">
                   <p className="text-sm font-semibold text-gray-800 mb-1.5">
-                    Correct Answer: {String.fromCharCode(65 + q.correctIndex)} —{" "}
-                    {q.options[q.correctIndex]}
+                    Correct Answer: {String.fromCharCode(65 + correctIndex)} —{" "}
+                    {q.options[correctIndex]}
                   </p>
-                  <p className="text-sm text-gray-600 leading-relaxed">{q.explanation}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{answer.explanation}</p>
                 </div>
               )}
             </div>

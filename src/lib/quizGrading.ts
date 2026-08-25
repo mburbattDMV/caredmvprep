@@ -63,7 +63,15 @@ export interface AnswerTokenPayload {
 const ALGO = "aes-256-gcm";
 const IV_LENGTH = 12; // 96-bit IV, standard for GCM
 
-export function signAnswerToken(payload: AnswerTokenPayload): string {
+/**
+ * Generic AES-256-GCM encrypt of any JSON-serializable payload. Shared
+ * primitive behind both the id-based token scheme below (used by the paid
+ * quiz/mock-exam engine) and the self-contained token scheme in
+ * sanitizeSampleQuestion/gradeSampleSubmission (used by the free public
+ * sample-question widget, which has no server-side question registry to
+ * look ids up in).
+ */
+function encryptJSON(payload: unknown): string {
   const key = getKey();
   const iv = randomBytes(IV_LENGTH);
   const cipher = createCipheriv(ALGO, key, iv);
@@ -72,8 +80,8 @@ export function signAnswerToken(payload: AnswerTokenPayload): string {
   return [iv.toString("base64url"), ciphertext.toString("base64url"), authTag.toString("base64url")].join(".");
 }
 
-/** Returns the decoded payload if the token decrypts/authenticates and is unexpired, otherwise null. */
-export function verifyAnswerToken(token: unknown): AnswerTokenPayload | null {
+/** Returns the decoded payload if the token decrypts/authenticates, otherwise null. Caller validates shape/expiry. */
+function decryptJSON(token: unknown): unknown | null {
   if (typeof token !== "string") return null;
   const parts = token.split(".");
   if (parts.length !== 3) return null;
@@ -91,17 +99,27 @@ export function verifyAnswerToken(token: unknown): AnswerTokenPayload | null {
     decipher.setAuthTag(authTag);
     const plaintext = Buffer.concat([decipher.update(ciphertext), decipher.final()]);
 
-    const payload = JSON.parse(plaintext.toString("utf8")) as Partial<AnswerTokenPayload>;
-    if (typeof payload.id !== "string" || typeof payload.exp !== "number") {
-      return null;
-    }
-    if (Date.now() > payload.exp) return null;
-    return payload as AnswerTokenPayload;
+    return JSON.parse(plaintext.toString("utf8"));
   } catch {
     // Wrong key, tampered ciphertext/auth tag, or malformed input — GCM
     // authentication failure throws, which we treat as "invalid token".
     return null;
   }
+}
+
+export function signAnswerToken(payload: AnswerTokenPayload): string {
+  return encryptJSON(payload);
+}
+
+/** Returns the decoded payload if the token decrypts/authenticates and is unexpired, otherwise null. */
+export function verifyAnswerToken(token: unknown): AnswerTokenPayload | null {
+  const payload = decryptJSON(token) as Partial<AnswerTokenPayload> | null;
+  if (!payload) return null;
+  if (typeof payload.id !== "string" || typeof payload.exp !== "number") {
+    return null;
+  }
+  if (Date.now() > payload.exp) return null;
+  return payload as AnswerTokenPayload;
 }
 
 /** Comfortably covers a paused/resumed quiz or mock-exam session. */
@@ -194,5 +212,124 @@ export function gradeSubmission(
     correctText: sourceQuestion.options[sourceQuestion.correctIndex],
     explanation: sourceQuestion.explanation,
     sourceRef: sourceQuestion.sourceRef,
+  };
+}
+
+/**
+ * ── Free public "sample questions" widget (PracticeTestPage / SampleQuestions) ──
+ *
+ * Unlike the paid quiz/mock-exam engine, the ~170 static landing pages that
+ * embed the free sample widget hardcode their own `sampleQuestions` array
+ * directly in each page.tsx file — there is no id or server-side registry to
+ * look a question up by. Requiring one, or rewriting all ~170 pages, is out
+ * of scope for this fix. Instead the token is self-contained: the answer key
+ * for that specific question is encrypted into the token when the Server
+ * Component (PracticeTestPage) renders, and decrypted only inside the
+ * grading route when the client submits an answer. The client never has
+ * access to the key that would let it read the token's contents.
+ *
+ * `optionsHash` binds a token to the exact question/options it was issued
+ * for, so a token can't be replayed against a different question.
+ */
+
+/**
+ * Sample-question pages are statically prerendered (`○` in `next build`
+ * output, no `revalidate` export) — sanitizeSampleQuestion() runs once at
+ * build time, not per-request, so whatever `exp` it bakes in is frozen into
+ * the static HTML until the next deploy. DEFAULT_TOKEN_TTL_MS (24h) is
+ * right for the paid engine's per-request session tokens, but here it would
+ * make every sample-question token sitewide start failing exactly one day
+ * after a deploy. Use a long TTL instead — there's no meaningful downside:
+ * this is a free, unauthenticated, no-stakes sample quiz, and any real
+ * content edit (question/options text) ships as a new deploy that
+ * regenerates the token anyway (and `optionsHash` invalidates any token
+ * that somehow survived from stale cached HTML).
+ */
+export const SAMPLE_TOKEN_TTL_MS = 400 * 24 * 60 * 60 * 1000; // ~400 days
+
+function hashSampleQuestion(question: string, options: readonly string[]): string {
+  return createHash("sha256").update(question + " " + options.join(" ")).digest("base64url");
+}
+
+export interface SampleAnswerTokenPayload {
+  correctIndex: 0 | 1 | 2 | 3;
+  explanation: string;
+  optionsHash: string;
+  exp: number;
+}
+
+export interface SampleGradableQuestion {
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+}
+
+export interface SanitizedSampleQuestion {
+  question: string;
+  options: string[];
+  /** Opaque, encrypted — carries the answer key for this exact question. Send back unchanged at grading time. */
+  token: string;
+}
+
+/**
+ * Returns ONLY the fields safe to send to the client before an answer is
+ * submitted (question + options), plus an opaque encrypted token. Explicit
+ * allowlist, not spread-and-omit, for the same reason as sanitizeQuestion().
+ */
+export function sanitizeSampleQuestion(
+  q: SampleGradableQuestion,
+  ttlMs: number = SAMPLE_TOKEN_TTL_MS
+): SanitizedSampleQuestion {
+  if (![0, 1, 2, 3].includes(q.correctIndex)) {
+    throw new Error(`sanitizeSampleQuestion: correctIndex out of range for question "${q.question}"`);
+  }
+  const token = encryptJSON({
+    correctIndex: q.correctIndex as 0 | 1 | 2 | 3,
+    explanation: q.explanation,
+    optionsHash: hashSampleQuestion(q.question, q.options),
+    exp: Date.now() + ttlMs,
+  } satisfies SampleAnswerTokenPayload);
+  return {
+    question: q.question,
+    options: q.options,
+    token,
+  };
+}
+
+/**
+ * Grades a sample-question submission entirely from the encrypted token —
+ * there is no server-side source question to look up by id. Returns null if
+ * the token is invalid/expired/tampered, or doesn't match the question text
+ * and options it's being submitted against.
+ */
+export function gradeSampleSubmission(
+  token: unknown,
+  question: string,
+  options: string[],
+  selectedIndex: number
+): GradeResult | null {
+  const payload = decryptJSON(token) as Partial<SampleAnswerTokenPayload> | null;
+  if (!payload) return null;
+  if (
+    typeof payload.correctIndex !== "number" ||
+    ![0, 1, 2, 3].includes(payload.correctIndex) ||
+    typeof payload.explanation !== "string" ||
+    typeof payload.optionsHash !== "string" ||
+    typeof payload.exp !== "number"
+  ) {
+    return null;
+  }
+  if (Date.now() > payload.exp) return null;
+  if (payload.optionsHash !== hashSampleQuestion(question, options)) return null;
+  if (typeof selectedIndex !== "number" || !Number.isInteger(selectedIndex)) return null;
+  if (selectedIndex < 0 || selectedIndex >= options.length) return null;
+
+  const correctIndex = payload.correctIndex as 0 | 1 | 2 | 3;
+  return {
+    correct: selectedIndex === correctIndex,
+    correctIndex,
+    correctText: options[correctIndex],
+    explanation: payload.explanation,
   };
 }

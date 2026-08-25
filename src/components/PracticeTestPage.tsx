@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SampleQuestions from "./SampleQuestions";
 import NearbyStates from "./NearbyStates";
+import { sanitizeSampleQuestion } from "@/lib/quizGrading";
 import {
   getStateFactsByAbbr,
   getTestTypeFromSlug,
@@ -19,6 +20,17 @@ export interface SampleQuestion {
   options: string[];
   correctIndex: number;
   explanation: string;
+}
+
+// Client-safe shape — deliberately omits `correctIndex` and `explanation`.
+// This is what actually reaches SampleQuestions (a "use client" component);
+// the answer key is encrypted into `token` server-side by
+// sanitizeSampleQuestion() and only recoverable inside the
+// /api/grade-sample-answer route. See src/lib/quizGrading.ts.
+export interface ClientSampleQuestion {
+  question: string;
+  options: string[];
+  token: string;
 }
 
 export interface FAQ {
@@ -124,6 +136,14 @@ export default function PracticeTestPage({
   const laneSplitting =
     testType === "motorcycle" && sf ? formatLaneSplitting(sf) : null;
 
+  // Sanitize sample questions server-side before they ever reach the client
+  // component — the answer key (correctIndex/explanation) is encrypted into
+  // an opaque token here and only decrypted inside /api/grade-sample-answer
+  // once the student submits an answer. See src/lib/quizGrading.ts.
+  const clientSampleQuestions: ClientSampleQuestion[] = sampleQuestions.map((q) =>
+    sanitizeSampleQuestion(q)
+  );
+
   // When every splitTest has its own passingPct, hide the shared Passing Score row
   const hasSplitPassingPcts =
     splitTests != null &&
@@ -159,12 +179,16 @@ export default function PracticeTestPage({
     educationalLevel: "beginner",
     learningResourceType: "Practice Problem",
     teaches: `${state} DMV written knowledge test`,
+    // Deliberately omits `acceptedAnswer`/`comment` — including the correct
+    // answer here would embed the answer key in the page's raw HTML source
+    // (readable before any JS runs, and before the visitor answers), which
+    // is exactly the leak this component was fixed to close. `hasPart`
+    // without `acceptedAnswer` is still valid schema.org Quiz/Question
+    // markup; it just doesn't advertise the correct answer to crawlers.
     hasPart: sampleQuestions.map((q, i) => ({
       "@type": "Question",
       position: i + 1,
       name: q.question,
-      acceptedAnswer: { "@type": "Answer", text: q.options[q.correctIndex] },
-      comment: { "@type": "Comment", text: q.explanation },
     })),
   };
 
@@ -390,7 +414,7 @@ export default function PracticeTestPage({
             <p className="text-sm text-gray-500">Select an answer to see instant feedback and explanation.</p>
           </div>
           <SampleQuestions
-            questions={sampleQuestions}
+            questions={clientSampleQuestions}
             state={state}
             testLabel={testLabel}
           />
