@@ -60,6 +60,16 @@ If any required official domain cannot satisfy its allocation, the exam is **NEE
 
 This is not a hypothetical addition. CARE Insurance's own mock-exam batch work found this exact failure mode independently, in four different states, in a single pass: Kansas (statutory domains backed only by thin, roughly-one-question-per-topic overlay files — one domain had exactly zero headroom above its own allocation), Colorado (a shared regulatory module supplying roughly half of what a real blueprint group required), and Connecticut and Iowa (state-specific overlay files short by single-digit counts across three of four Iowa exams and both Connecticut exams). Every one of these was caught only because someone manually tabulated domain-by-domain coverage before writing any code — not because the selection engine or a downstream QA script flagged it first. Make this an explicit, named, early stage of the pipeline — never a hope that §11's real-engine reconciliation will happen to surface a content gap that a static count could have caught for free.
 
+### Shared Taxonomy Sufficiency — a prerequisite for the Bank Sufficiency gate above
+
+Bank Sufficiency (above) assumes the shared question bank's own topic taxonomy is already fine-grained enough to be sorted into the official blueprint's domains at all. That assumption can be false, and when it is, no amount of remapping effort at the state level will fix it.
+
+**When multiple official exam blueprints distinguish concepts that the shared question bank combines under one topic, the shared taxonomy is insufficient for blueprint-driven learning. Fix the shared taxonomy/content architecture before compensating with state-specific mappings.**
+
+A state-level classifier can only sort existing topics into official domains — it cannot manufacture a distinction the underlying question text never drew in the first place. If ten different states' official outlines all separate, say, "Dwelling Policy" from "Homeowners Policy" as two distinct weighted domains, but the shared national content bank tags nearly all residential-property questions under one undifferentiated topic because most of that content is written generically enough to apply to either form, then every one of those ten states hits the identical wall — not because any one state's mapping work was done poorly, but because the shared content itself was never authored with that distinction in mind. Treat a defect discovered in this shape as **SYSTEMIC by construction**: before attempting a per-state classifier for the affected concept, check whether the same shared topic feeds any other state's blueprint that also splits it, and fix the shared taxonomy (re-tagging or, where the existing questions are irreducibly generic, authoring new form-specific content) once, rather than discovering the same wall independently in state after state.
+
+This is not a hypothetical addition. CARE Insurance's 12-state NEEDS_ARCHITECTURE research pass found exactly this: a shared `III.A Insurance on Residential Properties` topic (119 questions) in which only 30 questions identified a specific policy form (DP vs. HO), with the other 89 written generically enough to be unclassifiable without guessing — and confirmed the same Dwelling/Homeowners domain split exists in all 10 of the Property & Casualty blueprints checked in that pass, not just the one state where it was first noticed.
+
 ---
 
 ## 2. Verified-Source-Facts Discipline (Universal Principles)
@@ -158,6 +168,15 @@ When citing authority in an explanation, always include a version indicator (sta
 - Verify the citation matches the *actual subject matter* of the claim, not merely that the cited section exists — a real, valid citation attached to the wrong topic is still a defect (citation residue).
 - Don't let an explanation state more than its cited source actually says (no added qualifiers, no invented exceptions).
 - One legal/factual issue, one research effort, one consistent update: when multiple questions depend on the same rule, resolve it once from the controlling authority and apply the finding to every affected question in a single pass — never fix the same rule on different dates from different sources.
+
+### 5.3 Primary-source access techniques (research methods, not authentication bypass)
+
+A primary source that appears unreachable on a first attempt is not automatically inaccessible — try these before classifying an exam NEEDS_SOURCE_RESEARCH on access grounds alone:
+
+- **Inspect the document's own embedded PDF link annotations before concluding a portal-gated outline is unreachable.** A vendor bulletin that presents a per-exam content outline as a "click here" dynamic candidate-portal link often embeds the actual target URL as a `/URI` link annotation inside the bulletin PDF itself, extractable with any standard PDF library — this resolved an exam previously marked unreachable in CARE Insurance's own research.
+- **Retry with standard browser-like access before concluding a 403 means the document is inaccessible.** Some vendors (observed with Prometric) return an access-denied response to a bare/default fetch but serve the identical URL successfully to ordinary browser-like access — verify the actual document before concluding it's gated.
+
+These are legitimate research techniques for locating a document a vendor already intends to publish to candidates — they are not permission to bypass authentication, defeat access controls, or reach anything behind a genuine login/paywall. If a document requires real credentials or a paid account to view, that is a genuine access barrier, not a technique to route around.
 
 ---
 
@@ -306,3 +325,4 @@ This standard is the cross-product methodology layer. Each product's own instant
 |---|---|---|
 | 2026-08-25 | 1.0 | Initial synthesis from CARE Real Estate/DRE, CARE DMV, CARE Insurance, and CARE Nursing source standards. |
 | 2026-08-25 | 1.1 | Added the Domain-Level Bank Sufficiency gate (§1) as an explicit, early, pre-implementation readiness check — evidenced by four independent real findings (Kansas, Colorado, Connecticut, Iowa) during CARE Insurance's mock-exam batch work. |
+| 2026-08-26 | 1.2 | Added Shared Taxonomy Sufficiency (§1) as a prerequisite to Bank Sufficiency, and Primary-Source Access Techniques (§5.3) — evidenced by CARE Insurance's 12-state NEEDS_ARCHITECTURE research pass, which found a shared Dwelling/Homeowners taxonomy gap affecting 10 of 10 Property & Casualty blueprints checked, and two real document-access techniques that resolved exams previously marked unreachable. |
