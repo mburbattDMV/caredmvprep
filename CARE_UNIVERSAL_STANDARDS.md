@@ -56,4 +56,12 @@ Already established — just indexed here. Every CARE product's admin panel foll
 
 ## 8. This file's own maintenance rule
 
-Adding a new permanent lesson here means adding one short pointer entry, never a paragraph of restated prose. If a rule needs more than 2-3 sentences, it belongs in a product-specific doc that this file links to. Keep this file small, permanently.
+Adding a new permanent lesson here means adding one short pointer entry, never a paragraph of restated prose. If a rule needs more than 2-3 sentences, it belongs in a product-specific doc that this file links to. Keep this file small, permanently. `CARE_QUESTION_BANK_STANDARD.md` (§9 below) follows this same discipline one layer down — it is the detailed, enforceable standard; this file never grows to restate it.
+
+## 9. Question Bank Development, QA & Certification
+
+Any CARE product with a graded question bank must follow `CARE_QUESTION_BANK_STANDARD.md` (canonical at `care-admin-platform/CARE_QUESTION_BANK_STANDARD.md`, with a durable local copy required in this repo's root — local copy is authoritative for this repo, canonical wins on divergence, relative cross-reference is best-effort not load-bearing, exactly as this file's own portability rule works). Its core non-negotiables: verified source facts must exist before question authoring; correct-answer-index consistency is checked early, immediately after factual/citation QA, before editorial or structural review; real production selection-engine testing is required wherever randomization exists — a static simulation is not sufficient; metrics identify review candidates, they never automatically justify an edit; and every defect follows the isolated/repeated/systemic escalation in §10 below.
+
+## 10. Recurring Defect Escalation
+
+Classify every defect as **ISOLATED** (appears once — investigate and fix locally), **REPEATED** (the same defect class appears more than once — investigate the common root cause and fix every instance, not just the ones found), or **SYSTEMIC** (the defect traces to a shared foundation, not to any single state/product's content — stop patching individual instances and search the entire relevant repository or shared platform for the defect class). **Standing rule: fix the shared foundation before compensating in individual states/products.** Both the Series 7 real-engine fix (§2 above) and the DMV two-incident answer-key pattern (§3 above) prove this — a workaround built around a shared bug must itself be re-evaluated once the shared bug is actually fixed, and a fix to one surface is never evidence the next differently-built surface is safe. Full detail: `CARE_QUESTION_BANK_STANDARD.md` §10.
