@@ -48,6 +48,18 @@ CARE DMV's QA standard names a wrong `correctIndex` "the most dangerous defect t
 
 This is not a hypothetical concern. CARE Real Estate certified Arizona's shuffle-wiring (Gate 12) and, hours later, an adversarial audit found the transport layer leaked the full answer key regardless of shuffle correctness (Gate 13) — a bank that passed the shuffle gate was, in the sense a student would care about, *more* exploitable than a bank with no shuffle at all, because reading a Network tab requires no domain knowledge. A day later, a live audit of Georgia found the question-*pool* selection (not the option-order shuffle) was biased at production scale even though the option-shuffle utility (Gate 12) and the local exploitability simulation both looked clean — because pool-selection bias only shows up when the real endpoint is sampled at real scale, not when a uniform-random simulation is run offline. Each of these was a genuinely separate defect, invisible to the other gates. **Treat every layer as mandatory and independent; never infer one from another.**
 
+### Domain-Level Bank Sufficiency — an early gate, before mockExam/categoryStructure implementation
+
+An exam is not **READY_FOR_MOCK_IMPLEMENTATION** merely because the total bank is large, the official blueprint is known, and the selection engine can theoretically apportion a mock exam from it. Before `mockExam`/`categoryStructure` is implemented for any exam, compute — for **every** official blueprint domain — the official mock allocation (the exact question count that domain's official weight or count implies at the exam's official item count), the number of real, distinct available bank questions belonging to that domain, the resulting coverage multiple (available ÷ needed), and a status: **SUFFICIENT / TIGHT / NEEDS_CONTENT**.
+
+If any required official domain cannot satisfy its allocation, the exam is **NEEDS_CONTENT**. Do not:
+- weaken the official blueprint to make the bank fit,
+- silently borrow supply across official blueprint groups to cover the shortfall (see §11's standing rule — this applies statically, before implementation, exactly as it applies at runtime),
+- merge or coarsen categories merely because the fine-grained official structure doesn't yet have enough content,
+- depend on the real-engine QA in §11 to be the first place a shortage is discovered — that is a certification-stage safety net for the engine's *behavior*, not a substitute for a static readiness check that should catch a content gap before any implementation effort is spent.
+
+This is not a hypothetical addition. CARE Insurance's own mock-exam batch work found this exact failure mode independently, in four different states, in a single pass: Kansas (statutory domains backed only by thin, roughly-one-question-per-topic overlay files — one domain had exactly zero headroom above its own allocation), Colorado (a shared regulatory module supplying roughly half of what a real blueprint group required), and Connecticut and Iowa (state-specific overlay files short by single-digit counts across three of four Iowa exams and both Connecticut exams). Every one of these was caught only because someone manually tabulated domain-by-domain coverage before writing any code — not because the selection engine or a downstream QA script flagged it first. Make this an explicit, named, early stage of the pipeline — never a hope that §11's real-engine reconciliation will happen to surface a content gap that a static count could have caught for free.
+
 ---
 
 ## 2. Verified-Source-Facts Discipline (Universal Principles)
@@ -293,3 +305,4 @@ This standard is the cross-product methodology layer. Each product's own instant
 | Date | Version | Change |
 |---|---|---|
 | 2026-08-25 | 1.0 | Initial synthesis from CARE Real Estate/DRE, CARE DMV, CARE Insurance, and CARE Nursing source standards. |
+| 2026-08-25 | 1.1 | Added the Domain-Level Bank Sufficiency gate (§1) as an explicit, early, pre-implementation readiness check — evidenced by four independent real findings (Kansas, Colorado, Connecticut, Iowa) during CARE Insurance's mock-exam batch work. |
