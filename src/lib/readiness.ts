@@ -1,12 +1,20 @@
 import type { DashboardStats } from '@/lib/supabase/queries';
 import type { WeakTopic } from '@/types/database';
 
+// Renamed and re-derived 2026-08-26: the previous version blended real
+// accuracy with two invented, uncalibrated bonus points ("coverageBonus",
+// "masteryBonus") into a fabricated `passProb`, and labeled the result with
+// exam-outcome certainty language ("Exam Ready") the platform has no
+// statistical basis to claim. See CARE_UNIVERSAL_STANDARDS.md, "Readiness
+// claim integrity." Every level below is a factual description of practice
+// accuracy relative to the exam's real, published passing score — never a
+// probability, never a certainty claim about the real exam.
 export type ConfidenceLevel =
   | 'no_data'
-  | 'needs_work'
-  | 'getting_there'
-  | 'almost_ready'
-  | 'ready';
+  | 'needs_practice'
+  | 'building_evidence'
+  | 'near_threshold'
+  | 'above_threshold';
 
 export type TopicConfidence =
   | 'no_data'       // < 5 questions answered
@@ -14,21 +22,19 @@ export type TopicConfidence =
   | 'solid';        // 10+ questions
 
 export interface ReadinessResult {
-  score:            number;
-  confidence:       ConfidenceLevel;
-  label:            string;
-  color:            string;
-  description:      string;
-  questionsToReady: number;
-  trend:            'up' | 'down' | 'stable' | 'unknown';
-  trendLabel:       string;
-  topicsMastered:   number;
-  totalTopics:      number;
-  passProb:         number;
-  nextStep:         string;
+  score:              number;
+  confidence:         ConfidenceLevel;
+  label:              string;
+  color:              string;
+  description:        string;
+  trend:              'up' | 'down' | 'stable' | 'unknown';
+  trendLabel:         string;
+  topicsMastered:     number;
+  totalTopics:        number;
+  officialPassingPct: number | null;
+  nextStep:           string;
 }
 
-export const PASSING_THRESHOLD       = 85;
 export const MASTERY_MIN_QUESTIONS   = 10;
 export const MASTERY_MIN_ACCURACY    = 80;
 export const TOPIC_MIN_DISPLAY       = 5;
@@ -39,11 +45,20 @@ export function topicConfidence(total: number): TopicConfidence {
   return 'solid';
 }
 
+/**
+ * @param officialPassingPct The exam's real, published passing percentage
+ *   (0-100), sourced from the actual quiz/exam config (e.g.
+ *   `quizRegistry[testId].passingScore * 100`) — never a flat site-wide
+ *   guess. Pass `null` if genuinely unknown for this product/exam; the
+ *   function then describes accuracy without claiming a threshold
+ *   comparison it can't support.
+ */
 export function computeReadiness(
   stats: DashboardStats,
   weakTopics: WeakTopic[],
   strongTopics: WeakTopic[] = [],
-  hasMockExam = true
+  hasMockExam = true,
+  officialPassingPct: number | null = null
 ): ReadinessResult {
   const topicsMastered = strongTopics.length;
   const totalTopics    = weakTopics.length + strongTopics.length;
@@ -51,10 +66,10 @@ export function computeReadiness(
   if (stats.sessions.length === 0) {
     return {
       score: 0, confidence: 'no_data', label: 'Not Started', color: '#94a3b8',
-      description: 'Complete your first practice test to see your readiness score.',
-      questionsToReady: 0, trend: 'unknown', trendLabel: '',
+      description: 'Complete your first practice test to see your practice accuracy.',
+      trend: 'unknown', trendLabel: '',
       topicsMastered, totalTopics,
-      passProb: 0,
+      officialPassingPct,
       nextStep: 'Take your first practice test.',
     };
   }
@@ -87,30 +102,31 @@ export function computeReadiness(
   score = Math.max(0, Math.min(100, score));
 
   const confidence: ConfidenceLevel =
-    score >= PASSING_THRESHOLD ? 'ready' :
-    score >= 70               ? 'almost_ready' :
-    score >= 50               ? 'getting_there' : 'needs_work';
+    officialPassingPct !== null
+      ? (score >= officialPassingPct ? 'above_threshold'
+        : score >= officialPassingPct - 15 ? 'near_threshold'
+        : score >= 50 ? 'building_evidence'
+        : 'needs_practice')
+      : (score >= 80 ? 'above_threshold'
+        : score >= 65 ? 'near_threshold'
+        : score >= 50 ? 'building_evidence'
+        : 'needs_practice');
 
   const CONFIG: Record<ConfidenceLevel, { label: string; color: string; description: string }> = {
-    ready:         { label: 'Exam Ready',    color: '#16a34a', description: "You're consistently above passing thresholds. Keep a session scheduled." },
-    almost_ready:  { label: 'Almost Ready',  color: '#1a7f3c', description: "You're close. A few more focused sessions will push you over." },
-    getting_there: { label: 'Getting There', color: '#d97706', description: 'Keep at it — consistent practice is the fastest path to ready.' },
-    needs_work:    { label: 'Needs Work',    color: '#b91c1c', description: 'Focus on your weakest topics first — that raises your score the fastest.' },
-    no_data:       { label: 'Not Started',   color: '#94a3b8', description: 'Complete your first practice test to see your readiness score.' },
+    above_threshold:   { label: 'At or Above Passing Threshold', color: '#16a34a', description: officialPassingPct !== null ? `Your recent practice accuracy is at or above the official passing threshold (${officialPassingPct}%). Keep a session scheduled to stay sharp.` : "Your recent practice accuracy is strong. Keep a session scheduled to stay sharp." },
+    near_threshold:    { label: 'Near Passing Threshold',        color: '#1a7f3c', description: officialPassingPct !== null ? `You're close to the official passing threshold (${officialPassingPct}%). A few more focused sessions on your weak topics will help.` : "You're close. A few more focused sessions on your weak topics will help." },
+    building_evidence: { label: 'Building Evidence',             color: '#d97706', description: 'Keep practicing — you’re building a track record across topics.' },
+    needs_practice:    { label: 'Needs More Practice',           color: '#b91c1c', description: 'Focus on your weakest topics first — that’s the fastest way to improve.' },
+    no_data:           { label: 'Not Started',                   color: '#94a3b8', description: 'Complete your first practice test to see your practice accuracy.' },
   };
 
   const { label, color, description } = CONFIG[confidence];
-  const questionsToReady = score >= PASSING_THRESHOLD ? 0 : Math.ceil((PASSING_THRESHOLD - score) / 5) * 10;
-
-  const coverageBonus = totalTopics >= 8 ? 5 : totalTopics >= 5 ? 2 : 0;
-  const masteryBonus  = topicsMastered >= 5 ? 3 : 0;
-  const passProb      = Math.min(97, Math.max(0, score + coverageBonus + masteryBonus));
 
   let nextStep: string;
-  if (confidence === 'ready') {
+  if (confidence === 'above_threshold') {
     nextStep = hasMockExam
-      ? 'Take a timed Mock Exam to confirm readiness.'
-      : 'Take another full practice test to confirm readiness.';
+      ? 'Take a timed Mock Exam to check your performance under real conditions.'
+      : 'Take another full practice test to check your performance under real conditions.';
   } else if (weakTopics.length > 0) {
     const worst = weakTopics[0];
     const name  = getCategoryLabel(worst.category_slug);
@@ -121,7 +137,7 @@ export function computeReadiness(
     nextStep = 'Take a practice test to build your data across more topics.';
   }
 
-  return { score, confidence, label, color, description, questionsToReady, trend, trendLabel, topicsMastered, totalTopics, passProb, nextStep };
+  return { score, confidence, label, color, description, trend, trendLabel, topicsMastered, totalTopics, officialPassingPct, nextStep };
 }
 
 // ─── Weekly activity ──────────────────────────────────────────────────────────

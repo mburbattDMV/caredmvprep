@@ -24,9 +24,11 @@ function buildMessage(
     };
   }
 
-  if (readiness.confidence === 'ready') {
+  if (readiness.confidence === 'above_threshold') {
     return {
-      text: "You're consistently above the passing threshold. Take another test to confirm your readiness before test day.",
+      text: readiness.officialPassingPct !== null
+        ? `Your recent practice accuracy is at or above the official passing threshold (${readiness.officialPassingPct}%). Take another test to keep your evidence current before test day.`
+        : "Your recent practice accuracy is strong. Take another test to keep your evidence current before test day.",
       cta:  'Take Practice Test →',
       href: quizHref,
     };
@@ -35,7 +37,7 @@ function buildMessage(
   const weakest = weakTopics[0];
   if (!weakest) {
     return {
-      text: `Keep practicing. You're at ${readiness.score}% — ${readiness.questionsToReady} more correct answers puts you at Exam Ready.`,
+      text: `Keep practicing. Your recent accuracy is ${readiness.score}% — more practice sessions build stronger evidence across topics.`,
       cta:  'Continue Practicing →',
       href: quizHref,
     };
@@ -45,7 +47,7 @@ function buildMessage(
   const pct       = Math.round(Number(weakest.accuracy_pct));
 
   return {
-    text: `${topicName} is your weakest area at ${pct}% accuracy. Focused practice here will raise your overall readiness score the fastest.`,
+    text: `${topicName} is your weakest area at ${pct}% accuracy. Focused practice here will raise your overall accuracy the fastest.`,
     cta:  `Practice ${topicName} →`,
     href: `${quizHref}?focus=${weakest.category_slug}`,
   };
@@ -54,7 +56,7 @@ function buildMessage(
 export default function CoachBanner({ readiness, weakTopics, sessions, quizHref }: Props) {
   const { text, cta, href } = buildMessage(readiness, weakTopics, sessions, quizHref);
 
-  const isReady = readiness.confidence === 'ready';
+  const isReady = readiness.confidence === 'above_threshold';
   const bgColor = isReady ? '#f0fdf4' : '#fffbeb';
   const borderColor = isReady ? '#bbf7d0' : '#fde68a';
   const iconColor = isReady ? '#16a34a' : '#d97706';

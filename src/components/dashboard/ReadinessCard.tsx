@@ -1,5 +1,4 @@
 import type { ReadinessResult } from '@/lib/readiness';
-import { PASSING_THRESHOLD } from '@/lib/readiness';
 import Link from 'next/link';
 
 interface Props {
@@ -10,8 +9,8 @@ interface Props {
 
 export default function ReadinessCard({ readiness, sessions, quizHref }: Props) {
   const {
-    score, confidence, label, color, description, questionsToReady, trendLabel,
-    topicsMastered, totalTopics, passProb, nextStep,
+    score, confidence, label, color, description, trendLabel,
+    topicsMastered, totalTopics, officialPassingPct, nextStep,
   } = readiness;
 
   const circumference = 2 * Math.PI * 44;
@@ -21,7 +20,7 @@ export default function ReadinessCard({ readiness, sessions, quizHref }: Props) 
   return (
     <div className="bg-white rounded-xl border border-gray-200 px-6 py-6">
       <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">
-        Overall Readiness
+        Practice Accuracy
       </p>
 
       <div className="flex items-center gap-6">
@@ -76,36 +75,34 @@ export default function ReadinessCard({ readiness, sessions, quizHref }: Props) 
                   Topics mastered: <strong className="text-gray-800">{topicsMastered} of {totalTopics}</strong>
                 </span>
               )}
-              {passProb > 0 && (
+              {officialPassingPct !== null && (
                 <span className="text-xs text-gray-500">
-                  Pass probability: <strong style={{ color: passProb >= 80 ? '#16a34a' : '#d97706' }}>{passProb}%</strong>
+                  Official passing threshold: <strong className="text-gray-800">{officialPassingPct}%</strong>
                 </span>
               )}
             </div>
           )}
 
-          {/* Progress to ready */}
-          {hasData && score < PASSING_THRESHOLD && (
+          {/* Progress toward the real passing threshold (factual comparison,
+              not a prediction) */}
+          {hasData && officialPassingPct !== null && score < officialPassingPct && (
             <div className="mb-2">
               <div className="flex justify-between text-xs text-gray-400 mb-1">
-                <span>Your score</span>
-                <span>{PASSING_THRESHOLD}% needed</span>
+                <span>Your recent accuracy</span>
+                <span>{officialPassingPct}% is the official threshold</span>
               </div>
               <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full"
-                  style={{ width: `${Math.min((score / PASSING_THRESHOLD) * 100, 100)}%`, backgroundColor: color }}
+                  style={{ width: `${Math.min((score / officialPassingPct) * 100, 100)}%`, backgroundColor: color }}
                 />
               </div>
-              <p className="text-xs text-gray-400 mt-1">
-                ~{questionsToReady} more correct answers to reach Exam Ready
-              </p>
             </div>
           )}
 
-          {score >= PASSING_THRESHOLD && (
+          {officialPassingPct !== null && score >= officialPassingPct && (
             <p className="text-xs font-semibold mb-2" style={{ color: '#16a34a' }}>
-              You&apos;re above passing threshold. Keep your streak going!
+              You&apos;re at or above the official passing threshold. Keep your streak going!
             </p>
           )}
 

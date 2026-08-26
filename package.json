@@ -17,6 +17,7 @@
     "qa:unverified": "npx tsx scripts/qa/check-unverified.ts",
     "qa:facts": "npx tsx scripts/qa/check-facts-mismatch.ts",
     "qa:hardcodes": "npx tsx scripts/qa/check-page-hardcodes.ts",
+    "qa:readiness-claim-integrity": "npx tsx scripts/qa/check-readiness-claim-integrity.ts",
     "qa:stale:fix": "npx tsx scripts/qa/check-stale.ts --fix"
   },
   "dependencies": {

@@ -6,6 +6,7 @@ import SubscriptionPoller from "@/components/account/SubscriptionPoller";
 import EditProfileForm from "@/components/account/EditProfileForm";
 import ManageBillingButton from "@/components/account/ManageBillingButton";
 import stateFacts from "@/data/questions/state-facts";
+import { PRODUCT_CONFIG } from "@/lib/stripe/config";
 
 // ── Label maps ────────────────────────────────────────────────────────────────
 
@@ -286,7 +287,9 @@ export default async function AccountPage({ searchParams }: Props) {
                     <div className="flex justify-between">
                       <dt className="text-gray-500">Plan</dt>
                       <dd className="font-medium text-gray-800">
-                        {sub.payment_type === "one_time" ? "3-Month Pass" : "Monthly"}
+                        {sub.payment_type === "one_time"
+                          ? `${(PRODUCT_CONFIG as Record<string, { oneTime?: { durationMonths: number } }>)[sub.product]?.oneTime?.durationMonths ?? 3}-Month Pass`
+                          : "Monthly"}
                       </dd>
                     </div>
                     {sub.payment_type === "recurring" && sub.current_period_end && (
@@ -324,7 +327,7 @@ export default async function AccountPage({ searchParams }: Props) {
                 { label: "Progress dashboard & stats",              included: false },
                 { label: "Weak-topic tracking",                     included: false },
                 { label: "Timed exam mode",                         included: false },
-                { label: "Study streak & readiness score",          included: false },
+                { label: "Study streak & practice accuracy tracking", included: false },
               ].map((f) => (
                 <div key={f.label} className="flex items-center gap-2">
                   <span

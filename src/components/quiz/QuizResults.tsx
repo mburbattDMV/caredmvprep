@@ -241,10 +241,8 @@ export default function QuizResults() {
             <div className="flex items-start gap-3">
               <span className="text-green-600 text-base shrink-0 mt-0.5">✓</span>
               <p className="text-sm text-gray-700">
-                <strong>Strong performance.</strong> You're scoring above the passing threshold.
-                {pct >= 90
-                  ? " You look exam-ready — consider booking your test soon."
-                  : " Try a mock exam to simulate real test conditions."}
+                <strong>Strong performance.</strong> You scored {pct}% — at or above this test&apos;s {passingPct}% passing threshold.
+                {" "}Try a mock exam to simulate real test conditions.
               </p>
             </div>
           ) : (
@@ -277,8 +275,7 @@ export default function QuizResults() {
             <div className="flex items-start gap-3">
               <span className="text-gray-400 text-base shrink-0 mt-0.5">◎</span>
               <p className="text-sm text-gray-500">
-                Estimated {Math.max(1, Math.ceil((passingPct - pct) / 5))} more practice session
-                {Math.max(1, Math.ceil((passingPct - pct) / 5)) > 1 ? "s" : ""} to reach the passing score.
+                You scored {pct}%, {passingPct - pct} points below this test&apos;s {passingPct}% passing threshold. More practice on your weak topics is the fastest way to close that gap.
               </p>
             </div>
           )}

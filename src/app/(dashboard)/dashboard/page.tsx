@@ -116,7 +116,13 @@ export default async function DashboardPage({ searchParams }: Props) {
       questions: quizRegistry[id].questions.length,
     }));
   const streak       = getStreak(profile);
-  const readiness    = computeReadiness(stats, weakTopics, strongTopics, hasMockExams(profile.target_license));
+  // Real, exam-config-sourced passing score (0-100) — never a flat guess.
+  // Falls back to null (no threshold comparison shown) if this exam's
+  // config isn't found, rather than assuming a default.
+  const officialPassingPct = quizRegistry[stateTestId]
+    ? Math.round(quizRegistry[stateTestId].passingScore * 100)
+    : null;
+  const readiness    = computeReadiness(stats, weakTopics, strongTopics, hasMockExams(profile.target_license), officialPassingPct);
   const weeklyActivity = computeWeeklyActivity(stats.sessions);
 
   const firstName = profile?.display_name?.split(' ')[0] ?? null;
