@@ -3353,7 +3353,7 @@ const questions: Question[] = [
       'Yield to oncoming vehicles and pedestrians in the crosswalk before completing your turn',
       'Flash your lights to signal oncoming traffic to yield to your left turn',
     ],
-    correctIndex: 3,
+    correctIndex: 2,
     explanation: 'An unprotected left turn at a green light (not a green arrow) means you must yield to oncoming traffic traveling straight and to pedestrians in the crosswalk. Only turn when it is safe to complete the turn without forcing others to slow down.',
     source: SOURCE,
     sourceUrl: SOURCE_URL,
@@ -3361,7 +3361,7 @@ const questions: Question[] = [
     isStateSpecificLaw: false,
     status: 'verified',
     createdAt: '2026-06-27',
-    lastVerifiedAt: '2026-06-27',
+    lastVerifiedAt: '2026-08-30',
     verifiedBy: 'qa-script-v1',
   },
   {
