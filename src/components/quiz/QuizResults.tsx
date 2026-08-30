@@ -20,11 +20,20 @@ export default function QuizResults() {
   const [saveState, setSaveState] = useState<SaveState>("saving");
   const [saveError, setSaveError] = useState<string | null>(null);
 
-  // Persist to Supabase on mount.
-  // 3-step flow required by DB trigger design:
+  // Persist on mount.
   //   Step 1: INSERT quiz_sessions (completed_at = NULL, started_at = actual start)
-  //   Step 2: INSERT user_answers (with user_id for fast RLS)
-  //   Step 3: UPDATE quiz_sessions SET completed_at → triggers refresh_weak_topics + update_streak
+  //           — client-side, unchanged: carries no grading authority.
+  //   Step 2: POST /api/quiz/complete-session — the ONE trusted server path
+  //           for grading data. Re-grades every answer server-side against
+  //           the authoritative question bank (never trusts this
+  //           component's own locally-computed isCorrect/correctIndex/
+  //           score/passed) and persists user_answers + the completion
+  //           update itself; the database then recomputes score/passed
+  //           unconditionally from what actually got inserted. See
+  //           supabase/migrations/011_lock_down_quiz_grading_integrity.sql
+  //           — direct client INSERT/UPDATE on user_answers/quiz_sessions
+  //           is revoked at the database level, so this is not just the
+  //           path the UI happens to use, it's the only one that works.
   useEffect(() => {
     if (!result || !config) return;
 
@@ -63,41 +72,37 @@ export default function QuizResults() {
         return;
       }
 
-      // Step 2 — insert all answers (user_id enables fast RLS without a join)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { error: answersError } = await (supabase as any).from("user_answers").insert(
-        result?.answers.map((a) => ({
-          session_id:     session.id,
-          user_id:        user.id,
-          question_id:    a.questionId,
-          selected_index: a.selectedIndex,
-          correct_index:  a.correctIndex,
-          is_correct:     a.isCorrect,
-          category:       a.category,
-          time_spent_ms:  a.timeSpentMs,
-        })) ?? []
-      );
+      // Step 2 — hand off every answer's {questionId, token, selectedIndex}
+      // to the trusted grading/completion route. tokens live on
+      // config.questions, not on the AnswerRecord itself.
+      const tokenByQuestionId = new Map(config!.questions.map((q) => [q.id, q.token]));
+      const submittedAnswers = (result?.answers ?? [])
+        .map((a) => {
+          const token = tokenByQuestionId.get(a.questionId);
+          if (!token) return null;
+          return { questionId: a.questionId, token, selectedIndex: a.selectedIndex, timeSpentMs: a.timeSpentMs };
+        })
+        .filter((a): a is { questionId: string; token: string; selectedIndex: number; timeSpentMs: number } => a !== null);
 
-      if (answersError) {
-        console.error("[QuizResults] Step 2 INSERT user_answers failed:", answersError.message);
-        // Non-fatal: session exists, answers missing. Continue to Step 3.
+      let completeRes: Response;
+      try {
+        completeRes = await fetch("/api/quiz/complete-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sessionId: session.id, testId: config?.testId, answers: submittedAnswers }),
+        });
+      } catch (err) {
+        console.error("[QuizResults] Step 2 complete-session request failed:", err);
+        setSaveState("error");
+        setSaveError("Session created but completion not recorded (network error). Dashboard may not update.");
+        return;
       }
 
-      // Step 3 — mark session complete; DB triggers refresh_weak_topics + update_streak
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { error: updateError } = await (supabase as any)
-        .from("quiz_sessions")
-        .update({
-          completed_at: new Date().toISOString(),
-          score:        result?.correctCount,
-          passed:       result?.passed,
-        })
-        .eq("id", session.id);
-
-      if (updateError) {
-        console.error("[QuizResults] Step 3 UPDATE quiz_sessions failed:", updateError.message);
+      if (!completeRes.ok) {
+        const body = await completeRes.json().catch(() => ({}));
+        console.error("[QuizResults] Step 2 complete-session failed:", body?.error ?? completeRes.status);
         setSaveState("error");
-        setSaveError(`Session created but completion not recorded (${updateError.message}). Dashboard may not update.`);
+        setSaveError(`Session created but completion not recorded (${body?.error ?? "server error"}). Dashboard may not update.`);
         return;
       }
 
