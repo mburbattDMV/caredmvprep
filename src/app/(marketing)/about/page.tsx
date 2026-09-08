@@ -40,6 +40,45 @@ export const metadata: Metadata = {
  * motorcycle, and CDL endorsements combined) as of this pass.
  */
 
+/**
+ * THE CARE FAMILY — canonical across every CARE product's Why CARE page.
+ *
+ * Corrected 2026-09-08: this section previously showed only 4 LIVE sibling
+ * sites, not the complete 10-brand family CARE Nursing's /why-care (the
+ * named CARE-wide reference) displays. Same list, same order, same names
+ * and blurbs as that page's own CARE_FAMILY — only `CURRENT_SITE` differs
+ * per product. CARE Securities is intentionally NOT its own entry: it is a
+ * product housed under CARE Insurance, folded into that entry's own blurb.
+ *
+ * `href: null` means "no live public destination yet" — CARE CPA Prep and
+ * CARE Bar Prep carry their real, registered domain as plain text in the
+ * blurb (not a link, since the site is not live); Contractor/Electrician/
+ * ACE Prep have no assigned domain to show. A future-product card is a
+ * normal card (real border, real background) with no action — never
+ * styled as disabled or broken.
+ */
+const CURRENT_SITE = "CARE DMV Prep";
+
+interface CareFamilyEntry {
+  name: string;
+  blurb: string;
+  href: string | null;
+  isUmbrella?: boolean;
+}
+
+const CARE_FAMILY: CareFamilyEntry[] = [
+  { name: "CARE Exam Prep", blurb: "The home of the CARE family, bringing every product together in one place.", href: null, isUmbrella: true },
+  { name: "CARE Real Estate", blurb: "State real estate licensing exam preparation.", href: "https://carealestate.com" },
+  { name: "CARE DMV Prep", blurb: "Driver's license, motorcycle and CDL knowledge tests.", href: "https://caredmvprep.com" },
+  { name: "CARE Insurance", blurb: "State insurance licensing — life, health, property and casualty — plus the SIE and Series 6, 7, 63, 65 and 66 exams.", href: "https://careinsuranceprep.com" },
+  { name: "CARE CPA Prep", blurb: "Certified Public Accountant exam preparation. carecpaprep.com", href: null },
+  { name: "CARE Bar Prep", blurb: "State bar examination preparation. carebarprep.com", href: null },
+  { name: "CARE Nursing", blurb: "NCLEX-RN, NCLEX-PN/LVN, CNA and Medication Aide.", href: "https://carenursingprep.com" },
+  { name: "CARE Contractor Prep", blurb: "Licensing exam preparation for the construction trades.", href: null },
+  { name: "CARE Electrician Prep", blurb: "Licensing exam preparation for electricians.", href: null },
+  { name: "CARE ACE Prep", blurb: "Certification exam preparation for fitness and personal training.", href: null },
+];
+
 const DIFFERENTIATORS = [
   {
     title: "All 50 states, live today",
@@ -191,49 +230,76 @@ export default function WhyCarePage() {
             progress instead of pretending to predict whether you&rsquo;ll pass.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch max-w-4xl mx-auto">
-            {[
-              { name: "CARE DMV Prep", blurb: "Driver's license, motorcycle and CDL knowledge tests, all 50 states.", current: true },
-              { name: "CARE Real Estate", blurb: "State real estate licensing exam preparation.", href: "https://carealestate.com" },
-              { name: "CARE Insurance", blurb: "State insurance licensing plus the SIE and Series 6, 7, 63, 65 and 66 exams.", href: "https://careinsuranceprep.com" },
-              { name: "CARE Nursing", blurb: "NCLEX-RN, NCLEX-PN/LVN, CNA and Medication Aide.", href: "https://carenursingprep.com" },
-            ].map((f) =>
-              f.current ? (
-                <div
-                  key={f.name}
-                  aria-current="page"
-                  className="flex h-full flex-col rounded-2xl border p-5"
-                  style={{ borderColor: "var(--dmv-green)", backgroundColor: "rgba(26,127,60,0.06)" }}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch max-w-5xl mx-auto">
+            {CARE_FAMILY.map((f) => {
+              const isCurrent = f.name === CURRENT_SITE;
+              const title = (
+                <h3
+                  className={f.isUmbrella ? "text-lg font-extrabold tracking-tight" : "text-base font-extrabold tracking-tight"}
+                  style={{ color: "var(--dmv-navy)" }}
                 >
-                  <h3 className="text-base font-extrabold tracking-tight" style={{ color: "var(--dmv-navy)" }}>
-                    {f.name}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--dmv-navy)" }}>
-                    {f.blurb}
-                  </p>
-                  <span
-                    className="mt-auto pt-5 inline-flex w-fit items-center rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider bg-white"
-                    style={{ color: "var(--dmv-navy)", border: "1px solid var(--dmv-green)" }}
+                  {f.name}
+                </h3>
+              );
+
+              // CURRENT — this site, highlighted, no action.
+              if (isCurrent) {
+                return (
+                  <div
+                    key={f.name}
+                    aria-current="page"
+                    className="flex h-full flex-col rounded-2xl border p-5"
+                    style={{ borderColor: "var(--dmv-green)", backgroundColor: "rgba(26,127,60,0.06)" }}
                   >
-                    You are here
-                  </span>
+                    {title}
+                    <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--dmv-navy)" }}>
+                      {f.blurb}
+                    </p>
+                    <span
+                      className="mt-auto pt-5 inline-flex w-fit items-center rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider bg-white"
+                      style={{ color: "var(--dmv-navy)", border: "1px solid var(--dmv-green)" }}
+                    >
+                      You are here
+                    </span>
+                  </div>
+                );
+              }
+
+              // LIVE — a real destination, other than this site.
+              if (f.href) {
+                return (
+                  <a
+                    key={f.name}
+                    href={f.href}
+                    className="care-card-interactive flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-5"
+                  >
+                    {title}
+                    <p className="mt-2 text-sm leading-relaxed text-gray-600">{f.blurb}</p>
+                    <span className="mt-auto pt-5 inline-flex items-center gap-1.5 text-[13px] font-bold" style={{ color: "var(--dmv-green)" }}>
+                      Visit →
+                    </span>
+                  </a>
+                );
+              }
+
+              // UMBRELLA — the family brand itself, no action, no status label.
+              if (f.isUmbrella) {
+                return (
+                  <div key={f.name} className="flex h-full flex-col rounded-2xl border bg-white p-5" style={{ borderColor: "var(--dmv-green)" }}>
+                    {title}
+                    <p className="mt-2 text-sm leading-relaxed text-gray-600">{f.blurb}</p>
+                  </div>
+                );
+              }
+
+              // FUTURE — a real, named CARE product with no live destination yet.
+              return (
+                <div key={f.name} className="flex h-full flex-col rounded-2xl border border-gray-100 bg-gray-50 p-5">
+                  {title}
+                  <p className="mt-2 text-sm leading-relaxed text-gray-500">{f.blurb}</p>
                 </div>
-              ) : (
-                <a
-                  key={f.name}
-                  href={f.href}
-                  className="care-card-interactive flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-5"
-                >
-                  <h3 className="text-base font-extrabold tracking-tight" style={{ color: "var(--dmv-navy)" }}>
-                    {f.name}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-600">{f.blurb}</p>
-                  <span className="mt-auto pt-5 inline-flex items-center gap-1.5 text-[13px] font-bold" style={{ color: "var(--dmv-green)" }}>
-                    Visit →
-                  </span>
-                </a>
-              )
-            )}
+              );
+            })}
           </div>
         </section>
 
