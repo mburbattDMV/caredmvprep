@@ -114,6 +114,12 @@ export default function Header() {
             >
               Pricing
             </Link>
+            <Link
+              href="/about"
+              className="px-3 py-2 text-sm font-medium text-gray-200 hover:text-white hover:bg-white/10 rounded transition"
+            >
+              Why CARE
+            </Link>
           </nav>
 
           {/* CTA buttons — auth-aware */}
@@ -186,6 +192,13 @@ export default function Header() {
             onClick={() => setMobileOpen(false)}
           >
             Pricing
+          </Link>
+          <Link
+            href="/about"
+            className="block px-3 py-2 text-sm text-gray-200 hover:text-white"
+            onClick={() => setMobileOpen(false)}
+          >
+            Why CARE
           </Link>
           {isLoggedIn ? (
             <div className="pt-3 flex gap-2">

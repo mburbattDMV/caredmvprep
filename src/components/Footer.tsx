@@ -90,7 +90,7 @@ const resourceLinks = [
 ];
 
 const companyLinks = [
-  { label: "About Us", href: "/about" },
+  { label: "Why CARE", href: "/about" },
   { label: "Contact Us", href: "/contact" },
   { label: "Pricing", href: "/pricing" },
   { label: "Terms of Service", href: "/terms" },

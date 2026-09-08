@@ -12,3 +12,63 @@ body {
   color: #1a1a1a;
   background: #ffffff;
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   CARD INTERACTION SYSTEM — added for the Why CARE (/about) rebuild,
+   available to any marketing page. Same concept CARE Nursing/CARE Insurance/
+   CARE Real Estate use on their own Why CARE pages (reused as a pattern, not
+   shared code) — expressed in this site's own navy/green tokens:
+
+     .care-card-interactive  the card IS a link. It lifts, its border
+                              strengthens toward navy and it takes a real
+                              shadow. The whole card is the target.
+     .care-card-static       the card is informational. Border/shadow
+                              emphasis only -- no lift, no pointer cursor.
+
+   Motion is opt-out under prefers-reduced-motion; hover lift is suppressed
+   on touch devices (no hover to fire on tap-and-linger).
+   ────────────────────────────────────────────────────────────────────────── */
+.care-card-interactive,
+.care-card-static {
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.care-card-interactive:hover,
+.care-card-interactive:focus-visible,
+.care-card-interactive:focus-within {
+  border-color: var(--dmv-navy);
+  box-shadow: 0 12px 24px -12px rgba(13, 34, 64, 0.2);
+  transform: translateY(-2px);
+}
+
+.care-card-interactive:focus-visible,
+.care-card-interactive:focus-within {
+  outline: 2px solid var(--dmv-green);
+  outline-offset: 3px;
+}
+
+.care-card-static:hover {
+  border-color: #c3cbd6;
+  box-shadow: 0 6px 16px -10px rgba(13, 34, 64, 0.16);
+}
+
+.care-card-interactive,
+.care-card-interactive:hover {
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .care-card-interactive:hover,
+  .care-card-interactive:focus-visible,
+  .care-card-interactive:focus-within {
+    transform: none;
+  }
+}
+
+@media (hover: none) {
+  .care-card-interactive:hover,
+  .care-card-static:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
