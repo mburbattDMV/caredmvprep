@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import {
   LayoutDashboard, BarChart2, Users, CreditCard, TrendingUp,
   Tag, Megaphone, BookOpen, Activity, Headphones, Search,
-  ExternalLink, LogOut, ChevronRight,
+  ExternalLink, LogOut, ChevronRight, UserPlus,
 } from "lucide-react";
 
 const NAV_GROUPS = [
@@ -43,6 +43,7 @@ const NAV_GROUPS = [
   {
     label: "Tools",
     items: [
+      { label: "Create account", href: "/myadmin2026/create-account", icon: UserPlus },
       { label: "Support",  href: "/myadmin2026/support",  icon: Headphones },
       { label: "SEO",      href: "/myadmin2026/seo",      icon: Search },
     ],
