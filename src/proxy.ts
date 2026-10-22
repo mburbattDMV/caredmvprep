@@ -43,7 +43,12 @@ export async function proxy(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser();
 
   const pathname = request.nextUrl.pathname;
-  const isProtected = PROTECTED_PREFIXES.some((p) => pathname.startsWith(p));
+  // The admin sign-in form itself must stay reachable while signed out. It lives under /myadmin2026/, which is
+  // otherwise protected; without this exemption every visit to /myadmin2026/login was redirected to the student
+  // /login page, so the admin could never reach the admin form. Access control for the rest of /myadmin2026 is
+  // unchanged here and is still enforced again server-side by the admin layout (user + is_admin() check).
+  const isAdminLogin = pathname === '/myadmin2026/login';
+  const isProtected = !isAdminLogin && PROTECTED_PREFIXES.some((p) => pathname.startsWith(p));
   const isAuthPage = AUTH_PAGES.some((p) => pathname.startsWith(p));
 
   // Unauthenticated user hitting a protected route → send to login
