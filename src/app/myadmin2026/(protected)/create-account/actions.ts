@@ -14,6 +14,8 @@ export type CreateAccountState = {
 // Products an admin may grant, with a one-time access length in months (0 = account only, no paid access).
 const PRODUCTS = ["dmv", "motorcycle", "cdl", "cdl_hazmat", "cdl_tanker", "cdl_doubles_triples", "cdl_school_bus", "cdl_passenger"] as const;
 const ALLOWED_MONTHS = [0, 1, 3, 6, 12] as const;
+const STATE_RE = /^[A-Z]{2}$/;
+const LICENSE_FOR_PRODUCT: Record<string, string> = { dmv: "permit", motorcycle: "motorcycle" };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 /** Server-side admin check: signed in AND is_admin(). Never trust the client. */
@@ -35,9 +37,11 @@ export async function createAccount(_prev: CreateAccountState, formData: FormDat
     const name = String(formData.get("name") ?? "").trim().slice(0, 120);
     const product = String(formData.get("product") ?? "dmv");
     const months = Number(formData.get("months") ?? 0);
+    const state = String(formData.get("state") ?? "").trim().toUpperCase();
     const sendEmail = formData.get("sendEmail") === "on";
 
     if (!EMAIL_RE.test(email) || email.length > 254) return { ok: false, message: "Enter a valid email address." };
+    if (state && !STATE_RE.test(state)) return { ok: false, message: "Unknown state." };
     if (!(PRODUCTS as readonly string[]).includes(product)) return { ok: false, message: "Unknown product." };
     if (!(ALLOWED_MONTHS as readonly number[]).includes(months)) return { ok: false, message: "Unsupported access length." };
 
@@ -58,6 +62,15 @@ export async function createAccount(_prev: CreateAccountState, formData: FormDat
       if (error || !data.user) return { ok: false, message: `Could not create the account: ${error?.message ?? "unknown error"}` };
       user = data.user;
       created = true;
+    }
+
+    // Set the student's state (and matching license type) on their profile so they land on the right content.
+    if (state) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (admin as any)
+        .from("profiles")
+        .update({ target_state: state, target_license: LICENSE_FOR_PRODUCT[product] ?? "cdl_general", updated_at: new Date().toISOString() })
+        .eq("id", user.id);
     }
 
     // Grant paid access (one-time, expires). Upsert on (user_id, product) which is unique.
@@ -97,7 +110,7 @@ export async function createAccount(_prev: CreateAccountState, formData: FormDat
 
     return {
       ok: true,
-      message: `${created ? "Account created" : "Account already existed"} for ${email}.${grantNote}`,
+      message: `${created ? "Account created" : "Account already existed"} for ${email}.${state ? ` State set to ${state}.` : ""}${grantNote}`,
       setupLink: link?.properties?.action_link,
       emailSent: sendEmail ? emailSent : undefined,
     };

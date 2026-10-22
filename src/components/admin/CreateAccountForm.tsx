@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { US_STATES } from "@/data/us-states";
 import { createAccount, type CreateAccountState } from "@/app/myadmin2026/(protected)/create-account/actions";
 
 const PRODUCTS: { value: string; label: string }[] = [
@@ -43,6 +44,13 @@ export default function CreateAccountForm() {
             <option value="12">12 months</option>
           </select>
         </div>
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-gray-700 mb-1" htmlFor="state">State</label>
+        <select id="state" name="state" defaultValue="" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+          <option value="">Not set (they choose)</option>
+          {US_STATES.map((s) => <option key={s.abbr} value={s.abbr}>{s.name}</option>)}
+        </select>
       </div>
       <label className="flex items-center gap-2 text-sm text-gray-700">
         <input type="checkbox" name="sendEmail" defaultChecked /> Email them a link to set their password

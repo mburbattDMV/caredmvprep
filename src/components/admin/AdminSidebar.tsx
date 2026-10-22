@@ -52,6 +52,45 @@ const NAV_GROUPS = [
 
 interface Props { userEmail: string }
 
+/** Phone/tablet navigation: the desktop sidebar is hidden below lg, so show every admin link as a scrollable strip. */
+export function AdminMobileNav() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const links = NAV_GROUPS.flatMap((g) => g.items);
+  async function signOut() {
+    await createClient().auth.signOut();
+    router.push("/myadmin2026/login");
+    router.refresh();
+  }
+  return (
+    <nav
+      className="lg:hidden fixed left-0 right-0 z-40 flex gap-1 overflow-x-auto px-2 py-2 border-b"
+      style={{ top: 48, backgroundColor: "#0f1e3c", borderColor: "rgba(255,255,255,0.08)" }}
+      aria-label="Admin sections"
+    >
+      {links.map((item) => {
+        const active = (item as { exact?: boolean }).exact ? pathname === item.href : pathname.startsWith(item.href);
+        const Icon = item.icon;
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="flex shrink-0 items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap"
+            style={active ? { backgroundColor: "#1a7f3c", color: "#fff" } : { color: "rgba(255,255,255,0.65)" }}
+          >
+            <Icon size={13} />
+            {item.label}
+          </Link>
+        );
+      })}
+      <button onClick={signOut} className="flex shrink-0 items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs whitespace-nowrap" style={{ color: "rgba(255,255,255,0.45)" }}>
+        <LogOut size={13} />
+        Sign out
+      </button>
+    </nav>
+  );
+}
+
 export default function AdminSidebar({ userEmail }: Props) {
   const pathname = usePathname();
   const router   = useRouter();
