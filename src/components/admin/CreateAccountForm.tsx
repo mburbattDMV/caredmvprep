@@ -62,8 +62,8 @@ export default function CreateAccountForm() {
       {state && (
         <div className={`rounded-lg border p-4 text-sm ${state.ok ? "border-green-200 bg-green-50 text-green-900" : "border-red-200 bg-red-50 text-red-900"}`} role="status">
           <p className="font-semibold">{state.message}</p>
-          {state.ok && state.emailSent === true && <p className="mt-1">A password-setup email was requested.</p>}
-          {state.ok && state.emailSent === false && <p className="mt-1">The email could not be sent. Share the link below instead.</p>}
+          {state.ok && state.emailSent === true && <p className="mt-1">Setup email accepted by Resend for delivery.</p>}
+          {state.ok && state.emailSent === false && <p className="mt-1 font-semibold text-red-800">The setup email was NOT sent{state.emailError ? ` (${state.emailError})` : ""}. The account and access are saved; share the link below instead.</p>}
           {state.ok && state.setupLink && (
             <div className="mt-3">
               <p className="font-semibold">Password-setup link (share privately, it signs the person in once):</p>

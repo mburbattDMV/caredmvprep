@@ -3,17 +3,24 @@
 import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { sendEmail as sendMail } from "@/lib/email/resend";
+import { accountSetupEmail } from "@/lib/email/templates";
 
 export type CreateAccountState = {
   ok: boolean;
   message: string;
   setupLink?: string;
   emailSent?: boolean;
+  emailError?: string;
 } | null;
 
 // Products an admin may grant, with a one-time access length in months (0 = account only, no paid access).
 const PRODUCTS = ["dmv", "motorcycle", "cdl", "cdl_hazmat", "cdl_tanker", "cdl_doubles_triples", "cdl_school_bus", "cdl_passenger"] as const;
 const ALLOWED_MONTHS = [0, 1, 3, 6, 12] as const;
+const PRODUCT_LABELS: Record<string, string> = {
+  dmv: "Driver's License", motorcycle: "Motorcycle", cdl: "CDL Core", cdl_hazmat: "CDL HazMat", cdl_tanker: "CDL Tanker",
+  cdl_doubles_triples: "CDL Doubles & Triples", cdl_school_bus: "CDL School Bus", cdl_passenger: "CDL Passenger",
+};
 const STATE_RE = /^[A-Z]{2}$/;
 const LICENSE_FOR_PRODUCT: Record<string, string> = { dmv: "permit", motorcycle: "motorcycle" };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -31,7 +38,7 @@ async function requireAdmin() {
 
 export async function createAccount(_prev: CreateAccountState, formData: FormData): Promise<CreateAccountState> {
   try {
-    const { supabase } = await requireAdmin();
+    await requireAdmin();
 
     const email = String(formData.get("email") ?? "").trim().toLowerCase();
     const name = String(formData.get("name") ?? "").trim().slice(0, 120);
@@ -75,6 +82,7 @@ export async function createAccount(_prev: CreateAccountState, formData: FormDat
 
     // Grant paid access (one-time, expires). Upsert on (user_id, product) which is unique.
     let grantNote = "";
+    let accessUntil = "";
     if (months > 0) {
       const expires = new Date();
       expires.setMonth(expires.getMonth() + months);
@@ -93,26 +101,49 @@ export async function createAccount(_prev: CreateAccountState, formData: FormDat
         { onConflict: "user_id,product" }
       );
       if (subErr) return { ok: false, message: `Account ${created ? "created" : "found"}, but granting access failed: ${subErr.message}` };
+      accessUntil = expires.toISOString().slice(0, 10);
       grantNote = ` ${product} access granted until ${expires.toISOString().slice(0, 10)}.`;
     }
 
-    // Password-setup link: always return it to the admin; optionally email it to the person.
+    // Password-setup link: a Supabase one-time recovery token (expires, single use) wrapped in our own
+    // /auth/confirm URL. Always shown to the admin; emailed to the customer through Resend if requested.
     const h = await headers();
     const host = h.get("x-forwarded-host") ?? h.get("host") ?? "caredmvprep.com";
-    const origin = `https://${host}`;
-    const redirectTo = `${origin}/reset-password`;
-    const { data: link } = await admin.auth.admin.generateLink({ type: "recovery", email, options: { redirectTo } });
-    let emailSent = false;
+    const { data: link, error: linkErr } = await admin.auth.admin.generateLink({ type: "recovery", email });
+    const tokenHash = link?.properties?.hashed_token;
+    const setupLink = tokenHash
+      ? `https://${host}/auth/confirm?token_hash=${encodeURIComponent(tokenHash)}&type=recovery`
+      : undefined;
+
+    let emailSent: boolean | undefined;
+    let emailError: string | undefined;
     if (sendEmail) {
-      const { error: mailErr } = await supabase.auth.resetPasswordForEmail(email, { redirectTo });
-      emailSent = !mailErr;
+      if (!setupLink) {
+        emailSent = false;
+        emailError = `Could not generate a setup link: ${linkErr?.message ?? "unknown error"}`;
+      } else {
+        const accessLine = months > 0 ? `${PRODUCT_LABELS[product] ?? product}, active until ${accessUntil}` : null;
+        const mail = accountSetupEmail({
+          name: name || undefined,
+          setupUrl: setupLink,
+          accessLine,
+          expiresNote: "For your security this link works once and expires after a short time. If it has expired, use \"Forgot password\" on the sign-in page to get a new one.",
+        });
+        const r = await sendMail({ to: email, ...mail });
+        emailSent = r.ok;
+        if (!r.ok) {
+          emailError = r.error;
+          console.error(`[admin/create-account] setup email to ${email} failed: ${r.error}`);
+        }
+      }
     }
 
     return {
       ok: true,
       message: `${created ? "Account created" : "Account already existed"} for ${email}.${state ? ` State set to ${state}.` : ""}${grantNote}`,
-      setupLink: link?.properties?.action_link,
-      emailSent: sendEmail ? emailSent : undefined,
+      setupLink,
+      emailSent,
+      emailError,
     };
   } catch (e) {
     return { ok: false, message: e instanceof Error ? e.message : "Something went wrong." };

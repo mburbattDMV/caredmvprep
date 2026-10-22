@@ -13,7 +13,9 @@ const PROTECTED_PREFIXES = [
   '/admin/',
   '/myadmin2026/',
 ];
-const AUTH_PAGES = ['/login', '/signup', '/forgot-password', '/reset-password'];
+// /reset-password is deliberately not listed: the recovery link signs the user in first, and they must still
+// be able to reach this page to choose a password (listing it bounced them to /dashboard).
+const AUTH_PAGES = ['/login', '/signup', '/forgot-password'];
 
 export async function proxy(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });

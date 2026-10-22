@@ -2,6 +2,7 @@ import Stripe from 'stripe';
 import { getStripe } from '@/lib/stripe/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { PRODUCT_CONFIG } from '@/lib/stripe/config';
+import { notifyAdminOfStripeEvent } from '@/lib/email/adminNotify';
 import type { SubscriptionProduct, SubscriptionStatus, PaymentType } from '@/types/database';
 
 export const dynamic = 'force-dynamic';
@@ -99,6 +100,46 @@ async function upsertAccess(
   }
 
   console.log('[webhook] upsert succeeded for', args.userId, args.product);
+}
+
+// ─── Owner alerts ─────────────────────────────────────────────────────────────
+
+function productLabel(p: string | undefined | null): string {
+  return (p && PRODUCT_CONFIG[p as SubscriptionProduct]?.label) || p || 'unknown product';
+}
+
+async function sendOwnerAlert(event: Stripe.Event): Promise<void> {
+  try {
+    if (event.type === 'checkout.session.completed') {
+      const s = event.data.object as Stripe.Checkout.Session;
+      await notifyAdminOfStripeEvent({
+        eventId: event.id, eventType: event.type, kind: 'New purchase',
+        product: productLabel(s.metadata?.product),
+        amountCents: s.amount_total, currency: s.currency,
+        buyerEmail: s.customer_details?.email ?? s.customer_email,
+      });
+    } else if (event.type === 'invoice.payment_succeeded') {
+      const inv = event.data.object as Stripe.Invoice;
+      // The first invoice of a new subscription is already covered by checkout.session.completed.
+      if (inv.billing_reason !== 'subscription_cycle') return;
+      const meta = inv.parent?.type === 'subscription_details' ? inv.parent.subscription_details?.metadata : null;
+      await notifyAdminOfStripeEvent({
+        eventId: event.id, eventType: event.type, kind: 'Subscription renewal',
+        product: productLabel(meta?.product),
+        amountCents: inv.amount_paid, currency: inv.currency, buyerEmail: inv.customer_email,
+      });
+    } else if (event.type === 'invoice.payment_failed') {
+      const inv = event.data.object as Stripe.Invoice;
+      const meta = inv.parent?.type === 'subscription_details' ? inv.parent.subscription_details?.metadata : null;
+      await notifyAdminOfStripeEvent({
+        eventId: event.id, eventType: event.type, kind: 'Payment failed',
+        product: productLabel(meta?.product),
+        amountCents: inv.amount_due, currency: inv.currency, buyerEmail: inv.customer_email,
+      });
+    }
+  } catch (err) {
+    console.error('[webhook] owner alert error:', err instanceof Error ? err.message : err);
+  }
 }
 
 // ─── Webhook handler ──────────────────────────────────────────────────────────
@@ -324,6 +365,10 @@ export async function POST(request: Request) {
         break;
       }
 
+      // ── Subscription renewal paid (alert only; access dates come from subscription.updated) ──
+      case 'invoice.payment_succeeded':
+        break;
+
       default:
         break;
     }
@@ -333,6 +378,10 @@ export async function POST(request: Request) {
     console.log('[webhook] → HTTP 500 returned to Stripe');
     return Response.json({ error: String(err) }, { status: 500 });
   }
+
+  // Owner alerts run only after the event was processed successfully, never affect the response, and are
+  // de-duplicated per Stripe event id (retries reuse the same Resend idempotency key).
+  await sendOwnerAlert(event);
 
   console.log('[webhook] → HTTP 200 returned to Stripe');
   return Response.json({ received: true });
