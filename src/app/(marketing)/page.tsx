@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import StateSearch from "@/components/StateSearch";
+import TeenPromo from "@/components/TeenPromo";
 
 export const metadata: Metadata = {
   title: "CAREDMVPrep – Free DMV Practice Tests for All 50 States",
@@ -157,6 +158,9 @@ const popularTests = [
   { label: "CDL General Knowledge Test", href: "/cdl-practice-test" },
 ];
 
+// Re-render hourly so the teen promo hides itself after its end date.
+export const revalidate = 3600;
+
 export default function HomePage() {
   return (
     <>
@@ -243,6 +247,8 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      <TeenPromo />
 
       {/* ── TEST TYPES ─────────────────────────────────────────── */}
       <section className="py-14" style={{ backgroundColor: '#f0f4f8' }}>
