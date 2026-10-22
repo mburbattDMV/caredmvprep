@@ -9,32 +9,30 @@ export default function TeenPromo() {
   return (
     <section className="py-10" style={{ backgroundColor: "#0d2240" }} aria-labelledby="teen-promo-heading">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl p-6 sm:p-10 text-center" style={{ background: "linear-gradient(135deg,#1a7f3c 0%,#0f5c2a 100%)" }}>
-          <p className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-white/15 text-white mb-4">
-            Limited-time offer for teens
-          </p>
-          <h2 id="teen-promo-heading" className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-            Getting your permit? Study free.
-          </h2>
-          <p className="mt-3 text-white/90 text-base sm:text-lg max-w-2xl mx-auto">
-            Teen drivers get <strong>3 months of Driver&apos;s License practice for $0</strong>: the full state permit
-            question bank plus timed mock exams. Free for the first 100 teens.
-          </p>
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="rounded-2xl p-3 sm:p-4" style={{ backgroundColor: "#0f2540" }}>
+          <div className="rounded-xl px-4 py-8 sm:px-10 sm:py-10 text-center text-white" style={{ backgroundColor: "#006633" }}>
+            <p className="inline-block px-4 py-1.5 rounded-full bg-white text-xs sm:text-sm font-extrabold uppercase tracking-wide" style={{ color: "#006633" }}>
+              Exclusive teen driver offer
+            </p>
+            <h2 id="teen-promo-heading" className="mt-5 text-2xl sm:text-3xl font-bold">
+              Your Permit Prep.
+              <span className="block mt-4 text-3xl sm:text-4xl font-extrabold">100% FREE.</span>
+            </h2>
+            <h3 className="mt-4 text-2xl sm:text-3xl font-bold">3 Full Months of FREE Access</h3>
+            <p className="mt-3 text-sm sm:text-base text-white/90 max-w-2xl mx-auto">
+              Practice questions, full state question bank and timed mock exams. Free for the first 100 eligible teen drivers.
+            </p>
             <Link
               href="/pricing"
-              className="inline-flex items-center justify-center px-7 py-3 rounded-xl bg-white font-bold text-base"
-              style={{ color: "#0f5c2a" }}
+              className="mt-6 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white font-extrabold uppercase text-sm sm:text-base"
+              style={{ color: "#006633" }}
             >
-              Claim free access
+              Claim my free access <span aria-hidden="true">&rarr;</span>
             </Link>
-            <p className="text-white text-sm">
-              Use code <span className="font-mono font-bold bg-white/20 px-2 py-1 rounded">{PROMO_CODE}</span> at checkout
+            <p className="mt-4 text-xs sm:text-sm text-white/85">
+              Use code <strong>{PROMO_CODE}</strong> at checkout &middot; Driver&apos;s License prep only
             </p>
           </div>
-          <p className="mt-4 text-white/70 text-xs">
-            For teen drivers preparing for a learner&apos;s permit. Driver&apos;s License plan only, one per person, while codes last.
-          </p>
         </div>
       </div>
     </section>
