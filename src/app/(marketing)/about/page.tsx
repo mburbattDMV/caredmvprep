@@ -65,16 +65,17 @@ interface CareFamilyEntry {
 }
 
 const CARE_FAMILY: CareFamilyEntry[] = [
-  { name: "CARE Exam Prep", blurb: "The home of the CARE family, bringing every product together in one place.", href: null, isUmbrella: true },
+  { name: "CARE Exam Prep", blurb: "The home of the CARE family. Find licensing exams, explore our preparation platforms, and access career and licensing resources.", href: "https://careexamprep.com", isUmbrella: true },
   { name: "CARE Real Estate", blurb: "State real estate licensing exam preparation.", href: "https://carealestate.com" },
   { name: "CARE DMV Prep", blurb: "Driver's license, motorcycle and CDL knowledge tests.", href: "https://caredmvprep.com" },
   { name: "CARE Insurance", blurb: "State insurance licensing — life, health, property and casualty — plus the SIE and Series 6, 7, 63, 65 and 66 exams.", href: "https://careinsuranceprep.com" },
   { name: "CARE CPA Prep", blurb: "Certified Public Accountant exam preparation.", href: "https://carecpaprep.com" },
-  { name: "CARE Bar Prep", blurb: "State bar examination preparation.", href: "https://carebarprep.com" },
+  { name: "CARE Bar", blurb: "State bar examination preparation.", href: "https://carebarprep.com" },
   { name: "CARE Nursing", blurb: "NCLEX-RN, NCLEX-PN/LVN, CNA and Medication Aide.", href: "https://carenursingprep.com" },
   { name: "CARE Contractor Prep", blurb: "Licensing exam preparation for the construction trades.", href: null },
   { name: "CARE Electrician Prep", blurb: "Licensing exam preparation for electricians.", href: null },
-  { name: "CARE ACE Prep", blurb: "Certification exam preparation for fitness and personal training.", href: null },
+  { name: "CARE ASE", blurb: "ASE automotive technician certification preparation.", href: null },
+  { name: "CARE Fitness", blurb: "Fitness certification preparation, planned for the future.", href: null },
 ];
 
 const DIFFERENTIATORS = [
