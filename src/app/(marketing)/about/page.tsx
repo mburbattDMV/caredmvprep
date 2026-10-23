@@ -50,9 +50,7 @@ export const metadata: Metadata = {
  * per product. CARE Securities is intentionally NOT its own entry: it is a
  * product housed under CARE Insurance, folded into that entry's own blurb.
  *
- * `href: null` means "no live public destination yet" — CARE CPA Prep and
- * CARE Bar Prep carry their real, registered domain as plain text in the
- * blurb (not a link, since the site is not live); Contractor/Electrician/
+ * `href: null` means "no live public destination yet" — Contractor/Electrician/
  * ACE Prep have no assigned domain to show. A future-product card is a
  * normal card (real border, real background) with no action — never
  * styled as disabled or broken.
@@ -71,8 +69,8 @@ const CARE_FAMILY: CareFamilyEntry[] = [
   { name: "CARE Real Estate", blurb: "State real estate licensing exam preparation.", href: "https://carealestate.com" },
   { name: "CARE DMV Prep", blurb: "Driver's license, motorcycle and CDL knowledge tests.", href: "https://caredmvprep.com" },
   { name: "CARE Insurance", blurb: "State insurance licensing — life, health, property and casualty — plus the SIE and Series 6, 7, 63, 65 and 66 exams.", href: "https://careinsuranceprep.com" },
-  { name: "CARE CPA Prep", blurb: "Certified Public Accountant exam preparation. carecpaprep.com", href: null },
-  { name: "CARE Bar Prep", blurb: "State bar examination preparation. carebarprep.com", href: null },
+  { name: "CARE CPA Prep", blurb: "Certified Public Accountant exam preparation.", href: "https://carecpaprep.com" },
+  { name: "CARE Bar Prep", blurb: "State bar examination preparation.", href: "https://carebarprep.com" },
   { name: "CARE Nursing", blurb: "NCLEX-RN, NCLEX-PN/LVN, CNA and Medication Aide.", href: "https://carenursingprep.com" },
   { name: "CARE Contractor Prep", blurb: "Licensing exam preparation for the construction trades.", href: null },
   { name: "CARE Electrician Prep", blurb: "Licensing exam preparation for electricians.", href: null },
