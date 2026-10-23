@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { createBanner, setBannerActive, deleteBanner as deleteBannerAction, editBanner } from "@/lib/admin/content-actions";
 
 interface Banner {
   id: string;
@@ -51,43 +52,34 @@ export default function BannersPanel({ initialBanners }: Props) {
     e.preventDefault();
     if (!content.trim()) { setError("Banner content is required."); return; }
     setSaving(true); setError(null);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error: dbErr } = await (supabase as any).from("banners").insert({
-      content: content.trim(), color,
-      starts_at: startsAt || null,
-      ends_at:   endsAt   || null,
-      active: false,
-    });
+    const { error: dbErr } = await createBanner({ content, color, startsAt, endsAt });
     setSaving(false);
-    if (dbErr) { setError(dbErr.message); return; }
+    if (dbErr) { setError(dbErr); return; }
     setContent(""); setStartsAt(""); setEndsAt("");
     await refresh();
   }
 
   async function goLive(banner: Banner) {
-    // Deactivate all others first (only one active at a time)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase as any).from("banners").update({ active: false }).neq("id", banner.id);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase as any).from("banners").update({ active: true }).eq("id", banner.id);
+    const r = await setBannerActive(banner.id, true);
+    if (r.error) setError(r.error);
     await refresh();
   }
 
   async function deactivate(id: string) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase as any).from("banners").update({ active: false }).eq("id", id);
+    const r = await setBannerActive(id, false);
+    if (r.error) setError(r.error);
     await refresh();
   }
 
   async function deleteBanner(id: string) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase as any).from("banners").delete().eq("id", id);
+    const r = await deleteBannerAction(id);
+    if (r.error) setError(r.error);
     await refresh();
   }
 
   async function saveEdit(id: string) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase as any).from("banners").update({ content: editContent }).eq("id", id);
+    const r = await editBanner(id, editContent);
+    if (r.error) setError(r.error);
     setEditId(null);
     await refresh();
   }

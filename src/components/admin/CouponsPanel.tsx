@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { createCoupon, updateCoupon } from "@/lib/admin/content-actions";
 
 interface Coupon {
   id: string;
@@ -36,28 +37,22 @@ export default function CouponsPanel({ initialCoupons }: Props) {
     e.preventDefault();
     if (!code.trim() || !pct) { setError("Code and % off are required."); return; }
     setSaving(true); setError(null);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error: dbErr } = await (supabase as any).from("coupons").insert({
-      code: code.trim().toUpperCase(),
-      discount_pct: parseInt(pct),
-      label: label.trim() || null,
-      expires_at: expires || null,
-    });
+    const { error: dbErr } = await createCoupon({ code, pct: parseInt(pct), label, expires });
     setSaving(false);
-    if (dbErr) { setError(dbErr.message); return; }
+    if (dbErr) { setError(dbErr); return; }
     setCode(""); setPct(""); setLabel(""); setExpires("");
     await refresh();
   }
 
   async function toggleActive(coupon: Coupon) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase as any).from("coupons").update({ active: !coupon.active, updated_at: new Date().toISOString() }).eq("id", coupon.id);
+    const r = await updateCoupon(coupon.id, { active: !coupon.active });
+    if (r.error) setError(r.error);
     await refresh();
   }
 
   async function updateExpiry(coupon: Coupon, newExpiry: string) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase as any).from("coupons").update({ expires_at: newExpiry || null, updated_at: new Date().toISOString() }).eq("id", coupon.id);
+    const r = await updateCoupon(coupon.id, { expires: newExpiry || null });
+    if (r.error) setError(r.error);
     await refresh();
   }
 

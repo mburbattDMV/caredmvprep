@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 
 interface Banner { id: string; content: string; color: string }
 
@@ -13,19 +12,16 @@ export default function SiteBanner() {
     const key = "dismissed_banner";
     const lastDismissed = sessionStorage.getItem(key);
 
-    const supabase = createClient();
     (async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { data } = await (supabase as any)
-        .from("banners")
-        .select("id, content, color")
-        .eq("active", true)
-        .limit(1)
-        .maybeSingle() as { data: Banner | null };
-
-      if (data) {
-        if (lastDismissed === data.id) { setDismissed(true); return; }
-        setBanner(data);
+      try {
+        const res = await fetch("/api/banner");
+        const { banner: data } = (await res.json()) as { banner: Banner | null };
+        if (data) {
+          if (lastDismissed === data.id) { setDismissed(true); return; }
+          setBanner(data);
+        }
+      } catch {
+        // No banner is better than a broken page.
       }
     })();
   }, []);
